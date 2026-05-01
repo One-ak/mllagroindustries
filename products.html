@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products | Vansh Feeds</title>
+  <meta name="description" content="Browse Vansh Feeds' complete product range — cattle feed, aqua feed, bio-fertilizers, and agro specialties.">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* ── Filter Tabs ── */
+    .filter-bar {
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+    .filter-btn {
+      padding: .55rem 1.4rem;
+      border-radius: 50px;
+      border: 2px solid var(--gray-light);
+      background: var(--white);
+      color: var(--gray);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: .85rem;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(21,128,61,.35);
+    }
+
+    /* ── Category Section Header ── */
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 3.5rem 0 2rem;
+    }
+    .cat-header-icon {
+      width: 46px; height: 46px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .cat-header h2 {
+      font-size: 1.5rem;
+      color: var(--dark);
+      margin: 0;
+    }
+    .cat-header-line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--secondary), transparent);
+      border-radius: 2px;
+    }
+    .cat-count {
+      background: var(--secondary);
+      color: #fff;
+      border-radius: 50px;
+      padding: .2rem .7rem;
+      font-size: .75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── Product Card ── */
+    .product-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--gray-light);
+      display: flex;
+      flex-direction: column;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+      position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,.12);
+      border-color: var(--secondary);
+    }
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transition: transform .3s ease;
+      transform-origin: left;
+    }
+    .product-card:hover::before { transform: scaleX(1); }
+
+    .product-img-wrapper {
+      padding: 1.5rem;
+      background: var(--light);
+      height: 220px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .product-img-wrapper img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      transition: transform .4s ease;
+    }
+    .product-card:hover .product-img-wrapper img { transform: scale(1.08); }
+
+    .product-content {
+      padding: 1.25rem 1.25rem 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .product-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+      flex-grow: 1;
+      line-height: 1.4;
+    }
+    .product-card .btn-view {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      padding: .6rem 1rem;
+      border-radius: 50px;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: .85rem;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .product-card .btn-view:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* ── Category Grid ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .product-img-wrapper { height: 150px; padding: 1rem; }
+      .product-content { padding: .75rem; }
+      .product-title { font-size: .875rem; }
+    }
+
+    /* ── Category section visibility ── */
+    .cat-section { display: block; }
+    .cat-section.hidden { display: none; }
+
+    /* ── Sticky filter bar on scroll ── */
+    .filter-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--light);
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--gray-light);
+      margin-bottom: 2rem;
+    }
+
+    /* ── Dark mode ── */
+    [data-theme="dark"] .filter-btn { background: #1e293b; color: #94a3b8; }
+    [data-theme="dark"] .filter-wrap { background: #0f172a; }
+    [data-theme="dark"] .cat-header h2 { color: #f8fafc; }
+    [data-theme="dark"] .product-card { background: #1e293b; border-color: #334155; }
+    [data-theme="dark"] .product-img-wrapper { background: #0f172a; }
+    [data-theme="dark"] .product-title { color: #f8fafc; }
+
+    /* ── Fade-in animation for cards (CSS, not JS-observer) ── */
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .product-card { animation: cardIn .4s ease both; }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-contact">
+        <span><i class="fas fa-phone-alt"></i> +91 9670252525</span>
+        <span><i class="fas fa-envelope"></i> vanshgroup@gmail.com</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" style="display:flex;align-items:center;">
+        <img id="site-logo" src="assets/logo_en.png" alt="Vansh Feeds" style="height:70px;width:auto;object-fit:contain;">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About Us</a></li>
+        <li><a href="products.html" class="active" data-i18n="nav.products">Our Products</a></li>
+        <li><a href="infrastructure.html" data-i18n="nav.infrastructure">Infrastructure</a></li>
+        <li><a href="quality.html" data-i18n="nav.quality">Quality</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="controls-group">
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="hi">HI</button>
+          </div>
+          <div class="controls-divider"></div>
+          <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+        </div>
+        <a href="contact.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left:1rem;">Business Inquiry</a>
+      </div>
+      <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero" style="padding:4rem 0;">
+    <div class="hero-bg" style="opacity:.2;"></div>
+    <div class="container">
+      <h1 style="font-size:3.5rem;" data-i18n="page.products.title">Our <span class="text-gradient">Products</span></h1>
+      <p data-i18n="page.products.subtitle">Comprehensive agro and animal nutrition solutions.</p>
+    </div>
+  </header>
+
+  <!-- Products Section -->
+  <section style="padding:3rem 0 5rem;">
+    <div class="container">
+
+      <!-- Sticky Filter Tabs -->
+      <div class="filter-wrap">
+        <div class="filter-bar">
+          <button class="filter-btn active" data-cat="all">All Products</button>
+          <button class="filter-btn" data-cat="feed"><i class="fas fa-paw" style="margin-right:.4rem;"></i>Animal &amp; Aqua Feed</button>
+          <button class="filter-btn" data-cat="fertilizer"><i class="fas fa-seedling" style="margin-right:.4rem;"></i>Fertilizers &amp; Nutrition</button>
+          <button class="filter-btn" data-cat="agro"><i class="fas fa-flask" style="margin-right:.4rem;"></i>Agro Chemicals</button>
+        </div>
+      </div>
+
+      <!-- Category: Animal & Aqua Feed -->
+      <div class="cat-section" id="cat-feed">
+        <div class="cat-header">
+          <div class="cat-header-icon"><i class="fas fa-paw"></i></div>
+          <h2>Animal &amp; Aqua Feed</h2>
+          <div class="cat-header-line"></div>
+          <span class="cat-count">12 Products</span>
+        </div>
+        <div class="products-grid" id="grid-feed"></div>
+      </div>
+
+      <!-- Category: Fertilizers -->
+      <div class="cat-section" id="cat-fertilizer">
+        <div class="cat-header">
+          <div class="cat-header-icon"><i class="fas fa-seedling"></i></div>
+          <h2>Fertilizers &amp; Nutrition</h2>
+          <div class="cat-header-line"></div>
+          <span class="cat-count">9 Products</span>
+        </div>
+        <div class="products-grid" id="grid-fertilizer"></div>
+      </div>
+
+      <!-- Category: Agro Chemicals -->
+      <div class="cat-section" id="cat-agro">
+        <div class="cat-header">
+          <div class="cat-header-icon"><i class="fas fa-flask"></i></div>
+          <h2>Agro Chemicals &amp; Specialties</h2>
+          <div class="cat-header-line"></div>
+          <span class="cat-count">20 Products</span>
+        </div>
+        <div class="products-grid" id="grid-agro"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" style="display:inline-block;margin-bottom:1.5rem;">
+            <div style="background:white;padding:.5rem 1rem;border-radius:var(--radius-lg);display:inline-block;">
+              <img id="footer-logo" src="assets/logo_en.png" alt="Vansh Feeds" style="height:50px;width:auto;object-fit:contain;">
+            </div>
+          </a>
+          <p style="color:#94A3B8;margin-bottom:1.5rem;" data-i18n="footer.about">Vansh Group of Companies includes New Vanshika Bio Agro, Fish Gold Industries, and MLL Agro Industries.</p>
+        </div>
+        <div>
+          <h4 class="footer-heading" data-i18n="footer.links">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Vansh Group</a></li>
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="infrastructure.html">Infrastructure</a></li>
+            <li><a href="quality.html">Quality Assurance</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading" data-i18n="footer.contact">Contact Info</h4>
+          <ul class="footer-links" style="color:#94A3B8;">
+            <li style="display:flex;gap:1rem;"><i class="fas fa-map-marker-alt" style="color:var(--secondary);margin-top:4px;"></i><span data-i18n="footer.address">Barabanki, Uttar Pradesh, India</span></li>
+            <li style="display:flex;gap:1rem;"><i class="fas fa-phone-alt" style="color:var(--secondary);margin-top:4px;"></i><span data-i18n="footer.phone">05248 296699<br>+91 9670252525</span></li>
+            <li style="display:flex;gap:1rem;"><i class="fas fa-envelope" style="color:var(--secondary);margin-top:4px;"></i><span data-i18n="footer.email">vanshgroup@gmail.com</span></li>
+          </ul>
+        </div>
+      </div>
+      <div style="border-top:1px solid #334155;padding-top:2rem;text-align:center;color:#64748B;">
+        <p data-i18n="footer.rights">© 2026 Vansh Group. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // ── Product Data ──────────────────────────────────────────
+    const FALLBACK = 'https://images.unsplash.com/photo-1594498653385-d5172c532c00?w=400&q=80';
+
+    const feed = [
+      ['Vansh Multigrain Fortified Cokar','vansh_multigrain_fortified_cokar'],
+      ['Vansh Heera','vansh_heera'],
+      ['Vansh Gajab','vansh_gajab'],
+      ['Vansh Proteimax Kuroiler','vansh_proteimax_kuroiler'],
+      ['Vansh Proteimax Finisher','vansh_proteimax_finisher'],
+      ['Vansh Proteimax Starter','vansh_proteimax_starter'],
+      ['Vansh Proteimax Pre Starter','vansh_proteimax_pre_starter'],
+      ['Vansh Floating Fish Feed','vansh_floating_fish_feed'],
+      ['Vansh Pro 8000','vansh_pro_8000'],
+      ['Vansh Grow 5000','vansh_grow_5000'],
+      ['Vansh Starter 3000','vansh_starter_3000'],
+      ['Vansh Supreme','vansh_supreme'],
+    ];
+
+    const fertilizer = [
+      ['Prom','prom'],
+      ['Vansh Potash','vansh_potash'],
+      ['Green Phos','green_phos'],
+      ['Vansh NPK','vansh_npk'],
+      ['King Mentha Special','king_mentha_special'],
+      ['Sadabahar Mentha Special','sadabahar_mentha_special'],
+      ['Kishan Mentha Special','kishan_mentha_special'],
+      ['Vansh Badshah Mentha Special','vansh_badshah_mentha_special'],
+      ['Vansh Mono Zinc','vansh_mono_zinc'],
+    ];
+
+    const agro = [
+      ['Vansh Sugarcane Special','vansh_sugarcane_special'],
+      ['Vansh Grow Vita','vansh_grow_vita'],
+      ['Vansh Sanjivini Gold','vansh_sanjivini_gold'],
+      ['Vansh Balwan','vansh_balwan'],
+      ['Vansh Sanjeevni Gold','vansh_sanjeevni_gold'],
+      ['Vansh Takat Plus','vansh_takat_plus'],
+      ['Vansh Bahubali','vansh_bahubali'],
+      ['Vansh Boom Flower','vansh_boom_flower'],
+      ['Vansh Poshak Boron','vansh_poshak_boron'],
+      ['Fasal Balwan','fasal_balwan'],
+      ['Vansh Black Gold','vansh_black_gold'],
+      ['Vansh Cargodan','vansh_cargodan'],
+      ['Vansh Pardhan','vansh_pardhan'],
+      ['Vansh Resent','vansh_resent'],
+      ['Vansh Futerra','vansh_futerra'],
+      ['Vansh Furotox','vansh_furotox'],
+      ['Vansh Dabang','vansh_dabang'],
+      ['Vansh Dhan Gehu Makka King','vansh_dhan_gehu_makka_king'],
+      ['Vansh Speed Gold','vansh_speed_gold'],
+      ['Vansh Fasal Aahar','vansh_fasal_aahar'],
+    ];
+
+    // ── Render helper ─────────────────────────────────────────
+    function renderCards(gridId, products) {
+      const grid = document.getElementById(gridId);
+      grid.innerHTML = products.map(([name, slug], i) => `
+        <div class="product-card" style="animation-delay:${i * 0.04}s">
+          <div class="product-img-wrapper">
+            <img src="assets/products/${slug}.jpg"
+                 alt="${name}"
+                 loading="lazy"
+                 onerror="this.src='${FALLBACK}'">
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">${name}</h3>
+            <a href="product-detail.html?id=${slug.replace(/_/g,'-')}" class="btn-view">
+              View Details <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>`).join('');
+    }
+
+    renderCards('grid-feed', feed);
+    renderCards('grid-fertilizer', fertilizer);
+    renderCards('grid-agro', agro);
+
+    // ── Filter Tabs ───────────────────────────────────────────
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const cat = btn.dataset.cat;
+        document.querySelectorAll('.cat-section').forEach(sec => {
+          if (cat === 'all' || sec.id === 'cat-' + cat) {
+            sec.classList.remove('hidden');
+          } else {
+            sec.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

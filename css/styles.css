@@ -1,0 +1,1210 @@
+/**
+ * ============================================================
+ *  styles.css — Vansh Feeds | Master Stylesheet
+ * ============================================================
+ *
+ * TABLE OF CONTENTS
+ * ─────────────────
+ *   1.  Google Fonts Import
+ *   2.  CSS Custom Properties (:root variables)
+ *   3.  Dark Mode — Variable Overrides
+ *   4.  Dark Mode — Component-Level Overrides
+ *   5.  Product Detail Zoom Layout
+ *   6.  CSS Reset & Base Styles
+ *   7.  Theme Transition Suppression (.no-theme-transition)
+ *   8.  Typography & Utility Classes
+ *   9.  Premium Text Animations
+ *  10.  Buttons
+ *  11.  Topbar (contact strip above navbar)
+ *  12.  Navbar & Logo
+ *  13.  Hero Section
+ *  14.  Feature Overlap Cards
+ *  15.  Bento Grid Layouts
+ *  16.  Product Cards
+ *  17.  Network / Distribution Section
+ *  18.  Footer
+ *  19.  Utility Grid Helpers
+ *  20.  Responsive Breakpoints
+ *  21.  Mobile Menu (active state)
+ *  22.  Scroll Reveal Animations
+ *  23.  Page Transition Overlay
+ *  24.  UI Controls (Language + Theme toggles)
+ *  25.  Misc Animations (float, spin)
+ *
+ * COLOUR SYSTEM
+ * ─────────────
+ * All colours are defined as CSS custom properties in :root.
+ * Dark mode swaps those variables via [data-theme="dark"],
+ * except for --always-* variables which never change — these
+ * are used for elements that must look the same in both modes
+ * (e.g. the footer background, overlay background).
+ *
+ * DARK MODE STRATEGY
+ * ──────────────────
+ * theme-init.js applies [data-theme="dark"] to <html> BEFORE
+ * the first CSS paint, so there is zero flash of the wrong theme.
+ * The .no-theme-transition class (section 7) suppresses colour
+ * transitions during that initial load.
+ * ============================================================
+ */
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   1. GOOGLE FONTS IMPORT
+   Loads Inter (body text) and Outfit (headings) from Google Fonts.
+   'display=swap' shows fallback text while the font downloads.
+───────────────────────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;700;900&display=swap');
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   2. CSS CUSTOM PROPERTIES (Design Tokens)
+   All visual values are defined here as variables. Using these everywhere
+   means: change one value here → the whole site updates instantly.
+
+   Two categories:
+   • Regular vars (--dark, --white, etc.) → FLIP in dark mode (see section 3)
+   • Always vars (--always-dark, --always-white) → NEVER change — used for
+     elements that must keep the same colour in both themes (footer, overlay).
+───────────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Kapila-inspired Vibrant Colors for Vansh Brand */
+  --primary: #15803D; /* Vibrant Green */
+  --primary-dark: #166534;
+  --primary-light: #22C55E;
+  
+  --secondary: #F59E0B; /* Vibrant Orange/Gold */
+  --secondary-dark: #D97706;
+  
+  --accent-red: #DC2626; /* For alerts, strong CTAs */
+  --accent-yellow: #FACC15;
+  
+  --dark: #1E293B;
+  --dark-light: #334155;
+  --light: #F8FAFC;
+  --white: #FFFFFF;
+  --gray: #64748B;
+  --gray-light: #E2E8F0;
+  
+  --always-dark: #1E293B;
+  --always-darker: #0f172a;
+  --always-white: #FFFFFF;
+  
+  /* Typography */
+  --font-main: 'Inter', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  
+  /* Layout */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 2rem;
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.08);
+  
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   3. DARK MODE — CSS VARIABLE OVERRIDES
+   When theme-init.js sets data-theme="dark" on <html>, these overrides
+   replace the root variables. Notice how the roles FLIP:
+     --dark  (normally a dark colour) becomes a LIGHT colour in dark mode
+             because it is used for body text, which must be light on dark bg.
+     --white (normally white) becomes a dark card colour in dark mode.
+   --always-* variables are defined in :root and NOT overridden here.
+───────────────────────────────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --dark: #F8FAFC;
+  --dark-light: #E2E8F0;
+  --light: #0f172a;
+  --white: #1e293b;
+  --gray: #94a3b8;
+  --gray-light: #334155;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   4. DARK MODE — COMPONENT-LEVEL OVERRIDES
+   Some elements use hardcoded colours in their inline styles or have
+   backgrounds that don't automatically follow the CSS variables.
+   These rules force them to use the correct dark-mode values.
+   Most rules use !important to override inline styles on HTML elements.
+───────────────────────────────────────────────────────────────────────────── */
+[data-theme="dark"] body {
+  background-color: #0f172a;
+  color: #F8FAFC;
+}
+
+[data-theme="dark"] .feat-card,
+[data-theme="dark"] .product-card,
+[data-theme="dark"] .section {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .product-img-wrapper {
+  background: #0f172a;
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background: #0f172a !important;
+  color: #F8FAFC !important;
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .topbar {
+  background: #0f172a;
+  border-bottom: 1px solid #334155;
+}
+
+[data-theme="dark"] .controls-group {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .lang-btn.active {
+  background: #1e293b;
+}
+
+[data-theme="dark"] .hero-bg {
+  filter: brightness(0.4);
+}
+
+/* Dark mode: sections with explicit light backgrounds */
+[data-theme="dark"] section[style*="background: var(--white)"],
+[data-theme="dark"] section[style*="background: var(--light)"] {
+  background: #1e293b !important;
+}
+
+/* Dark mode product detail card panels */
+[data-theme="dark"] .product-detail-img-panel {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .product-detail-info-panel {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+/* Dark mode inline icon badges */
+[data-theme="dark"] .icon-badge-green {
+  background: rgba(34, 197, 94, 0.15) !important;
+}
+
+[data-theme="dark"] .icon-badge-gold {
+  background: rgba(245, 158, 11, 0.15) !important;
+}
+
+/* Quality page dark cards */
+[data-theme="dark"] [style*="background: var(--light)"] {
+  background: #1e293b !important;
+}
+
+/* About, contact inline card panels */
+[data-theme="dark"] [style*="background: var(--dark);"] {
+  background: #020617 !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   5. PRODUCT DETAIL — AMAZON-STYLE ZOOM LAYOUT
+   The zoom feature uses two absolutely-positioned elements:
+     #zoom-lens  — the circular magnifier that follows the cursor
+     #zoom-result — the floating panel showing the zoomed image
+   Both are positioned relative to the .product-detail-img-panel wrapper.
+   The zoom logic itself is in the <script> block of product-detail.html.
+───────────────────────────────────────────────────────────────────────────── */
+/* The outer wrapper must be position:relative so #zoom-result anchors to it */
+#zoom-result {
+  /* Ensure it never exceeds viewport height */
+  max-height: 90vh;
+}
+
+/* Hide the floating zoom result on small screens (no room beside the image) */
+@media (max-width: 1200px) {
+  #zoom-result { display: none !important; }
+}
+
+/* Lens circle uses transform:translate(-50%,-50%) in inline style,
+   ensure it is always on top */
+#zoom-lens {
+  z-index: 10;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   6. CSS RESET & BASE STYLES
+   Removes all default browser margins/padding. Sets box-sizing to border-box
+   so padding is included in element widths (much easier to work with).
+───────────────────────────────────────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Apply dark background at the html level so even the first paint is dark */
+[data-theme="dark"] {
+  background-color: #0f172a;
+  color-scheme: dark;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   7. THEME TRANSITION SUPPRESSION
+   theme-init.js adds .no-theme-transition to <html> during page load to
+   prevent a visible colour-animation from light → dark on initial paint.
+   It only disables CSS 'transition-property' — @keyframes animations (like
+   the page-transition overlay) are completely unaffected.
+───────────────────────────────────────────────────────────────────────────── */
+/*
+ * .no-theme-transition is added by theme-init.js on page load.
+ * It ONLY suppresses color/background transitions to prevent the
+ * dark-mode flash — NOT opacity or transform, so the page-transition
+ * overlay animation is completely unaffected.
+ */
+.no-theme-transition *,
+.no-theme-transition *::before,
+.no-theme-transition *::after {
+  transition-property: none !important;
+  /* Override: allow opacity & transform animations to still run */
+  animation-duration: initial !important;
+}
+
+/* Fine-grained: restore opacity+transform+visibility even during the no-transition phase */
+.no-theme-transition .page-transition-overlay {
+  transition: opacity 0.45s ease, visibility 0.45s ease !important;
+}
+.no-theme-transition .page-transition-overlay img {
+  transition: opacity 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   8. TYPOGRAPHY & UTILITY CLASSES
+   Base font, heading styles, links, and common layout helpers.
+───────────────────────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--dark);
+  background-color: var(--light);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Utilities */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: 6rem 0;
+}
+
+.text-center { text-align: center; }
+
+.section-title {
+  font-size: 2.75rem;
+  color: var(--primary-dark);
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--secondary);
+  border-radius: 2px;
+}
+
+.section-title.left::after {
+  left: 0;
+  transform: none;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   9. PREMIUM TEXT ANIMATIONS
+   Five different text effects for a high-end feel:
+     1. .text-shimmer     — gold shimmer sweep (used on cert titles)
+     2. .text-gradient    — green→gold gradient cycle (used on hero spans)
+     3. .reveal-text      — letter-spacing expands when scrolled into view
+     4. .text-words       — each word fades up with a stagger delay
+     5. .typewriter-cursor — a blinking | cursor appears after the text
+───────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Shimmer sweep effect – applied to .text-shimmer */
+.text-shimmer {
+  background: linear-gradient(
+    110deg,
+    var(--secondary) 0%,
+    var(--accent-yellow) 30%,
+    var(--secondary) 60%,
+    var(--secondary-dark) 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmerText 3s linear infinite;
+}
+@keyframes shimmerText {
+  0%   { background-position: 0% center; }
+  100% { background-position: 250% center; }
+}
+
+/* 2. Animated gradient text – green→gold cycle on .text-gradient */
+.text-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--secondary) 50%,
+    var(--primary) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientFlow 4s ease infinite;
+}
+@keyframes gradientFlow {
+  0%   { background-position: 0% center; }
+  50%  { background-position: 100% center; }
+  100% { background-position: 0% center; }
+}
+
+/* 3. Letter-spacing reveal – applied when .reveal-text becomes .active */
+/* Note: section-title elements use reveal-text only for the letter-spacing pop,
+   the opacity/transform reveal is handled separately by the scroll reveal system */
+.section-title.reveal-text {
+  letter-spacing: 0em;
+  transition:
+    letter-spacing 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.section-title.reveal-text.title-animate {
+  letter-spacing: 0.1em;
+}
+.section-title.reveal-text.active {
+  letter-spacing: 0.01em;
+}
+
+/* 4. Word-by-word fade-up – each .word inside .text-words */
+.word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.words-visible .word {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 5. Typewriter cursor blink on .typewriter-cursor */
+.typewriter-cursor::after {
+  content: '|';
+  display: inline-block;
+  color: var(--secondary);
+  animation: cursorBlink 1s step-end infinite;
+  margin-left: 2px;
+}
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* 6. Section title letter-spacing expand on scroll */
+.section-title {
+  transition: letter-spacing 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+              opacity 0.8s ease,
+              transform 0.8s ease;
+}
+.section-title.title-animate {
+  letter-spacing: 0.12em;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+  10. BUTTONS
+   Three variants: primary (green), secondary (gold), outline (transparent).
+   All use gradient backgrounds that shift on hover for a premium feel.
+───────────────────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.125rem;
+  border-radius: var(--radius-xl);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  background-size: 200% auto;
+  color: var(--always-white);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn-primary:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px rgba(34, 197, 94, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.95);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+  background-size: 200% auto;
+  color: var(--always-white);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn-secondary:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px rgba(245, 158, 11, 0.4);
+}
+
+.btn-secondary:active {
+  transform: translateY(0) scale(0.95);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  box-shadow: none;
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: var(--always-white);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+  11. TOPBAR
+   Thin contact strip shown above the navbar on desktop (hidden on mobile).
+   Contains phone/email with gold icon accents.
+───────────────────────────────────────────────────────────────────────────── */
+.topbar {
+  background: var(--primary-dark);
+  color: var(--always-white);
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+}
+
+.topbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar-contact {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.topbar-contact i {
+  color: var(--secondary);
+  margin-right: 0.5rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+  12. NAVBAR & LOGO
+   Sticky navbar with glassmorphism (backdrop-filter blur + semi-transparent
+   background). The JS in main.js adjusts the background opacity on scroll.
+   Active link gets a gold underline indicator via ::after pseudo-element.
+───────────────────────────────────────────────────────────────────────────── */
+.navbar {
+  background: color-mix(in srgb, var(--white) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid color-mix(in srgb, var(--gray-light) 30%, transparent);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+  gap: 1rem;
+}
+
+.logo-text {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--primary);
+  letter-spacing: -1px;
+  white-space: nowrap;
+}
+
+.logo-text span {
+  color: var(--secondary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.nav-links a {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--dark-light);
+  text-transform: uppercase;
+  position: relative;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 0;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--primary);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  white-space: nowrap;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--secondary);
+  transition: var(--transition);
+}
+
+.nav-links a:hover::after, .nav-links a.active::after {
+  width: 100%;
+}
+
+.mobile-menu-btn {
+  display: none;
+  font-size: 1.75rem;
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+  13. HERO SECTION
+   Full-width dark banner with a semi-transparent factory image background.
+   The background slowly scales (floatBg keyframe) for a living, breathing feel.
+   Content sits on z-index:1 above the z-index:0 background image.
+───────────────────────────────────────────────────────────────────────────── */
+@keyframes floatBg {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--always-darker) 0%, rgba(15, 23, 42, 0.8) 100%);
+  color: var(--always-white);
+  padding: 8rem 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/factory_bg.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4;
+  z-index: 0;
+  animation: floatBg 20s ease-in-out infinite;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero h1 span {
+  color: var(--secondary);
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+  14. FEATURE OVERLAP CARDS
+   The three feature cards (Cattle, Aqua, Bio) overlap the hero section by
+   -60px using a negative margin-top, creating a layered depth effect.
+───────────────────────────────────────────────────────────────────────────── */
+.features-overlap {
+  margin-top: -60px;
+  position: relative;
+  z-index: 10;
+}
+
+.features-overlap .grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+  15. BENTO GRID LAYOUTS
+   Bento grids are asymmetric CSS grids (inspired by modern dashboard UIs).
+   .bento-layout: 2-column with the first column spanning 2 rows on desktop.
+   .bento-stats:  4-column stats bar, collapses to 2 then 1 on smaller screens.
+───────────────────────────────────────────────────────────────────────────── */
+.bento-layout {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .bento-layout { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .bento-layout {
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .bento-large {
+    grid-row: span 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.bento-stats {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .bento-stats { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .bento-stats { grid-template-columns: repeat(4, 1fr); }
+  .bento-stats-wide { grid-column: span 2; }
+}
+
+.feat-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  border-bottom: 4px solid var(--primary);
+  transition: var(--transition);
+}
+
+.feat-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-bottom-color: var(--secondary);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.feat-icon {
+  font-size: 3rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.feat-card:hover .feat-icon i {
+  animation: bounceIcon 0.5s ease;
+}
+
+@keyframes bounceIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px) scale(1.1); }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+  16. PRODUCT CARDS
+   Auto-fill grid: as many cards as fit at 280px minimum width.
+   Each card has a hover lift + border-colour change to gold.
+   The product image scales up slightly on hover for a premium feel.
+───────────────────────────────────────────────────────────────────────────── */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.product-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  border: 1px solid var(--gray-light);
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: var(--secondary);
+}
+
+.product-img-wrapper {
+  padding: 2rem;
+  background: var(--light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+}
+
+.product-img-wrapper img {
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s;
+}
+
+.product-card:hover .product-img-wrapper img {
+  transform: scale(1.1);
+}
+
+.product-content {
+  padding: 1.5rem;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-title {
+  font-size: 1.25rem;
+  color: var(--dark);
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+  17. NETWORK / DISTRIBUTION SECTION
+   Full-width green-background band used to showcase distribution stats
+   and the India/Nepal coverage map. Text and dividers are always-white
+   so they remain visible regardless of dark/light mode.
+───────────────────────────────────────────────────────────────────────────── */
+.network-section {
+  background: var(--primary);
+  color: var(--always-white);
+  padding: 5rem 0;
+}
+
+.network-section .section-title {
+  color: var(--always-white);
+}
+
+.network-section .section-title::after {
+  background: var(--always-white);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+  18. FOOTER
+   Dark footer (--always-darker) that never changes between themes.
+   4-column grid: brand info | quick links | contact | (spare) collapses
+   to 2 then 1 column on smaller screens.
+───────────────────────────────────────────────────────────────────────────── */
+.footer {
+  background: var(--always-darker);
+  color: var(--always-white);
+  padding: 5rem 0 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-heading {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--secondary);
+}
+
+.footer-links li { margin-bottom: 0.75rem; }
+.footer-links a { transition: var(--transition); }
+.footer-links a:hover { color: var(--secondary); padding-left: 5px; }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+  19. UTILITY GRID HELPERS
+   Reusable named grid classes used throughout page templates:
+     .grid-2    — 2 equal columns
+     .grid-3    — auto-fit 3 columns (wraps on smaller screens)
+     .grid-4    — 4 equal columns
+     .grid-1-2  — narrow + wide (sidebar + content)
+───────────────────────────────────────────────────────────────────────────── */
+.grid-1-2 {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+  20. RESPONSIVE BREAKPOINTS
+   1024px — tablet: hide topbar, show hamburger, collapse footer to 2 cols
+    768px — mobile: shrink hero text, stack all grids to single column
+    480px — small mobile: collapse distribution grid to 1 column
+───────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .topbar { display: none; }
+  .nav-links, .nav-actions { display: none; }
+  .mobile-menu-btn { display: block; }
+  .hero h1 { font-size: 3rem; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+}
+
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.25rem; }
+  .hero p { font-size: 1.15rem; }
+  .section { padding: 4rem 0; }
+  .section-title { font-size: 2rem; }
+  .features-overlap { margin-top: 2rem; }
+  .grid-1-2, .grid-2, .grid-4 { grid-template-columns: 1fr !important; gap: 1.5rem; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .network-section .grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media (max-width: 480px) {
+  .network-section .grid-4 { grid-template-columns: 1fr !important; }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+  21. MOBILE MENU (active state)
+   When the hamburger is clicked, .mobile-menu-active is added to .navbar.
+   This turns the navbar into a vertical flex column that shows the hidden
+   nav-links and nav-actions stacked below the logo/hamburger row.
+───────────────────────────────────────────────────────────────────────────── */
+.navbar.mobile-menu-active {
+  background: var(--white);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.navbar.mobile-menu-active .container {
+  flex-wrap: wrap;
+  height: auto;
+  padding-top: 1rem;
+}
+.mobile-menu-active .logo-container {
+  order: 1;
+}
+.mobile-menu-active .mobile-menu-btn {
+  order: 2;
+}
+.mobile-menu-active .nav-links {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  order: 3;
+  padding: 1rem 0;
+  margin-top: 1rem;
+  border-top: 1px solid var(--gray-light);
+  align-items: flex-start;
+}
+.mobile-menu-active .nav-actions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  order: 4;
+  padding: 0 0 1.5rem 0;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+.mobile-menu-active .controls-group {
+  margin-left: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+  22. SCROLL REVEAL ANIMATIONS
+   Elements start invisible and offset. main.js adds the 'active' class
+   via IntersectionObserver when they enter the viewport, triggering the CSS
+   transition that brings them into their natural position.
+     .reveal       — fades up from below
+     .reveal-left  — slides in from the left
+     .reveal-right — slides in from the right
+     .reveal-scale — scales up from 90%
+───────────────────────────────────────────────────────────────────────────── */
+.reveal, .reveal-left, .reveal-right, .reveal-scale {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.reveal { transform: translateY(40px); }
+.reveal-left { transform: translateX(-40px); }
+.reveal-right { transform: translateX(40px); }
+.reveal-scale { transform: scale(0.9); }
+
+.reveal.active, .reveal-left.active, .reveal-right.active, .reveal-scale.active {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* ─── Page Transition Overlay ─────────────────────────────────────────────── */
+/*
+ * Uses @keyframes (NOT transitions) so the animation can NEVER be
+ * accidentally disabled by the .no-theme-transition class.
+ */
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes overlayFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes logoPopIn {
+  from { opacity: 0; transform: scale(1.2); }
+  to   { opacity: 1; transform: scale(1.5);   }
+}
+@keyframes logoPopOut {
+  from { opacity: 1; transform: scale(1.5);   }
+  to   { opacity: 0; transform: scale(1.2); }
+}
+
+.page-transition-overlay {
+  position: fixed;
+  inset:0;                        /* top/right/bottom/left: 0 */
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Light mode: white; Dark mode: --dark (overridden below) */
+  background: var(--always-white);
+  /* Start hidden, no transition – state is controlled by class/animation */
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+[data-theme="dark"] .page-transition-overlay {
+  background: var(--always-dark);
+}
+
+/* ─── STATE: page just arrived (visible, no animation yet) ─── */
+.page-transition-overlay.initial-load {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  animation: none;
+}
+.page-transition-overlay.initial-load img {
+  opacity: 1;
+  transform: scale(1);
+  animation: none;
+}
+
+/* ─── STATE: fade OUT (page has loaded, hide the overlay) ─── */
+.page-transition-overlay.fade-out {
+  animation: overlayFadeOut 0.45s ease forwards;
+  pointer-events: none;
+}
+.page-transition-overlay.fade-out img {
+  animation: logoPopOut 0.35s ease forwards;
+}
+
+/* ─── STATE: fade IN (user clicked a link, cover the page) ─── */
+.page-transition-overlay.fade-in {
+  opacity: 0;
+  visibility: visible;
+  pointer-events: all;
+  animation: overlayFadeIn 0.35s ease forwards;
+}
+.page-transition-overlay.fade-in img {
+  animation: logoPopIn 0.35s 0.1s ease both;
+}
+
+/* Logo sizing */
+.page-transition-overlay img {
+  width: 140px;
+  opacity: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+  24. UI CONTROLS — LANGUAGE & THEME TOGGLES
+   The pill-shaped control group in the top-right of the navbar contains:
+     • .lang-btn (EN / हिंदी) — calls window.i18n.setLanguage()
+     • .controls-divider — visual separator
+     • .theme-toggle-btn — calls main.js dark/light toggle
+───────────────────────────────────────────────────────────────────────────── */
+.controls-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--light);
+  padding: 0.25rem;
+  border-radius: 50px;
+  border: 1px solid var(--gray-light);
+}
+.lang-switcher {
+  display: flex;
+  gap: 0.25rem;
+}
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: var(--gray);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.lang-btn:hover {
+  color: var(--primary);
+}
+.lang-btn:active {
+  transform: scale(0.9);
+}
+.lang-btn.active {
+  background: var(--white);
+  color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+.controls-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--gray-light);
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--gray);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 0.4rem 0.6rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.theme-toggle-btn:hover {
+  color: var(--primary);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+.theme-toggle-btn:active {
+  transform: scale(0.9);
+}
+
+.theme-icon-spin {
+  animation: spinIcon 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes spinIcon {
+  0% { transform: rotate(0deg) scale(0.5); opacity: 0; }
+  100% { transform: rotate(360deg) scale(1); opacity: 1; }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+  25. MISC ANIMATIONS
+   @keyframes floatAnim — gentle up/down bobbing for decorative images
+   Apply with class .float-anim on any element.
+───────────────────────────────────────────────────────────────────────────── */
+@keyframes floatAnim {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+.float-anim {
+  animation: floatAnim 6s ease-in-out infinite;
+}

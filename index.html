@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vansh Feeds | Leading Animal Nutrition & Agro Solutions</title>
+    <meta name="description" content="At Vansh Group of Companies, we offer high-quality agro and animal nutrition solutions. Our range includes bio-fertilizers, cattle feed, poultry feed, and aqua feed.">
+    <!-- Font Awesome -->
+    <script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+        <!-- Topbar -->
+    <div class="topbar">
+        <div class="container">
+            <div class="topbar-contact">
+                <span><i class="fas fa-phone-alt"></i> +91 9670252525</span>
+                <span><i class="fas fa-envelope"></i> vanshgroup@gmail.com</span>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html" style="display: flex; align-items: center;"><img id="site-logo" src="assets/logo_en.png" alt="Vansh Feeds" style="height: 70px; width: auto; object-fit: contain;"></a>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Our Products</a></li>
+                <li><a href="infrastructure.html">Infrastructure</a></li>
+                <li><a href="quality.html">Quality</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <div class="controls-group">
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" data-lang="en">EN</button>
+                        <button class="lang-btn" data-lang="hi">HI</button>
+                    </div>
+                    <div class="controls-divider"></div>
+                    <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+                </div>
+                <a href="contact.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left: 1rem;">Business Inquiry</a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <h1 style="font-size: 3.5rem; text-transform: uppercase; letter-spacing: 1px;" data-i18n="hero.title">High-Quality <span class="text-shimmer">Animal Nutrition</span> & Agro Solutions</h1>
+            <p class="text-words typewriter-cursor" style="font-size: 1.25rem; font-weight: 500; opacity: 0.9;" data-i18n="hero.subtitle">Improving farmer productivity and profitability through scientifically formulated feed and fertilizers.</p>
+            <div style="display: flex; gap: 1.5rem; justify-content: center; margin-top: 2rem;">
+                <a href="products.html" class="btn btn-secondary" data-i18n="hero.btn.explore">Explore Products</a>
+                <a href="contact.html" class="btn btn-primary" data-i18n="hero.btn.distributor">Become a Distributor</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Overlapping the Hero -->
+    <section class="features-overlap reveal">
+        <div class="container bento-layout">
+            <div class="feat-card bento-large reveal-scale" style="border-radius: var(--radius-xl); text-align: left; background: linear-gradient(135deg, var(--white) 0%, var(--light) 100%);">
+                <div class="feat-icon" style="font-size: 4rem; margin-bottom: auto;"><i class="fas fa-cow"></i></div>
+                <div>
+                    <h3 style="font-size: 2rem; margin-top: 2rem;" data-i18n="feat.cattle.title">Cattle Feed</h3>
+                    <p style="color: var(--gray); margin-top: 1rem; font-size: 1.1rem;" data-i18n="feat.cattle.desc">Boost milk yield and health with our Super, 3000, 5000, and 8000 series formulations. A complete nutritional package for maximum productivity.</p>
+                </div>
+            </div>
+            <div class="feat-card reveal-right" style="border-radius: var(--radius-xl); text-align: left; padding: 2rem; display: flex; align-items: center; gap: 1.5rem;">
+                <div class="feat-icon" style="margin-bottom: 0; font-size: 2.5rem;"><i class="fas fa-fish"></i></div>
+                <div>
+                    <h3 style="font-size: 1.25rem;" data-i18n="feat.aqua.title">Aqua Feed</h3>
+                    <p style="color: var(--gray); margin-top: 0.5rem; font-size: 0.9rem;" data-i18n="feat.aqua.desc">Premium floating fish feeds crafted by Fish Gold Industries.</p>
+                </div>
+            </div>
+            <div class="feat-card reveal-right" style="border-radius: var(--radius-xl); text-align: left; padding: 2rem; transition-delay: 0.1s; display: flex; align-items: center; gap: 1.5rem;">
+                <div class="feat-icon" style="margin-bottom: 0; font-size: 2.5rem;"><i class="fas fa-leaf"></i></div>
+                <div>
+                    <h3 style="font-size: 1.25rem;" data-i18n="feat.bio.title">Bio Fertilizers</h3>
+                    <p style="color: var(--gray); margin-top: 0.5rem; font-size: 0.9rem;" data-i18n="feat.bio.desc">Enhance soil fertility with specialized crop growth promoters.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MD Message Section -->
+    <section class="section reveal" style="background: var(--white); padding: 8rem 0;">
+        <div class="container">
+            <div class="grid-1-2" style="align-items: center;">
+                <div style="position: relative;" class="float-anim reveal-left">
+                    <div style="position: absolute; top: -20px; left: -20px; width: 100%; height: 100%; border: 4px solid var(--secondary); border-radius: var(--radius-xl); z-index: 0;"></div>
+                    <img src="assets/factory_bg.png" alt="Factory" style="position: relative; z-index: 1; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); width: 100%; height: 400px; object-fit: cover;">
+                </div>
+                <div class="reveal-right">
+                    <h2 class="section-title left reveal-text" style="margin-bottom: 2rem;" data-i18n="md.title">Message from our MD</h2>
+                    <p style="font-size: 1.25rem; font-weight: 500; color: var(--dark); margin-bottom: 1.5rem; line-height: 1.8; border-left: 4px solid var(--primary); padding-left: 1.5rem;">
+                        <span class="text-words" data-i18n="md.p1">"At Vansh Group of Companies, our journey has always been driven by a clear purpose—to support farmers and strengthen the agricultural ecosystem with reliable, high-quality solutions."</span>
+                    </p>
+                    <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
+                        <span data-i18n="md.p2">From agro inputs to animal nutrition, we continuously strive to deliver products that enhance productivity, improve farm profitability, and promote sustainable practices. Our focus remains on innovation, quality, and building long-term relationships with our farmers and distribution partners.</span>
+                    </p>
+                    <p style="color: var(--gray); margin-bottom: 2.5rem; font-size: 1.05rem;">
+                        <span data-i18n="md.p3">As we grow, our commitment stays the same—to create value for every stakeholder and contribute meaningfully to the progress of Indian agriculture.</span>
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="width: 60px; height: 6px; background: var(--secondary); border-radius: 3px;"></div>
+                        <div>
+                            <h4 style="font-size: 1.35rem; color: var(--primary-dark); margin: 0;" data-i18n="md.name">Mr. Hem Karan Mathur</h4>
+                            <span class="text-gradient" style="font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;" data-i18n="md.role">Managing Director</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="section reveal" style="background: var(--light); padding: 8rem 0;">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <h2 class="section-title reveal-text" data-i18n="idx.prod.title">Our Premium Products</h2>
+                <p style="color: var(--gray); max-width: 650px; margin: 0 auto; font-size: 1.125rem;"><span data-i18n="idx.prod.subtitle">Designed to deliver consistent performance and better results across every stage of farming. Trusted by over a million farmers.</span></p>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Example Featured Product 1 -->
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <!-- We will use downloaded assets in products.html, but here we use placeholders or specific assets if known -->
+                        <img src="assets/products/vansh_heera.jpg" onerror="this.src='https://images.unsplash.com/photo-1594498653385-d5172c532c00?ixlib=rb-4.0.3&w=400&q=80'" alt="Vansh Heera">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Vansh Heera</h3>
+                        <a href="products.html" class="btn btn-outline" style="width: 100%;">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Example Featured Product 2 -->
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="assets/products/vansh_grow_5000.jpg" onerror="this.src='https://images.unsplash.com/photo-1516467508483-a7212febe31a?ixlib=rb-4.0.3&w=400&q=80'" alt="Vansh Grow 5000">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Vansh Grow 5000</h3>
+                        <a href="products.html" class="btn btn-outline" style="width: 100%;">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Example Featured Product 3 -->
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="assets/products/vansh_floating_fish_feed.jpg" onerror="this.src='https://images.unsplash.com/photo-1524704654690-b56c05c78a00?ixlib=rb-4.0.3&w=400&q=80'" alt="Fish Gold Aqua Feed">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Floating Fish Feed</h3>
+                        <a href="products.html" class="btn btn-outline" style="width: 100%;">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Example Featured Product 4 -->
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="assets/products/prom.jpg" onerror="this.src='https://images.unsplash.com/photo-1621570169561-3145b23d9b89?ixlib=rb-4.0.3&w=400&q=80'" alt="PROM Fertilizer">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">PROM</h3>
+                        <a href="products.html" class="btn btn-outline" style="width: 100%;">View Details</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="products.html" class="btn btn-primary">View All 40+ Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Network / Footprint Section -->
+    <section class="network-section reveal">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title reveal-text">Our Growing Footprint</h2>
+                <p style="font-size: 1.125rem; max-width: 700px; margin: 0 auto 3rem;">Serving millions of farmers across India and Nepal with an extensive distribution network.</p>
+            </div>
+            <div class="bento-stats">
+                <div class="bento-stats-wide reveal-scale" style="background: var(--light); padding: 2.5rem; border-radius: var(--radius-lg); display: flex; align-items: center; gap: 2rem; border-left: 4px solid var(--secondary);">
+                    <div>
+                        <h3 style="font-size: 4rem; color: var(--secondary); margin-bottom: 0; line-height: 1;"><span class="counter" data-target="500">0</span>+</h3>
+                    </div>
+                    <div>
+                        <p style="font-size: 1.25rem; font-weight: 700; color: var(--primary); margin-bottom: 0.25rem;">Distributors</p>
+                        <p style="color: var(--gray); font-size: 0.9rem;">Strong Pan-India Network</p>
+                    </div>
+                </div>
+                <div class="reveal-scale" style="transition-delay: 0.1s; background: var(--light); padding: 2rem; border-radius: var(--radius-lg); text-align: center; border-bottom: 4px solid var(--primary);">
+                    <h3 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem;"><span class="counter" data-target="1000">0</span>K+</h3>
+                    <p style="font-size: 1rem; font-weight: 600;">Happy Farmers</p>
+                </div>
+                <div class="reveal-scale" style="transition-delay: 0.2s; background: var(--light); padding: 2rem; border-radius: var(--radius-lg); text-align: center; border-bottom: 4px solid var(--primary);">
+                    <h3 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem;"><span class="counter" data-target="3">0</span></h3>
+                    <p style="font-size: 1rem; font-weight: 600;">Subsidiaries</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" style="display: inline-block; margin-bottom: 1rem;"><div style="background: white; padding: 0.5rem 1rem; border-radius: var(--radius-lg); display: inline-block;"><img id="footer-logo" src="assets/logo_en.png" alt="Vansh Feeds" style="height: 50px; width: auto; object-fit: contain;"></div></a>
+                    <p style="color: #94A3B8; margin-bottom: 1.5rem;">Vansh Group of Companies includes New Vanshika Bio Agro, Fish Gold Industries, and MLL Agro Industries. Delivering consistent performance for farmers.</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="https://www.facebook.com/FishGoldIndustries/" target="_blank" style="width: 40px; height: 40px; background: var(--dark-light); border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/fishgoldindustries_official/" target="_blank" style="width: 40px; height: 40px; background: var(--dark-light); border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/vansh-group-lucknow/" target="_blank" style="width: 40px; height: 40px; background: var(--dark-light); border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Vansh Group</a></li>
+                        <li><a href="products.html">All Products</a></li>
+                        <li><a href="infrastructure.html">Infrastructure</a></li>
+                        <li><a href="quality.html">Quality Assurance</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-heading">Business</h4>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">Business Inquiry</a></li>
+                        <li><a href="#">Vendor Registration</a></li>
+                        <li><a href="#">Grievance Redressal</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-heading">Contact Us</h4>
+                    <ul class="footer-links" style="color: #94A3B8;">
+                        <li style="display: flex; gap: 1rem;"><i class="fas fa-map-marker-alt" style="color: var(--secondary); margin-top: 5px;"></i> Barabanki, Uttar Pradesh, India</li>
+                        <li style="display: flex; gap: 1rem;"><i class="fas fa-phone-alt" style="color: var(--secondary); margin-top: 5px;"></i> 05248 296699<br>+91 9670252525</li>
+                        <li style="display: flex; gap: 1rem;"><i class="fas fa-envelope" style="color: var(--secondary); margin-top: 5px;"></i> vanshgroup@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid var(--dark-light); padding-top: 2rem; text-align: center; color: #64748B;">
+                <p>© 2026 Vansh Group. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

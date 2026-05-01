@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+   infrastructure.html — Vansh Feeds | Infrastructure Page
+  ============================================================
+  PURPOSE:
+    Showcases Vansh Group's manufacturing facility in Barabanki.
+    Gives visitors confidence in production capacity and modernity
+    through 3 factory photos in a gallery grid.
+
+  PAGE STRUCTURE:
+    1. <head>        — meta, theme script, fonts, CSS
+    2. .topbar       — contact strip (desktop only)
+    3. .navbar       — sticky navigation
+    4. <header>      — hero banner with page title
+    5. <section>     — section heading + 3-photo factory gallery
+    6. <footer>      — site-wide footer
+    7. <script>      — i18n.js then main.js
+
+  ANIMATION CLASSES USED:
+    .reveal          — section fades up on scroll
+    .reveal-text     — section title letter-spacing expands
+    .reveal-scale    — each gallery photo scales up on scroll with stagger
+    .text-gradient   — "Infrastructure" heading colour cycles green→gold
+    .text-words      — hero subtitle word-by-word animation
+    .typewriter-cursor — blinking | cursor after subtitle
+
+  PHOTO GALLERY:
+    Uses .grid-3 layout — 3 equal columns on desktop.
+    Each image has a transition-delay (0s, 0.1s, 0.2s) so they
+    pop in one after the other rather than all at once.
+    Images are from Unsplash (factory/machinery/warehouse shots).
+
+  DARK MODE:
+    All CSS variable colours adapt automatically.
+    The images themselves are unaffected by dark mode.
+  ============================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infrastructure | Vansh Feeds</title>
+
+    <!--
+      theme-init.js MUST be first — runs synchronously before any paint.
+      1. Applies saved dark/light theme to <html> instantly (no flash).
+      2. Injects the page-transition overlay before body content renders.
+      Never add defer or async to this script.
+    -->
+    <script src="js/theme-init.js"></script>
+
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Main stylesheet — layout, colours, animations -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════
+         TOPBAR
+         Thin green strip with contact details.
+         Hidden on screens ≤ 1024px via CSS media query.
+    ═══════════════════════════════════════════════════════ -->
+    <div class="topbar">
+        <div class="container">
+            <div class="topbar-contact">
+                <span><i class="fas fa-phone-alt"></i> +91 9670252525</span>
+                <span><i class="fas fa-envelope"></i> vanshgroup@gmail.com</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         NAVBAR
+         Sticky navigation bar.
+         "Infrastructure" link has class="active" (gold underline).
+         id="site-logo" is swapped by i18n.js for the Hindi logo.
+         Scroll background effect is handled by main.js.
+    ═══════════════════════════════════════════════════════ -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html" style="display: flex; align-items: center;">
+                    <img id="site-logo" src="assets/logo_en.png" alt="Vansh Feeds"
+                         style="height: 70px; width: auto; object-fit: contain;">
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Our Products</a></li>
+                <li><a href="infrastructure.html" class="active">Infrastructure</a></li><!-- active = this page -->
+                <li><a href="quality.html">Quality</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="controls-group">
+                    <!-- Language toggle: EN ↔ HI -->
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" data-lang="en">EN</button>
+                        <button class="lang-btn" data-lang="hi">HI</button>
+                    </div>
+                    <div class="controls-divider"></div>
+                    <!-- Dark mode toggle -->
+                    <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <a href="contact.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left: 1rem;">
+                    Business Inquiry
+                </a>
+            </div>
+
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════
+         HERO BANNER
+         "Our Infrastructure" title.
+         .text-gradient on "Infrastructure" applies the animated
+         green→gold colour cycle (CSS @keyframes gradientFlow).
+         .text-words + .typewriter-cursor animate the subtitle.
+    ═══════════════════════════════════════════════════════ -->
+    <header class="hero" style="padding: 4rem 0;">
+        <div class="hero-bg" style="opacity: 0.2;"></div>
+        <div class="container">
+            <h1 style="font-size: 3.5rem;">Our <span class="text-gradient">Infrastructure</span></h1>
+            <p class="text-words typewriter-cursor">State-of-the-art manufacturing facility in Barabanki.</p>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════
+         MAIN CONTENT — Factory Photo Gallery
+         
+         Structure:
+           1. Centred heading + description text
+           2. .grid-3 — 3 factory photos side by side
+         
+         Each image uses .reveal-scale so it starts at scale(0.9)
+         and animates to scale(1) when it enters the viewport.
+         
+         transition-delay values (0s, 0.1s, 0.2s) create a staggered
+         cascade effect — images appear one after another rather than
+         simultaneously.
+         
+         Images are from Unsplash (royalty-free):
+           • Factory interior
+           • Manufacturing machinery
+           • Warehouse / storage
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section reveal">
+        <div class="container">
+
+            <!-- Section heading — centred -->
+            <div class="text-center mb-2">
+                <!-- .section-title adds the gold underline via ::after
+                     .reveal-text triggers letter-spacing expand animation -->
+                <h2 class="section-title reveal-text">Advanced Manufacturing Unit</h2>
+                <p style="color: var(--gray); font-size: 1.125rem; max-width: 700px; margin: 0 auto 3rem;">
+                    We have invested heavily in modern technology to ensure the highest quality of feed production.
+                </p>
+            </div>
+
+            <!-- 3-column photo gallery with staggered reveal -->
+            <div class="grid-3" style="margin-top: 3rem;">
+                <!-- Image 1: Factory interior (no delay — first to appear) -->
+                <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&w=800&q=80"
+                     alt="Factory Interior"
+                     class="reveal-scale"
+                     style="border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+
+                <!-- Image 2: Machinery (0.1s delay — appears slightly after image 1) -->
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&w=800&q=80"
+                     alt="Machinery"
+                     class="reveal-scale"
+                     style="transition-delay: 0.1s; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+
+                <!-- Image 3: Warehouse (0.2s delay — appears last in the stagger) -->
+                <img src="https://images.unsplash.com/photo-1621570169561-3145b23d9b89?ixlib=rb-4.0.3&w=800&q=80"
+                     alt="Warehouse"
+                     class="reveal-scale"
+                     style="transition-delay: 0.2s; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         FOOTER
+         Dark always-darker background (unchanged in dark mode).
+         id="footer-logo" is swapped by i18n.js for Hindi logo.
+    ═══════════════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" style="display: inline-block; margin-bottom: 1rem;">
+                        <div style="background: white; padding: 0.5rem 1rem; border-radius: var(--radius-lg); display: inline-block;">
+                            <img id="footer-logo" src="assets/logo_en.png" alt="Vansh Feeds"
+                                 style="height: 50px; width: auto; object-fit: contain;">
+                        </div>
+                    </a>
+                    <p style="color: #94A3B8;">Vansh Group of Companies.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--
+      SCRIPTS (at end of body — DOM fully parsed before execution)
+        1. i18n.js  — defines window.i18n (must load before main.js)
+        2. main.js  — all interactions (scroll reveal, dark mode, transitions)
+    -->
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

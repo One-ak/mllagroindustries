@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+   quality.html — Vansh Feeds | Quality Standards Page
+  ============================================================
+  PURPOSE:
+    Communicates Vansh Feeds' commitment to product quality.
+    Covers the in-house R&D laboratory, testing processes,
+    and certifications (ISO 9001:2015 and FSSAI).
+
+  PAGE STRUCTURE:
+    1. <head>            — meta, theme script, fonts, CSS
+    2. .topbar           — contact strip (desktop only)
+    3. .navbar           — sticky navigation
+    4. <header>          — hero banner with page title
+    5. <section>         — 3 quality process cards + certifications banner
+    6. <footer>          — site-wide footer
+    7. <script>          — i18n.js then main.js
+
+  ANIMATION CLASSES USED:
+    .reveal              — section fades up on scroll
+    .reveal-left         — ISO cert card slides in from the left
+    .reveal-right        — FSSAI cert card slides in from the right
+    .reveal-scale        — quality process cards scale up (staggered)
+    .reveal-text         — section title letter-spacing expands
+    .text-gradient       — "Standards" heading colour cycles green→gold
+    .text-shimmer        — cert titles have a gold shimmer sweep animation
+    .text-words          — hero subtitle animates word by word
+    .typewriter-cursor   — blinking | cursor after subtitle
+
+  QUALITY PROCESS CARDS:
+    Three cards in a .grid-3 layout:
+      1. Raw Material Testing   — moisture, protein, Aflatoxin checks
+      2. Formulation Accuracy   — computerized batching (99.9% precision)
+      3. Finished Product QA    — pellet durability, density, floatability
+    Each uses .reveal-scale with staggered transition-delay.
+
+  CERTIFICATIONS BANNER:
+    Dark overlay section with a lab photo background (background-blend-mode: overlay).
+    Two glassmorphism cards (frosted glass effect via backdrop-filter: blur).
+    ISO 9001:2015 and FSSAI titles use .text-shimmer for the gold sweep effect.
+    Cards use .reveal-left and .reveal-right for slide-in animations.
+
+  DARK MODE:
+    The certification banner uses a fixed dark background with overlay
+    so it looks great in both themes.
+    Quality cards use var(--light) which flips to #1e293b in dark mode.
+  ============================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality | Vansh Feeds</title>
+
+    <!--
+      theme-init.js MUST be first — runs synchronously before any paint.
+      1. Applies saved dark/light theme to <html> instantly (no flash).
+      2. Injects the page-transition overlay before body content renders.
+      Never add defer or async to this script.
+    -->
+    <script src="js/theme-init.js"></script>
+
+    <!-- Font Awesome — flask, vial, balance-scale, box-check icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Main stylesheet — all layout, colours, animations -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════
+         TOPBAR
+         Thin green strip with quick contact details.
+         Hidden on screens ≤ 1024px via CSS media query.
+    ═══════════════════════════════════════════════════════ -->
+    <div class="topbar">
+        <div class="container">
+            <div class="topbar-contact">
+                <span><i class="fas fa-phone-alt"></i> +91 9670252525</span>
+                <span><i class="fas fa-envelope"></i> vanshgroup@gmail.com</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         NAVBAR
+         Sticky navigation. Scroll effect handled by main.js.
+         "Quality" link has class="active" (gold underline).
+         id="site-logo" swapped to Hindi logo by i18n.js.
+    ═══════════════════════════════════════════════════════ -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html" style="display: flex; align-items: center;">
+                    <img id="site-logo" src="assets/logo_en.png" alt="Vansh Feeds"
+                         style="height: 70px; width: auto; object-fit: contain;">
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Our Products</a></li>
+                <li><a href="infrastructure.html">Infrastructure</a></li>
+                <li><a href="quality.html" class="active">Quality</a></li><!-- active = this page -->
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="controls-group">
+                    <!-- Language toggle -->
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" data-lang="en">EN</button>
+                        <button class="lang-btn" data-lang="hi">HI</button>
+                    </div>
+                    <div class="controls-divider"></div>
+                    <!-- Dark mode toggle -->
+                    <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <a href="contact.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left: 1rem;">
+                    Business Inquiry
+                </a>
+            </div>
+
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════
+         HERO BANNER
+         "Quality Standards" title.
+         .text-gradient on "Standards" — animated green→gold cycle.
+         .text-words + .typewriter-cursor on subtitle.
+    ═══════════════════════════════════════════════════════ -->
+    <header class="hero" style="padding: 4rem 0;">
+        <div class="hero-bg" style="opacity: 0.2;"></div>
+        <div class="container">
+            <h1 style="font-size: 3.5rem;">Quality <span class="text-gradient">Standards</span></h1>
+            <p class="text-words typewriter-cursor">Uncompromising commitment to excellence.</p>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════
+         MAIN CONTENT
+         
+         PART 1 — R&D LAB INTRO (centred, max-width 800px)
+           Flask icon in a green circle acts as a visual anchor.
+           .section-title.reveal-text — letter-spacing animation.
+         
+         PART 2 — QUALITY PROCESS CARDS (.grid-3)
+           Three cards with staggered .reveal-scale (0s / 0.1s / 0.2s):
+             1. Raw Material Testing  — grain moisture, protein, Aflatoxin
+             2. Formulation Accuracy  — computerized batching
+             3. Finished Product QA  — pellet durability & floatability
+           Each card has a gold bottom border (border-bottom: var(--secondary)).
+         
+         PART 3 — CERTIFICATIONS BANNER
+           Full-bleed dark section with a lab photo behind it.
+           background-blend-mode: overlay blends the image with --dark colour.
+           Two "glassmorphism" cards (frosted glass):
+             • ISO 9001:2015 (.reveal-left  slides in from left)
+             • FSSAI         (.reveal-right slides in from right)
+           Both titles use .text-shimmer for a premium gold sweep effect.
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section reveal">
+        <div class="container">
+
+            <!-- ── R&D Lab Introduction ── -->
+            <div style="display: flex; flex-direction: column; align-items: center;
+                        max-width: 800px; margin: 0 auto; text-align: center;">
+                <!-- Green circle icon: visual anchor for the lab concept -->
+                <div style="width: 100px; height: 100px; background: var(--primary); color: white;
+                            border-radius: 50%; display: flex; align-items: center;
+                            justify-content: center; font-size: 3rem; margin-bottom: 2rem;">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <!-- .reveal-text: letter-spacing expands when scrolled into view -->
+                <h2 class="section-title reveal-text">Our R&D Laboratory</h2>
+                <p style="color: var(--gray); font-size: 1.125rem; margin-bottom: 3rem;">
+                    At Vansh Feeds, quality is not just a department, it's our core philosophy.
+                    We maintain an advanced in-house laboratory to test every batch of raw material
+                    and finished product.
+                </p>
+            </div>
+
+            <!-- ── Quality Process Cards (staggered reveal-scale) ── -->
+            <div class="grid-3">
+                <!-- Card 1: Raw Material Testing (no delay) -->
+                <div class="reveal-scale"
+                     style="background: var(--light); padding: 2.5rem; border-radius: var(--radius-lg);
+                            text-align: center; border-bottom: 4px solid var(--secondary);">
+                    <i class="fas fa-vial" style="font-size: 2.5rem; color: var(--secondary); margin-bottom: 1.5rem;"></i>
+                    <h3 style="margin-bottom: 1rem;">Raw Material Testing</h3>
+                    <p style="color: var(--gray);">
+                        Rigorous inspection of all incoming grains, meals, and supplements for
+                        moisture, protein content, and toxins like Aflatoxin.
+                    </p>
+                </div>
+
+                <!-- Card 2: Formulation Accuracy (0.1s delay) -->
+                <div class="reveal-scale"
+                     style="transition-delay: 0.1s; background: var(--light); padding: 2.5rem;
+                            border-radius: var(--radius-lg); text-align: center;
+                            border-bottom: 4px solid var(--secondary);">
+                    <i class="fas fa-balance-scale" style="font-size: 2.5rem; color: var(--secondary); margin-bottom: 1.5rem;"></i>
+                    <h3 style="margin-bottom: 1rem;">Formulation Accuracy</h3>
+                    <p style="color: var(--gray);">
+                        Computerized batching systems ensure 99.9% accuracy in micro-nutrient
+                        mixing as per scientific formulations.
+                    </p>
+                </div>
+
+                <!-- Card 3: Finished Product QA (0.2s delay) -->
+                <div class="reveal-scale"
+                     style="transition-delay: 0.2s; background: var(--light); padding: 2.5rem;
+                            border-radius: var(--radius-lg); text-align: center;
+                            border-bottom: 4px solid var(--secondary);">
+                    <i class="fas fa-box-check" style="font-size: 2.5rem; color: var(--secondary); margin-bottom: 1.5rem;"></i>
+                    <h3 style="margin-bottom: 1rem;">Finished Product QA</h3>
+                    <p style="color: var(--gray);">
+                        Testing pellets for durability, density, and floatability (for aqua feed)
+                        before final packaging.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ── Certifications Banner ── -->
+            <!--
+              background-image + background-blend-mode: overlay blends the
+              lab photo with --dark background for a cinematic dark look.
+              The two cert cards use backdorp-filter: blur(10px) for
+              the "glassmorphism" frosted-glass effect.
+            -->
+            <div style="margin-top: 5rem; background: var(--dark); border-radius: var(--radius-xl);
+                        padding: 4rem; color: white; text-align: center;
+                        background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&w=1600&q=80');
+                        background-size: cover; background-blend-mode: overlay;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;">Certifications</h2>
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;">
+
+                    <!-- ISO 9001:2015 card — slides in from the left -->
+                    <div class="reveal-left"
+                         style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+                                padding: 1.5rem 3rem; border-radius: var(--radius-md);
+                                border: 1px solid rgba(255,255,255,0.2);">
+                        <!-- .text-shimmer: gold shimmer sweep animation (see styles.css section 9) -->
+                        <h3 class="text-shimmer" style="font-size: 1.5rem;">ISO 9001:2015</h3>
+                        <p style="font-size: 0.875rem; margin-top: 0.5rem; color: white;">Quality Management</p>
+                    </div>
+
+                    <!-- FSSAI card — slides in from the right -->
+                    <div class="reveal-right"
+                         style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+                                padding: 1.5rem 3rem; border-radius: var(--radius-md);
+                                border: 1px solid rgba(255,255,255,0.2);">
+                        <!-- .text-shimmer: same gold shimmer effect as ISO -->
+                        <h3 class="text-shimmer" style="font-size: 1.5rem;">FSSAI</h3>
+                        <p style="font-size: 0.875rem; margin-top: 0.5rem; color: white;">Food Safety & Standards</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         FOOTER
+         id="footer-logo" is swapped by i18n.js for Hindi logo.
+    ═══════════════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" style="display: inline-block; margin-bottom: 1rem;">
+                        <div style="background: white; padding: 0.5rem 1rem; border-radius: var(--radius-lg); display: inline-block;">
+                            <img id="footer-logo" src="assets/logo_en.png" alt="Vansh Feeds"
+                                 style="height: 50px; width: auto; object-fit: contain;">
+                        </div>
+                    </a>
+                    <p style="color: #94A3B8;">Vansh Group of Companies.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--
+      SCRIPTS (end of body — DOM fully parsed before execution)
+        1. i18n.js  — defines window.i18n (must load before main.js)
+        2. main.js  — scroll reveal, dark mode, page transitions
+    -->
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

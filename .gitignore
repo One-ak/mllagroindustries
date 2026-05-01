@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+*.log
+# vansh_leads.db # Optional: Un-comment if you want to keep the DB local only
+node_modules/
+*.db
+.env

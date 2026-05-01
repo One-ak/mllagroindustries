@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+   contact.html — Vansh Feeds | Contact Us Page
+  ============================================================
+  PURPOSE:
+    Provides contact information and a business inquiry form.
+    Visitors can reach Vansh Group for distributorship, product
+    information, grievance redressal, or vendor registration.
+
+  PAGE STRUCTURE:
+    1. <head>          — meta, theme script, fonts, CSS
+    2. .topbar         — contact info strip (desktop only)
+    3. .navbar         — sticky navigation
+    4. <header>        — hero banner with page title
+    5. <section>       — 2-column layout: contact info + inquiry form
+    6. <footer>        — site-wide footer
+    7. <script>        — i18n.js then main.js
+
+  LAYOUT:
+    Uses .grid-1-2 (narrow + wide) so contact info takes 1 unit
+    and the form takes 1.2 units — giving the form more breathing room.
+
+  ANIMATION CLASSES USED:
+    .reveal          — section fades up on scroll
+    .reveal-left     — contact info panel slides in from the left
+    .reveal-right    — form panel slides in from the right
+    .text-gradient   — "Us" heading colour cycles green→gold
+
+  FORM:
+    Currently a static HTML form (no backend submission).
+    Fields: Full Name, Phone Number, Inquiry Type (dropdown), Message.
+    The submit button is styled with .btn .btn-primary.
+
+  DARK MODE:
+    All input, select, and textarea backgrounds use var(--white)
+    which flips to dark card colour in dark mode.
+    The dark-mode CSS overrides for form elements are in styles.css
+    under section 4 (component overrides).
+  ============================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Vansh Feeds</title>
+
+    <!--
+      theme-init.js MUST be first — runs synchronously before any paint.
+      1. Applies saved dark/light theme to <html> instantly.
+      2. Injects the page-transition overlay to prevent content flash.
+      Never add defer or async to this script.
+    -->
+    <script src="js/theme-init.js"></script>
+
+    <!-- Font Awesome icons (phone, envelope, map-marker, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Main stylesheet — all layout, colours, and animations -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════
+         TOPBAR
+         Thin green strip with quick contact details.
+         Hidden on screens ≤ 1024px via CSS media query.
+    ═══════════════════════════════════════════════════════ -->
+    <div class="topbar">
+        <div class="container">
+            <div class="topbar-contact">
+                <span><i class="fas fa-phone-alt"></i> +91 9670252525</span>
+                <span><i class="fas fa-envelope"></i> vanshgroup@gmail.com</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         NAVBAR
+         Sticky navigatio. Scroll effect handled by main.js.
+         "Contact" link has class="active" (gold underline).
+         id="site-logo" is swapped by i18n.js for Hindi logo.
+    ═══════════════════════════════════════════════════════ -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html" style="display: flex; align-items: center;">
+                    <img id="site-logo" src="assets/logo_en.png" alt="Vansh Feeds"
+                         style="height: 70px; width: auto; object-fit: contain;">
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Our Products</a></li>
+                <li><a href="infrastructure.html">Infrastructure</a></li>
+                <li><a href="quality.html">Quality</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li><!-- active = this page -->
+            </ul>
+
+            <div class="nav-actions">
+                <div class="controls-group">
+                    <!-- EN/HI toggle — handlers attached by i18n.js init() -->
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" data-lang="en">EN</button>
+                        <button class="lang-btn" data-lang="hi">HI</button>
+                    </div>
+                    <div class="controls-divider"></div>
+                    <!-- Dark/light toggle — handler attached by main.js -->
+                    <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <a href="contact.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left: 1rem;">
+                    Business Inquiry
+                </a>
+            </div>
+
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════
+         HERO BANNER
+         Dark banner with "Contact Us" title.
+         .text-gradient on "Us" animates the text colour green→gold.
+    ═══════════════════════════════════════════════════════ -->
+    <header class="hero" style="padding: 4rem 0;">
+        <div class="hero-bg" style="opacity: 0.2;"></div>
+        <div class="container">
+            <h1 style="font-size: 3.5rem;">Contact <span class="text-gradient">Us</span></h1>
+            <p>Get in touch with our team for inquiries and support.</p>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════
+         MAIN CONTENT — Contact Info + Inquiry Form
+         
+         Layout: .grid-1-2 (1 narrow + 1.2 wide)
+         
+         LEFT PANEL (.reveal-left):
+           Dark card showing:
+             • Address (Barabanki, UP)
+             • Phone numbers
+             • Email address
+           Uses background: var(--dark) — in dark mode this becomes
+           the lightest text colour (see dark mode variable flip in styles.css).
+           NOTE: The [data-theme="dark"] override in styles.css section 4
+           (background: var(--dark)) applies here.
+         
+         RIGHT PANEL (.reveal-right):
+           White card with the inquiry form.
+           All form controls use var(--white) background and var(--dark) text,
+           which automatically adapt in dark mode.
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section reveal">
+        <div class="container">
+            <div class="grid-1-2">
+
+                <!-- LEFT: Contact information panel -->
+                <div class="reveal-left"
+                     style="background: var(--dark); color: white; padding: 3rem;
+                            border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 2rem; color: white;">Get In Touch</h3>
+
+                    <!-- Address item: icon circle + text -->
+                    <div style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
+                        <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.1);
+                                    border-radius: 50%; display: flex; align-items: center;
+                                    justify-content: center; font-size: 1.25rem; color: var(--secondary);">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.125rem; margin-bottom: 0.5rem; color: white;">Head Office / Factory</h4>
+                            <p style="color: #94A3B8; font-size: 0.95rem; line-height: 1.5;">
+                                Vansh Group (New Vanshika Bio Agro / Fish Gold Industries),<br>
+                                Barabanki, Uttar Pradesh, India
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Phone number item -->
+                    <div style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
+                        <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.1);
+                                    border-radius: 50%; display: flex; align-items: center;
+                                    justify-content: center; font-size: 1.25rem; color: var(--secondary);">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.125rem; margin-bottom: 0.5rem; color: white;">Phone Number</h4>
+                            <p style="color: #94A3B8; font-size: 0.95rem; line-height: 1.5;">
+                                05248 296699<br>+91 9670252525
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Email item -->
+                    <div style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
+                        <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.1);
+                                    border-radius: 50%; display: flex; align-items: center;
+                                    justify-content: center; font-size: 1.25rem; color: var(--secondary);">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.125rem; margin-bottom: 0.5rem; color: white;">Email Address</h4>
+                            <p style="color: #94A3B8; font-size: 0.95rem; line-height: 1.5;">vanshgroup@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Business inquiry form -->
+                <div class="reveal-right"
+                     style="background: var(--white); padding: 3rem; border-radius: var(--radius-lg);
+                            border: 1px solid var(--gray-light); box-shadow: var(--shadow-md);">
+                    <h3 style="font-size: 1.75rem; color: var(--dark); margin-bottom: 0.5rem;">Send us a Message</h3>
+                    <p style="color: var(--gray); margin-bottom: 2rem;">
+                        Fill out the form below and our team will get back to you within 24 hours.
+                    </p>
+
+                    <!-- Contact form — submits via fetch() to POST /api/contact -->
+                    <form id="contact-form" onsubmit="submitForm(event)">
+                        <!-- Name + Phone row -->
+                        <div class="grid-2" style="margin-bottom: 1.5rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);">Full Name</label>
+                                <input id="cf-name" type="text" placeholder="John Doe" required
+                                       style="width: 100%; padding: 0.75rem 1rem;
+                                              border: 1px solid var(--gray-light);
+                                              border-radius: var(--radius-sm);
+                                              font-family: var(--font-main); outline: none;
+                                              background: var(--white); color: var(--dark);">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);">Phone Number</label>
+                                <input id="cf-phone" type="tel" placeholder="+91 0000000000" required
+                                       style="width: 100%; padding: 0.75rem 1rem;
+                                              border: 1px solid var(--gray-light);
+                                              border-radius: var(--radius-sm);
+                                              font-family: var(--font-main); outline: none;
+                                              background: var(--white); color: var(--dark);">
+                            </div>
+                        </div>
+
+                        <!-- Inquiry type dropdown -->
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);">Inquiry Type</label>
+                            <select id="cf-type" style="width: 100%; padding: 0.75rem 1rem;
+                                          border: 1px solid var(--gray-light);
+                                          border-radius: var(--radius-sm);
+                                          font-family: var(--font-main); outline: none;
+                                          background: var(--white); color: var(--dark); cursor: pointer;">
+                                <option>Distributorship Inquiry</option>
+                                <option>Product Information</option>
+                                <option>Grievance Redressal</option>
+                                <option>Vendor Registration</option>
+                            </select>
+                        </div>
+
+                        <!-- Message textarea -->
+                        <div style="margin-bottom: 2rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);">Your Message</label>
+                            <textarea id="cf-msg" rows="4" placeholder="How can we help you?"
+                                      style="width: 100%; padding: 0.75rem 1rem;
+                                             border: 1px solid var(--gray-light);
+                                             border-radius: var(--radius-sm);
+                                             font-family: var(--font-main); outline: none;
+                                             resize: vertical; background: var(--white); color: var(--dark);">
+                            </textarea>
+                        </div>
+
+                        <!-- Submit button — disabled while sending to prevent double-submit -->
+                        <button id="cf-btn" type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                        <!-- Feedback message shown after submission -->
+                        <div id="cf-msg-box" style="display:none; margin-top:1rem; padding:1rem;
+                             border-radius:var(--radius-sm); font-weight:600; text-align:center;"></div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         FOOTER
+         id="footer-logo" swapped by i18n.js for Hindi logo.
+    ═══════════════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" style="display: inline-block; margin-bottom: 1rem;">
+                        <div style="background: white; padding: 0.5rem 1rem; border-radius: var(--radius-lg); display: inline-block;">
+                            <img id="footer-logo" src="assets/logo_en.png" alt="Vansh Feeds"
+                                 style="height: 50px; width: auto; object-fit: contain;">
+                        </div>
+                    </a>
+                    <p style="color: #94A3B8;">Vansh Group of Companies.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--
+      SCRIPTS (end of body — DOM is fully parsed before these run)
+        1. i18n.js  — must load first (defines window.i18n)
+        2. main.js  — wires all interactions, calls window.i18n.init()
+    -->
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      /**
+       * submitForm — handles the contact form submission.
+       * Sends data to POST /api/contact via fetch().
+       * Shows a green success or red error message inside the form.
+       */
+      async function submitForm(event) {
+        event.preventDefault(); // stop default browser page reload
+
+        const btn    = document.getElementById('cf-btn');
+        const msgBox = document.getElementById('cf-msg-box');
+
+        // Read field values
+        const payload = {
+          fullName    : document.getElementById('cf-name').value.trim(),
+          phone       : document.getElementById('cf-phone').value.trim(),
+          inquiryType : document.getElementById('cf-type').value,
+          message     : document.getElementById('cf-msg').value.trim(),
+        };
+
+        // Disable button while sending
+        btn.disabled    = true;
+        btn.textContent = 'Sending…';
+        msgBox.style.display = 'none';
+
+        try {
+          // Detect the correct API URL
+          let apiUrl = '/api/contact';
+          
+          if (window.location.port !== '3000') {
+            // If we are on port 5500 (Live Server) or file:// protocol
+            const host = window.location.hostname || 'localhost';
+            apiUrl = `http://${host}:3000/api/contact`;
+          }
+
+          // Abort controller to prevent infinite "Sending..." hang
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
+          const res  = await fetch(apiUrl, {
+            method  : 'POST',
+            headers : { 'Content-Type': 'application/json' },
+            body    : JSON.stringify(payload),
+            signal  : controller.signal
+          });
+          clearTimeout(timeoutId);
+          
+          const json = await res.json();
+
+          if (json.success) {
+            // Success: green message + reset form
+            msgBox.style.display      = 'block';
+            msgBox.style.background   = '#dcfce7';
+            msgBox.style.color        = '#166534';
+            msgBox.textContent        = '✅ Thank you! Your message has been received. We will contact you within 24 hours.';
+            document.getElementById('contact-form').reset();
+          } else {
+            throw new Error(json.error || 'Server error');
+          }
+        } catch (err) {
+          // Error: red message
+          msgBox.style.display      = 'block';
+          msgBox.style.background   = '#fee2e2';
+          msgBox.style.color        = '#991b1b';
+          msgBox.textContent        = '❌ ' + (err.message || 'Something went wrong. Please try again.');
+        } finally {
+          // Re-enable button
+          btn.disabled    = false;
+          btn.textContent = 'Send Message';
+        }
+      }
+    </script>
+</body>
+</html>

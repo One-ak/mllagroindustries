@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | Vansh Feeds</title>
+    <script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="container">
+            <div class="topbar-contact">
+                <span><i class="fas fa-phone-alt"></i> +91 9670252525</span>
+                <span><i class="fas fa-envelope"></i> vanshgroup@gmail.com</span>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo-container" style="display: flex; align-items: center;">
+                <img id="site-logo" src="assets/logo_en.png" alt="Vansh Feeds" style="height: 70px; width: auto; object-fit: contain;">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="products.html" class="active" data-i18n="nav.products">Our Products</a></li>
+                <li><a href="infrastructure.html" data-i18n="nav.infrastructure">Infrastructure</a></li>
+                <li><a href="quality.html" data-i18n="nav.quality">Quality</a></li>
+                <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="controls-group">
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" data-lang="en">EN</button>
+                        <button class="lang-btn" data-lang="hi">HI</button>
+                    </div>
+                    <div class="controls-divider"></div>
+                    <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+                </div>
+                <a href="contact.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left: 1rem;">Business Inquiry</a>
+            </div>
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="hero" style="padding: 4rem 0;">
+        <div class="hero-bg" style="opacity: 0.2;"></div>
+        <div class="container reveal">
+            <h1 style="font-size: 3.5rem;" id="header-product-name">Product Details</h1>
+            <p><a href="products.html" style="color: var(--secondary);"><i class="fas fa-arrow-left"></i> Back to Catalog</a></p>
+        </div>
+    </header>
+
+    <section class="section reveal">
+        <div class="container reveal">
+            <div class="grid-1-2" style="align-items: start; gap: 4rem;">
+
+                <!-- ===== Product Image + Amazon Zoom ===== -->
+                <!-- Outer wrapper positions the floating result panel -->
+                <div style="position: relative;">
+                    <div class="product-detail-img-panel" style="border-radius: var(--radius-xl); box-shadow: var(--shadow-md); border: 1px solid var(--gray-light); overflow: hidden;">
+
+                        <!-- Zoom stage: NO overflow:hidden, so the lens isn't clipped -->
+                        <div id="zoom-stage" style="
+                            position: relative;
+                            background: var(--light);
+                            padding: 2rem;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            height: 440px;
+                            cursor: crosshair;
+                        ">
+                            <img id="detail-image" src="" alt="Product Image" style="
+                                max-height: 100%;
+                                max-width: 100%;
+                                object-fit: contain;
+                                display: block;
+                                pointer-events: none;
+                                user-select: none;
+                            ">
+
+                            <!-- Lens circle — centered on mouse via JS -->
+                            <div id="zoom-lens" style="
+                                position: absolute;
+                                width: 140px;
+                                height: 140px;
+                                border: 2.5px solid var(--secondary);
+                                border-radius: 50%;
+                                background: rgba(245, 158, 11, 0.06);
+                                pointer-events: none;
+                                display: none;
+                                transform: translate(-50%, -50%);
+                                top: 0; left: 0;
+                            "></div>
+                        </div>
+
+                        <!-- Thumbnail strip -->
+                        <div style="display: flex; gap: 0.75rem; padding: 1rem 2rem; background: var(--white); border-top: 1px solid var(--gray-light);">
+                            <div id="thumb-main" onclick="selectThumb(this)" style="
+                                width: 64px; height: 64px;
+                                border-radius: var(--radius-md);
+                                border: 2px solid var(--secondary);
+                                background: var(--light);
+                                overflow: hidden;
+                                cursor: pointer;
+                                display: flex; align-items: center; justify-content: center;
+                            ">
+                                <img id="thumb-img" src="" alt="" style="max-width:100%; max-height:100%; object-fit:contain;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zoomed result panel — floats OVER the info panel, anchored to stage -->
+                    <div id="zoom-result" style="
+                        display: none;
+                        position: absolute;
+                        top: 0;
+                        left: calc(100% + 1.5rem);
+                        width: 440px;
+                        height: 440px;
+                        border-radius: var(--radius-xl);
+                        border: 2px solid var(--secondary);
+                        box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+                        background-repeat: no-repeat;
+                        background-color: var(--white);
+                        z-index: 100;
+                        overflow: hidden;
+                        pointer-events: none;
+                    "></div>
+                </div>
+
+                <!-- ===== Product Info Panel ===== -->
+                <div class="product-detail-info-panel" style="background: var(--white); padding: 3rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-sm); border: 1px solid var(--gray-light);">
+                    <h2 class="section-title left reveal-text" id="detail-title" style="margin-bottom: 1rem;">Loading...</h2>
+                    <div style="width: 80px; height: 4px; background: var(--secondary); margin-bottom: 2rem;"></div>
+
+                    <h3 style="font-size: 1.25rem; color: var(--primary); margin-bottom: 1rem;">Product Overview</h3>
+                    <p id="detail-desc" style="color: var(--gray); font-size: 1.125rem; margin-bottom: 2.5rem; line-height: 1.8;">
+                        Please wait while we load the product specifications.
+                    </p>
+
+                    <div class="grid-2" style="margin-bottom: 2.5rem;">
+                        <div style="display: flex; gap: 1rem; align-items: center;">
+                            <div class="icon-badge-green" style="width: 50px; height: 50px; background: rgba(34, 197, 94, 0.1); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0; font-size: 1rem; color: var(--dark);">Premium Quality</h4>
+                                <span style="font-size: 0.875rem; color: var(--gray);">ISO 9001 Certified</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: center;">
+                            <div class="icon-badge-gold" style="width: 50px; height: 50px; background: rgba(245, 158, 11, 0.1); color: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0; font-size: 1rem; color: var(--dark);">High Yield</h4>
+                                <span style="font-size: 0.875rem; color: var(--gray);">Scientifically Formulated</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="contact.html" class="btn btn-primary" style="width: 100%;"><i class="fas fa-shopping-cart"></i> Inquire About This Product</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="reveal">
+                    <div style="background: white; padding: 0.5rem 1rem; border-radius: var(--radius-lg); display: inline-block; margin-bottom: 1.5rem;">
+                        <a href="index.html"><img id="footer-logo" src="assets/logo_en.png" alt="Vansh Feeds" style="height: 50px; width: auto; object-fit: contain;"></a>
+                    </div>
+                    <p style="color: #94A3B8; margin-bottom: 1.5rem;" data-i18n="footer.about">Vansh Group of Companies includes New Vanshika Bio Agro, Fish Gold Industries, and MLL Agro Industries. Delivering consistent performance for farmers.</p>
+                </div>
+                
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <h4 class="footer-heading" data-i18n="footer.links">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html" data-i18n="nav.about">About Vansh Group</a></li>
+                        <li><a href="products.html" data-i18n="nav.products">All Products</a></li>
+                        <li><a href="infrastructure.html" data-i18n="nav.infrastructure">Infrastructure</a></li>
+                        <li><a href="quality.html" data-i18n="nav.quality">Quality Assurance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="reveal" style="transition-delay: 0.3s;">
+                    <h4 class="footer-heading" data-i18n="footer.contact">Contact Info</h4>
+                    <ul class="footer-links" style="color: #94A3B8;">
+                        <li style="display: flex; gap: 1rem;"><i class="fas fa-map-marker-alt" style="color: var(--secondary); margin-top: 5px;"></i> <span data-i18n="footer.address">Barabanki, Uttar Pradesh, India</span></li>
+                        <li style="display: flex; gap: 1rem;"><i class="fas fa-phone-alt" style="color: var(--secondary); margin-top: 5px;"></i> <span data-i18n="footer.phone">05248 296699<br>+91 9670252525</span></li>
+                        <li style="display: flex; gap: 1rem;"><i class="fas fa-envelope" style="color: var(--secondary); margin-top: 5px;"></i> <span data-i18n="footer.email">vanshgroup@gmail.com</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid var(--dark-light); padding-top: 2rem; text-align: center; color: #64748B;">
+                <p data-i18n="footer.rights">© 2026 Vansh Group. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // =========================================================
+        // 1.  PRODUCT LOADING
+        // =========================================================
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId  = urlParams.get('id');
+
+            if (!productId) {
+                document.getElementById('detail-title').innerText = 'Product Not Found';
+                document.getElementById('detail-desc').innerText  = 'Please select a product from our catalog.';
+                return;
+            }
+
+            try {
+                const response = await fetch('assets/products.json');
+                const products = await response.json();
+                const product  = products.find(
+                    p => p.name.toLowerCase().replace(/ /g, '-') === productId.toLowerCase()
+                );
+
+                if (product) {
+                    document.getElementById('header-product-name').innerText = product.name;
+                    document.getElementById('detail-title').innerText         = product.name;
+                    document.getElementById('detail-desc').innerText          =
+                        product.description || 'High-quality agricultural product designed to maximize farm yield and health.';
+                    document.title = `${product.name} | Vansh Feeds`;
+
+                    // Set main image and thumbnail
+                    const mainImg  = document.getElementById('detail-image');
+                    const thumbImg = document.getElementById('thumb-img');
+                    mainImg.src    = product.image;
+                    thumbImg.src   = product.image;
+
+                    // Init zoom once the image is loaded
+                    mainImg.onload = () => initZoom(mainImg);
+                    if (mainImg.complete) initZoom(mainImg);
+
+                } else {
+                    document.getElementById('detail-title').innerText = 'Product Not Found';
+                }
+            } catch (e) {
+                console.error('Failed to load product data', e);
+            }
+        });
+
+        // =========================================================
+        // 2.  AMAZON-STYLE LENS ZOOM  — pixel-perfect rewrite
+        // =========================================================
+        function initZoom(img) {
+            const stage  = document.getElementById('zoom-stage');
+            const lens   = document.getElementById('zoom-lens');
+            const result = document.getElementById('zoom-result');
+
+            // Remove any old listeners by cloning
+            const newStage = stage.cloneNode(true);
+            stage.parentNode.replaceChild(newStage, stage);
+
+            // Re-grab references after clone
+            const S = document.getElementById('zoom-stage');
+            const L = document.getElementById('zoom-lens');
+            const R = document.getElementById('zoom-result');
+            const I = document.getElementById('detail-image');
+
+            const ZOOM = 3.5;  // magnification factor
+
+            function onMove(e) {
+                // 1. Get mouse position relative to the STAGE
+                const sr = S.getBoundingClientRect();
+                const mx = e.clientX - sr.left;
+                const my = e.clientY - sr.top;
+
+                // 2. Move the lens — its center = mouse position
+                //    (CSS has transform: translate(-50%,-50%) already)
+                L.style.left = mx + 'px';
+                L.style.top  = my + 'px';
+
+                // 3. Get the rendered image bounds (it's smaller than the stage due to padding)
+                const ir = I.getBoundingClientRect();
+
+                // 4. Mouse position relative to the rendered IMAGE
+                const ix = e.clientX - ir.left;
+                const iy = e.clientY - ir.top;
+
+                // 5. Ratio of natural image size to rendered size
+                const scaleX = I.naturalWidth  / ir.width;
+                const scaleY = I.naturalHeight / ir.height;
+
+                // 6. The zoomed background size
+                const bgW = I.naturalWidth  * ZOOM;
+                const bgH = I.naturalHeight * ZOOM;
+
+                // 7. Background position so the point under the lens is centered in the result
+                const bx = -(ix * scaleX * ZOOM - R.offsetWidth  / 2);
+                const by = -(iy * scaleY * ZOOM - R.offsetHeight / 2);
+
+                R.style.backgroundImage    = `url('${I.src}')`;
+                R.style.backgroundSize     = `${bgW}px ${bgH}px`;
+                R.style.backgroundPosition = `${bx}px ${by}px`;
+            }
+
+            S.addEventListener('mouseenter', () => {
+                L.style.display = 'block';
+                R.style.display = 'block';
+            });
+            S.addEventListener('mouseleave', () => {
+                L.style.display = 'none';
+                R.style.display = 'none';
+            });
+            S.addEventListener('mousemove', onMove);
+        }
+
+        // Thumbnail click handler
+        function selectThumb(el) {
+            const src     = el.querySelector('img').src;
+            const mainImg = document.getElementById('detail-image');
+            mainImg.onload = () => initZoom(mainImg);
+            mainImg.src    = src;
+            document.getElementById('thumb-img').src = src;
+        }
+    </script>
+</body>
+</html>

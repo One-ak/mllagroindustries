@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+   about.html — Vansh Feeds | About Us Page
+  ============================================================
+  PURPOSE:
+    Introduces the Vansh Group of Companies to visitors.
+    Covers the company's story, mission, vision, and the thre
+    subsidiary entities:
+      • New Vanshika Bio Agro Industries Pvt. Ltd.
+      • Fish Gold Industries Pvt. Ltd.
+      • MLL Agro Industries Pvt. Ltd.
+
+  PAGE STRUCTURE:
+    1. <head>        — meta, theme script, fonts, CSS
+    2. .topbar       — thin contact info strip (desktop only)
+    3. .navbar       — sticky navigation with logo, links, controls
+    4. <header>      — hero banner with page title
+    5. <section>     — main content: Our Story, Mission, Vision
+    6. <footer>      — site-wide footer with logo and links
+    7. <script>      — i18n.js (translations) then main.js (interactions)
+
+  ANIMATION CLASSES USED:
+    .reveal          — section fades up on scroll
+    .reveal-left     — left column slides in from the left
+    .reveal-right    — right column slides in from the right
+    .reveal-scale    — mission/vision cards scale up on scroll
+    .reveal-text     — section title letter-spacing expands
+    .text-gradient   — "Vansh Group" heading colour cycles green→gold
+    .text-words      — hero subtitle animates word by word
+    .typewriter-cursor — blinking | cursor after the subtitle
+
+  DARK MODE:
+    All colours use CSS variables (--dark, --white, --light, --gray)
+    which automatically flip when [data-theme="dark"] is on <html>.
+    theme-init.js sets that attribute before any paint.
+  ============================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Vansh Feeds</title>
+
+    <!--
+      theme-init.js MUST be first, before any stylesheet.
+      It runs synchronously in <head> to:
+        1. Apply saved dark/light theme before first paint (no flash)
+        2. Inject the page-transition overlay so it covers content immediately
+      Never add defer or async to this script.
+    -->
+    <script src="js/theme-init.js"></script>
+
+    <!-- Font Awesome — icon library used throughout the page -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Main stylesheet — contains all layout, colours, animations -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════
+         TOPBAR
+         Thin dark-green strip above the navbar visible on desktop.
+         Shows quick contact details (phone + email).
+         Hidden on mobile via CSS (@media max-width: 1024px).
+    ═══════════════════════════════════════════════════════ -->
+    <div class="topbar">
+        <div class="container">
+            <div class="topbar-contact">
+                <span><i class="fas fa-phone-alt"></i> +91 9670252525</span>
+                <span><i class="fas fa-envelope"></i> vanshgroup@gmail.com</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         NAVBAR (Sticky Navigation Bar)
+         Stays at the top while scrolling (position:sticky in CSS).
+         Background opacity changes on scroll — handled by main.js.
+
+         Contains:
+           • Logo — links back to homepage, swapped by i18n.js for Hindi
+           • .nav-links — desktop navigation links
+           • .controls-group — language + dark-mode toggles
+           • .mobile-menu-btn — hamburger for mobile screens
+         
+         NOTE: "About Us" link has class="active" on this page,
+         which gives it the gold underline indicator.
+    ═══════════════════════════════════════════════════════ -->
+    <nav class="navbar">
+        <div class="container">
+
+            <!-- Logo: id="site-logo" is used by i18n.js to swap EN/HI logo -->
+            <div class="logo-container">
+                <a href="index.html" style="display: flex; align-items: center;">
+                    <img id="site-logo" src="assets/logo_en.png" alt="Vansh Feeds"
+                         style="height: 70px; width: auto; object-fit: contain;">
+                </a>
+            </div>
+
+            <!-- Desktop navigation links (hidden on mobile, shown via .mobile-menu-active) -->
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About Us</a></li><!-- active = this page -->
+                <li><a href="products.html">Our Products</a></li>
+                <li><a href="infrastructure.html">Infrastructure</a></li>
+                <li><a href="quality.html">Quality</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <!-- Right-side actions: language switcher + dark mode + CTA button -->
+            <div class="nav-actions">
+                <div class="controls-group">
+                    <!-- Language toggle: clicking calls window.i18n.setLanguage() via i18n.js -->
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" data-lang="en">EN</button>
+                        <button class="lang-btn" data-lang="hi">HI</button>
+                    </div>
+                    <div class="controls-divider"></div>
+                    <!-- Dark mode toggle: clicking is handled by main.js (#theme-toggle listener) -->
+                    <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <!-- CTA Button: data-i18n="nav.cta" is translated by i18n.js -->
+                <a href="contact.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left: 1rem;">
+                    Business Inquiry
+                </a>
+            </div>
+
+            <!-- Hamburger button shown only on mobile (display:none on desktop in CSS) -->
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════
+         HERO BANNER (Page Header)
+         Dark full-width banner with the page title.
+         .hero-bg contains the factory background image (opacity 0.2
+         to keep it subtle — reduced from the homepage's 0.4).
+         
+         .text-gradient on "Vansh Group" applies the animated
+         green→gold gradient colour cycle (CSS @keyframes gradientFlow).
+         
+         .text-words on the subtitle splits each word into a <span>
+         and animates them in one by one (handled by main.js).
+         .typewriter-cursor adds a blinking | after the text.
+    ═══════════════════════════════════════════════════════ -->
+    <header class="hero" style="padding: 4rem 0;">
+        <div class="hero-bg" style="opacity: 0.2;"></div><!-- background image layer -->
+        <div class="container">
+            <h1 style="font-size: 3.5rem;">About <span class="text-gradient">Vansh Group</span></h1>
+            <p class="text-words typewriter-cursor">A legacy of quality and trust in the agro-industry.</p>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════
+         MAIN CONTENT — Our Story Section
+         Uses a 2-column grid:
+           LEFT  (.reveal-left)  — company description + Mission/Vision cards
+           RIGHT (.reveal-right) — hero image of agriculture
+         
+         Both columns slide in from their respective sides when
+         the section scrolls into view (IntersectionObserver in main.js).
+         
+         Mission and Vision are side-by-side cards inside the left column.
+         Each card uses .reveal-scale with a small transition-delay so they
+         pop in one after the other (staggered effect).
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section reveal"><!-- .reveal fades up the whole section -->
+        <div class="container">
+            <div class="grid-2" style="align-items: center;">
+
+                <!-- LEFT COLUMN: text + mission/vision cards -->
+                <div class="reveal-left">
+                    <!-- .section-title.left moves the underline to the left
+                         .reveal-text triggers letter-spacing animation on scroll -->
+                    <h2 class="section-title left reveal-text">Our Story</h2>
+                    <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.125rem;">
+                        Vansh Group encompasses specialized entities including
+                        <strong>New Vanshika Bio Agro Industries Pvt. Ltd.</strong>,
+                        <strong>Fish Gold Industries Pvt. Ltd.</strong>, and
+                        <strong>MLL Agro Industries Pvt. Ltd.</strong>
+                    </p>
+                    <p style="color: var(--gray); margin-bottom: 2rem;">
+                        Founded with a vision to empower the agricultural community, we have grown into one of
+                        Northern India's leading manufacturers of premium animal nutrition and agro inputs.
+                        Our state-of-the-art facility in Barabanki caters to a vast network of distributors
+                        and farmers across India and Nepal.
+                    </p>
+
+                    <!-- Mission & Vision cards — staggered reveal-scale animation -->
+                    <div class="grid-2">
+                        <!-- Mission card: green left border -->
+                        <div class="reveal-scale" style="transition-delay: 0.1s; background: var(--light); padding: 2rem; border-radius: var(--radius-md); border-left: 4px solid var(--primary);">
+                            <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Mission</h3>
+                            <p style="color: var(--gray); font-size: 0.875rem;">To enhance livestock productivity through innovative and accessible nutritional solutions.</p>
+                        </div>
+                        <!-- Vision card: gold left border -->
+                        <div class="reveal-scale" style="transition-delay: 0.2s; background: var(--light); padding: 2rem; border-radius: var(--radius-md); border-left: 4px solid var(--secondary);">
+                            <h3 style="color: var(--secondary); margin-bottom: 0.5rem;">Vision</h3>
+                            <p style="color: var(--gray); font-size: 0.875rem;">To be the most trusted partner for farmers, leading the industry in quality and sustainability.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: agriculture hero image -->
+                <div class="reveal-right">
+                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                         alt="Agriculture"
+                         style="border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         FOOTER
+         Dark footer (--always-darker background, never changes in dark mode).
+         Contains the logo, quick links, business links, and contact info.
+         id="footer-logo" is used by i18n.js to swap the logo image.
+    ═══════════════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Column 1: Logo + brand description -->
+                <div>
+                    <a href="index.html" style="display: inline-block; margin-bottom: 1rem;">
+                        <div style="background: white; padding: 0.5rem 1rem; border-radius: var(--radius-lg); display: inline-block;">
+                            <img id="footer-logo" src="assets/logo_en.png" alt="Vansh Feeds"
+                                 style="height: 50px; width: auto; object-fit: contain;">
+                        </div>
+                    </a>
+                    <p style="color: #94A3B8; margin-bottom: 1.5rem;">
+                        Vansh Group of Companies includes New Vanshika Bio Agro, Fish Gold Industries, and MLL Agro Industries.
+                    </p>
+                </div>
+                <!-- Column 2: Quick site navigation links -->
+                <div>
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Vansh Group</a></li>
+                        <li><a href="products.html">All Products</a></li>
+                        <li><a href="infrastructure.html">Infrastructure</a></li>
+                        <li><a href="quality.html">Quality Assurance</a></li>
+                    </ul>
+                </div>
+                <!-- Column 3: Business-related links -->
+                <div>
+                    <h4 class="footer-heading">Business</h4>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">Business Inquiry</a></li>
+                        <li><a href="#">Vendor Registration</a></li>
+                    </ul>
+                </div>
+                <!-- Column 4: Contact details -->
+                <div>
+                    <h4 class="footer-heading">Contact Us</h4>
+                    <ul class="footer-links" style="color: #94A3B8;">
+                        <li><i class="fas fa-phone-alt"></i> +91 9670252525</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--
+      SCRIPTS — loaded at the end of <body> so the DOM is fully parsed first.
+
+      Order matters:
+        1. i18n.js  — defines window.i18n (must load before main.js calls it)
+        2. main.js  — wires up all interactions (calls window.i18n.init())
+    -->
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

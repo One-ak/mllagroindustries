@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Vansh Feeds Leads</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green:  #15803D;
+      --gold:   #F59E0B;
+      --dark:   #0f172a;
+      --card:   #1e293b;
+      --border: #334155;
+      --text:   #f8fafc;
+      --muted:  #94a3b8;
+      --red:    #ef4444;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Login Screen ── */
+    #login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+    .login-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      width: 380px;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0,0,0,.5);
+    }
+    .login-logo {
+      width: 80px;
+      margin: 0 auto 1.5rem;
+      display: block;
+      background: white;
+      border-radius: 12px;
+      padding: 8px;
+    }
+    .login-box h1 { font-size: 1.5rem; margin-bottom: .5rem; }
+    .login-box p  { color: var(--muted); font-size: .9rem; margin-bottom: 2rem; }
+    .login-box input {
+      width: 100%; padding: .8rem 1rem; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--dark);
+      color: var(--text); font-size: 1rem; margin-bottom: 1rem; outline: none;
+    }
+    .login-box input:focus { border-color: var(--green); }
+    .btn-login {
+      width: 100%; padding: .875rem; border-radius: 50px;
+      background: var(--green); color: white; border: none;
+      font-size: 1rem; font-weight: 700; cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-login:hover { background: #166534; }
+    #login-error {
+      color: var(--red); font-size: .85rem;
+      margin-top: .75rem; display: none;
+    }
+
+    /* ── Dashboard ── */
+    #dashboard { display: none; }
+
+    header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .header-left {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .header-left img {
+      height: 40px; background: white;
+      border-radius: 8px; padding: 4px;
+    }
+    header h1 { font-size: 1.2rem; }
+    header span { color: var(--muted); font-size: .85rem; }
+    .btn-logout {
+      padding: .5rem 1.2rem; border-radius: 50px;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--muted); cursor: pointer; font-size: .85rem;
+      transition: all .2s;
+    }
+    .btn-logout:hover { border-color: var(--red); color: var(--red); }
+
+    main { padding: 2rem; max-width: 1200px; margin: 0 auto; }
+
+    /* ── Stats Row ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .stat-icon {
+      width: 50px; height: 50px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .stat-icon.green  { background: rgba(21,128,61,.2);  color: #4ade80; }
+    .stat-icon.gold   { background: rgba(245,158,11,.2); color: #fbbf24; }
+    .stat-icon.blue   { background: rgba(59,130,246,.2); color: #60a5fa; }
+    .stat-label { font-size: .8rem; color: var(--muted); margin-bottom: .25rem; }
+    .stat-value { font-size: 1.75rem; font-weight: 800; }
+
+    /* ── Controls ── */
+    .controls {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      align-items: center; margin-bottom: 1.5rem;
+    }
+    .search-input {
+      flex: 1; min-width: 220px;
+      padding: .65rem 1rem .65rem 2.5rem;
+      border-radius: 50px; border: 1px solid var(--border);
+      background: var(--card); color: var(--text); font-size: .9rem;
+      outline: none; position: relative;
+    }
+    .search-wrap { position: relative; flex: 1; min-width: 220px; }
+    .search-wrap i {
+      position: absolute; left: .9rem; top: 50%;
+      transform: translateY(-50%); color: var(--muted);
+    }
+    .filter-select {
+      padding: .65rem 1rem; border-radius: 50px;
+      border: 1px solid var(--border); background: var(--card);
+      color: var(--text); font-size: .9rem; cursor: pointer; outline: none;
+    }
+    .btn-export {
+      padding: .65rem 1.2rem; border-radius: 50px;
+      background: var(--green); color: white; border: none;
+      font-size: .85rem; font-weight: 700; cursor: pointer;
+      display: flex; align-items: center; gap: .4rem;
+    }
+    .btn-export:hover { background: #166534; }
+    .btn-refresh {
+      padding: .65rem 1rem; border-radius: 50px;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--muted); cursor: pointer;
+    }
+    .btn-refresh:hover { border-color: var(--green); color: var(--green); }
+
+    /* ── Table ── */
+    .table-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      overflow-x: auto;
+    }
+    table { width: 100%; border-collapse: collapse; min-width: 700px; }
+    thead th {
+      padding: 1rem 1.25rem; text-align: left;
+      font-size: .75rem; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      background: rgba(255,255,255,.03);
+      border-bottom: 1px solid var(--border);
+    }
+    tbody tr {
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      transition: background .15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,.04); }
+    tbody td { padding: 1rem 1.25rem; font-size: .9rem; }
+    td .name  { font-weight: 600; }
+    td .phone { color: var(--gold); font-weight: 600; }
+    td .msg   { color: var(--muted); font-size: .82rem; max-width: 260px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .badge {
+      display: inline-block; padding: .25rem .7rem;
+      border-radius: 50px; font-size: .75rem; font-weight: 700;
+    }
+    .badge-dist  { background: rgba(21,128,61,.2);  color: #4ade80; }
+    .badge-prod  { background: rgba(59,130,246,.2); color: #60a5fa; }
+    .badge-griev { background: rgba(239,68,68,.2);  color: #f87171; }
+    .badge-vend  { background: rgba(245,158,11,.2); color: #fbbf24; }
+    .date-cell   { color: var(--muted); font-size: .82rem; white-space: nowrap; }
+    .btn-del {
+      background: transparent; border: 1px solid rgba(239,68,68,.3);
+      color: #f87171; border-radius: 8px;
+      padding: .3rem .6rem; cursor: pointer; font-size: .8rem;
+      transition: all .2s;
+    }
+    .btn-del:hover { background: rgba(239,68,68,.1); border-color: var(--red); }
+
+    /* ── Empty / Loading ── */
+    .empty {
+      text-align: center; padding: 4rem 2rem; color: var(--muted);
+    }
+    .empty i { font-size: 3rem; margin-bottom: 1rem; display: block; opacity: .4; }
+    .spinner {
+      display: inline-block; width: 30px; height: 30px;
+      border: 3px solid var(--border); border-top-color: var(--green);
+      border-radius: 50%; animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: var(--green); color: white;
+      padding: .8rem 1.5rem; border-radius: 50px;
+      font-weight: 700; font-size: .9rem;
+      transform: translateY(100px); opacity: 0;
+      transition: all .3s;
+      z-index: 9999;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.error { background: var(--red); }
+
+    @media (max-width: 600px) {
+      main { padding: 1rem; }
+      header { padding: .75rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════ LOGIN SCREEN ════════════════════ -->
+<div id="login-screen">
+  <div class="login-box">
+    <img class="login-logo" src="assets/logo_en.png" alt="Vansh Feeds">
+    <h1>Admin Panel</h1>
+    <p>Enter your password to view form submissions</p>
+    <input type="password" id="pwd-input" placeholder="Password"
+           onkeydown="if(event.key==='Enter') login()">
+    <button class="btn-login" onclick="login()">
+      <i class="fas fa-unlock-alt"></i> Sign In
+    </button>
+    <div id="login-error">Incorrect password. Try again.</div>
+  </div>
+</div>
+
+<!-- ════════════════════ DASHBOARD ════════════════════ -->
+<div id="dashboard">
+
+  <header>
+    <div class="header-left">
+      <img src="assets/logo_en.png" alt="Vansh Feeds">
+      <div>
+        <h1>Lead Management</h1>
+        <span>Vansh Feeds — Contact Form Submissions</span>
+      </div>
+    </div>
+    <button class="btn-logout" onclick="logout()">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+  </header>
+
+  <main>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-icon green"><i class="fas fa-inbox"></i></div>
+        <div>
+          <div class="stat-label">Total Submissions</div>
+          <div class="stat-value" id="stat-total">—</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon gold"><i class="fas fa-handshake"></i></div>
+        <div>
+          <div class="stat-label">Distributorship</div>
+          <div class="stat-value" id="stat-dist">—</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon blue"><i class="fas fa-calendar-day"></i></div>
+        <div>
+          <div class="stat-label">Today</div>
+          <div class="stat-value" id="stat-today">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="search-wrap">
+        <i class="fas fa-search"></i>
+        <input class="search-input" id="search"
+               placeholder="Search by name, phone, message…"
+               oninput="renderTable()">
+      </div>
+      <select class="filter-select" id="filter-type" onchange="renderTable()">
+        <option value="">All Inquiry Types</option>
+        <option>Distributorship Inquiry</option>
+        <option>Product Information</option>
+        <option>Grievance Redressal</option>
+        <option>Vendor Registration</option>
+      </select>
+      <button class="btn-export" onclick="exportCSV()">
+        <i class="fas fa-download"></i> Export CSV
+      </button>
+      <button class="btn-refresh" onclick="loadData()" title="Refresh">
+        <i class="fas fa-sync-alt"></i>
+      </button>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Inquiry Type</th>
+            <th>Message</th>
+            <th>Submitted At</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <tr><td colspan="7" class="empty"><div class="spinner"></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── Simple password gate (change this to your preferred password) ──
+  const ADMIN_PASSWORD = 'vansh@admin2026';
+  let allData = [];
+
+  function login() {
+    const pwd = document.getElementById('pwd-input').value;
+    if (pwd === ADMIN_PASSWORD) {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      loadData();
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+    }
+  }
+
+  function logout() {
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('dashboard').style.display = 'none';
+    document.getElementById('pwd-input').value = '';
+  }
+
+  // ── Fetch data from the server ──
+  async function loadData() {
+    try {
+      const res  = await fetch('/api/submissions');
+      const json = await res.json();
+      allData = json.data || [];
+      updateStats();
+      renderTable();
+    } catch(e) {
+      showToast('Could not connect to server', 'error');
+    }
+  }
+
+  // ── Stats ──
+  function updateStats() {
+    document.getElementById('stat-total').textContent = allData.length;
+    document.getElementById('stat-dist').textContent  =
+      allData.filter(r => r.inquiry_type.includes('Distributorship')).length;
+
+    const today = new Date().toISOString().slice(0,10);
+    document.getElementById('stat-today').textContent =
+      allData.filter(r => r.submitted_at.startsWith(today)).length;
+  }
+
+  // ── Badge colour by inquiry type ──
+  function badgeClass(type) {
+    if (type.includes('Distributorship')) return 'badge-dist';
+    if (type.includes('Product'))        return 'badge-prod';
+    if (type.includes('Grievance'))      return 'badge-griev';
+    return 'badge-vend';
+  }
+
+  // ── Render filtered table rows ──
+  function renderTable() {
+    const q    = document.getElementById('search').value.toLowerCase();
+    const type = document.getElementById('filter-type').value;
+
+    const filtered = allData.filter(r => {
+      const matchQ = !q || [r.full_name, r.phone, r.message, r.inquiry_type]
+        .some(v => (v||'').toLowerCase().includes(q));
+      const matchT = !type || r.inquiry_type === type;
+      return matchQ && matchT;
+    });
+
+    const tbody = document.getElementById('table-body');
+    if (!filtered.length) {
+      tbody.innerHTML = `<tr><td colspan="7" class="empty">
+        <i class="fas fa-inbox"></i>No submissions found.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filtered.map(r => `
+      <tr>
+        <td style="color:var(--muted);font-size:.8rem;">#${r.id}</td>
+        <td><div class="name">${esc(r.full_name)}</div></td>
+        <td><div class="phone">${esc(r.phone)}</div></td>
+        <td><span class="badge ${badgeClass(r.inquiry_type)}">${esc(r.inquiry_type)}</span></td>
+        <td><div class="msg" title="${esc(r.message)}">${esc(r.message) || '<em style="opacity:.5">—</em>'}</div></td>
+        <td class="date-cell">${formatDate(r.submitted_at)}</td>
+        <td>
+          <button class="btn-del" onclick="deleteRow(${r.id})" title="Delete">
+            <i class="fas fa-trash"></i>
+          </button>
+        </td>
+      </tr>`).join('');
+  }
+
+  // ── Delete a row ──
+  async function deleteRow(id) {
+    if (!confirm('Delete this submission?')) return;
+    try {
+      await fetch('/api/submissions/' + id, { method: 'DELETE' });
+      allData = allData.filter(r => r.id !== id);
+      updateStats();
+      renderTable();
+      showToast('Submission deleted');
+    } catch(e) {
+      showToast('Delete failed', 'error');
+    }
+  }
+
+  // ── Export CSV ──
+  function exportCSV() {
+    const rows = [['ID','Name','Phone','Inquiry Type','Message','Submitted At']];
+    allData.forEach(r => rows.push([r.id, r.full_name, r.phone, r.inquiry_type, r.message, r.submitted_at]));
+    const csv  = rows.map(r => r.map(v => `"${(v||'').toString().replace(/"/g,'""')}"`).join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url; a.download = 'vansh_leads.csv'; a.click();
+    URL.revokeObjectURL(url);
+    showToast('CSV exported!');
+  }
+
+  // ── Helpers ──
+  function esc(str) {
+    return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+  function formatDate(dt) {
+    if (!dt) return '—';
+    const d = new Date(dt);
+    return d.toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' })
+         + ' ' + d.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' });
+  }
+
+  function showToast(msg, type = 'success') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast' + (type === 'error' ? ' error' : '');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+</script>
+</body>
+</html>
