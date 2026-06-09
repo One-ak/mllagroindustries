@@ -3,26 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vansh Feeds | Leading Animal Nutrition & Agro Solutions</title>
-    <meta name="description" content="At Vansh Group of Companies, we offer high-quality agro and animal nutrition solutions. Our range includes bio-fertilizers, cattle feed, poultry feed, and aqua feed.">
+    <title>Vansh Group | MLL Agro Industries, Organic Inputs & Feed Manufacturing</title>
+    <meta name="description" content="MLL Agro Industries led Vansh Group manufactures organic inputs, fertilizers, soil health solutions, aqua feed and animal nutrition from Barabanki, Uttar Pradesh.">
     <!-- Font Awesome -->
     <script src="js/theme-init.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Custom Card Animations */
+        .soil-card {
+            border: 2px solid #16a34a !important;
+        }
+        .soil-card .feat-icon { color: #15803d !important; }
+
+        .aqua-card {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #0ea5e9 !important;
+        }
+        .aqua-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.1), transparent);
+            animation: waterWave 3s infinite linear;
+            z-index: 0;
+        }
+        @keyframes waterWave {
+            0% { transform: translateX(0) skewX(-15deg); }
+            100% { transform: translateX(200%) skewX(-15deg); }
+        }
+        .aqua-card > * { position: relative; z-index: 1; }
+        .aqua-card .feat-icon { color: #0284c7 !important; }
+        
+        .animal-card {
+            border: 2px solid #f59e0b !important;
+        }
+        .animal-card .feat-icon { color: #d97706 !important; }
+    </style>
 </head>
 <body>
-
-        <!-- Topbar -->
-    <div class="topbar">
-        <div class="container">
-            <div class="topbar-contact">
-                <span><i class="fas fa-phone-alt"></i> +91 9670252525</span>
-                <span><i class="fas fa-envelope"></i> vanshgroup@gmail.com</span>
-            </div>
-            
-        </div>
-    </div>
 
     <!-- Navbar -->
     <nav class="navbar">
@@ -32,12 +53,12 @@
             </div>
             
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="products.html">Our Products</a></li>
-                <li><a href="infrastructure.html">Infrastructure</a></li>
-                <li><a href="quality.html">Quality</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" class="active" data-i18n="nav.home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav.about">About Us</a></li>
+                <li><a href="products.html" data-i18n="nav.products">Our Products</a></li>
+                <li><a href="infrastructure.html" data-i18n="nav.infrastructure">Infrastructure</a></li>
+                <li><a href="quality.html" data-i18n="nav.quality">Quality</a></li>
+                <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
             
             <div class="nav-actions">
@@ -49,7 +70,7 @@
                     <div class="controls-divider"></div>
                     <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
                 </div>
-                <a href="contact.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left: 1rem;">Business Inquiry</a>
+                <a href="business.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left: 1rem;">Business Inquiry</a>
             </div>
             <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
@@ -61,11 +82,14 @@
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="container">
-            <h1 style="font-size: 3.5rem; text-transform: uppercase; letter-spacing: 1px;" data-i18n="hero.title">High-Quality <span class="text-shimmer">Animal Nutrition</span> & Agro Solutions</h1>
-            <p class="text-words typewriter-cursor" style="font-size: 1.25rem; font-weight: 500; opacity: 0.9;" data-i18n="hero.subtitle">Improving farmer productivity and profitability through scientifically formulated feed and fertilizers.</p>
-            <div style="display: flex; gap: 1.5rem; justify-content: center; margin-top: 2rem;">
-                <a href="products.html" class="btn btn-secondary" data-i18n="hero.btn.explore">Explore Products</a>
-                <a href="contact.html" class="btn btn-primary" data-i18n="hero.btn.distributor">Become a Distributor</a>
+            <h1 style="font-size: 3.5rem; text-transform: uppercase; letter-spacing: 1px;" data-i18n="hero.title">Organic Agro Inputs, <span class="text-shimmer">Soil Health</span> & Feed Manufacturing</h1>
+            <p class="text-words typewriter-cursor" style="font-size: 1.25rem; font-weight: 500; opacity: 0.9; max-width: 800px; margin: 0 auto 2.5rem; line-height: 1.8;" data-i18n="hero.subtitle">Led by MLL Agro Industries Pvt. Ltd. in Barabanki, the group manufactures fertilizers, organic inputs, bio-agro solutions, aqua feed and animal nutrition for India and Nepal-facing markets.</p>
+            <div class="hero-actions" style="display: flex; flex-direction: column; align-items: center; gap: 1.25rem;">
+                <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="products.html" class="btn btn-secondary" data-i18n="hero.btn.explore">Explore Products</a>
+                    <a href="vendor.html" class="btn btn-primary" data-i18n="hero.btn.distributor">Become a Distributor</a>
+                </div>
+                <a href="business.html" class="btn btn-outline" style="border-color: rgba(255,255,255,0.5); color: #fff; margin-top: 0.5rem;" data-i18n="feat.outsourcing.btn">Third-Party & Contract Manufacturing</a>
             </div>
         </div>
     </section>
@@ -73,25 +97,25 @@
     <!-- Features Overlapping the Hero -->
     <section class="features-overlap reveal">
         <div class="container bento-layout">
-            <div class="feat-card bento-large reveal-scale" style="border-radius: var(--radius-xl); text-align: left; background: linear-gradient(135deg, var(--white) 0%, var(--light) 100%);">
-                <div class="feat-icon" style="font-size: 4rem; margin-bottom: auto;"><i class="fas fa-cow"></i></div>
+            <div class="feat-card bento-large reveal-scale soil-card" style="border-radius: var(--radius-xl); text-align: left;">
+                <div class="feat-icon" style="font-size: 4rem; margin-bottom: auto;"><i class="fas fa-seedling"></i></div>
                 <div>
-                    <h3 style="font-size: 2rem; margin-top: 2rem;" data-i18n="feat.cattle.title">Cattle Feed</h3>
-                    <p style="color: var(--gray); margin-top: 1rem; font-size: 1.1rem;" data-i18n="feat.cattle.desc">Boost milk yield and health with our Super, 3000, 5000, and 8000 series formulations. A complete nutritional package for maximum productivity.</p>
+                    <h3 style="font-size: 2rem; margin-top: 2rem;" data-i18n="feat.organic.title">Organic Inputs & Soil Health</h3>
+                    <p style="margin-top: 1rem; font-size: 1.1rem;" data-i18n="feat.organic.desc">MLL Agro Industries anchors the group’s fertilizer, organic input and crop nutrition focus for responsible field productivity.</p>
                 </div>
             </div>
-            <div class="feat-card reveal-right" style="border-radius: var(--radius-xl); text-align: left; padding: 2rem; display: flex; align-items: center; gap: 1.5rem;">
-                <div class="feat-icon" style="margin-bottom: 0; font-size: 2.5rem;"><i class="fas fa-fish"></i></div>
+            <div class="feat-card aqua-card reveal-right" style="border-radius: var(--radius-xl); text-align: left; padding: 2rem; display: flex; align-items: center; gap: 1.5rem;">
+                <div class="feat-icon" style="margin-bottom: 0; font-size: 2.5rem;"><i class="fas fa-water"></i></div>
                 <div>
                     <h3 style="font-size: 1.25rem;" data-i18n="feat.aqua.title">Aqua Feed</h3>
-                    <p style="color: var(--gray); margin-top: 0.5rem; font-size: 0.9rem;" data-i18n="feat.aqua.desc">Premium floating fish feeds crafted by Fish Gold Industries.</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;" data-i18n="feat.aqua.desc">Floating aqua feed ranges for pond operations, practical feeding routines and commercial fish culture.</p>
                 </div>
             </div>
-            <div class="feat-card reveal-right" style="border-radius: var(--radius-xl); text-align: left; padding: 2rem; transition-delay: 0.1s; display: flex; align-items: center; gap: 1.5rem;">
-                <div class="feat-icon" style="margin-bottom: 0; font-size: 2.5rem;"><i class="fas fa-leaf"></i></div>
+            <div class="feat-card animal-card reveal-right" style="border-radius: var(--radius-xl); text-align: left; padding: 2rem; transition-delay: 0.1s; display: flex; align-items: center; gap: 1.5rem;">
+                <div class="feat-icon" style="margin-bottom: 0; font-size: 2.5rem;"><i class="fas fa-cow"></i></div>
                 <div>
-                    <h3 style="font-size: 1.25rem;" data-i18n="feat.bio.title">Bio Fertilizers</h3>
-                    <p style="color: var(--gray); margin-top: 0.5rem; font-size: 0.9rem;" data-i18n="feat.bio.desc">Enhance soil fertility with specialized crop growth promoters.</p>
+                    <h3 style="font-size: 1.25rem;" data-i18n="feat.animal.title">Animal Nutrition</h3>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;" data-i18n="feat.animal.desc">Cattle and poultry feed lines remain part of the group’s practical farm supply portfolio.</p>
                 </div>
             </div>
         </div>
@@ -103,23 +127,23 @@
             <div class="grid-1-2" style="align-items: center;">
                 <div style="position: relative;" class="float-anim reveal-left">
                     <div style="position: absolute; top: -20px; left: -20px; width: 100%; height: 100%; border: 4px solid var(--secondary); border-radius: var(--radius-xl); z-index: 0;"></div>
-                    <img src="assets/factory_bg.png" alt="Factory" style="position: relative; z-index: 1; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); width: 100%; height: 400px; object-fit: cover;">
+                    <img src="assets/MD.PNG" alt="Farm field" style="position: relative; z-index: 1; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); width: 100%; height: 400px; object-fit: cover;">
                 </div>
                 <div class="reveal-right">
                     <h2 class="section-title left reveal-text" style="margin-bottom: 2rem;" data-i18n="md.title">Message from our MD</h2>
                     <p style="font-size: 1.25rem; font-weight: 500; color: var(--dark); margin-bottom: 1.5rem; line-height: 1.8; border-left: 4px solid var(--primary); padding-left: 1.5rem;">
-                        <span class="text-words" data-i18n="md.p1">"At Vansh Group of Companies, our journey has always been driven by a clear purpose—to support farmers and strengthen the agricultural ecosystem with reliable, high-quality solutions."</span>
+                        <span class="text-words" data-i18n="md.p1">"At Vansh Group, our focus is disciplined agro-input manufacturing, practical field products and long-term relationships with farmers, dealers and business partners."</span>
                     </p>
                     <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
-                        <span data-i18n="md.p2">From agro inputs to animal nutrition, we continuously strive to deliver products that enhance productivity, improve farm profitability, and promote sustainable practices. Our focus remains on innovation, quality, and building long-term relationships with our farmers and distribution partners.</span>
+                        <span data-i18n="md.p2">MLL Agro Industries leads our organic input and soil-health work, while Fish Gold Industries and New Vanshika Bio Agro support feed, aqua and bio-agro categories with the same supply discipline.</span>
                     </p>
                     <p style="color: var(--gray); margin-bottom: 2.5rem; font-size: 1.05rem;">
-                        <span data-i18n="md.p3">As we grow, our commitment stays the same—to create value for every stakeholder and contribute meaningfully to the progress of Indian agriculture.</span>
+                        <span data-i18n="md.p3">As the group grows from Barabanki into wider Indian and Nepal-facing markets, we remain focused on responsible manufacturing and dependable business conduct.</span>
                     </p>
                     <div style="display: flex; align-items: center; gap: 1rem;">
                         <div style="width: 60px; height: 6px; background: var(--secondary); border-radius: 3px;"></div>
                         <div>
-                            <h4 style="font-size: 1.35rem; color: var(--primary-dark); margin: 0;" data-i18n="md.name">Mr. Hem Karan Mathur</h4>
+                            <h4 style="font-size: 1.35rem; color: var(--primary-dark); margin: 0;" data-i18n="md.name">Dr. Hem Karan Mathur</h4>
                             <span class="text-gradient" style="font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;" data-i18n="md.role">Managing Director</span>
                         </div>
                     </div>
@@ -128,63 +152,322 @@
         </div>
     </section>
 
-    <!-- Featured Products -->
-    <section class="section reveal" style="background: var(--light); padding: 8rem 0;">
+    <!-- Group Companies -->
+    <section class="section reveal soft-band">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 3.5rem;">
+                <span class="section-kicker" data-i18n="idx.companies.kicker">Operating Companies</span>
+                <h2 class="section-title reveal-text" data-i18n="idx.companies.title">MLL-led agro inputs with wider group manufacturing support</h2>
+                <p class="section-lead" data-i18n="idx.companies.subtitle">The group’s primary focus is organic agriculture, fertilizers and soil health through MLL Agro Industries, supported by feed, aqua and bio-agro manufacturing divisions from Barabanki.</p>
+            </div>
+
+            <div class="company-cards">
+                <article class="premium-card company-card company-card--deep reveal-scale">
+                    <span class="icon-pill"><i class="fas fa-seedling"></i></span>
+                    <h3 data-i18n="idx.company.mll.title">MLL Agro Industries Pvt. Ltd.</h3>
+                    <p data-i18n="idx.company.mll.desc">Produces organic inputs, fertilizers and soil health solutions for crop nutrition and responsible field productivity.</p>
+                    <span class="field-label" data-i18n="idx.company.mll.field">Organic Inputs & Fertilizers</span>
+                </article>
+                <article class="premium-card company-card company-card--lime reveal-scale" style="transition-delay: 0.08s;">
+                    <span class="icon-pill"><i class="fas fa-fish"></i></span>
+                    <h3 data-i18n="idx.company.fish.title">Fish Gold Industries Pvt. Ltd.</h3>
+                    <p data-i18n="idx.company.fish.desc">Manufactures aqua feed, cattle feed, poultry feed and animal nutrition products for practical farm and dealer supply.</p>
+                    <span class="field-label" data-i18n="idx.company.fish.field">Feed & Animal Nutrition</span>
+                </article>
+                <article class="premium-card company-card company-card--soft reveal-scale" style="transition-delay: 0.16s;">
+                    <span class="icon-pill"><i class="fas fa-leaf"></i></span>
+                    <h3 data-i18n="idx.company.bio.title">New Vanshika Bio Agro Industries Pvt. Ltd.</h3>
+                    <p data-i18n="idx.company.bio.desc">Develops bio solutions and crop nutrition inputs aligned with sustainable agriculture and field-level usability.</p>
+                    <span class="field-label" data-i18n="idx.company.bio.field">Bio Solutions & Crop Nutrition</span>
+                </article>
+            </div>
+            <article class="premium-card bulk-manufacturing-card bulk-manufacturing-card--warm reveal-scale" style="transition-delay: 0.24s;">
+                <span class="icon-pill"><i class="fas fa-boxes-stacked"></i></span>
+                <div>
+                    <h3 data-i18n="idx.company.bulk.title">Bulk Supply & Third-Party Manufacturing</h3>
+                    <p data-i18n="idx.company.bulk.desc">The group supports B2B requirements including bulk manufacturing, dealer/distributor supply, private labeling and contract manufacturing discussions.</p>
+                </div>
+                <span class="field-label" data-i18n="idx.company.bulk.field">B2B Manufacturing</span>
+            </article>
+        </div>
+    </section>
+
+    <!-- Featured Products — Continuous Marquee Carousel -->
+    <section class="section reveal product-showcase" style="background: var(--light); padding: 8rem 0;">
         <div class="container">
             <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="section-kicker" data-i18n="idx.prod.kicker">Premium Range</span>
                 <h2 class="section-title reveal-text" data-i18n="idx.prod.title">Our Premium Products</h2>
-                <p style="color: var(--gray); max-width: 650px; margin: 0 auto; font-size: 1.125rem;"><span data-i18n="idx.prod.subtitle">Designed to deliver consistent performance and better results across every stage of farming. Trusted by over a million farmers.</span></p>
+                <p style="color: var(--gray); max-width: 650px; margin: 0 auto; font-size: 1.125rem;"><span data-i18n="idx.prod.subtitle">A balanced view of MLL agro-input products alongside established feed and aqua lines for dealer and farm supply.</span></p>
             </div>
-            
-            <div class="products-grid">
-                <!-- Example Featured Product 1 -->
-                <div class="product-card">
-                    <div class="product-img-wrapper">
-                        <!-- We will use downloaded assets in products.html, but here we use placeholders or specific assets if known -->
-                        <img src="assets/products/vansh_heera.jpg" onerror="this.src='https://images.unsplash.com/photo-1594498653385-d5172c532c00?ixlib=rb-4.0.3&w=400&q=80'" alt="Vansh Heera">
+        </div>
+
+        <!-- Full-width continuous marquee — no container padding so it bleeds edge to edge -->
+        <div class="product-carousel" aria-label="Product showcase carousel">
+            <div class="product-track">
+                <!-- === ORIGINAL SET === -->
+                <article class="showcase-product-card">
+                    <div class="showcase-media"><img src="assets/products/prom.jpg" alt="Prom" loading="lazy"></div>
+                    <div class="showcase-content">
+                        <span class="product-category" data-i18n="idx.showcase.cat.fertilizer">Organic Input</span>
+                        <h3 data-i18n="idx.showcase.prom.name">Prom</h3>
+                        <p data-i18n="idx.showcase.prom.desc">Phosphate-rich organic manure for soil nutrition programs, dealer supply and field application.</p>
+                        <a href="product-detail.html?id=prom" class="btn btn-outline btn-sm" data-i18n="idx.showcase.view">View Product</a>
                     </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Vansh Heera</h3>
-                        <a href="products.html" class="btn btn-outline" style="width: 100%;">View Details</a>
+                </article>
+                <article class="showcase-product-card">
+                    <div class="showcase-media"><img src="assets/products/green_phos.jpg" alt="Green Phos" loading="lazy"></div>
+                    <div class="showcase-content">
+                        <span class="product-category" data-i18n="idx.showcase.cat.fertilizer">Soil Health</span>
+                        <h3 data-i18n="idx.showcase.green.name">Green Phos</h3>
+                        <p data-i18n="idx.showcase.green.desc">Crop nutrition input positioned for phosphorus support and practical soil-health use.</p>
+                        <a href="product-detail.html?id=green-phos" class="btn btn-outline btn-sm" data-i18n="idx.showcase.view">View Product</a>
                     </div>
-                </div>
-                
-                <!-- Example Featured Product 2 -->
-                <div class="product-card">
-                    <div class="product-img-wrapper">
-                        <img src="assets/products/vansh_grow_5000.jpg" onerror="this.src='https://images.unsplash.com/photo-1516467508483-a7212febe31a?ixlib=rb-4.0.3&w=400&q=80'" alt="Vansh Grow 5000">
+                </article>
+                <article class="showcase-product-card">
+                    <div class="showcase-media"><img src="assets/products/vansh_npk.jpg" alt="Vansh NPK" loading="lazy"></div>
+                    <div class="showcase-content">
+                        <span class="product-category" data-i18n="idx.showcase.cat.fertilizer">Crop Nutrition</span>
+                        <h3 data-i18n="idx.showcase.npk.name">Vansh NPK</h3>
+                        <p data-i18n="idx.showcase.npk.desc">Balanced nutrient support for crop programs that need regular availability and clean packing.</p>
+                        <a href="product-detail.html?id=vansh-npk" class="btn btn-outline btn-sm" data-i18n="idx.showcase.view">View Product</a>
                     </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Vansh Grow 5000</h3>
-                        <a href="products.html" class="btn btn-outline" style="width: 100%;">View Details</a>
+                </article>
+                <article class="showcase-product-card">
+                    <div class="showcase-media"><img src="assets/products/vansh_potash.jpg" alt="Vansh Potash" loading="lazy"></div>
+                    <div class="showcase-content">
+                        <span class="product-category" data-i18n="idx.showcase.cat.fertilizer">Fertilizer</span>
+                        <h3 data-i18n="idx.showcase.potash.name">Vansh Potash</h3>
+                        <p data-i18n="idx.showcase.potash.desc">Potash-focused input for crop strength, field programs and dependable distributor movement.</p>
+                        <a href="product-detail.html?id=vansh-potash" class="btn btn-outline btn-sm" data-i18n="idx.showcase.view">View Product</a>
                     </div>
-                </div>
-                
-                <!-- Example Featured Product 3 -->
-                <div class="product-card">
-                    <div class="product-img-wrapper">
-                        <img src="assets/products/vansh_floating_fish_feed.jpg" onerror="this.src='https://images.unsplash.com/photo-1524704654690-b56c05c78a00?ixlib=rb-4.0.3&w=400&q=80'" alt="Fish Gold Aqua Feed">
+                </article>
+                <article class="showcase-product-card">
+                    <div class="showcase-media"><img src="assets/products/vansh_supreme.jpg" alt="Vansh Super" loading="lazy"></div>
+                    <div class="showcase-content">
+                        <span class="product-category" data-i18n="idx.showcase.cat.cattle">Cattle Feed</span>
+                        <h3 data-i18n="idx.showcase.super.name">Vansh Super</h3>
+                        <p data-i18n="idx.showcase.super.desc">Daily cattle nutrition manufactured for steady intake, milk support and dependable dealer movement.</p>
+                        <a href="product-detail.html?id=vansh-supreme" class="btn btn-outline btn-sm" data-i18n="idx.showcase.view">View Product</a>
                     </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Floating Fish Feed</h3>
-                        <a href="products.html" class="btn btn-outline" style="width: 100%;">View Details</a>
+                </article>
+                <article class="showcase-product-card">
+                    <div class="showcase-media"><img src="assets/products/vansh_grow_5000.jpg" alt="Vansh 5000" loading="lazy"></div>
+                    <div class="showcase-content">
+                        <span class="product-category" data-i18n="idx.showcase.cat.cattle">Cattle Feed</span>
+                        <h3 data-i18n="idx.showcase.v5000.name">Vansh 5000</h3>
+                        <p data-i18n="idx.showcase.v5000.desc">Growth-focused cattle feed designed for working farms that need balanced nutrition and reliable supply.</p>
+                        <a href="product-detail.html?id=vansh-grow-5000" class="btn btn-outline btn-sm" data-i18n="idx.showcase.view">View Product</a>
                     </div>
-                </div>
-                
-                <!-- Example Featured Product 4 -->
-                <div class="product-card">
-                    <div class="product-img-wrapper">
-                        <img src="assets/products/prom.jpg" onerror="this.src='https://images.unsplash.com/photo-1621570169561-3145b23d9b89?ixlib=rb-4.0.3&w=400&q=80'" alt="PROM Fertilizer">
+                </article>
+                <article class="showcase-product-card">
+                    <div class="showcase-media"><img src="assets/products/vansh_floating_fish_feed.jpg" alt="Aqua Feed 20kg" loading="lazy"></div>
+                    <div class="showcase-content">
+                        <span class="product-category" data-i18n="idx.showcase.cat.aqua">Aqua Feed</span>
+                        <h3 data-i18n="idx.showcase.aqua20.name">Aqua Feed 20kg</h3>
+                        <p data-i18n="idx.showcase.aqua20.desc">Floating aqua feed packed for controlled pond feeding, feed visibility and practical farm handling.</p>
+                        <a href="product-detail.html?id=vansh-floating-fish-feed" class="btn btn-outline btn-sm" data-i18n="idx.showcase.view">View Product</a>
                     </div>
-                    <div class="product-content">
-                        <h3 class="product-title">PROM</h3>
-                        <a href="products.html" class="btn btn-outline" style="width: 100%;">View Details</a>
+                </article>
+                <article class="showcase-product-card">
+                    <div class="showcase-media"><img src="assets/products/vansh_floating_fish_feed.jpg" alt="Aqua Feed 35kg" loading="lazy"></div>
+                    <div class="showcase-content">
+                        <span class="product-category" data-i18n="idx.showcase.cat.aqua">Aqua Feed</span>
+                        <h3 data-i18n="idx.showcase.aqua35.name">Aqua Feed 35kg</h3>
+                        <p data-i18n="idx.showcase.aqua35.desc">Commercial aqua feed packing suited for regular pond operations, dealer stocking and bulk dispatch.</p>
+                        <a href="product-detail.html?id=vansh-floating-fish-feed" class="btn btn-outline btn-sm" data-i18n="idx.showcase.view">View Product</a>
                     </div>
-                </div>
+                </article>
+
+                <!-- === DUPLICATE SET (for seamless loop) === -->
+                <article class="showcase-product-card" aria-hidden="true">
+                    <div class="showcase-media"><img src="assets/products/prom.jpg" alt="" loading="lazy"></div>
+                    <div class="showcase-content">
+                        <span class="product-category">Organic Input</span>
+                        <h3>Prom</h3>
+                        <p>Phosphate-rich organic manure for soil nutrition programs, dealer supply and field application.</p>
+                        <a href="product-detail.html?id=prom" class="btn btn-outline btn-sm">View Product</a>
+                    </div>
+                </article>
+                <article class="showcase-product-card" aria-hidden="true">
+                    <div class="showcase-media"><img src="assets/products/green_phos.jpg" alt="" loading="lazy"></div>
+                    <div class="showcase-content">
+                        <span class="product-category">Soil Health</span>
+                        <h3>Green Phos</h3>
+                        <p>Crop nutrition input positioned for phosphorus support and practical soil-health use.</p>
+                        <a href="product-detail.html?id=green-phos" class="btn btn-outline btn-sm">View Product</a>
+                    </div>
+                </article>
+                <article class="showcase-product-card" aria-hidden="true">
+                    <div class="showcase-media"><img src="assets/products/vansh_npk.jpg" alt="" loading="lazy"></div>
+                    <div class="showcase-content">
+                        <span class="product-category">Crop Nutrition</span>
+                        <h3>Vansh NPK</h3>
+                        <p>Balanced nutrient support for crop programs that need regular availability and clean packing.</p>
+                        <a href="product-detail.html?id=vansh-npk" class="btn btn-outline btn-sm">View Product</a>
+                    </div>
+                </article>
+                <article class="showcase-product-card" aria-hidden="true">
+                    <div class="showcase-media"><img src="assets/products/vansh_potash.jpg" alt="" loading="lazy"></div>
+                    <div class="showcase-content">
+                        <span class="product-category">Fertilizer</span>
+                        <h3>Vansh Potash</h3>
+                        <p>Potash-focused input for crop strength, field programs and dependable distributor movement.</p>
+                        <a href="product-detail.html?id=vansh-potash" class="btn btn-outline btn-sm">View Product</a>
+                    </div>
+                </article>
+                <article class="showcase-product-card" aria-hidden="true">
+                    <div class="showcase-media"><img src="assets/products/vansh_supreme.jpg" alt="" loading="lazy"></div>
+                    <div class="showcase-content">
+                        <span class="product-category">Cattle Feed</span>
+                        <h3>Vansh Super</h3>
+                        <p>Daily cattle nutrition manufactured for steady intake, milk support and dependable dealer movement.</p>
+                        <a href="product-detail.html?id=vansh-supreme" class="btn btn-outline btn-sm">View Product</a>
+                    </div>
+                </article>
+                <article class="showcase-product-card" aria-hidden="true">
+                    <div class="showcase-media"><img src="assets/products/vansh_grow_5000.jpg" alt="" loading="lazy"></div>
+                    <div class="showcase-content">
+                        <span class="product-category">Cattle Feed</span>
+                        <h3>Vansh 5000</h3>
+                        <p>Growth-focused cattle feed designed for working farms that need balanced nutrition and reliable supply.</p>
+                        <a href="product-detail.html?id=vansh-grow-5000" class="btn btn-outline btn-sm">View Product</a>
+                    </div>
+                </article>
+                <article class="showcase-product-card" aria-hidden="true">
+                    <div class="showcase-media"><img src="assets/products/vansh_floating_fish_feed.jpg" alt="" loading="lazy"></div>
+                    <div class="showcase-content">
+                        <span class="product-category">Aqua Feed</span>
+                        <h3>Aqua Feed 20kg</h3>
+                        <p>Floating aqua feed packed for controlled pond feeding, feed visibility and practical farm handling.</p>
+                        <a href="product-detail.html?id=vansh-floating-fish-feed" class="btn btn-outline btn-sm">View Product</a>
+                    </div>
+                </article>
+                <article class="showcase-product-card" aria-hidden="true">
+                    <div class="showcase-media"><img src="assets/products/vansh_floating_fish_feed.jpg" alt="" loading="lazy"></div>
+                    <div class="showcase-content">
+                        <span class="product-category">Aqua Feed</span>
+                        <h3>Aqua Feed 35kg</h3>
+                        <p>Commercial aqua feed packing suited for regular pond operations, dealer stocking and bulk dispatch.</p>
+                        <a href="product-detail.html?id=vansh-floating-fish-feed" class="btn btn-outline btn-sm">View Product</a>
+                    </div>
+                </article>
             </div>
-            
+        </div>
+
+        <div class="container">
             <div class="text-center" style="margin-top: 3rem;">
-                <a href="products.html" class="btn btn-primary">View All 40+ Products</a>
+                <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
+                    <i class="fas fa-hand-pointer" style="color: var(--primary); margin-right: 0.4rem;"></i>
+                    Hover to pause · Click cards to explore
+                </p>
+                <a href="products.html" class="btn btn-primary" data-i18n="idx.prod.all">View All 50+ Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="section reveal" style="background: var(--white);">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 3.5rem;">
+                <span class="section-kicker" data-i18n="idx.trust.kicker">Operational Trust</span>
+                <h2 class="section-title reveal-text" data-i18n="idx.trust.title">Why farmers, dealers and partners trust the Vansh Group</h2>
+                <p class="section-lead" data-i18n="idx.trust.subtitle">Trust is built through repeat supply, practical products, clear communication and manufacturing discipline that partners can rely on.</p>
+            </div>
+            <div class="trust-grid">
+                <article class="premium-card trust-card reveal-scale">
+                    <span class="icon-pill"><i class="fas fa-microscope"></i></span>
+                    <h3 data-i18n="idx.trust.science.title">Scientific formulation</h3>
+                    <p data-i18n="idx.trust.science.desc">Feed and crop-input ranges are developed around nutrition needs, application context and field usability.</p>
+                </article>
+                <article class="premium-card trust-card reveal-scale" style="transition-delay: 0.06s;">
+                    <span class="icon-pill"><i class="fas fa-industry"></i></span>
+                    <h3 data-i18n="idx.trust.manufacturing.title">Manufacturing consistency</h3>
+                    <p data-i18n="idx.trust.manufacturing.desc">Batch preparation, packing discipline and dispatch checks support repeatable product quality.</p>
+                </article>
+                <article class="premium-card trust-card reveal-scale" style="transition-delay: 0.12s;">
+                    <span class="icon-pill"><i class="fas fa-route"></i></span>
+                    <h3 data-i18n="idx.trust.distribution.title">Distribution reliability</h3>
+                    <p data-i18n="idx.trust.distribution.desc">Dealer and distributor relationships are supported with practical availability and regular supply planning.</p>
+                </article>
+                <article class="premium-card trust-card reveal-scale" style="transition-delay: 0.18s;">
+                    <span class="icon-pill"><i class="fas fa-headset"></i></span>
+                    <h3 data-i18n="idx.trust.support.title">Responsive support</h3>
+                    <p data-i18n="idx.trust.support.desc">Business, product and service concerns are routed through phone, WhatsApp and email channels.</p>
+                </article>
+                <article class="premium-card trust-card reveal-scale" style="transition-delay: 0.24s;">
+                    <span class="icon-pill"><i class="fas fa-clipboard-check"></i></span>
+                    <h3 data-i18n="idx.trust.transparency.title">Operational transparency</h3>
+                    <p data-i18n="idx.trust.transparency.desc">Clear product categories, business inquiry paths and documented communication help partners plan confidently.</p>
+                </article>
+                <article class="premium-card trust-card reveal-scale" style="transition-delay: 0.3s;">
+                    <span class="icon-pill"><i class="fas fa-tractor"></i></span>
+                    <h3 data-i18n="idx.trust.field.title">Field understanding</h3>
+                    <p data-i18n="idx.trust.field.desc">Products are represented for real farm routines, dealer stocking needs and regional agricultural conditions.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Distributor CTA -->
+    <section class="section distributor-cta reveal">
+        <div class="container distributor-panel">
+            <div>
+                <span class="section-kicker" data-i18n="idx.distributor.kicker">Dealer & Distributor Enquiries</span>
+                <h2 data-i18n="idx.distributor.title">Work with a manufacturing group built for repeat agricultural supply</h2>
+                <p data-i18n="idx.distributor.subtitle">We welcome structured business discussions for feed, fertilizer, soil-health and bio-agro product distribution across active farming markets.</p>
+                <div class="cta-actions">
+                    <a href="https://wa.me/9196702481" target="_blank" class="btn btn-secondary" data-i18n="idx.distributor.whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+                    <a href="tel:+919670252525" class="btn btn-primary" data-i18n="idx.distributor.call"><i class="fas fa-phone"></i> Call Sales Team</a>
+                    <a href="business.html" class="btn btn-outline" style="color: white; border-color: rgba(255,255,255,0.65);" data-i18n="idx.distributor.inquiry"><i class="fas fa-paper-plane"></i> Send Inquiry</a>
+                </div>
+            </div>
+            <div class="cta-proof">
+                <div class="cta-proof-item">
+                    <strong><span class="counter" data-target="40">0</span>+</strong>
+                    <span data-i18n="idx.distributor.proof.products">catalogued product variants</span>
+                </div>
+                <div class="cta-proof-item">
+                    <strong><span class="counter" data-target="5000">0</span>+</strong>
+                    <span data-i18n="idx.distributor.proof.network">dealer and distribution touchpoints</span>
+                </div>
+                <div class="cta-proof-item">
+                    <strong>India</strong>
+                    <span data-i18n="idx.distributor.proof.supply">bulk supply coordination</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support / Grievance -->
+    <section class="section reveal" style="background: var(--light);">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 3.5rem;">
+                <span class="section-kicker" data-i18n="idx.support.kicker">Support & Redressal</span>
+                <h2 class="section-title reveal-text" data-i18n="idx.support.title">Customer Support & Grievance Redressal</h2>
+                <p class="section-lead" data-i18n="idx.support.subtitle">For product enquiries, dealer coordination or service concerns, the team provides clear contact routes and practical follow-up.</p>
+            </div>
+            <div class="support-grid">
+                <article class="premium-card support-card reveal-scale">
+                    <span class="icon-pill"><i class="fas fa-envelope-open-text"></i></span>
+                    <h3 data-i18n="idx.support.email.title">Written Enquiries</h3>
+                    <p><a href="mailto:vanshgroupofficial@gmail.com">vanshgroupofficial@gmail.com</a></p>
+                </article>
+                <article class="premium-card support-card reveal-scale" style="transition-delay: 0.08s;">
+                    <span class="icon-pill"><i class="fas fa-phone-volume"></i></span>
+                    <h3 data-i18n="idx.support.phone.title">Phone Coordination</h3>
+                    <p><a href="tel:+919670252525">+91 9670252525</a></p>
+                </article>
+                <article class="premium-card support-card reveal-scale" style="transition-delay: 0.16s;">
+                    <span class="icon-pill"><i class="fab fa-whatsapp"></i></span>
+                    <h3 data-i18n="idx.support.whatsapp.title">WhatsApp Contact</h3>
+                    <p><a href="https://wa.me/9196702481" target="_blank" data-i18n="idx.support.whatsapp.link">Message the support team</a></p>
+                </article>
+                <article class="premium-card support-card reveal-scale" style="transition-delay: 0.24s;">
+                    <span class="icon-pill"><i class="fas fa-clock"></i></span>
+                    <h3 data-i18n="idx.support.response.title">Responsible Follow-Up</h3>
+                    <p data-i18n="idx.support.response.desc">Concerns are reviewed with the relevant product or business team before response.</p>
+                </article>
             </div>
         </div>
     </section>
@@ -192,27 +475,31 @@
     <!-- Network / Footprint Section -->
     <section class="network-section reveal">
         <div class="container">
-            <div class="text-center">
-                <h2 class="section-title reveal-text">Our Growing Footprint</h2>
-                <p style="font-size: 1.125rem; max-width: 700px; margin: 0 auto 3rem;">Serving millions of farmers across India and Nepal with an extensive distribution network.</p>
+            <div class="text-center" style="margin-bottom: 3rem;">
+                <span class="section-kicker" data-i18n="idx.network.kicker">Operating Footprint</span>
+                <h2 class="section-title reveal-text" data-i18n="idx.network.title">Our Growing Footprint</h2>
+                <p style="font-size: 1.125rem; max-width: 760px; margin: 0 auto;" data-i18n="idx.network.subtitle">A measured network built through manufacturing discipline, dealer availability and growing supply into India and Nepal.</p>
             </div>
-            <div class="bento-stats">
-                <div class="bento-stats-wide reveal-scale" style="background: var(--light); padding: 2.5rem; border-radius: var(--radius-lg); display: flex; align-items: center; gap: 2rem; border-left: 4px solid var(--secondary);">
-                    <div>
-                        <h3 style="font-size: 4rem; color: var(--secondary); margin-bottom: 0; line-height: 1;"><span class="counter" data-target="500">0</span>+</h3>
-                    </div>
-                    <div>
-                        <p style="font-size: 1.25rem; font-weight: 700; color: var(--primary); margin-bottom: 0.25rem;">Distributors</p>
-                        <p style="color: var(--gray); font-size: 0.9rem;">Strong Pan-India Network</p>
-                    </div>
+            <div class="stats-grid-premium">
+                <div class="stat-tile reveal-scale">
+                    <h3><span class="counter" data-target="10">0</span><small> Lakh+</small></h3>
+                    <p data-i18n="idx.stat.farmers">Farmers Reached</p>
                 </div>
-                <div class="reveal-scale" style="transition-delay: 0.1s; background: var(--light); padding: 2rem; border-radius: var(--radius-lg); text-align: center; border-bottom: 4px solid var(--primary);">
-                    <h3 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem;"><span class="counter" data-target="1000">0</span>K+</h3>
-                    <p style="font-size: 1rem; font-weight: 600;">Happy Farmers</p>
+                <div class="stat-tile reveal-scale" style="transition-delay: 0.08s;">
+                    <h3><span class="counter" data-target="5000">0</span>+</h3>
+                    <p data-i18n="idx.stat.dealers">Dealer Touchpoints</p>
                 </div>
-                <div class="reveal-scale" style="transition-delay: 0.2s; background: var(--light); padding: 2rem; border-radius: var(--radius-lg); text-align: center; border-bottom: 4px solid var(--primary);">
-                    <h3 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem;"><span class="counter" data-target="3">0</span></h3>
-                    <p style="font-size: 1rem; font-weight: 600;">Subsidiaries</p>
+                <div class="stat-tile reveal-scale" style="transition-delay: 0.16s;">
+                    <h3><span class="counter" data-target="40">0</span>+</h3>
+                    <p data-i18n="idx.stat.products">Product SKUs</p>
+                </div>
+                <div class="stat-tile reveal-scale" style="transition-delay: 0.24s;">
+                    <h3><span class="counter" data-target="1">0</span></h3>
+                    <p data-i18n="idx.stat.export">Nepal Export Market</p>
+                </div>
+                <div class="stat-tile reveal-scale" style="transition-delay: 0.32s;">
+                    <h3><span class="counter" data-target="3">0</span></h3>
+                    <p data-i18n="idx.stat.subsidiaries">Operating Companies</p>
                 </div>
             </div>
         </div>
@@ -245,10 +532,10 @@
                 <div>
                     <h4 class="footer-heading">Business</h4>
                     <ul class="footer-links">
-                        <li><a href="contact.html">Business Inquiry</a></li>
-                        <li><a href="#">Vendor Registration</a></li>
-                        <li><a href="#">Grievance Redressal</a></li>
-                        <li><a href="#">Careers</a></li>
+                        <li><a href="business.html">Business Inquiry</a></li>
+                        <li><a href="vendor.html">Vendor Registration</a></li>
+                        <li><a href="grievance.html">Grievance Redressal</a></li>
+                        <li><a href="career.html">Careers</a></li>
                     </ul>
                 </div>
                 
@@ -257,7 +544,7 @@
                     <ul class="footer-links" style="color: #94A3B8;">
                         <li style="display: flex; gap: 1rem;"><i class="fas fa-map-marker-alt" style="color: var(--secondary); margin-top: 5px;"></i> Barabanki, Uttar Pradesh, India</li>
                         <li style="display: flex; gap: 1rem;"><i class="fas fa-phone-alt" style="color: var(--secondary); margin-top: 5px;"></i> 05248 296699<br>+91 9670252525</li>
-                        <li style="display: flex; gap: 1rem;"><i class="fas fa-envelope" style="color: var(--secondary); margin-top: 5px;"></i> vanshgroup@gmail.com</li>
+                        <li style="display: flex; gap: 1rem;"><i class="fas fa-envelope" style="color: var(--secondary); margin-top: 5px;"></i> vanshgroupofficial@gmail.com</li>
                     </ul>
                 </div>
             </div>

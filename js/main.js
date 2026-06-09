@@ -26,6 +26,10 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  dedupeSiteChrome();
+  normalizeNavTranslations();
+  renderSiteFooter();
+
   // ─────────────────────────────────────────────────────────────
   // 1. LANGUAGE (i18n) INITIALISATION
   //
@@ -36,6 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.i18n) {
     window.i18n.init();
   }
+
+  initProductShowcase();
 
 
   // ─────────────────────────────────────────────────────────────
@@ -203,15 +209,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Add "active" → CSS transition plays → element slides in
         entry.target.classList.add('active');
-        // We do NOT unobserve so the element can re-animate if the user
-        // scrolls back up (optional behaviour)
       }
     });
   }, {
-    threshold: 0.1,             // trigger when 10% of element is visible
-    rootMargin: '0px 0px -50px 0px' // offset so reveal fires 50px into viewport
+    threshold: 0.08,             // trigger when 8% of element is visible
+    rootMargin: '0px 0px -80px 0px' // fire 80px deep into viewport — more cinematic
   });
 
   revealElements.forEach(el => revealObserver.observe(el));
@@ -267,11 +270,10 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         el.classList.add('words-visible');
         el.querySelectorAll('.word').forEach((word, i) => {
-          word.style.transitionDelay = `${i * 0.06}s`;
+          word.style.transitionDelay = `${i * 0.055}s`;
         });
-      }, 300); // 300ms so it doesn't fire the very instant the page loads
+      }, 300);
     } else {
-      // Element is below the fold — use the observer
       wordsObserver.observe(el);
     }
   });
@@ -370,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //    │  window "load" fires (all images etc. ready)        │
   //    │  → class switches: initial-load → fade-out          │
   //    │  → @keyframes overlayFadeOut plays (0.45s)          │
-  //    │  → Logo pops out with logoPopOut (0.35s)            │
+  //    │  → Logo settles out with logoSettleOut (0.3s)       │
   //    │  → After animation ends → overlay is hidden         │
   //    └────────────────────────┬────────────────────────────┘
   //                             │  User browses the page…
@@ -378,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //    │  User clicks an internal link                       │
   //    │  → e.preventDefault() stops normal navigation       │
   //    │  → class set to: fade-in                            │
-  //    │  → @keyframes overlayFadeIn + logoPopIn play        │
+  //    │  → @keyframes overlayFadeIn + logoSettleIn play     │
   //    │  → After 430ms, window.location.href navigates      │
   //    │  → New page loads → back to step 1 (initial-load)   │
   //    └─────────────────────────────────────────────────────┘
@@ -408,51 +410,246 @@ document.addEventListener('DOMContentLoaded', () => {
   // "load" fires after ALL resources (images, fonts, etc.) are downloaded,
   // which is safer than DOMContentLoaded for hiding the overlay.
   window.addEventListener('load', () => {
-    // Swap class: initial-load (static, no animation) → fade-out (plays the keyframe)
-    overlay.classList.remove('initial-load');
-    overlay.classList.add('fade-out');
+    let overlayHidden = false;
+    let minTimeElapsed = false;
 
-    // After the fade-out keyframe finishes, fully hide the overlay so it
-    // doesn't sit invisibly on top of clickable elements
-    overlay.addEventListener('animationend', () => {
-      overlay.classList.remove('fade-out');
+    // Enforce a minimum display time so the logo animation always completes
+    setTimeout(() => {
+      minTimeElapsed = true;
+      if (overlayHidden) return; // already hidden by animationend
+      hideOverlay();
+    }, 650);
+
+    function hideOverlay() {
+      if (overlayHidden) return;
+      if (!minTimeElapsed) return; // wait for minimum time
+      overlayHidden = true;
+
+      overlay.className = 'page-transition-overlay';
       overlay.style.visibility   = 'hidden';
       overlay.style.opacity      = '0';
-      overlay.style.pointerEvents = 'none'; // prevent the hidden overlay from blocking clicks
-    }, { once: true }); // { once: true } automatically removes this listener after it fires
+      overlay.style.pointerEvents = 'none';
+    }
+
+    overlay.addEventListener('animationend', hideOverlay, { once: true });
+
+    // Swap class: initial-load (static) → fade-out (plays the keyframe)
+    requestAnimationFrame(() => {
+      overlay.classList.remove('initial-load');
+      overlay.classList.add('fade-out');
+    });
+
+    // Hard safety — always clear after 1200ms regardless of state
+    setTimeout(() => {
+      if (!overlayHidden) {
+        overlayHidden = true;
+        overlay.className = 'page-transition-overlay';
+        overlay.style.visibility   = 'hidden';
+        overlay.style.opacity      = '0';
+        overlay.style.pointerEvents = 'none';
+      }
+    }, 1200);
   });
 
   // ── STEP 2: When the user clicks an internal link, fade the overlay IN ──
+  let navInProgress = false; // prevent double-navigation
   document.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', e => {
       const href = link.getAttribute('href');
 
       // Only intercept links that navigate within the site:
-      //   - Must have an href value
-      //   - Must NOT be an external URL (http/https)
-      //   - Must NOT be an anchor (#) link on the same page
-      //   - Must NOT open in a new tab
       const isInternal = href &&
         !href.startsWith('http') &&
+        !href.includes(':') &&
         !href.startsWith('#') &&
         href !== '#' &&
         link.target !== '_blank';
 
-      if (isInternal) {
-        e.preventDefault(); // stop the browser from navigating immediately
+      if (isInternal && !navInProgress) {
+        e.preventDefault();
+        navInProgress = true;
 
-        // Reset any inline styles left over from the previous fade-out
+        // Remove any existing inline styles that could block the animation
         overlay.removeAttribute('style');
 
-        // Set class to fade-in — this plays overlayFadeIn + logoPopIn keyframes
+        // Set class to fade-in — plays overlayFadeIn + logoSettleIn keyframes
         overlay.className = 'page-transition-overlay fade-in';
 
-        // Wait for the fade-in animation to finish (350ms) plus a small
-        // 80ms buffer, then navigate to the new page.
-        // The new page will start with initial-load, continuing the cycle.
+        // Navigate after the animation completes (350ms + 80ms buffer)
         setTimeout(() => { window.location.href = href; }, 430);
       }
     });
   });
 
 }); // end DOMContentLoaded
+
+
+function dedupeSiteChrome() {
+
+  document.querySelectorAll('nav.navbar').forEach((el, index) => {
+    if (index > 0) el.remove();
+  });
+
+  document.querySelectorAll('footer.footer').forEach((el, index) => {
+    if (index > 0) el.remove();
+  });
+}
+
+function normalizeNavTranslations() {
+  const navMap = {
+    'index.html': 'nav.home',
+    'about.html': 'nav.about',
+    'products.html': 'nav.products',
+    'infrastructure.html': 'nav.infrastructure',
+    'quality.html': 'nav.quality',
+    'contact.html': 'nav.contact'
+  };
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    const href = link.getAttribute('href');
+    if (navMap[href] && !link.dataset.i18n) {
+      link.dataset.i18n = navMap[href];
+    }
+  });
+
+  document.querySelectorAll('.nav-actions a[data-i18n="nav.cta"]').forEach(link => {
+    link.setAttribute('href', 'business.html');
+  });
+}
+
+function renderSiteFooter() {
+  const footer = document.querySelector('footer.footer');
+  if (!footer) return;
+
+  footer.innerHTML = `
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" style="display:inline-block;margin-bottom:1.25rem;">
+            <img id="footer-logo" src="assets/logo_en.png" alt="MLL Agro Industries"
+                 style="height:60px;width:auto;object-fit:contain;mix-blend-mode:screen;filter:brightness(1.15) saturate(1.1);">
+          </a>
+          <p class="footer-brand-title" data-i18n="footer.brand">MLL Agro Industries Pvt. Ltd. led agro-industrial group</p>
+          <p class="footer-about" data-i18n="footer.about">Vansh Group operates from Barabanki through MLL Agro Industries, Fish Gold Industries, and New Vanshika Bio Agro Industries.</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/FishGoldIndustries/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/fishgoldindustries_official/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/vansh-group-lucknow/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/9196702481" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading" data-i18n="footer.links">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="about.html" data-i18n="nav.about">About Us</a></li>
+            <li><a href="products.html" data-i18n="nav.products">Our Products</a></li>
+            <li><a href="infrastructure.html" data-i18n="nav.infrastructure">Infrastructure</a></li>
+            <li><a href="quality.html" data-i18n="nav.quality">Quality</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading" data-i18n="footer.business">Business</h4>
+          <ul class="footer-links">
+            <li><a href="business.html" data-i18n="footer.business.inquiry">Business Inquiry</a></li>
+            <li><a href="vendor.html" data-i18n="footer.business.distributor">Vendor / Distributor</a></li>
+            <li><a href="grievance.html" data-i18n="footer.business.grievance">Grievance Redressal</a></li>
+            <li><a href="career.html" data-i18n="footer.business.career">Careers</a></li>
+            <li><a href="business.html#export" data-i18n="footer.business.export">Export Inquiry</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading" data-i18n="footer.contact">Contact Info</h4>
+          <ul class="footer-links" style="color:#94A3B8;">
+            <li style="display:flex;gap:1rem;"><i class="fas fa-map-marker-alt" style="color:var(--secondary);margin-top:5px;"></i><span data-i18n="footer.address">Barabanki, Uttar Pradesh, India</span></li>
+            <li style="display:flex;gap:1rem;"><i class="fas fa-phone-alt" style="color:var(--secondary);margin-top:5px;"></i><span data-i18n="footer.phone">05248 296699<br>+91 9670252525</span></li>
+            <li style="display:flex;gap:1rem;"><i class="fas fa-envelope" style="color:var(--secondary);margin-top:5px;"></i><a href="mailto:vanshgroupofficial@gmail.com">vanshgroupofficial@gmail.com</a></li>
+            <li style="display:flex;gap:1rem;"><i class="fab fa-whatsapp" style="color:var(--secondary);margin-top:5px;"></i><a href="https://wa.me/9196702481" target="_blank">+91 9196702481</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="border-top:1px solid var(--dark-light);padding-top:2rem;text-align:center;color:#64748B;">
+        <p data-i18n="footer.rights">© 2026 Vansh Group. All rights reserved.</p>
+      </div>
+    </div>
+  `;
+}
+
+function initProductShowcase() {
+  const carousel = document.querySelector('[data-product-carousel]');
+  if (!carousel) return;
+
+  const viewport = carousel.querySelector('.product-showcase-viewport');
+  const track = carousel.querySelector('.product-showcase-track');
+  const prev = carousel.querySelector('[data-carousel-prev]');
+  const next = carousel.querySelector('[data-carousel-next]');
+  const originals = Array.from(track.children);
+  const count = originals.length;
+  if (!count) return;
+
+  originals.forEach(slide => track.appendChild(slide.cloneNode(true)));
+  originals.slice().reverse().forEach(slide => track.insertBefore(slide.cloneNode(true), track.firstChild));
+
+  let index = count;
+  let timer = null;
+  let startX = 0;
+  let isPaused = false;
+
+  function gapSize() {
+    return parseFloat(getComputedStyle(track).gap || '0') || 0;
+  }
+
+  function stepSize() {
+    const first = track.children[index] || track.children[0];
+    return first.getBoundingClientRect().width + gapSize();
+  }
+
+  function setPosition(animate = true) {
+    track.style.transition = animate ? 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)' : 'none';
+    track.style.transform = `translateX(${-index * stepSize()}px)`;
+  }
+
+  function normalizeLoop() {
+    if (index >= count * 2) {
+      index = count;
+      setPosition(false);
+    }
+    if (index < count) {
+      index = count * 2 - 1;
+      setPosition(false);
+    }
+  }
+
+  function go(direction) {
+    index += direction;
+    setPosition(true);
+  }
+
+  function startAuto() {
+    stopAuto();
+    timer = setInterval(() => {
+      if (!isPaused) go(1);
+    }, 3600);
+  }
+
+  function stopAuto() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  track.addEventListener('transitionend', normalizeLoop);
+  prev.addEventListener('click', () => go(-1));
+  next.addEventListener('click', () => go(1));
+  carousel.addEventListener('mouseenter', () => { isPaused = true; });
+  carousel.addEventListener('mouseleave', () => { isPaused = false; });
+  viewport.addEventListener('touchstart', event => { startX = event.touches[0].clientX; }, { passive: true });
+  viewport.addEventListener('touchend', event => {
+    const delta = event.changedTouches[0].clientX - startX;
+    if (Math.abs(delta) > 40) go(delta < 0 ? 1 : -1);
+  }, { passive: true });
+  window.addEventListener('resize', () => setPosition(false));
+
+  setPosition(false);
+  startAuto();
+}

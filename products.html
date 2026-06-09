@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products | Vansh Feeds</title>
-  <meta name="description" content="Browse Vansh Feeds' complete product range — cattle feed, aqua feed, bio-fertilizers, and agro specialties.">
+  <title>Products | MLL Agro Industries & Vansh Group</title>
+  <meta name="description" content="Browse Vansh Group products across organic inputs, fertilizers, soil health solutions, aqua feed and animal nutrition manufactured from Barabanki.">
   <script src="js/theme-init.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -12,20 +12,21 @@
     /* ── Filter Tabs ── */
     .filter-bar {
       display: flex;
-      gap: .75rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 3rem;
+      gap: .5rem;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 0;
     }
     .filter-btn {
-      padding: .55rem 1.4rem;
+      padding: .52rem 1.08rem;
       border-radius: 50px;
       border: 2px solid var(--gray-light);
       background: var(--white);
       color: var(--gray);
       font-family: var(--font-heading);
       font-weight: 700;
-      font-size: .85rem;
+      font-size: .82rem;
       cursor: pointer;
       transition: var(--transition);
       white-space: nowrap;
@@ -36,6 +37,45 @@
       border-color: var(--primary);
       color: #fff;
       box-shadow: 0 4px 14px rgba(21,128,61,.35);
+    }
+
+    .product-search {
+      position: relative;
+      display: block;
+      flex: 0 0 215px;
+    }
+
+    .product-search i {
+      position: absolute;
+      left: .9rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray);
+      font-size: .8rem;
+      pointer-events: none;
+    }
+
+    .product-search input {
+      width: 100%;
+      padding: .52rem .85rem .52rem 2.45rem;
+      border-radius: 999px;
+      border: 2px solid var(--gray-light);
+      background: var(--white);
+      color: var(--dark);
+      font: 700 .82rem var(--font-heading);
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: var(--transition);
+    }
+
+    .product-search input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(21,128,61,.10);
+    }
+
+    .product-search input::-webkit-search-decoration {
+      -webkit-appearance: none;
     }
 
     /* ── Category Section Header ── */
@@ -77,17 +117,17 @@
     /* ── Product Card ── */
     .product-card {
       background: var(--white);
-      border-radius: 16px;
+      border-radius: var(--radius-md);
       overflow: hidden;
       border: 1px solid var(--gray-light);
       display: flex;
       flex-direction: column;
-      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+      transition: transform .38s cubic-bezier(.22,1,.36,1), box-shadow .38s ease, border-color .38s ease;
       position: relative;
     }
     .product-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0,0,0,.12);
+      transform: translateY(-6px);
+      box-shadow: 0 18px 38px rgba(15,23,42,.11);
       border-color: var(--secondary);
     }
     .product-card::before {
@@ -105,7 +145,7 @@
     .product-img-wrapper {
       padding: 1.5rem;
       background: var(--light);
-      height: 220px;
+      height: 208px;
       display: flex; align-items: center; justify-content: center;
       overflow: hidden;
     }
@@ -118,7 +158,7 @@
     .product-card:hover .product-img-wrapper img { transform: scale(1.08); }
 
     .product-content {
-      padding: 1.25rem 1.25rem 1.5rem;
+      padding: 1.15rem 1.15rem 1.35rem;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
@@ -128,10 +168,62 @@
       font-size: 1rem;
       font-weight: 700;
       color: var(--dark);
-      flex-grow: 1;
       line-height: 1.4;
     }
-    .product-card .btn-view {
+
+    .product-card .product-category {
+      color: var(--primary);
+      font-family: var(--font-heading);
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .product-desc {
+      color: var(--gray);
+      font-size: .84rem;
+      line-height: 1.55;
+    }
+
+    .product-price {
+      width: fit-content;
+      padding: .3rem .68rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--secondary) 14%, var(--white));
+      color: var(--secondary-dark);
+      font-family: var(--font-heading);
+      font-size: .82rem;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
+    .product-spec-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .42rem;
+      margin-top: auto;
+    }
+
+    .product-spec-chip {
+      padding: .28rem .52rem;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--primary) 18%, var(--gray-light));
+      background: color-mix(in srgb, var(--primary) 7%, var(--white));
+      color: var(--primary-dark);
+      font-size: .72rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .product-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: .55rem;
+    }
+
+    .product-card .btn-view,
+    .product-card .btn-inquiry {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -151,41 +243,111 @@
       color: #fff;
     }
 
+    .product-card .btn-inquiry {
+      border-color: var(--secondary);
+      color: var(--secondary-dark);
+    }
+
+    .product-card .btn-inquiry:hover {
+      background: var(--secondary);
+      color: #fff;
+    }
+
     /* ── Category Grid ── */
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1.25rem;
     }
     @media (max-width: 480px) {
       .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
       .product-img-wrapper { height: 150px; padding: 1rem; }
       .product-content { padding: .75rem; }
       .product-title { font-size: .875rem; }
+      .product-desc { display: none; }
+      .product-spec-chip { font-size: .68rem; padding: .24rem .42rem; }
     }
 
     /* ── Category section visibility ── */
-    .cat-section { display: block; }
+    .cat-section {
+      display: block;
+      scroll-margin-top: 155px;
+    }
     .cat-section.hidden { display: none; }
+
+    .products-empty {
+      display: none;
+      max-width: 560px;
+      margin: 2.5rem auto 0;
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px solid var(--gray-light);
+      border-radius: var(--radius-md);
+      background: color-mix(in srgb, var(--white) 92%, transparent);
+      color: var(--gray);
+    }
+
+    .products-empty.active { display: block; }
+
+    .products-empty strong {
+      display: block;
+      margin-bottom: .35rem;
+      color: var(--dark);
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+    }
 
     /* ── Sticky filter bar on scroll ── */
     .filter-wrap {
       position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--light);
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--gray-light);
-      margin-bottom: 2rem;
+      top: 84px;
+      z-index: 900;
+      width: max-content;
+      max-width: min(calc(100vw - 2rem), 980px);
+      margin: 0 auto 2rem;
+      padding: .3rem;
+      background: color-mix(in srgb, var(--white) 92%, transparent);
+      backdrop-filter: blur(18px);
+      border: 1px solid var(--gray-light);
+      border-radius: 999px;
+      box-shadow: 0 16px 34px rgba(15,23,42,.12);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .filter-wrap::-webkit-scrollbar { display: none; }
+    @media (max-width: 1024px) {
+      .filter-wrap { top: 84px; }
+    }
+    @media (max-width: 640px) {
+      .filter-wrap {
+        width: 100%;
+        border-radius: 22px;
+      }
+      .filter-bar {
+        flex-wrap: wrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .product-search {
+        flex: 1 0 100%;
+        order: -1;
+      }
+      .filter-bar::-webkit-scrollbar { display: none; }
     }
 
     /* ── Dark mode ── */
     [data-theme="dark"] .filter-btn { background: #1e293b; color: #94a3b8; }
-    [data-theme="dark"] .filter-wrap { background: #0f172a; }
+    [data-theme="dark"] .filter-wrap { background: rgba(15, 23, 42, .94); border-color: #334155; }
+    [data-theme="dark"] .product-search input { background: #1e293b; color: #f8fafc; border-color: #334155; }
+    [data-theme="dark"] .products-empty { background: #1e293b; border-color: #334155; }
+    [data-theme="dark"] .products-empty strong { color: #f8fafc; }
     [data-theme="dark"] .cat-header h2 { color: #f8fafc; }
     [data-theme="dark"] .product-card { background: #1e293b; border-color: #334155; }
     [data-theme="dark"] .product-img-wrapper { background: #0f172a; }
     [data-theme="dark"] .product-title { color: #f8fafc; }
+    [data-theme="dark"] .product-price { background: rgba(245, 158, 11, .13); color: #fbbf24; }
+    [data-theme="dark"] .product-spec-chip { background: rgba(34, 197, 94, .12); color: #86efac; border-color: rgba(34, 197, 94, .22); }
+    [data-theme="dark"] .product-card .btn-inquiry { color: #fbbf24; }
 
     /* ── Fade-in animation for cards (CSS, not JS-observer) ── */
     @keyframes cardIn {
@@ -196,16 +358,6 @@
   </style>
 </head>
 <body>
-
-  <!-- Topbar -->
-  <div class="topbar">
-    <div class="container">
-      <div class="topbar-contact">
-        <span><i class="fas fa-phone-alt"></i> +91 9670252525</span>
-        <span><i class="fas fa-envelope"></i> vanshgroup@gmail.com</span>
-      </div>
-    </div>
-  </div>
 
   <!-- Navbar -->
   <nav class="navbar">
@@ -230,7 +382,7 @@
           <div class="controls-divider"></div>
           <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
         </div>
-        <a href="contact.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left:1rem;">Business Inquiry</a>
+        <a href="business.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left:1rem;">Business Inquiry</a>
       </div>
       <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
     </div>
@@ -241,7 +393,7 @@
     <div class="hero-bg" style="opacity:.2;"></div>
     <div class="container">
       <h1 style="font-size:3.5rem;" data-i18n="page.products.title">Our <span class="text-gradient">Products</span></h1>
-      <p data-i18n="page.products.subtitle">Comprehensive agro and animal nutrition solutions.</p>
+      <p data-i18n="page.products.subtitle">Organic inputs, fertilizers, soil health products, aqua feed and animal nutrition ranges for farm and dealer supply.</p>
     </div>
   </header>
 
@@ -252,44 +404,53 @@
       <!-- Sticky Filter Tabs -->
       <div class="filter-wrap">
         <div class="filter-bar">
-          <button class="filter-btn active" data-cat="all">All Products</button>
-          <button class="filter-btn" data-cat="feed"><i class="fas fa-paw" style="margin-right:.4rem;"></i>Animal &amp; Aqua Feed</button>
-          <button class="filter-btn" data-cat="fertilizer"><i class="fas fa-seedling" style="margin-right:.4rem;"></i>Fertilizers &amp; Nutrition</button>
-          <button class="filter-btn" data-cat="agro"><i class="fas fa-flask" style="margin-right:.4rem;"></i>Agro Chemicals</button>
+          <button class="filter-btn active" data-cat="all" aria-pressed="true" data-i18n="products.filter.all">All Products</button>
+          <button class="filter-btn" data-cat="fertilizer" aria-pressed="false"><i class="fas fa-seedling" style="margin-right:.4rem;"></i><span data-i18n="products.filter.fertilizer">Fertilizers &amp; Nutrition</span></button>
+          <button class="filter-btn" data-cat="feed" aria-pressed="false"><i class="fas fa-paw" style="margin-right:.4rem;"></i><span data-i18n="products.filter.feed">Animal &amp; Aqua Feed</span></button>
+          <button class="filter-btn" data-cat="agro" aria-pressed="false"><i class="fas fa-flask" style="margin-right:.4rem;"></i><span data-i18n="products.filter.agro">Agro Chemicals</span></button>
+          <label class="product-search" for="product-search-input">
+            <i class="fas fa-search"></i>
+            <input id="product-search-input" type="search" autocomplete="off" data-i18n-placeholder="products.search.placeholder" placeholder="Search products">
+          </label>
         </div>
-      </div>
-
-      <!-- Category: Animal & Aqua Feed -->
-      <div class="cat-section" id="cat-feed">
-        <div class="cat-header">
-          <div class="cat-header-icon"><i class="fas fa-paw"></i></div>
-          <h2>Animal &amp; Aqua Feed</h2>
-          <div class="cat-header-line"></div>
-          <span class="cat-count">12 Products</span>
-        </div>
-        <div class="products-grid" id="grid-feed"></div>
       </div>
 
       <!-- Category: Fertilizers -->
       <div class="cat-section" id="cat-fertilizer">
         <div class="cat-header">
           <div class="cat-header-icon"><i class="fas fa-seedling"></i></div>
-          <h2>Fertilizers &amp; Nutrition</h2>
+          <h2 data-i18n="products.cat.fertilizer">Fertilizers &amp; Nutrition</h2>
           <div class="cat-header-line"></div>
-          <span class="cat-count">9 Products</span>
+          <span class="cat-count" data-i18n="products.count.fertilizer">23 Products</span>
         </div>
         <div class="products-grid" id="grid-fertilizer"></div>
+      </div>
+
+      <!-- Category: Animal & Aqua Feed -->
+      <div class="cat-section" id="cat-feed">
+        <div class="cat-header">
+          <div class="cat-header-icon"><i class="fas fa-paw"></i></div>
+          <h2 data-i18n="products.cat.feed">Animal &amp; Aqua Feed</h2>
+          <div class="cat-header-line"></div>
+          <span class="cat-count" data-i18n="products.count.feed">14 Products</span>
+        </div>
+        <div class="products-grid" id="grid-feed"></div>
       </div>
 
       <!-- Category: Agro Chemicals -->
       <div class="cat-section" id="cat-agro">
         <div class="cat-header">
           <div class="cat-header-icon"><i class="fas fa-flask"></i></div>
-          <h2>Agro Chemicals &amp; Specialties</h2>
+          <h2 data-i18n="products.cat.agro">Agro Chemicals &amp; Specialties</h2>
           <div class="cat-header-line"></div>
-          <span class="cat-count">20 Products</span>
+          <span class="cat-count" data-i18n="products.count.agro">20 Products</span>
         </div>
         <div class="products-grid" id="grid-agro"></div>
+      </div>
+
+      <div class="products-empty" id="products-empty">
+        <strong data-i18n="products.no_results.title">No matching products</strong>
+        <span data-i18n="products.no_results.desc">Try another product name, category, feed form, packing size or nutrient.</span>
       </div>
 
     </div>
@@ -321,7 +482,7 @@
           <ul class="footer-links" style="color:#94A3B8;">
             <li style="display:flex;gap:1rem;"><i class="fas fa-map-marker-alt" style="color:var(--secondary);margin-top:4px;"></i><span data-i18n="footer.address">Barabanki, Uttar Pradesh, India</span></li>
             <li style="display:flex;gap:1rem;"><i class="fas fa-phone-alt" style="color:var(--secondary);margin-top:4px;"></i><span data-i18n="footer.phone">05248 296699<br>+91 9670252525</span></li>
-            <li style="display:flex;gap:1rem;"><i class="fas fa-envelope" style="color:var(--secondary);margin-top:4px;"></i><span data-i18n="footer.email">vanshgroup@gmail.com</span></li>
+            <li style="display:flex;gap:1rem;"><i class="fas fa-envelope" style="color:var(--secondary);margin-top:4px;"></i><span data-i18n="footer.email">vanshgroupofficial@gmail.com</span></li>
           </ul>
         </div>
       </div>
@@ -348,8 +509,10 @@
       ['Vansh Floating Fish Feed','vansh_floating_fish_feed'],
       ['Vansh Pro 8000','vansh_pro_8000'],
       ['Vansh Grow 5000','vansh_grow_5000'],
+      ['Vansh Pashu Aahar','vansh-pashu-aahar'],
       ['Vansh Starter 3000','vansh_starter_3000'],
       ['Vansh Supreme','vansh_supreme'],
+      ['Super Compounded Cattle Feed','super-compounded-cattle-feed'],
     ];
 
     const fertilizer = [
@@ -362,6 +525,20 @@
       ['Kishan Mentha Special','kishan_mentha_special'],
       ['Vansh Badshah Mentha Special','vansh_badshah_mentha_special'],
       ['Vansh Mono Zinc','vansh_mono_zinc'],
+      ['Vanshika Kahar Agro Fertilizer','vanshika-kahar-agro-fertilizer'],
+      ['Ferrous Sulphate Agro Fertilizer','ferrous-sulphate-agro-fertilizer'],
+      ['Hariyali Gold Ferrous Sulphate Agro Fertilizer','hariyali-gold-ferrous-sulphate-agro-fertilizer'],
+      ['Vansh Mono King Fertilizer','vansh-mono-king-fertilizer'],
+      ['Vansh Excel Gold Fertilizer','vansh-excel-gold-fertilizer'],
+      ['B-20% Boron Fertilizer','b-20-boron-fertilizer'],
+      ['Paddy Special Micronutrients Fertilizer','paddy-special-micronutrients-fertilizer'],
+      ['Magnesium Sulphate Micronutrients Fertilizer','magnesium-sulphate-micronutrients-fertilizer'],
+      ['Micro Ferrous Micronutrient Fertilizer','micro-ferrous-micronutrient-fertilizer'],
+      ['Hariyali Gold Organic Fertilizers and Manure','hariyali-gold-organic-fertilizers-and-manure'],
+      ['Toofan Zinc Fertilizer','toofan-zinc-fertilizer'],
+      ['Zinc Sulphate Monohydrate','zinc-sulphate-monohydrate'],
+      ['90% DP Sulphur Fertilizer','90-dp-sulphur-fertilizer'],
+      ['90% WDG Excel Plus Sulphur Fertilizer','90-wdg-excel-plus-sulphur-fertilizer'],
     ];
 
     const agro = [
@@ -387,46 +564,240 @@
       ['Vansh Fasal Aahar','vansh_fasal_aahar'],
     ];
 
+    const PRODUCT_WHATSAPP = '9196702481';
+    const categoryLabels = {
+      feed: { en: 'Animal & Aqua Feed', hi: 'पशु और एक्वा फीड' },
+      fertilizer: { en: 'Organic Inputs & Fertilizers', hi: 'ऑर्गेनिक इनपुट और उर्वरक' },
+      agro: { en: 'Agro Chemicals & Specialties', hi: 'एग्रो केमिकल्स और स्पेशल्टी' }
+    };
+    const productGroups = {
+      fertilizer: { gridId: 'grid-fertilizer', sectionId: 'cat-fertilizer', items: fertilizer },
+      feed: { gridId: 'grid-feed', sectionId: 'cat-feed', items: feed },
+      agro: { gridId: 'grid-agro', sectionId: 'cat-agro', items: agro }
+    };
+    let activeCategory = 'all';
+    let productSearchTerm = '';
+    let catalogBySlug = {};
+
     // ── Render helper ─────────────────────────────────────────
-    function renderCards(gridId, products) {
-      const grid = document.getElementById(gridId);
-      grid.innerHTML = products.map(([name, slug], i) => `
-        <div class="product-card" style="animation-delay:${i * 0.04}s">
-          <div class="product-img-wrapper">
-            <img src="assets/products/${slug}.jpg"
-                 alt="${name}"
-                 loading="lazy"
-                 onerror="this.src='${FALLBACK}'">
-          </div>
-          <div class="product-content">
-            <h3 class="product-title">${name}</h3>
-            <a href="product-detail.html?id=${slug.replace(/_/g,'-')}" class="btn-view">
-              View Details <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>`).join('');
+    function productImagePath(slug) {
+      return `assets/products/${slug}.${slug === 'vansh_bahubali' ? 'png' : 'jpg'}`;
     }
 
-    renderCards('grid-feed', feed);
-    renderCards('grid-fertilizer', fertilizer);
-    renderCards('grid-agro', agro);
+	    function currentLang() {
+	      return window.i18n && window.i18n.currentLanguage === 'hi' ? 'hi' : 'en';
+	    }
+
+	    function buttonText(key, fallback) {
+	      return window.i18n && window.i18n.t ? window.i18n.t(key) || fallback : fallback;
+	    }
+
+	    function slugKey(value) {
+	      return String(value || '').toLowerCase().replace(/\s+/g, '-').replace(/_/g, '-');
+	    }
+
+	    function registerProduct(product) {
+	      const keys = [
+	        product.slug,
+	        product.name,
+	        product.displayName
+	      ].filter(Boolean).map(slugKey);
+
+	      keys.forEach(key => { catalogBySlug[key] = product; });
+	    }
+
+	    async function loadProductCatalog() {
+	      try {
+	        const response = await fetch('assets/products.json');
+	        const products = await response.json();
+	        catalogBySlug = {};
+	        products.forEach(registerProduct);
+	      } catch (error) {
+	        console.warn('Product catalog details unavailable; rendering basic cards.', error);
+	      }
+	    }
+
+	    function findProduct(slug, fallbackName) {
+	      return catalogBySlug[slugKey(slug)] || catalogBySlug[slugKey(fallbackName)];
+	    }
+
+	    function localizedProduct(product) {
+	      if (!product) return {};
+	      const hi = currentLang() === 'hi' ? product.hi || {} : {};
+	      return {
+	        name: hi.displayName || product.displayName || product.name,
+	        category: hi.category || product.category,
+	        shortDescription: hi.shortDescription || product.shortDescription || '',
+	        chips: hi.chips || product.chips || []
+	      };
+	    }
+
+	    function cardCategory(categoryKey, productData) {
+	      const lang = currentLang();
+	      const localized = localizedProduct(productData);
+	      return localized.category || categoryLabels[categoryKey][lang] || categoryLabels[categoryKey].en;
+	    }
+
+	    function inquiryUrl(productName) {
+	      const message = `Hello, I am interested in ${productName}. Please share details and price.`;
+	      return `https://wa.me/${PRODUCT_WHATSAPP}?text=${encodeURIComponent(message)}`;
+	    }
+
+	    function renderCards(gridId, products, categoryKey) {
+	      const grid = document.getElementById(gridId);
+	      grid.innerHTML = products.map(([name, slug], i) => {
+	        const productData = findProduct(slug, name);
+	        const localized = localizedProduct(productData);
+	        const displayName = localized.name || (window.i18n && window.i18n.productName ? window.i18n.productName(slug, name) : name);
+	        const detailId = productData && productData.slug ? productData.slug : slug.replace(/_/g, '-');
+	        const imageSrc = productData && productData.image ? productData.image : productImagePath(slug);
+	        const chips = localized.chips || [];
+	        const description = localized.shortDescription && !localized.shortDescription.includes('High-quality agricultural product')
+	          ? localized.shortDescription
+	          : '';
+
+	        return `
+	        <div class="product-card" style="animation-delay:${i * 0.04}s">
+	          <div class="product-img-wrapper">
+	            <img src="${imageSrc}"
+	                 alt="${displayName}"
+	                 loading="lazy"
+	                 onerror="this.src='${FALLBACK}'">
+	          </div>
+	          <div class="product-content">
+	            <span class="product-category">${cardCategory(categoryKey, productData)}</span>
+	            <h3 class="product-title">${displayName}</h3>
+	            ${productData && productData.price ? `<div class="product-price">${productData.price}</div>` : ''}
+	            ${description ? `<p class="product-desc">${description}</p>` : ''}
+	            ${chips.length ? `<div class="product-spec-chips">${chips.slice(0, 5).map(chip => `<span class="product-spec-chip">${chip}</span>`).join('')}</div>` : ''}
+	            <div class="product-actions">
+	              <a href="product-detail.html?id=${detailId}" class="btn-view">
+	                <span>${buttonText('products.view', 'View Details')}</span> <i class="fas fa-arrow-right"></i>
+	              </a>
+	              <a href="${inquiryUrl(productData && productData.inquiryName ? productData.inquiryName : displayName)}" class="btn-inquiry" target="_blank" rel="noopener">
+	                <i class="fab fa-whatsapp"></i> <span>${buttonText('products.inquiry', 'Send Inquiry')}</span>
+	              </a>
+	            </div>
+	          </div>
+	        </div>`;
+	      }).join('');
+
+	      if (window.i18n) {
+	        window.i18n.translatePage();
+	      }
+	    }
+
+	    function productSearchText(item, categoryKey) {
+	      const [name, slug] = item;
+	      const productData = findProduct(slug, name);
+	      const localized = localizedProduct(productData);
+	      const specs = productData && productData.specs ? Object.values(productData.specs).join(' ') : '';
+	      const hiSpecs = productData && productData.hi && productData.hi.specs ? Object.values(productData.hi.specs).join(' ') : '';
+	      return [
+	        name,
+	        slug,
+	        localized.name,
+	        localized.category,
+	        localized.shortDescription,
+	        ...(localized.chips || []),
+	        productData && productData.name,
+	        productData && productData.displayName,
+	        productData && productData.category,
+	        productData && productData.price,
+	        productData && productData.description,
+	        productData && productData.shortDescription,
+	        categoryLabels[categoryKey].en,
+	        categoryLabels[categoryKey].hi,
+	        specs,
+	        hiSpecs
+	      ].filter(Boolean).join(' ').toLowerCase();
+	    }
+
+	    function searchMatches(item, categoryKey) {
+	      const terms = productSearchTerm.toLowerCase().split(/\s+/).filter(Boolean);
+	      if (!terms.length) return true;
+	      const haystack = productSearchText(item, categoryKey);
+	      return terms.every(term => haystack.includes(term));
+	    }
+
+	    function countLabel(count) {
+	      if (currentLang() === 'hi') return `${count} उत्पाद`;
+	      return `${count} ${count === 1 ? 'Product' : 'Products'}`;
+	    }
+
+	    function updateFilterState(counts) {
+	      let visibleTotal = 0;
+
+	      Object.entries(productGroups).forEach(([key, group]) => {
+	        const section = document.getElementById(group.sectionId);
+	        const count = counts[key] || 0;
+	        const shouldShowCategory = activeCategory === 'all' || activeCategory === key;
+	        const shouldHideEmptySearchSection = Boolean(productSearchTerm) && count === 0;
+	        section.classList.toggle('hidden', !shouldShowCategory || shouldHideEmptySearchSection);
+
+	        const countEl = section.querySelector('.cat-count');
+	        if (countEl) countEl.textContent = countLabel(count);
+	        if (shouldShowCategory) visibleTotal += count;
+	      });
+
+	      const empty = document.getElementById('products-empty');
+	      if (empty) empty.classList.toggle('active', visibleTotal === 0);
+	    }
+
+	    function setActiveCategory(category, shouldScroll = false) {
+	      activeCategory = category;
+	      document.querySelectorAll('.filter-btn').forEach(btn => {
+	        const isActive = btn.dataset.cat === activeCategory;
+	        btn.classList.toggle('active', isActive);
+	        btn.setAttribute('aria-pressed', String(isActive));
+	      });
+	      renderAllCards();
+
+	      if (shouldScroll) {
+	        const target = activeCategory === 'all'
+	          ? document.getElementById('cat-fertilizer')
+	          : document.getElementById(`cat-${activeCategory}`);
+	        if (target && !target.classList.contains('hidden')) {
+	          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	        }
+	      }
+	    }
+
+	    function renderAllCards() {
+	      const counts = {};
+	      Object.entries(productGroups).forEach(([key, group]) => {
+	        const filteredProducts = group.items.filter(item => searchMatches(item, key));
+	        counts[key] = filteredProducts.length;
+	        renderCards(group.gridId, filteredProducts, key);
+	      });
+	      updateFilterState(counts);
+	    }
+
+    loadProductCatalog().then(renderAllCards);
+    document.addEventListener('vansh:languagechange', renderAllCards);
 
     // ── Filter Tabs ───────────────────────────────────────────
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const cat = btn.dataset.cat;
-        document.querySelectorAll('.cat-section').forEach(sec => {
-          if (cat === 'all' || sec.id === 'cat-' + cat) {
-            sec.classList.remove('hidden');
-          } else {
-            sec.classList.add('hidden');
-          }
-        });
+        setActiveCategory(btn.dataset.cat, true);
       });
     });
+
+    const productSearchInput = document.getElementById('product-search-input');
+    if (productSearchInput) {
+      productSearchInput.addEventListener('input', event => {
+        productSearchTerm = event.target.value.trim();
+        renderAllCards();
+      });
+
+      productSearchInput.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          productSearchInput.value = '';
+          productSearchTerm = '';
+          renderAllCards();
+        }
+      });
+    }
   </script>
 </body>
 </html>

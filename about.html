@@ -39,8 +39,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Vansh Feeds</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>About Us | Vansh Group & MLL Agro Industries</title>
 
     <!--
       theme-init.js MUST be first, before any stylesheet.
@@ -58,21 +58,6 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-
-    <!-- ═══════════════════════════════════════════════════════
-         TOPBAR
-         Thin dark-green strip above the navbar visible on desktop.
-         Shows quick contact details (phone + email).
-         Hidden on mobile via CSS (@media max-width: 1024px).
-    ═══════════════════════════════════════════════════════ -->
-    <div class="topbar">
-        <div class="container">
-            <div class="topbar-contact">
-                <span><i class="fas fa-phone-alt"></i> +91 9670252525</span>
-                <span><i class="fas fa-envelope"></i> vanshgroup@gmail.com</span>
-            </div>
-        </div>
-    </div>
 
     <!-- ═══════════════════════════════════════════════════════
          NAVBAR (Sticky Navigation Bar)
@@ -124,7 +109,7 @@
                     </button>
                 </div>
                 <!-- CTA Button: data-i18n="nav.cta" is translated by i18n.js -->
-                <a href="contact.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left: 1rem;">
+                <a href="business.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left: 1rem;">
                     Business Inquiry
                 </a>
             </div>
@@ -150,8 +135,8 @@
     <header class="hero" style="padding: 4rem 0;">
         <div class="hero-bg" style="opacity: 0.2;"></div><!-- background image layer -->
         <div class="container">
-            <h1 style="font-size: 3.5rem;">About <span class="text-gradient">Vansh Group</span></h1>
-            <p class="text-words typewriter-cursor">A legacy of quality and trust in the agro-industry.</p>
+            <h1 style="font-size: 3.5rem; letter-spacing: 0;" data-i18n="about.hero.title">MLL-led agro-industrial manufacturing from <span class="text-gradient">Barabanki</span></h1>
+            <p class="text-words typewriter-cursor" style="font-size: 1.25rem; font-weight: 400; max-width: 750px; margin: 0 auto; line-height: 1.8; opacity: 0.9;" data-i18n="about.hero.subtitle">Organic inputs, fertilizers and soil health solutions supported by feed, aqua and bio-agro manufacturing divisions.</p>
         </div>
     </header>
 
@@ -176,40 +161,163 @@
                 <div class="reveal-left">
                     <!-- .section-title.left moves the underline to the left
                          .reveal-text triggers letter-spacing animation on scroll -->
-                    <h2 class="section-title left reveal-text">Our Story</h2>
-                    <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.125rem;">
-                        Vansh Group encompasses specialized entities including
-                        <strong>New Vanshika Bio Agro Industries Pvt. Ltd.</strong>,
-                        <strong>Fish Gold Industries Pvt. Ltd.</strong>, and
-                        <strong>MLL Agro Industries Pvt. Ltd.</strong>
+                    <h2 class="section-title left reveal-text" data-i18n="about.story.title">A practical MLL-led manufacturing group</h2>
+                    <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.125rem;" data-i18n="about.story.p1">
+                        Vansh Group is anchored by <strong>MLL Agro Industries Pvt. Ltd.</strong>,
+                        with <strong>Fish Gold Industries Pvt. Ltd.</strong> and
+                        <strong>New Vanshika Bio Agro Industries Pvt. Ltd.</strong>
                     </p>
-                    <p style="color: var(--gray); margin-bottom: 2rem;">
-                        Founded with a vision to empower the agricultural community, we have grown into one of
-                        Northern India's leading manufacturers of premium animal nutrition and agro inputs.
-                        Our state-of-the-art facility in Barabanki caters to a vast network of distributors
-                        and farmers across India and Nepal.
+                    <p style="color: var(--gray); margin-bottom: 2rem;" data-i18n="about.story.p2">
+                        From Barabanki, Uttar Pradesh, the group manufactures and supplies organic inputs,
+                        fertilizers, soil health solutions, animal nutrition, aqua feed and bio-agro products
+                        for farming markets, dealer networks and Nepal-facing export opportunities.
                     </p>
 
                     <!-- Mission & Vision cards — staggered reveal-scale animation -->
                     <div class="grid-2">
                         <!-- Mission card: green left border -->
                         <div class="reveal-scale" style="transition-delay: 0.1s; background: var(--light); padding: 2rem; border-radius: var(--radius-md); border-left: 4px solid var(--primary);">
-                            <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Mission</h3>
-                            <p style="color: var(--gray); font-size: 0.875rem;">To enhance livestock productivity through innovative and accessible nutritional solutions.</p>
+                            <h3 style="color: var(--primary); margin-bottom: 0.5rem;" data-i18n="about.mission.short">Mission</h3>
+                            <p style="color: var(--gray); font-size: 0.875rem;" data-i18n="about.mission.short.desc">Manufacture dependable agricultural inputs with consistent quality and practical field usability.</p>
                         </div>
                         <!-- Vision card: gold left border -->
                         <div class="reveal-scale" style="transition-delay: 0.2s; background: var(--light); padding: 2rem; border-radius: var(--radius-md); border-left: 4px solid var(--secondary);">
-                            <h3 style="color: var(--secondary); margin-bottom: 0.5rem;">Vision</h3>
-                            <p style="color: var(--gray); font-size: 0.875rem;">To be the most trusted partner for farmers, leading the industry in quality and sustainability.</p>
+                            <h3 style="color: var(--secondary); margin-bottom: 0.5rem;" data-i18n="about.vision.short">Vision</h3>
+                            <p style="color: var(--gray); font-size: 0.875rem;" data-i18n="about.vision.short.desc">Build long-term trust with farmers, dealers and partners through responsible supply.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- RIGHT COLUMN: agriculture hero image -->
                 <div class="reveal-right">
-                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    <img src="assets/farm.jpg"
                          alt="Agriculture"
                          style="border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Operating Companies -->
+    <section class="section reveal" style="background: var(--white);">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 3.5rem;">
+                <span class="section-kicker" data-i18n="about.companies.kicker">Operating Companies</span>
+                <h2 class="section-title reveal-text" data-i18n="about.companies.title">Focused entities with MLL Agro at the center</h2>
+                <p class="section-lead" data-i18n="about.companies.subtitle">Each company has a defined operating role, with MLL Agro Industries carrying the primary agro-input and soil-health identity of the group.</p>
+            </div>
+
+            <div class="company-cards">
+                <article class="premium-card company-card company-card--deep reveal-scale">
+                    <span class="icon-pill"><i class="fas fa-seedling"></i></span>
+                    <h3 data-i18n="about.company.mll.title">MLL Agro Industries Pvt. Ltd.</h3>
+                    <p data-i18n="about.company.mll.desc">Organic inputs, fertilizers and soil health solutions for crop nutrition and regular agricultural use.</p>
+                    <span class="field-label" data-i18n="about.company.mll.field">Fertilizers & Soil Health</span>
+                </article>
+                <article class="premium-card company-card company-card--lime reveal-scale" style="transition-delay: 0.08s;">
+                    <span class="icon-pill"><i class="fas fa-fish"></i></span>
+                    <h3 data-i18n="about.company.fish.title">Fish Gold Industries Pvt. Ltd.</h3>
+                    <p data-i18n="about.company.fish.desc">Feed and animal nutrition manufacturing across aqua feed, cattle feed and poultry feed categories.</p>
+                    <span class="field-label" data-i18n="about.company.fish.field">Aqua & Animal Nutrition</span>
+                </article>
+                <article class="premium-card company-card company-card--soft reveal-scale" style="transition-delay: 0.16s;">
+                    <span class="icon-pill"><i class="fas fa-leaf"></i></span>
+                    <h3 data-i18n="about.company.bio.title">New Vanshika Bio Agro Industries Pvt. Ltd.</h3>
+                    <p data-i18n="about.company.bio.desc">Bio solutions and crop nutrition inputs aligned with sustainable agriculture and field application.</p>
+                    <span class="field-label" data-i18n="about.company.bio.field">Bio Solutions</span>
+                </article>
+            </div>
+            <article class="premium-card bulk-manufacturing-card bulk-manufacturing-card--warm reveal-scale" style="transition-delay: 0.24s;">
+                <span class="icon-pill"><i class="fas fa-industry"></i></span>
+                <div>
+                    <h3 data-i18n="about.company.bulk.title">Bulk Supply & Third-Party Manufacturing</h3>
+                    <p data-i18n="about.company.bulk.desc">Manufacturing discussions may include bulk supply, private labeling, contract manufacturing and dealer/distributor supply programs, subject to product fit and commercial terms.</p>
+                </div>
+                <span class="field-label" data-i18n="about.company.bulk.field">B2B Capability</span>
+            </article>
+        </div>
+    </section>
+
+    <!-- Core Values / Mission / Vision -->
+    <section class="section reveal soft-band">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 3.5rem;">
+                <span class="section-kicker" data-i18n="about.values.kicker">Operating Principles</span>
+                <h2 class="section-title reveal-text" data-i18n="about.values.title">Core Values</h2>
+                <p class="section-lead" data-i18n="about.values.subtitle">Short principles that guide manufacturing, trade relationships and customer response.</p>
+            </div>
+
+            <div class="values-grid">
+                <article class="premium-card value-card reveal-scale">
+                    <span class="icon-pill"><i class="fas fa-handshake"></i></span>
+                    <h3 data-i18n="about.value.integrity.title">Clear Commitments</h3>
+                    <p data-i18n="about.value.integrity.desc">Transparent terms, accountable communication and disciplined follow-through.</p>
+                </article>
+                <article class="premium-card value-card reveal-scale" style="transition-delay: 0.06s;">
+                    <span class="icon-pill"><i class="fas fa-award"></i></span>
+                    <h3 data-i18n="about.value.quality.title">Quality Discipline</h3>
+                    <p data-i18n="about.value.quality.desc">Controlled production, practical checks and steady product presentation.</p>
+                </article>
+                <article class="premium-card value-card reveal-scale" style="transition-delay: 0.12s;">
+                    <span class="icon-pill"><i class="fas fa-lightbulb"></i></span>
+                    <h3 data-i18n="about.value.innovation.title">Practical Improvement</h3>
+                    <p data-i18n="about.value.innovation.desc">Better formulations and packs where they improve real farm use.</p>
+                </article>
+                <article class="premium-card value-card reveal-scale" style="transition-delay: 0.18s;">
+                    <span class="icon-pill"><i class="fas fa-users"></i></span>
+                    <h3 data-i18n="about.value.trust.title">Farmer & Dealer Respect</h3>
+                    <p data-i18n="about.value.trust.desc">Business decisions shaped by field realities and dealer confidence.</p>
+                </article>
+                <article class="premium-card value-card reveal-scale" style="transition-delay: 0.24s;">
+                    <span class="icon-pill"><i class="fas fa-leaf"></i></span>
+                    <h3 data-i18n="about.value.sustainability.title">Responsible Growth</h3>
+                    <p data-i18n="about.value.sustainability.desc">Growth with attention to soil health, product responsibility and stable supply.</p>
+                </article>
+            </div>
+
+            <div class="mission-vision-grid" style="margin-top: 3rem;">
+                <article class="premium-card mission-vision-card reveal-left">
+                    <span class="icon-pill"><i class="fas fa-bullseye"></i></span>
+                    <h3 data-i18n="about.mission.title">Our Mission</h3>
+                    <p style="color: var(--gray);" data-i18n="about.mission.desc">Manufacture dependable organic inputs, fertilizers, feed and bio-agro products that help farmers and dealers plan with confidence.</p>
+                </article>
+                <article class="premium-card mission-vision-card reveal-right">
+                    <span class="icon-pill"><i class="fas fa-mountain-sun"></i></span>
+                    <h3 data-i18n="about.vision.title">Our Vision</h3>
+                    <p style="color: var(--gray);" data-i18n="about.vision.desc">Build a trusted Indian agro-industrial group with reliable supply, responsible products and durable market relationships.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Group Strength -->
+    <section class="section reveal" style="background: var(--white);">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-kicker" data-i18n="about.numbers.kicker">Operating Scale</span>
+                <h2 class="section-title reveal-text" data-i18n="about.numbers.title">Group Strength in Numbers</h2>
+                <p class="section-lead" data-i18n="about.numbers.subtitle">A concise view of the group’s manufacturing categories, distribution reach and Nepal export presence.</p>
+            </div>
+            <div class="numbers-orbit">
+                <div class="number-circle reveal-scale">
+                    <strong><span class="counter" data-target="3">0</span></strong>
+                    <span data-i18n="about.number.companies">Operating Companies</span>
+                </div>
+                <div class="number-circle reveal-scale" style="transition-delay: 0.08s;">
+                    <strong><span class="counter" data-target="5000">0</span>+</strong>
+                    <span data-i18n="about.number.dealers">Dealer Touchpoints</span>
+                </div>
+                <div class="number-circle reveal-scale" style="transition-delay: 0.16s;">
+                    <strong><span class="counter" data-target="5">0</span></strong>
+                    <span data-i18n="about.number.categories">Product Lines</span>
+                </div>
+                <div class="number-circle reveal-scale" style="transition-delay: 0.24s;">
+                    <strong><span class="counter" data-target="12">0</span>+</strong>
+                    <span data-i18n="about.number.states">States Served</span>
+                </div>
+                <div class="number-circle reveal-scale" style="transition-delay: 0.32s;">
+                    <strong><span class="counter" data-target="1">0</span></strong>
+                    <span data-i18n="about.number.export">Nepal Export</span>
                 </div>
             </div>
         </div>
@@ -250,8 +358,10 @@
                 <div>
                     <h4 class="footer-heading">Business</h4>
                     <ul class="footer-links">
-                        <li><a href="contact.html">Business Inquiry</a></li>
-                        <li><a href="#">Vendor Registration</a></li>
+                        <li><a href="business.html">Business Inquiry</a></li>
+                        <li><a href="vendor.html">Vendor Registration</a></li>
+                        <li><a href="grievance.html">Grievance Redressal</a></li>
+                        <li><a href="career.html">Careers</a></li>
                     </ul>
                 </div>
                 <!-- Column 4: Contact details -->

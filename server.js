@@ -92,9 +92,13 @@ app.post('/api/contact', (req, res) => {
 /**
  * GET /api/submissions
  * Returns all form submissions, newest first.
+ * Protected by Authorization header.
  * Used by admin.html.
  */
 app.get('/api/submissions', (req, res) => {
+  if (req.headers.authorization !== 'vansh@admin2026') {
+    return res.status(401).json({ success: false, error: 'Unauthorized' });
+  }
   try {
     const rows = db.prepare(`
       SELECT * FROM submissions ORDER BY id DESC
@@ -109,8 +113,12 @@ app.get('/api/submissions', (req, res) => {
 /**
  * DELETE /api/submissions/:id
  * Deletes a single submission by ID.
+ * Protected by Authorization header.
  */
 app.delete('/api/submissions/:id', (req, res) => {
+  if (req.headers.authorization !== 'vansh@admin2026') {
+    return res.status(401).json({ success: false, error: 'Unauthorized' });
+  }
   try {
     const result = db.prepare('DELETE FROM submissions WHERE id = ?').run(req.params.id);
     if (result.changes === 0) {

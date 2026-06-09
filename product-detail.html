@@ -3,23 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details | Vansh Feeds</title>
+    <title>Product Details | Vansh Group</title>
     <script src="js/theme-init.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-
-    <!-- Topbar -->
-    <div class="topbar">
-        <div class="container">
-            <div class="topbar-contact">
-                <span><i class="fas fa-phone-alt"></i> +91 9670252525</span>
-                <span><i class="fas fa-envelope"></i> vanshgroup@gmail.com</span>
-            </div>
-            
-        </div>
-    </div>
 
     <!-- Navbar -->
     <nav class="navbar">
@@ -44,7 +33,7 @@
                     <div class="controls-divider"></div>
                     <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
                 </div>
-                <a href="contact.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left: 1rem;">Business Inquiry</a>
+                <a href="business.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left: 1rem;">Business Inquiry</a>
             </div>
             <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
         </div>
@@ -55,7 +44,7 @@
         <div class="hero-bg" style="opacity: 0.2;"></div>
         <div class="container reveal">
             <h1 style="font-size: 3.5rem;" id="header-product-name">Product Details</h1>
-            <p><a href="products.html" style="color: var(--secondary);"><i class="fas fa-arrow-left"></i> Back to Catalog</a></p>
+            <p><a href="products.html" style="color: var(--secondary);" data-i18n="product.back"><i class="fas fa-arrow-left"></i> Back to Catalog</a></p>
         </div>
     </header>
 
@@ -104,18 +93,10 @@
                         </div>
 
                         <!-- Thumbnail strip -->
-                        <div style="display: flex; gap: 0.75rem; padding: 1rem 2rem; background: var(--white); border-top: 1px solid var(--gray-light);">
-                            <div id="thumb-main" onclick="selectThumb(this)" style="
-                                width: 64px; height: 64px;
-                                border-radius: var(--radius-md);
-                                border: 2px solid var(--secondary);
-                                background: var(--light);
-                                overflow: hidden;
-                                cursor: pointer;
-                                display: flex; align-items: center; justify-content: center;
-                            ">
-                                <img id="thumb-img" src="" alt="" style="max-width:100%; max-height:100%; object-fit:contain;">
-                            </div>
+                        <div id="thumb-strip" class="product-thumb-strip">
+                            <button type="button" class="product-thumb active" onclick="selectThumb(this)" data-src="">
+                                <img src="" alt="">
+                            </button>
                         </div>
                     </div>
 
@@ -142,11 +123,62 @@
                 <div class="product-detail-info-panel" style="background: var(--white); padding: 3rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-sm); border: 1px solid var(--gray-light);">
                     <h2 class="section-title left reveal-text" id="detail-title" style="margin-bottom: 1rem;">Loading...</h2>
                     <div style="width: 80px; height: 4px; background: var(--secondary); margin-bottom: 2rem;"></div>
+                    <div class="product-detail-meta" id="detail-meta" hidden></div>
 
-                    <h3 style="font-size: 1.25rem; color: var(--primary); margin-bottom: 1rem;">Product Overview</h3>
+                    <h3 style="font-size: 1.25rem; color: var(--primary); margin-bottom: 1rem;" data-i18n="product.overview">Product Overview</h3>
                     <p id="detail-desc" style="color: var(--gray); font-size: 1.125rem; margin-bottom: 2.5rem; line-height: 1.8;">
                         Please wait while we load the product specifications.
                     </p>
+
+                    <div class="product-spec-grid">
+                        <div class="product-spec-card">
+                            <span id="detail-packing-label" data-i18n="product.spec.packing">Packing Size</span>
+                            <strong id="detail-packing">Loading...</strong>
+                        </div>
+                        <div class="product-spec-card">
+                            <span id="detail-dosage-label" data-i18n="product.spec.dosage">Dosage</span>
+                            <strong id="detail-dosage">Loading...</strong>
+                        </div>
+                        <div class="product-spec-card">
+                            <span id="detail-suitable-label" data-i18n="product.spec.suitable">Suitable For</span>
+                            <strong id="detail-suitable">Loading...</strong>
+                        </div>
+                    </div>
+
+                    <div class="detail-spec-table-wrap" id="detail-spec-table-wrap" hidden>
+                        <h3 data-i18n="product.full_specs">Full Specifications</h3>
+                        <table class="detail-spec-table" aria-label="Product specifications">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="product.table.specification">Specification</th>
+                                    <th data-i18n="product.table.details">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody id="detail-spec-rows"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="detail-tabs">
+                        <div class="tab-buttons" role="tablist" aria-label="Product details">
+                            <button class="tab-btn active" type="button" data-tab="use" data-i18n="product.tab.use">How to Use</button>
+                            <button class="tab-btn" type="button" data-tab="benefits" data-i18n="product.tab.benefits">Key Benefits</button>
+                            <button class="tab-btn" type="button" data-tab="supply" data-i18n="product.tab.supply">Bulk Supply</button>
+                        </div>
+                        <div class="tab-panel active" id="tab-use">
+                            <ul id="detail-use-list"></ul>
+                        </div>
+                        <div class="tab-panel" id="tab-benefits">
+                            <ul id="detail-benefits-list"></ul>
+                        </div>
+                        <div class="tab-panel" id="tab-supply">
+                            <ul id="detail-supply-list"></ul>
+                        </div>
+                    </div>
+
+                    <div class="bulk-strip">
+                        <i class="fas fa-truck-fast"></i>
+                        <span data-i18n="product.bulk.strip">Bulk Supply Available Across India</span>
+                    </div>
 
                     <div class="grid-2" style="margin-bottom: 2.5rem;">
                         <div style="display: flex; gap: 1rem; align-items: center;">
@@ -154,8 +186,8 @@
                                 <i class="fas fa-leaf"></i>
                             </div>
                             <div>
-                                <h4 style="margin: 0; font-size: 1rem; color: var(--dark);">Premium Quality</h4>
-                                <span style="font-size: 0.875rem; color: var(--gray);">ISO 9001 Certified</span>
+                                <h4 style="margin: 0; font-size: 1rem; color: var(--dark);" data-i18n="product.badge.quality">Premium Quality</h4>
+                                <span style="font-size: 0.875rem; color: var(--gray);" data-i18n="product.badge.iso">ISO 9001 Certified</span>
                             </div>
                         </div>
                         <div style="display: flex; gap: 1rem; align-items: center;">
@@ -163,13 +195,16 @@
                                 <i class="fas fa-chart-line"></i>
                             </div>
                             <div>
-                                <h4 style="margin: 0; font-size: 1rem; color: var(--dark);">High Yield</h4>
-                                <span style="font-size: 0.875rem; color: var(--gray);">Scientifically Formulated</span>
+                                <h4 style="margin: 0; font-size: 1rem; color: var(--dark);" data-i18n="product.badge.yield">High Yield</h4>
+                                <span style="font-size: 0.875rem; color: var(--gray);" data-i18n="product.badge.science">Scientifically Formulated</span>
                             </div>
                         </div>
                     </div>
 
-                    <a href="contact.html" class="btn btn-primary" style="width: 100%;"><i class="fas fa-shopping-cart"></i> Inquire About This Product</a>
+                    <div class="product-detail-actions">
+                        <a id="detail-whatsapp" href="https://wa.me/9196702481" target="_blank" class="btn btn-primary" data-i18n="product.get_quote"><i class="fab fa-whatsapp"></i> Get Quote</a>
+                        <a id="detail-email" href="mailto:vanshgroupofficial@gmail.com" class="btn btn-outline" data-i18n="product.send_inquiry"><i class="fas fa-envelope"></i> Send Inquiry</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -201,7 +236,7 @@
                     <ul class="footer-links" style="color: #94A3B8;">
                         <li style="display: flex; gap: 1rem;"><i class="fas fa-map-marker-alt" style="color: var(--secondary); margin-top: 5px;"></i> <span data-i18n="footer.address">Barabanki, Uttar Pradesh, India</span></li>
                         <li style="display: flex; gap: 1rem;"><i class="fas fa-phone-alt" style="color: var(--secondary); margin-top: 5px;"></i> <span data-i18n="footer.phone">05248 296699<br>+91 9670252525</span></li>
-                        <li style="display: flex; gap: 1rem;"><i class="fas fa-envelope" style="color: var(--secondary); margin-top: 5px;"></i> <span data-i18n="footer.email">vanshgroup@gmail.com</span></li>
+                        <li style="display: flex; gap: 1rem;"><i class="fas fa-envelope" style="color: var(--secondary); margin-top: 5px;"></i> <span data-i18n="footer.email">vanshgroupofficial@gmail.com</span></li>
                     </ul>
                 </div>
             </div>
@@ -218,47 +253,393 @@
         // =========================================================
         // 1.  PRODUCT LOADING
         // =========================================================
+        let loadedProduct = null;
+        let loadedSlug = '';
+        const PRODUCT_EMAIL = 'vanshgroupofficial@gmail.com';
+        const PRODUCT_WHATSAPP = '9196702481';
+
+        function slugifyProduct(name) {
+            return name.toLowerCase().replace(/\s+/g, '-');
+        }
+
+        function productMatches(product, productId) {
+            const normalized = productId.toLowerCase();
+            return [
+                product.slug,
+                product.id,
+                product.name && slugifyProduct(product.name),
+                product.displayName && slugifyProduct(product.displayName)
+            ].filter(Boolean).some(value => String(value).toLowerCase() === normalized);
+        }
+
+        function currentLang() {
+            return window.i18n && window.i18n.currentLanguage === 'hi' ? 'hi' : 'en';
+        }
+
+        function textPair(en, hi) {
+            return currentLang() === 'hi' ? hi : en;
+        }
+
+        function localizedProduct(product) {
+            const hi = currentLang() === 'hi' ? product.hi || {} : {};
+            return {
+                name: hi.displayName || product.displayName || product.name,
+                category: hi.category || product.category || '',
+                description: hi.description || product.description || '',
+                shortDescription: hi.shortDescription || product.shortDescription || product.description || '',
+                specs: hi.specs || product.specs || null,
+                chips: hi.chips || product.chips || [],
+                use: hi.use || product.use || null,
+                benefits: hi.benefits || product.benefits || null
+            };
+        }
+
+        function specValue(specs, enKey, hiKey) {
+            if (!specs) return '';
+            return specs[enKey] || specs[hiKey] || '';
+        }
+
+        function firstSpecValue(specs, keyPairs) {
+            for (const [enKey, hiKey] of keyPairs) {
+                const value = specValue(specs, enKey, hiKey);
+                if (value) return value;
+            }
+            return '';
+        }
+
+        function sourceSpecCards(specs) {
+            const pack = firstSpecValue(specs, [
+                ['Packing Size', 'पैकिंग साइज'],
+                ['Packaging Size', 'पैकिंग साइज'],
+                ['Pack Size', 'पैक साइज']
+            ]);
+            const protein = specValue(specs, 'Protein', 'प्रोटीन');
+            const feedForm = specValue(specs, 'Feed Form', 'फीड फॉर्म');
+            const form = firstSpecValue(specs, [
+                ['Form', 'रूप'],
+                ['Physical Form', 'भौतिक रूप']
+            ]);
+            const nutrient = firstSpecValue(specs, [
+                ['Nutrient Type', 'पोषक प्रकार'],
+                ['Product Type', 'उत्पाद प्रकार'],
+                ['Type', 'प्रकार'],
+                ['Zinc Source', 'जिंक स्रोत'],
+                ['B Content', 'बोरोन कंटेंट'],
+                ['Sulphur Content (%)', 'सल्फर कंटेंट'],
+                ['Zn Content', 'जिंक कंटेंट']
+            ]);
+            const species = specValue(specs, 'Species', 'पशु प्रकार');
+            const target = firstSpecValue(specs, [
+                ['Target Crop', 'लक्षित फसल'],
+                ['Crop Type', 'फसल प्रकार']
+            ]);
+            const application = firstSpecValue(specs, [
+                ['Usage', 'उपयोग'],
+                ['Application', 'उपयोग'],
+                ['Application Method', 'उपयोग विधि'],
+                ['Recommended Application', 'अनुशंसित उपयोग']
+            ]);
+
+            const middleLabel = protein ? textPair('Protein', 'प्रोटीन')
+                : feedForm ? textPair('Feed Form', 'फीड फॉर्म')
+                : form ? textPair('Form', 'रूप')
+                : textPair('Key Nutrient', 'मुख्य पोषक');
+            const middleValue = protein || feedForm || form || nutrient;
+
+            const thirdLabel = species ? textPair('Species', 'पशु प्रकार')
+                : target ? textPair('Target Crop', 'लक्षित फसल')
+                : textPair('Application', 'उपयोग');
+            const thirdValue = species || target || application;
+
+            return {
+                pack,
+                middleLabel,
+                middleValue,
+                thirdLabel,
+                thirdValue
+            };
+        }
+
+        function setSpecCard(labelId, valueId, label, value) {
+            document.getElementById(labelId).innerText = label;
+            document.getElementById(valueId).innerText = value || textPair('Optional', 'वैकल्पिक');
+        }
+
+        function renderMeta(product, localized) {
+            const meta = document.getElementById('detail-meta');
+            const items = [];
+            if (localized.category) items.push(localized.category);
+            if (product.price) items.push(product.price);
+            if (product.source) items.push(textPair('Source-backed details', 'स्रोत-आधारित विवरण'));
+
+            meta.hidden = !items.length;
+            meta.innerHTML = items.map(item => `<span>${item}</span>`).join('');
+        }
+
+        function renderSpecTable(specs) {
+            const wrap = document.getElementById('detail-spec-table-wrap');
+            const rows = document.getElementById('detail-spec-rows');
+
+            if (!specs || !Object.keys(specs).length) {
+                wrap.hidden = true;
+                rows.innerHTML = '';
+                return;
+            }
+
+            wrap.hidden = false;
+            rows.innerHTML = Object.entries(specs)
+                .filter(([, value]) => value)
+                .map(([label, value]) => `<tr><td>${label}</td><td>${value}</td></tr>`)
+                .join('');
+        }
+
+        function updateInquiryLinks(product, displayName) {
+            const inquiryName = product.inquiryName || product.displayName || product.name || displayName;
+            const message = `Hello, I am interested in ${inquiryName}. Please share details and price.`;
+            const subject = `Product Inquiry - ${inquiryName}`;
+            const body = `Hello, I am interested in ${inquiryName}. Please share details and price.`;
+
+            document.getElementById('detail-whatsapp').href = `https://wa.me/${PRODUCT_WHATSAPP}?text=${encodeURIComponent(message)}`;
+            document.getElementById('detail-email').href = `mailto:${PRODUCT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function inferProductType(slug) {
+            if (slug.includes('fish') || slug.includes('aqua')) return 'aqua';
+            if (slug.includes('proteimax') || slug.includes('kuroiler') || slug.includes('finisher')) return 'poultry';
+            if (slug.includes('heera') || slug.includes('gajab') || slug.includes('cokar') || slug.includes('supreme') || slug.includes('grow-5000') || slug.includes('starter-3000') || slug.includes('pro-8000') || slug.includes('super-compounded')) return 'cattle';
+            if (slug.includes('prom') || slug.includes('potash') || slug.includes('phos') || slug.includes('npk') || slug.includes('zinc') || slug.includes('mentha')) return 'fertilizer';
+            return 'agro';
+        }
+
+        function productProfile(slug) {
+            const type = inferProductType(slug);
+            const profiles = {
+                cattle: {
+                    packing: textPair('40kg / 50kg bags; bulk orders available', '40kg / 50kg बैग; बल्क ऑर्डर उपलब्ध'),
+                    dosage: textPair('Use as part of the daily ration as advised by a livestock nutrition expert.', 'पशु पोषण विशेषज्ञ की सलाह के अनुसार दैनिक राशन में उपयोग करें।'),
+                    suitable: textPair('Dairy animals, cattle farms, and dealer supply', 'डेयरी पशु, पशुपालन फार्म और डीलर सप्लाई'),
+                    desc: textPair('A premium cattle nutrition product designed for reliable intake, stronger health, and consistent farm productivity.', 'विश्वसनीय सेवन, बेहतर स्वास्थ्य और स्थिर फार्म उत्पादकता के लिए बनाया गया प्रीमियम पशु आहार उत्पाद।'),
+                    use: [
+                        textPair('Mix with the regular ration and provide clean drinking water.', 'नियमित राशन में मिलाकर दें और साफ पानी उपलब्ध रखें।'),
+                        textPair('Introduce gradually when changing from another feed.', 'दूसरे आहार से बदलते समय धीरे-धीरे शुरू करें।'),
+                        textPair('Store bags in a dry, ventilated place away from moisture.', 'बैग को नमी से दूर सूखी और हवादार जगह पर रखें।')
+                    ],
+                    benefits: [
+                        textPair('Supports milk performance and animal condition.', 'दूध उत्पादन और पशु स्वास्थ्य को समर्थन देता है।'),
+                        textPair('Balanced nutrition for daily farm use.', 'दैनिक फार्म उपयोग के लिए संतुलित पोषण।'),
+                        textPair('Dealer-friendly packing and dependable supply.', 'डीलर-अनुकूल पैकिंग और भरोसेमंद सप्लाई।')
+                    ]
+                },
+                aqua: {
+                    packing: textPair('20kg / 35kg bags; bulk pond supply available', '20kg / 35kg बैग; बल्क पॉन्ड सप्लाई उपलब्ध'),
+                    dosage: textPair('Feed according to fish size, pond biomass, and water conditions.', 'मछली के आकार, तालाब बायोमास और पानी की स्थिति के अनुसार खिलाएं।'),
+                    suitable: textPair('Fish ponds, aqua farmers, and commercial fisheries', 'मछली तालाब, एक्वा किसान और कमर्शियल फिशरीज'),
+                    desc: textPair('Floating aqua feed created for practical pond feeding, improved consumption, and commercial fish growth.', 'व्यावहारिक तालाब फीडिंग, बेहतर खपत और कमर्शियल मछली विकास के लिए बनाया गया फ्लोटिंग एक्वा फीड।'),
+                    use: [
+                        textPair('Broadcast evenly over the pond feeding area.', 'तालाब के फीडिंग क्षेत्र में समान रूप से डालें।'),
+                        textPair('Adjust feeding frequency based on fish activity and water temperature.', 'मछली की गतिविधि और पानी के तापमान के अनुसार फीडिंग आवृत्ति समायोजित करें।'),
+                        textPair('Avoid overfeeding and remove visible waste where possible.', 'ओवरफीडिंग से बचें और संभव हो तो दिखने वाला अपशिष्ट हटाएं।')
+                    ],
+                    benefits: [
+                        textPair('Floating pellets make feed monitoring easier.', 'फ्लोटिंग पेलेट फीड मॉनिटरिंग को आसान बनाते हैं।'),
+                        textPair('Supports growth-focused fish culture programs.', 'ग्रोथ-केंद्रित फिश कल्चर कार्यक्रमों को समर्थन देता है।'),
+                        textPair('Available in practical commercial pack sizes.', 'व्यावहारिक कमर्शियल पैक साइज में उपलब्ध।')
+                    ]
+                },
+                poultry: {
+                    packing: textPair('25kg / 50kg bags; bulk poultry supply available', '25kg / 50kg बैग; बल्क पोल्ट्री सप्लाई उपलब्ध'),
+                    dosage: textPair('Feed as per bird age, flock program, and farm advisor guidance.', 'पक्षियों की उम्र, फ्लॉक प्रोग्राम और फार्म सलाहकार के मार्गदर्शन के अनुसार दें।'),
+                    suitable: textPair('Kuroiler, broiler, and poultry farming programs', 'कुरोइलर, ब्रॉयलर और पोल्ट्री फार्मिंग प्रोग्राम'),
+                    desc: textPair('A poultry nutrition product designed for stage-wise feeding, flock strength, and practical farm performance.', 'स्टेज-वाइज फीडिंग, फ्लॉक मजबूती और व्यावहारिक फार्म प्रदर्शन के लिए बनाया गया पोल्ट्री पोषण उत्पाद।'),
+                    use: [
+                        textPair('Use the stage-specific feed for the relevant bird age group.', 'संबंधित उम्र समूह के लिए स्टेज-स्पेसिफिक फीड का उपयोग करें।'),
+                        textPair('Keep feeders clean and provide fresh water continuously.', 'फीडर साफ रखें और लगातार ताजा पानी दें।'),
+                        textPair('Store feed away from dampness and direct contamination.', 'फीड को नमी और सीधे प्रदूषण से दूर रखें।')
+                    ],
+                    benefits: [
+                        textPair('Supports uniform growth and flock management.', 'समान वृद्धि और फ्लॉक मैनेजमेंट में सहायक।'),
+                        textPair('Designed for practical poultry farm routines.', 'व्यावहारिक पोल्ट्री फार्म रूटीन के लिए डिजाइन।'),
+                        textPair('Reliable packing for dealer and farm supply.', 'डीलर और फार्म सप्लाई के लिए भरोसेमंद पैकिंग।')
+                    ]
+                },
+                fertilizer: {
+                    packing: textPair('1kg / 5kg / 10kg / 25kg packs; bulk supply available', '1kg / 5kg / 10kg / 25kg पैक; बल्क सप्लाई उपलब्ध'),
+                    dosage: textPair('Apply as per crop stage, soil need, and label or agronomist recommendation.', 'फसल अवस्था, मिट्टी की जरूरत और लेबल या कृषि विशेषज्ञ की सलाह के अनुसार उपयोग करें।'),
+                    suitable: textPair('Field crops, horticulture, and dealer-led crop programs', 'फील्ड क्रॉप, बागवानी और डीलर-आधारित क्रॉप प्रोग्राम'),
+                    desc: textPair('An MLL Agro Industries crop nutrition input built to support soil fertility, nutrient availability, and practical field productivity.', 'MLL Agro Industries का crop nutrition input, जो मिट्टी की उर्वरता, पोषक उपलब्धता और field productivity को support करता है।'),
+                    use: [
+                        textPair('Use only as directed on the product label or by a qualified crop advisor.', 'उत्पाद लेबल या योग्य कृषि सलाहकार के निर्देशानुसार ही उपयोग करें।'),
+                        textPair('Apply at the recommended crop stage for better results.', 'बेहतर परिणामों के लिए अनुशंसित फसल अवस्था पर उपयोग करें।'),
+                        textPair('Store sealed packs away from moisture and direct sunlight.', 'सीलबंद पैक को नमी और सीधी धूप से दूर रखें।')
+                    ],
+                    benefits: [
+                        textPair('Supports crop nutrition and field productivity.', 'फसल पोषण और फील्ड उत्पादकता को समर्थन।'),
+                        textPair('Useful for dealer-led crop input programs.', 'डीलर-आधारित क्रॉप इनपुट प्रोग्राम के लिए उपयोगी।'),
+                        textPair('Available for regular and bulk business supply.', 'नियमित और बल्क बिजनेस सप्लाई के लिए उपलब्ध।')
+                    ]
+                },
+                agro: {
+                    packing: textPair('250ml / 500ml / 1L / 5L / bulk packs as applicable', '250ml / 500ml / 1L / 5L / लागू बल्क पैक'),
+                    dosage: textPair('Use strictly as per label directions and crop advisor recommendation.', 'लेबल निर्देश और कृषि सलाहकार की सलाह के अनुसार ही उपयोग करें।'),
+                    suitable: textPair('Crop care, field application, and agro dealer supply', 'क्रॉप केयर, फील्ड एप्लिकेशन और एग्रो डीलर सप्लाई'),
+                    desc: textPair('A specialized agro input designed for practical crop care, field support, and dealer supply programs.', 'व्यावहारिक क्रॉप केयर, फील्ड सपोर्ट और डीलर सप्लाई प्रोग्राम के लिए बनाया गया विशेष एग्रो इनपुट।'),
+                    use: [
+                        textPair('Read the product label before use and follow safety precautions.', 'उपयोग से पहले उत्पाद लेबल पढ़ें और सुरक्षा सावधानियों का पालन करें।'),
+                        textPair('Apply at the recommended crop stage and dosage only.', 'अनुशंसित फसल अवस्था और मात्रा में ही उपयोग करें।'),
+                        textPair('Keep away from children, food items, and direct sunlight.', 'बच्चों, खाद्य पदार्थों और सीधी धूप से दूर रखें।')
+                    ],
+                    benefits: [
+                        textPair('Supports targeted crop-care requirements.', 'लक्षित क्रॉप-केयर जरूरतों को समर्थन देता है।'),
+                        textPair('Professional packing for market supply.', 'मार्केट सप्लाई के लिए प्रोफेशनल पैकिंग।'),
+                        textPair('Suitable for dealer networks and bulk inquiries.', 'डीलर नेटवर्क और बल्क पूछताछ के लिए उपयुक्त।')
+                    ]
+                }
+            };
+
+            const profile = profiles[type];
+            profile.supply = [
+                textPair('Bulk Supply Available Across India.', 'पूरे भारत में बल्क सप्लाई उपलब्ध।'),
+                textPair('Dealer, distributor, and institutional inquiries are supported.', 'डीलर, डिस्ट्रीब्यूटर और संस्थागत पूछताछ समर्थित।'),
+                textPair('Contact Vansh Group for availability, logistics, and pricing discussions.', 'उपलब्धता, लॉजिस्टिक्स और मूल्य चर्चा के लिए वंश ग्रुप से संपर्क करें।')
+            ];
+            return profile;
+        }
+
+        function fillList(id, items) {
+            const list = document.getElementById(id);
+            list.innerHTML = items.map(item => `<li>${item}</li>`).join('');
+        }
+
+        function productImages(product) {
+            const images = [
+                product.image,
+                ...(Array.isArray(product.images) ? product.images : [])
+            ].filter(Boolean);
+
+            return [...new Set(images)];
+        }
+
+        function renderImageGallery(product, displayName) {
+            const mainImg = document.getElementById('detail-image');
+            const strip = document.getElementById('thumb-strip');
+            const images = productImages(product);
+            const firstImage = images[0] || '';
+
+            mainImg.src = firstImage;
+            mainImg.alt = displayName;
+            mainImg.onerror = () => {
+                if (product.image && mainImg.src !== new URL(product.image, window.location.href).href) {
+                    mainImg.src = product.image;
+                }
+            };
+            strip.innerHTML = '';
+
+            images.forEach((src, index) => {
+                const thumb = document.createElement('button');
+                thumb.type = 'button';
+                thumb.className = `product-thumb${index === 0 ? ' active' : ''}`;
+                thumb.dataset.src = src;
+                thumb.setAttribute('aria-label', `${displayName} image ${index + 1}`);
+                thumb.onclick = () => selectThumb(thumb);
+
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `${displayName} thumbnail ${index + 1}`;
+                img.onerror = () => {
+                    const wasActive = thumb.classList.contains('active');
+                    thumb.remove();
+                    if (wasActive) {
+                        const firstThumb = strip.querySelector('.product-thumb');
+                        if (firstThumb) selectThumb(firstThumb);
+                    }
+                    strip.hidden = strip.querySelectorAll('.product-thumb').length <= 1;
+                };
+                thumb.appendChild(img);
+                strip.appendChild(thumb);
+            });
+
+            strip.hidden = images.length <= 1;
+            mainImg.onload = () => initZoom(mainImg);
+            if (mainImg.complete && firstImage) initZoom(mainImg);
+        }
+
+        function renderProduct(product, slug) {
+            const localized = localizedProduct(product);
+            const name = localized.name || (window.i18n && window.i18n.productName ? window.i18n.productName(slug, product.name) : product.name);
+            const profile = productProfile(slug);
+            const hasSourceSpecs = localized.specs && Object.keys(localized.specs).length;
+
+            document.getElementById('header-product-name').innerText = name;
+            document.getElementById('detail-title').innerText = name;
+            document.getElementById('detail-desc').innerText = localized.description && !localized.description.includes('High-quality agricultural product')
+                ? localized.description
+                : profile.desc;
+
+            if (hasSourceSpecs) {
+                const cards = sourceSpecCards(localized.specs);
+                setSpecCard('detail-packing-label', 'detail-packing', textPair('Packing Size', 'पैकिंग साइज'), cards.pack);
+                setSpecCard('detail-dosage-label', 'detail-dosage', cards.middleLabel, cards.middleValue);
+                setSpecCard('detail-suitable-label', 'detail-suitable', cards.thirdLabel, cards.thirdValue);
+            } else {
+                setSpecCard('detail-packing-label', 'detail-packing', textPair('Packing Size', 'पैकिंग साइज'), profile.packing);
+                setSpecCard('detail-dosage-label', 'detail-dosage', textPair('Dosage', 'उपयोग निर्देश'), profile.dosage);
+                setSpecCard('detail-suitable-label', 'detail-suitable', textPair('Suitable For', 'उपयुक्त'), profile.suitable);
+            }
+
+            renderMeta(product, localized);
+            renderSpecTable(localized.specs);
+            updateInquiryLinks(product, name);
+            fillList('detail-use-list', localized.use || profile.use);
+            fillList('detail-benefits-list', localized.benefits || profile.benefits);
+            fillList('detail-supply-list', profile.supply);
+            document.title = `${name} | Vansh Group Products`;
+        }
+
         document.addEventListener('DOMContentLoaded', async () => {
             const urlParams = new URLSearchParams(window.location.search);
             const productId  = urlParams.get('id');
 
+            initTabs();
+
             if (!productId) {
-                document.getElementById('detail-title').innerText = 'Product Not Found';
-                document.getElementById('detail-desc').innerText  = 'Please select a product from our catalog.';
+                document.getElementById('detail-title').innerText = textPair('Product Not Found', 'उत्पाद नहीं मिला');
+                document.getElementById('detail-desc').innerText  = textPair('Please select a product from our catalog.', 'कृपया कैटलॉग से कोई उत्पाद चुनें।');
                 return;
             }
 
             try {
                 const response = await fetch('assets/products.json');
                 const products = await response.json();
-                const product  = products.find(
-                    p => p.name.toLowerCase().replace(/ /g, '-') === productId.toLowerCase()
-                );
+                const product  = products.find(p => productMatches(p, productId));
 
                 if (product) {
-                    document.getElementById('header-product-name').innerText = product.name;
-                    document.getElementById('detail-title').innerText         = product.name;
-                    document.getElementById('detail-desc').innerText          =
-                        product.description || 'High-quality agricultural product designed to maximize farm yield and health.';
-                    document.title = `${product.name} | Vansh Feeds`;
-
-                    // Set main image and thumbnail
-                    const mainImg  = document.getElementById('detail-image');
-                    const thumbImg = document.getElementById('thumb-img');
-                    mainImg.src    = product.image;
-                    thumbImg.src   = product.image;
-
-                    // Init zoom once the image is loaded
-                    mainImg.onload = () => initZoom(mainImg);
-                    if (mainImg.complete) initZoom(mainImg);
+                    loadedProduct = product;
+                    loadedSlug = productId.toLowerCase();
+                    renderProduct(product, loadedSlug);
+                    renderImageGallery(product, product.displayName || product.name);
 
                 } else {
-                    document.getElementById('detail-title').innerText = 'Product Not Found';
+                    document.getElementById('detail-title').innerText = textPair('Product Not Found', 'उत्पाद नहीं मिला');
                 }
             } catch (e) {
                 console.error('Failed to load product data', e);
             }
         });
+
+        document.addEventListener('vansh:languagechange', () => {
+            if (loadedProduct && loadedSlug) renderProduct(loadedProduct, loadedSlug);
+        });
+
+        function initTabs() {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.tab-btn').forEach(item => item.classList.remove('active'));
+                    document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+                });
+            });
+        }
 
         // =========================================================
         // 2.  AMAZON-STYLE LENS ZOOM  — pixel-perfect rewrite
@@ -328,11 +709,12 @@
 
         // Thumbnail click handler
         function selectThumb(el) {
-            const src     = el.querySelector('img').src;
+            const src     = el.dataset.src || el.querySelector('img').src;
             const mainImg = document.getElementById('detail-image');
+            document.querySelectorAll('.product-thumb').forEach(thumb => thumb.classList.remove('active'));
+            el.classList.add('active');
             mainImg.onload = () => initZoom(mainImg);
             mainImg.src    = src;
-            document.getElementById('thumb-img').src = src;
         }
     </script>
 </body>

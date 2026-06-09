@@ -27,12 +27,137 @@
   {
     "name": "Green Phos",
     "image": "assets/products/green_phos.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Green Phosh Organic Fertilizers and Manure is a flakes-form organic manure product in the organic manure range. It is listed for soil application with 50 kg packing.",
+    "slug": "green-phos",
+    "displayName": "Green Phosh Organic Fertilizers and Manure",
+    "category": "Organic Manure",
+    "price": "₹21.60 / Kg",
+    "shortDescription": "Green Phosh Organic Fertilizers and Manure is a flakes-form organic manure product in the organic manure range. It is listed for soil application with 50 kg packing.",
+    "chips": [
+      "Flakes",
+      "50 kg",
+      "Soil Application",
+      "Organic Manure",
+      "Plant Origin"
+    ],
+    "specs": {
+      "Product Type": "Organic Manure",
+      "Form": "Flakes",
+      "Packaging Size": "50 kg",
+      "Amino Acid Content": "98 %",
+      "Application": "Soil Application",
+      "Source": "Plant Origin"
+    },
+    "use": [
+      "Use for soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Green Phosh Organic Fertilizers and Manure",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/organic-manure.html",
+    "hi": {
+      "displayName": "Green Phosh Organic Fertilizers and Manure",
+      "category": "जैविक खाद",
+      "description": "Green Phosh Organic Fertilizers and Manure जैविक खाद श्रेणी का फ्लेक्स उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 50 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Green Phosh Organic Fertilizers and Manure जैविक खाद श्रेणी का फ्लेक्स उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 50 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "फ्लेक्स",
+        "50 kg",
+        "मिट्टी में उपयोग",
+        "जैविक खाद",
+        "पौधा आधारित"
+      ],
+      "specs": {
+        "उत्पाद प्रकार": "जैविक खाद",
+        "रूप": "फ्लेक्स",
+        "पैकिंग साइज": "50 kg",
+        "अमीनो एसिड कंटेंट": "98 %",
+        "उपयोग": "मिट्टी में उपयोग",
+        "स्रोत": "पौधा आधारित"
+      },
+      "use": [
+        "मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    },
+    "alternateName": "Green Phos"
   },
   {
     "name": "Vansh Sugarcane Special",
     "image": "assets/products/vansh_sugarcane_special.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Sugarcane Special Multi Micronutrient Fertilizer is a granular-form micronutrients fertilizer product in the micronutrients fertilizer range. It is listed for soil application for All Crops, Sugarcane, Paddy/Rice.",
+    "slug": "vansh-sugarcane-special",
+    "displayName": "Sugarcane Special Multi Micronutrient Fertilizer",
+    "category": "Micronutrients Fertilizer",
+    "price": "₹50.40 / Kg",
+    "shortDescription": "Sugarcane Special Multi Micronutrient Fertilizer is a granular-form micronutrients fertilizer product in the micronutrients fertilizer range. It is listed for soil application for All Crops, Sugarcane, Paddy/Rice.",
+    "chips": [
+      "Granular",
+      "Soil Application",
+      "All Crops, Sugarcane, Paddy/Rice"
+    ],
+    "specs": {
+      "Form": "Granular",
+      "Formulation": "Sulphated",
+      "Application Method": "Soil Application",
+      "Contained Micronutrients": "Zinc (Zn), Iron (Fe), Manganese (Mn)",
+      "Target Crop": "All Crops, Sugarcane, Paddy/Rice",
+      "Certification": "Organic"
+    },
+    "use": [
+      "Use for soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Sugarcane Special Multi Micronutrient Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/micronutrients-fertilizer.html",
+    "hi": {
+      "displayName": "Sugarcane Special Multi Micronutrient Fertilizer",
+      "category": "माइक्रोन्यूट्रिएंट उर्वरक",
+      "description": "Sugarcane Special Multi Micronutrient Fertilizer माइक्रोन्यूट्रिएंट उर्वरक श्रेणी का दानेदार उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग के लिए सूचीबद्ध है।",
+      "shortDescription": "Sugarcane Special Multi Micronutrient Fertilizer माइक्रोन्यूट्रिएंट उर्वरक श्रेणी का दानेदार उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग के लिए सूचीबद्ध है।",
+      "chips": [
+        "दानेदार",
+        "मिट्टी में उपयोग",
+        "सभी फसलें, गन्ना, धान/चावल"
+      ],
+      "specs": {
+        "रूप": "दानेदार",
+        "फॉर्मुलेशन": "सल्फेटेड",
+        "उपयोग विधि": "मिट्टी में उपयोग",
+        "मौजूद माइक्रोन्यूट्रिएंट": "Zinc (Zn), Iron (Fe), Manganese (Mn)",
+        "लक्षित फसल": "सभी फसलें, गन्ना, धान/चावल",
+        "प्रमाणन": "ऑर्गेनिक"
+      },
+      "use": [
+        "मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
   },
   {
     "name": "Vansh Grow Vita",
@@ -47,47 +172,613 @@
   {
     "name": "Vansh Npk",
     "image": "assets/products/vansh_npk.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "NPK 19::19:19 Agro Fertilizer is a powder-form agro fertilizer product in the agro fertilizer range. It is listed for soil application for All Crops with 5 kg packing.",
+    "slug": "vansh-npk",
+    "displayName": "NPK 19::19:19 Agro Fertilizer",
+    "category": "Agro Fertilizer",
+    "price": "₹120 / Kg",
+    "shortDescription": "NPK 19::19:19 Agro Fertilizer is a powder-form agro fertilizer product in the agro fertilizer range. It is listed for soil application for All Crops with 5 kg packing.",
+    "chips": [
+      "Powder",
+      "5 kg",
+      "Soil Application",
+      "All Crops"
+    ],
+    "specs": {
+      "Packaging Size": "5 kg",
+      "Form": "Powder",
+      "Application Method": "Soil Application",
+      "Solubility": "Partly Soluble",
+      "Release Type": "Quick Release",
+      "Crop Type": "All Crops"
+    },
+    "use": [
+      "Use for soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "NPK 19::19:19 Agro Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/agro-fertilizer.html",
+    "hi": {
+      "displayName": "NPK 19::19:19 Agro Fertilizer",
+      "category": "एग्रो उर्वरक",
+      "description": "NPK 19::19:19 Agro Fertilizer एग्रो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "NPK 19::19:19 Agro Fertilizer एग्रो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पाउडर",
+        "5 kg",
+        "मिट्टी में उपयोग",
+        "सभी फसलें"
+      ],
+      "specs": {
+        "पैकिंग साइज": "5 kg",
+        "रूप": "पाउडर",
+        "उपयोग विधि": "मिट्टी में उपयोग",
+        "घुलनशीलता": "आंशिक घुलनशील",
+        "रिलीज प्रकार": "त्वरित रिलीज",
+        "फसल प्रकार": "सभी फसलें"
+      },
+      "use": [
+        "मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
   },
   {
     "name": "Vansh Balwan",
     "image": "assets/products/vansh_balwan.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Balwan Agro Fertilizer is a powder-form organic manure product in the agro fertilizer range. It is listed for soil application with 1 Kg packing.",
+    "slug": "vansh-balwan",
+    "displayName": "Balwan Agro Fertilizer",
+    "category": "Agro Fertilizer",
+    "price": "₹57.60 / Bag",
+    "shortDescription": "Balwan Agro Fertilizer is a powder-form organic manure product in the agro fertilizer range. It is listed for soil application with 1 Kg packing.",
+    "chips": [
+      "Powder",
+      "1 Kg",
+      "Soil Application",
+      "Organic Manure"
+    ],
+    "specs": {
+      "Product Type": "Organic Manure",
+      "Form": "Powder",
+      "Packaging Size": "1 Kg",
+      "Amino Acid Content": "98 %",
+      "Brand": "Vansh",
+      "Application": "Soil Application"
+    },
+    "use": [
+      "Use for soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Balwan Agro Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/agro-fertilizer.html",
+    "hi": {
+      "displayName": "Balwan Agro Fertilizer",
+      "category": "एग्रो उर्वरक",
+      "description": "Balwan Agro Fertilizer एग्रो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 1 Kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Balwan Agro Fertilizer एग्रो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 1 Kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पाउडर",
+        "1 Kg",
+        "मिट्टी में उपयोग",
+        "जैविक खाद"
+      ],
+      "specs": {
+        "उत्पाद प्रकार": "जैविक खाद",
+        "रूप": "पाउडर",
+        "पैकिंग साइज": "1 Kg",
+        "अमीनो एसिड कंटेंट": "98 %",
+        "ब्रांड": "Vansh",
+        "उपयोग": "मिट्टी में उपयोग"
+      },
+      "use": [
+        "मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
   },
   {
     "name": "Vansh Sanjeevni Gold",
     "image": "assets/products/vansh_sanjeevni_gold.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Sanjeevni Gold Agro Fertilizer is a powder-form organic manure product in the agro fertilizer range. It is listed for soil application for All Crops with 5 kg packing.",
+    "slug": "vansh-sanjeevni-gold",
+    "displayName": "Sanjeevni Gold Agro Fertilizer",
+    "category": "Agro Fertilizer",
+    "price": "₹50.40 / Kg",
+    "shortDescription": "Sanjeevni Gold Agro Fertilizer is a powder-form organic manure product in the agro fertilizer range. It is listed for soil application for All Crops with 5 kg packing.",
+    "chips": [
+      "Powder",
+      "5 kg",
+      "Soil Application",
+      "Organic Manure",
+      "All Crops"
+    ],
+    "specs": {
+      "Product Type": "Organic Manure",
+      "Form": "Powder",
+      "Packaging Size": "5 kg",
+      "Amino Acid Content": "98 %",
+      "Application": "Soil Application",
+      "Target Crop": "All Crops"
+    },
+    "use": [
+      "Use for soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Sanjeevni Gold Agro Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/agro-fertilizer.html",
+    "hi": {
+      "displayName": "Sanjeevni Gold Agro Fertilizer",
+      "category": "एग्रो उर्वरक",
+      "description": "Sanjeevni Gold Agro Fertilizer एग्रो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Sanjeevni Gold Agro Fertilizer एग्रो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पाउडर",
+        "5 kg",
+        "मिट्टी में उपयोग",
+        "जैविक खाद",
+        "सभी फसलें"
+      ],
+      "specs": {
+        "उत्पाद प्रकार": "जैविक खाद",
+        "रूप": "पाउडर",
+        "पैकिंग साइज": "5 kg",
+        "अमीनो एसिड कंटेंट": "98 %",
+        "उपयोग": "मिट्टी में उपयोग",
+        "लक्षित फसल": "सभी फसलें"
+      },
+      "use": [
+        "मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
   },
   {
     "name": "Vansh Takat Plus",
     "image": "assets/products/vansh_takat_plus.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Takat Plus Plant Growth Promoter is a granules-form plant growth promoter product in the plant growth promoter range. It is listed for soil application, fertigation with 5 kg packing.",
+    "slug": "vansh-takat-plus",
+    "displayName": "Takat Plus Plant Growth Promoter",
+    "category": "Plant Growth Promoter",
+    "price": "₹42 / Kg",
+    "shortDescription": "Takat Plus Plant Growth Promoter is a granules-form plant growth promoter product in the plant growth promoter range. It is listed for soil application, fertigation with 5 kg packing.",
+    "chips": [
+      "Granules",
+      "5 kg",
+      "Soil Application, Fertigation",
+      "Mineral Based"
+    ],
+    "specs": {
+      "Technical Content": "Fulvic Acid, Nitrobenzene, Zyme, Gibberellic Acid",
+      "Form": "Granules",
+      "Packaging Size": "5 kg",
+      "Source": "Mineral Based",
+      "Application": "Soil Application, Fertigation",
+      "Active Ingredient(s) (%)": "80 %"
+    },
+    "use": [
+      "Use for soil application, fertigation as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Takat Plus Plant Growth Promoter",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/plant-growth-promoter.html",
+    "hi": {
+      "displayName": "Takat Plus Plant Growth Promoter",
+      "category": "प्लांट ग्रोथ प्रमोटर",
+      "description": "Takat Plus Plant Growth Promoter प्लांट ग्रोथ प्रमोटर श्रेणी का दाने उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग, फर्टिगेशन और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Takat Plus Plant Growth Promoter प्लांट ग्रोथ प्रमोटर श्रेणी का दाने उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग, फर्टिगेशन और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "दाने",
+        "5 kg",
+        "मिट्टी में उपयोग, फर्टिगेशन",
+        "खनिज आधारित"
+      ],
+      "specs": {
+        "तकनीकी कंटेंट": "Fulvic Acid, Nitrobenzene, Zyme, Gibberellic Acid",
+        "रूप": "दाने",
+        "पैकिंग साइज": "5 kg",
+        "स्रोत": "खनिज आधारित",
+        "उपयोग": "मिट्टी में उपयोग, फर्टिगेशन",
+        "सक्रिय घटक": "80 %"
+      },
+      "use": [
+        "मिट्टी में उपयोग, फर्टिगेशन के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
   },
   {
     "name": "Vansh Bahubali",
-    "image": "assets/products/vansh_bahubali.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "image": "assets/products/vansh_bahubali.png",
+    "description": "Bahubali Agro Fertilizer is a powder-form organic manure product in the agro fertilizer range. It is listed for soil application with 5 kg packing.",
+    "slug": "vansh-bahubali",
+    "displayName": "Bahubali Agro Fertilizer",
+    "category": "Agro Fertilizer",
+    "price": "₹15.60 / Kg",
+    "shortDescription": "Bahubali Agro Fertilizer is a powder-form organic manure product in the agro fertilizer range. It is listed for soil application with 5 kg packing.",
+    "chips": [
+      "Powder",
+      "5 kg",
+      "Soil Application",
+      "Organic Manure",
+      "Seaweed Based"
+    ],
+    "specs": {
+      "Product Type": "Organic Manure",
+      "Form": "Powder",
+      "Packaging Size": "5 kg",
+      "Amino Acid Content": "98 %",
+      "Application": "Soil Application",
+      "Source": "Seaweed Based"
+    },
+    "use": [
+      "Use for soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Bahubali Agro Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/agro-fertilizer.html",
+    "hi": {
+      "displayName": "Bahubali Agro Fertilizer",
+      "category": "एग्रो उर्वरक",
+      "description": "Bahubali Agro Fertilizer एग्रो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Bahubali Agro Fertilizer एग्रो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पाउडर",
+        "5 kg",
+        "मिट्टी में उपयोग",
+        "जैविक खाद",
+        "सीवीड आधारित"
+      ],
+      "specs": {
+        "उत्पाद प्रकार": "जैविक खाद",
+        "रूप": "पाउडर",
+        "पैकिंग साइज": "5 kg",
+        "अमीनो एसिड कंटेंट": "98 %",
+        "उपयोग": "मिट्टी में उपयोग",
+        "स्रोत": "सीवीड आधारित"
+      },
+      "use": [
+        "मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
   },
   {
     "name": "Vansh Boom Flower",
     "image": "assets/products/vansh_boom_flower.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Boom Flower Plant Growth Promoter is a granules-form plant growth regulator product in the plant growth promoter range. It is listed for fertigation, soil application with 1 kg packing.",
+    "slug": "vansh-boom-flower",
+    "displayName": "Boom Flower Plant Growth Promoter",
+    "category": "Plant Growth Promoter",
+    "price": "₹90 / Kg",
+    "shortDescription": "Boom Flower Plant Growth Promoter is a granules-form plant growth regulator product in the plant growth promoter range. It is listed for fertigation, soil application with 1 kg packing.",
+    "chips": [
+      "Granules",
+      "1 kg",
+      "Fertigation, Soil Application",
+      "Plant Growth Regulator",
+      "Mineral Based"
+    ],
+    "specs": {
+      "Nutrient Type": "Plant Growth Regulator",
+      "Technical Content": "Fulvic Acid, Amino Acid, Humic Acid, Gibberellic Acid, Cytokinin, Seaweed Extract, Nitro, Bio-Stimulant, Zyme, Nitrobenzene",
+      "Form": "Granules",
+      "Packaging Size": "1 kg",
+      "Source": "Mineral Based",
+      "Application": "Fertigation, Soil Application"
+    },
+    "use": [
+      "Use for fertigation, soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Boom Flower Plant Growth Promoter",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/plant-growth-promoter.html",
+    "hi": {
+      "displayName": "Boom Flower Plant Growth Promoter",
+      "category": "प्लांट ग्रोथ प्रमोटर",
+      "description": "Boom Flower Plant Growth Promoter प्लांट ग्रोथ प्रमोटर श्रेणी का दाने उत्पाद है। उपलब्ध विवरण के अनुसार यह फर्टिगेशन, मिट्टी में उपयोग और 1 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Boom Flower Plant Growth Promoter प्लांट ग्रोथ प्रमोटर श्रेणी का दाने उत्पाद है। उपलब्ध विवरण के अनुसार यह फर्टिगेशन, मिट्टी में उपयोग और 1 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "दाने",
+        "1 kg",
+        "फर्टिगेशन, मिट्टी में उपयोग",
+        "प्लांट ग्रोथ रेगुलेटर",
+        "खनिज आधारित"
+      ],
+      "specs": {
+        "पोषक प्रकार": "प्लांट ग्रोथ रेगुलेटर",
+        "तकनीकी कंटेंट": "Fulvic Acid, Amino Acid, ह्यूमिक एसिड, Gibberellic Acid, Cytokinin, Seaweed Extract, Nitro, Bio-Stimulant, Zyme, Nitrobenzene",
+        "रूप": "दाने",
+        "पैकिंग साइज": "1 kg",
+        "स्रोत": "खनिज आधारित",
+        "उपयोग": "फर्टिगेशन, मिट्टी में उपयोग"
+      },
+      "use": [
+        "फर्टिगेशन, मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
   },
   {
     "name": "Vansh Poshak Boron",
     "image": "assets/products/vansh_poshak_boron.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "10.5% Poshak Boron Fertilizer is a powder-form boron fertilizer product in the boron fertilizer range. It is listed for seed treatment with 5 KG packing.",
+    "slug": "vansh-poshak-boron",
+    "displayName": "10.5% Poshak Boron Fertilizer",
+    "category": "Boron Fertilizer",
+    "price": "₹114 / Kg",
+    "shortDescription": "10.5% Poshak Boron Fertilizer is a powder-form boron fertilizer product in the boron fertilizer range. It is listed for seed treatment with 5 KG packing.",
+    "chips": [
+      "Powder",
+      "5 KG",
+      "Seed Treatment",
+      "10.5 %",
+      "Boron"
+    ],
+    "specs": {
+      "B Content": "10.5 %",
+      "Source": "Boron",
+      "Form": "Powder",
+      "Application Method": "Seed Treatment",
+      "Packaging Size": "5 KG",
+      "Solubility": "100% Water Soluble"
+    },
+    "use": [
+      "Use for seed treatment as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "10.5% Poshak Boron Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/boron-fertilizer.html",
+    "hi": {
+      "displayName": "10.5% Poshak Boron Fertilizer",
+      "category": "बोरोन उर्वरक",
+      "description": "10.5% Poshak Boron Fertilizer बोरोन उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह बीज उपचार और 5 KG पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "10.5% Poshak Boron Fertilizer बोरोन उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह बीज उपचार और 5 KG पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पाउडर",
+        "5 KG",
+        "बीज उपचार",
+        "10.5 %",
+        "बोरोन"
+      ],
+      "specs": {
+        "बोरोन कंटेंट": "10.5 %",
+        "स्रोत": "बोरोन",
+        "रूप": "पाउडर",
+        "उपयोग विधि": "बीज उपचार",
+        "पैकिंग साइज": "5 KG",
+        "घुलनशीलता": "100% पानी में घुलनशील"
+      },
+      "use": [
+        "बीज उपचार के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
   },
   {
     "name": "Fasal Balwan",
     "image": "assets/products/fasal_balwan.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Fasal Balwan Micronutrients Fertilizer is a powder-form micronutrients fertilizer product in the micronutrients fertilizer range. It is listed for fertigation, soil application, foliar spray with 1 kg packing.",
+    "slug": "fasal-balwan",
+    "displayName": "Fasal Balwan Micronutrients Fertilizer",
+    "category": "Micronutrients Fertilizer",
+    "price": "₹43.20 / Kg",
+    "shortDescription": "Fasal Balwan Micronutrients Fertilizer is a powder-form micronutrients fertilizer product in the micronutrients fertilizer range. It is listed for fertigation, soil application, foliar spray with 1 kg packing.",
+    "chips": [
+      "Powder",
+      "1 kg",
+      "Fertigation, Soil Application, Foliar Spray"
+    ],
+    "specs": {
+      "Nutrient": "Zinc (Zn)",
+      "Form": "Powder",
+      "Formulation": "Sulphated",
+      "Application Method": "Fertigation, Soil Application, Foliar Spray",
+      "Contained Micronutrients": "Magnesium (Mg), Sulphur (S), Copper (Cu), Zinc (Zn), Iron (Fe), Boron (B), Manganese (Mn)",
+      "Packaging Size": "1 kg"
+    },
+    "use": [
+      "Use for fertigation, soil application, foliar spray as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Fasal Balwan Micronutrients Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/micronutrients-fertilizer.html",
+    "hi": {
+      "displayName": "Fasal Balwan Micronutrients Fertilizer",
+      "category": "माइक्रोन्यूट्रिएंट उर्वरक",
+      "description": "Fasal Balwan Micronutrients Fertilizer माइक्रोन्यूट्रिएंट उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह Fertigation, मिट्टी में उपयोग, पत्तों पर छिड़काव और 1 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Fasal Balwan Micronutrients Fertilizer माइक्रोन्यूट्रिएंट उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह Fertigation, मिट्टी में उपयोग, पत्तों पर छिड़काव और 1 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पाउडर",
+        "1 kg",
+        "Fertigation, मिट्टी में उपयोग, पत्तों पर छिड़काव"
+      ],
+      "specs": {
+        "Nutrient": "Zinc (Zn)",
+        "रूप": "पाउडर",
+        "फॉर्मुलेशन": "सल्फेटेड",
+        "उपयोग विधि": "Fertigation, मिट्टी में उपयोग, पत्तों पर छिड़काव",
+        "मौजूद माइक्रोन्यूट्रिएंट": "Magnesium (Mg), Sulphur (S), Copper (Cu), Zinc (Zn), Iron (Fe), Boron (B), Manganese (Mn)",
+        "पैकिंग साइज": "1 kg"
+      },
+      "use": [
+        "Fertigation, मिट्टी में उपयोग, पत्तों पर छिड़काव के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
   },
   {
     "name": "Vansh Black Gold",
     "image": "assets/products/vansh_black_gold.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Black Gold Bio Fertilizer is a flake-form humic acid product in the bio fertilizers range. It is listed for seed treatment, drip irrigation, foliar spray, soil application for Fruits, Sugarcane, Paddy (Rice), Horticulture, All Crops, Cotton, Vegetables, Field Crops with 500 Gram packing.",
+    "slug": "vansh-black-gold",
+    "displayName": "Black Gold Bio Fertilizer",
+    "category": "Bio Fertilizers",
+    "price": "₹360 / Kg",
+    "shortDescription": "Black Gold Bio Fertilizer is a flake-form humic acid product in the bio fertilizers range. It is listed for seed treatment, drip irrigation, foliar spray, soil application for Fruits, Sugarcane, Paddy (Rice), Horticulture, All Crops, Cotton, Vegetables, Field Crops with 500 Gram packing.",
+    "chips": [
+      "Flake",
+      "500 Gram",
+      "Seed Treatment, Drip Irrigation, Foliar Spray, Soil Application",
+      "Humic Acid",
+      "Fruits, Sugarcane, Paddy (Rice), Horticulture, All Crops, Cotton, Vegetables, Field Crops"
+    ],
+    "specs": {
+      "Type": "Humic Acid",
+      "Form": "Flake",
+      "Packaging Size": "500 Gram",
+      "Application": "Seed Treatment, Drip Irrigation, Foliar Spray, Soil Application",
+      "Source": "Plant Origin",
+      "Target Crop": "Fruits, Sugarcane, Paddy (Rice), Horticulture, All Crops, Cotton, Vegetables, Field Crops"
+    },
+    "use": [
+      "Use for seed treatment, drip irrigation, foliar spray, soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Black Gold Bio Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/bio-fertilizers.html",
+    "hi": {
+      "displayName": "Black Gold Bio Fertilizer",
+      "category": "बायो उर्वरक",
+      "description": "Black Gold Bio Fertilizer बायो उर्वरक श्रेणी का फ्लेक उत्पाद है। उपलब्ध विवरण के अनुसार यह बीज उपचार, ड्रिप सिंचाई, पत्तों पर छिड़काव, मिट्टी में उपयोग और 500 Gram पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Black Gold Bio Fertilizer बायो उर्वरक श्रेणी का फ्लेक उत्पाद है। उपलब्ध विवरण के अनुसार यह बीज उपचार, ड्रिप सिंचाई, पत्तों पर छिड़काव, मिट्टी में उपयोग और 500 Gram पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "फ्लेक",
+        "500 Gram",
+        "बीज उपचार, ड्रिप सिंचाई, पत्तों पर छिड़काव, मिट्टी में उपयोग",
+        "ह्यूमिक एसिड",
+        "फल, गन्ना, धान, बागवानी, सभी फसलें, कपास, सब्जियां, फील्ड फसलें"
+      ],
+      "specs": {
+        "प्रकार": "ह्यूमिक एसिड",
+        "रूप": "फ्लेक",
+        "पैकिंग साइज": "500 Gram",
+        "उपयोग": "बीज उपचार, ड्रिप सिंचाई, पत्तों पर छिड़काव, मिट्टी में उपयोग",
+        "स्रोत": "पौधा आधारित",
+        "लक्षित फसल": "फल, गन्ना, धान, बागवानी, सभी फसलें, कपास, सब्जियां, फील्ड फसलें"
+      },
+      "use": [
+        "बीज उपचार, ड्रिप सिंचाई, पत्तों पर छिड़काव, मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
   },
   {
     "name": "King Mentha Special",
@@ -107,7 +798,69 @@
   {
     "name": "Vansh Badshah Mentha Special",
     "image": "assets/products/vansh_badshah_mentha_special.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Badshah Mentha Special Agro Fertilizer is a powder-form multi micronutrient product in the agro fertilizer range. It is listed for soil application with 5 kg packing.",
+    "slug": "vansh-badshah-mentha-special",
+    "displayName": "Badshah Mentha Special Agro Fertilizer",
+    "category": "Agro Fertilizer",
+    "price": "₹72 / Kg",
+    "shortDescription": "Badshah Mentha Special Agro Fertilizer is a powder-form multi micronutrient product in the agro fertilizer range. It is listed for soil application with 5 kg packing.",
+    "chips": [
+      "Powder",
+      "5 kg",
+      "Soil Application",
+      "Multi Micronutrient"
+    ],
+    "specs": {
+      "Nutrient Type": "Multi Micronutrient",
+      "Form": "Powder",
+      "Pack Size": "5 kg",
+      "Application Method": "Soil Application",
+      "Solubility": "Water Soluble",
+      "Nutrient Content": "40–50 %"
+    },
+    "use": [
+      "Use for soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Badshah Mentha Special Agro Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/agro-fertilizer.html",
+    "hi": {
+      "displayName": "Badshah Mentha Special Agro Fertilizer",
+      "category": "एग्रो उर्वरक",
+      "description": "Badshah Mentha Special Agro Fertilizer एग्रो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Badshah Mentha Special Agro Fertilizer एग्रो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पाउडर",
+        "5 kg",
+        "मिट्टी में उपयोग",
+        "मल्टी माइक्रोन्यूट्रिएंट"
+      ],
+      "specs": {
+        "पोषक प्रकार": "मल्टी माइक्रोन्यूट्रिएंट",
+        "रूप": "पाउडर",
+        "पैक साइज": "5 kg",
+        "उपयोग विधि": "मिट्टी में उपयोग",
+        "घुलनशीलता": "पानी में घुलनशील",
+        "पोषक कंटेंट": "40–50 %"
+      },
+      "use": [
+        "मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
   },
   {
     "name": "Vansh Cargodan",
@@ -157,7 +910,69 @@
   {
     "name": "Vansh Mono Zinc",
     "image": "assets/products/vansh_mono_zinc.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Mono Zinc Fertilizer is a powder-form zinc sulphate product in the zinc fertilizers range. It is listed for soil application with 5 kg packing.",
+    "slug": "vansh-mono-zinc",
+    "displayName": "Mono Zinc Fertilizer",
+    "category": "Zinc Fertilizers",
+    "price": "₹144 / Kg",
+    "shortDescription": "Mono Zinc Fertilizer is a powder-form zinc sulphate product in the zinc fertilizers range. It is listed for soil application with 5 kg packing.",
+    "chips": [
+      "Powder",
+      "5 kg",
+      "Soil Application",
+      "Zinc Sulphate"
+    ],
+    "specs": {
+      "Zinc Source": "Zinc Sulphate",
+      "Form": "Powder",
+      "Zn Content": "33 %",
+      "Application Method": "Soil Application",
+      "Chelated Form": "Non Chelated",
+      "Pack Size": "5 kg"
+    },
+    "use": [
+      "Use for soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Mono Zinc Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/zinc-fertilizers.html",
+    "hi": {
+      "displayName": "Mono Zinc Fertilizer",
+      "category": "जिंक उर्वरक",
+      "description": "Mono Zinc Fertilizer जिंक उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Mono Zinc Fertilizer जिंक उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पाउडर",
+        "5 kg",
+        "मिट्टी में उपयोग",
+        "जिंक सल्फेट"
+      ],
+      "specs": {
+        "जिंक स्रोत": "जिंक सल्फेट",
+        "रूप": "पाउडर",
+        "जिंक कंटेंट": "33 %",
+        "उपयोग विधि": "मिट्टी में उपयोग",
+        "चिलेटेड रूप": "नॉन चिलेटेड",
+        "पैक साइज": "5 kg"
+      },
+      "use": [
+        "मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
   },
   {
     "name": "Vansh Proteimax Kuroiler",
@@ -186,22 +1001,1431 @@
   },
   {
     "name": "Vansh Pro 8000",
+    "slug": "vansh-pro-8000",
+    "displayName": "Pro 8000 Compounded Pellet Feed",
+    "alternateName": "Pro 8000 Compounded Cattle Feed",
+    "category": "Cattle Feed",
+    "price": "₹1400 / Bag",
     "image": "assets/products/vansh_pro_8000.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Pro 8000 Compounded Pellet Feed is a high-protein pellet feed for cows and buffaloes in the milking stage. It is suitable for dairy farms, commercial farms, and village-level use, with above 22% protein and balanced TDN energy support.",
+    "shortDescription": "Pro 8000 Compounded Pellet Feed is a high-protein pellet feed for cows and buffaloes in the milking stage. It is suitable for dairy farms, commercial farms, and village-level use, with above 22% protein and balanced TDN energy support.",
+    "chips": [
+      "Pellet",
+      "Above 22% Protein",
+      "50 kg",
+      "Cow/Buffalo",
+      "4 mm"
+    ],
+    "specs": {
+      "Feed Form": "Pellet",
+      "Pellet Size": "4 mm",
+      "Protein": "Above 22%",
+      "Stage": "Milking",
+      "Species": "Cow, Buffalo",
+      "Protein Content": "22–26%",
+      "Energy": "65% to 70% TDN",
+      "Packing Size": "50 kg",
+      "Organic": "No",
+      "Medication": "With Minerals",
+      "Usage": "Dairy Farm, Commercial Farm, Village Level",
+      "Moisture": "10% to 12%",
+      "Packaging Size": "50 kg",
+      "Crude Fibre": "8–10%",
+      "Minimum Order Quantity": "100 Bag"
+    },
+    "use": [
+      "Use as part of a balanced feeding routine for the listed species and stage.",
+      "Provide clean drinking water and follow local livestock nutrition guidance.",
+      "Store in a dry, ventilated place away from moisture."
+    ],
+    "benefits": [
+      "Supports practical dairy feeding programs with source-listed protein and pack details.",
+      "Designed for farm and dealer supply routines.",
+      "Useful for product comparison by species, stage, form, and packing."
+    ],
+    "source": "Fish Gold Industries public product page and provided IndiaMART/Fish Gold reference details",
+    "hi": {
+      "displayName": "Pro 8000 Compounded Pellet Feed",
+      "category": "पशु आहार",
+      "description": "Pro 8000 Compounded Pellet Feed दूध देने वाली गाय और भैंस के लिए हाई-प्रोटीन पेलेट फीड है। यह डेयरी फार्म, कमर्शियल फार्म और गांव स्तर के उपयोग के लिए उपयुक्त है।",
+      "shortDescription": "Pro 8000 Compounded Pellet Feed दूध देने वाली गाय और भैंस के लिए हाई-प्रोटीन पेलेट फीड है। यह डेयरी फार्म, कमर्शियल फार्म और गांव स्तर के उपयोग के लिए उपयुक्त है।",
+      "chips": [
+        "पेलेट",
+        "Above 22% Protein",
+        "50 kg",
+        "Cow/Buffalo",
+        "4 mm"
+      ],
+      "specs": {
+        "फीड फॉर्म": "पेलेट",
+        "पेलेट साइज": "4 mm",
+        "प्रोटीन": "Above 22%",
+        "अवस्था": "दूध देने की अवस्था",
+        "पशु प्रकार": "गाय, भैंस",
+        "प्रोटीन कंटेंट": "22–26%",
+        "ऊर्जा": "65% to 70% TDN",
+        "पैकिंग साइज": "50 kg",
+        "ऑर्गेनिक": "नहीं",
+        "मिनरल सपोर्ट": "मिनरल के साथ",
+        "उपयोग": "डेयरी फार्म, कमर्शियल फार्म, गांव स्तर",
+        "नमी": "10% to 12%",
+        "क्रूड फाइबर": "8–10%",
+        "न्यूनतम ऑर्डर मात्रा": "100 Bag"
+      },
+      "use": [
+        "सूचीबद्ध पशु प्रकार और अवस्था के अनुसार संतुलित फीडिंग रूटीन में उपयोग करें।",
+        "साफ पीने का पानी उपलब्ध रखें और स्थानीय पशु पोषण सलाह का पालन करें।",
+        "नमी से दूर सूखी और हवादार जगह पर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए प्रोटीन और पैक विवरण के साथ व्यावहारिक डेयरी फीडिंग कार्यक्रमों में सहायक।",
+        "फार्म और डीलर सप्लाई रूटीन के लिए उपयुक्त।",
+        "पशु प्रकार, अवस्था, रूप और पैकिंग के आधार पर तुलना में उपयोगी।"
+      ]
+    },
+    "inquiryName": "Pro 8000 Compounded Pellet Feed",
+    "sourceUrl": "https://www.fishgoldindustries.com/cattle-feed.html",
+    "images": [
+      "assets/products/vansh_pro_8000.jpg",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/596889294/JB/LV/EF/264964452/vansh-pro-8000-bis-type-ii-compounded-cattle-feed-500x500.jpeg",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/596889334/FU/PV/JO/264964452/vansh-pro-8000-bis-type-ii-compounded-cattle-feed-500x500.png"
+    ]
   },
   {
     "name": "Vansh Grow 5000",
     "image": "assets/products/vansh_grow_5000.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Grow 5000 High Protein Pellet Feed is a pellet-based feed for buffalo in the milking stage. It is listed with 18% to 22% protein.",
+    "slug": "vansh-grow-5000",
+    "displayName": "Grow 5000 High Protein Pellet Feed",
+    "category": "Pellet Feed",
+    "price": "₹1295 / Bag",
+    "shortDescription": "Grow 5000 High Protein Pellet Feed is a pellet-based feed for buffalo in the milking stage. It is listed with 18% to 22% protein.",
+    "chips": [
+      "Pellet",
+      "18% to 22% Protein",
+      "Buffalo",
+      "4 mm"
+    ],
+    "specs": {
+      "Species": "Buffalo",
+      "Feed Form": "Pellet",
+      "Pellet Size": "4 mm",
+      "Protein": "18% to 22%",
+      "Stage": "Milking",
+      "Protein Content": "18–22%"
+    },
+    "use": [
+      "Use as part of a balanced feeding routine for the listed species and stage.",
+      "Provide clean drinking water and follow local livestock nutrition guidance.",
+      "Store in a dry, ventilated place away from moisture."
+    ],
+    "benefits": [
+      "Supports practical dairy feeding programs with source-listed protein and pack details.",
+      "Designed for farm and dealer supply routines.",
+      "Useful for product comparison by species, stage, form, and packing."
+    ],
+    "inquiryName": "Grow 5000 High Protein Pellet Feed",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/pellet-feed.html",
+    "hi": {
+      "displayName": "Grow 5000 High Protein Pellet Feed",
+      "category": "पेलेट फीड",
+      "description": "Grow 5000 High Protein Pellet Feed पेलेट फीड श्रेणी का पेलेट-आधारित उत्पाद है। उपलब्ध विवरण के अनुसार यह 18% to 22% और व्यावहारिक पैकिंग के साथ डेयरी उपयोग के लिए सूचीबद्ध है।",
+      "shortDescription": "Grow 5000 High Protein Pellet Feed पेलेट फीड श्रेणी का पेलेट-आधारित उत्पाद है। उपलब्ध विवरण के अनुसार यह 18% to 22% और व्यावहारिक पैकिंग के साथ डेयरी उपयोग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पेलेट",
+        "18% to 22% Protein",
+        "भैंस",
+        "4 mm"
+      ],
+      "specs": {
+        "पशु प्रकार": "भैंस",
+        "फीड फॉर्म": "पेलेट",
+        "पेलेट साइज": "4 mm",
+        "प्रोटीन": "18% to 22%",
+        "अवस्था": "दूध देने की अवस्था",
+        "प्रोटीन कंटेंट": "18–22%"
+      },
+      "use": [
+        "सूचीबद्ध पशु प्रकार और अवस्था के अनुसार संतुलित फीडिंग रूटीन में उपयोग करें।",
+        "साफ पीने का पानी उपलब्ध रखें और स्थानीय पशु पोषण सलाह का पालन करें।",
+        "नमी से दूर सूखी और हवादार जगह पर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए प्रोटीन और पैक विवरण के साथ व्यावहारिक डेयरी फीडिंग कार्यक्रमों में सहायक।",
+        "फार्म और डीलर सप्लाई रूटीन के लिए उपयुक्त।",
+        "पशु प्रकार, अवस्था, रूप और पैकिंग के आधार पर तुलना में उपयोगी।"
+      ]
+    },
+    "images": [
+      "assets/products/vansh_grow_5000.jpg",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/596894497/YT/FX/QF/264964452/grow-5000-pellet-feed-500x500.jpeg",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/596894537/LQ/ZT/GJ/264964452/grow-5000-pellet-feed-500x500.png",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/590332561/XZ/YT/GO/264964452/grow-5000-pellet-feed-500x500.jpeg",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/600958627/ML/KO/MA/264964452/grow-5000-pellet-feed-500x500.jpeg",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/596894539/NS/WK/FJ/264964452/PDFImage-46DD3FD000774BA08ED2654691572A95-grow-5000-pellet-feed-500x500.png"
+    ]
   },
   {
     "name": "Vansh Starter 3000",
+    "slug": "vansh-starter-3000",
+    "displayName": "Starter 300 High Protein Compounded Cattle Feed",
+    "alternateName": "Starter 300 High Protein Compounded Cattle Feed, Pellet Feed, Animal Feed",
+    "category": "Cattle Feed",
+    "price": "₹1120 / Bag",
     "image": "assets/products/vansh_starter_3000.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Starter 300 High Protein Compounded Cattle Feed is a pellet-based feed for cows and buffaloes in the milking stage. It is designed for dairy farm use with protein, energy, minerals, and balanced moisture support.",
+    "shortDescription": "Starter 300 High Protein Compounded Cattle Feed is a pellet-based feed for cows and buffaloes in the milking stage. It is designed for dairy farm use with protein, energy, minerals, and balanced moisture support.",
+    "chips": [
+      "Pellet",
+      "18% to 22% Protein",
+      "50 kg",
+      "Cow/Buffalo"
+    ],
+    "specs": {
+      "Feed Form": "Pellet",
+      "Protein": "18% to 22%",
+      "Stage": "Milking",
+      "Species": "Cow, Buffalo",
+      "Energy": "65% to 70% TDN",
+      "Packing Size": "50 kg",
+      "Medication": "With Minerals",
+      "Usage": "Dairy Farm",
+      "Moisture": "10% to 12%",
+      "Minimum Order Quantity": "50 Bag"
+    },
+    "use": [
+      "Use as part of a balanced feeding routine for the listed species and stage.",
+      "Provide clean drinking water and follow local livestock nutrition guidance.",
+      "Store in a dry, ventilated place away from moisture."
+    ],
+    "benefits": [
+      "Supports practical dairy feeding programs with source-listed protein and pack details.",
+      "Designed for farm and dealer supply routines.",
+      "Useful for product comparison by species, stage, form, and packing."
+    ],
+    "source": "Fish Gold Industries public product page and provided IndiaMART/Fish Gold reference details",
+    "hi": {
+      "displayName": "Starter 300 High Protein Compounded Cattle Feed",
+      "category": "पशु आहार",
+      "description": "Starter 300 High Protein Compounded Cattle Feed दूध देने की अवस्था वाली गाय और भैंस के लिए पेलेट-आधारित फीड है। यह डेयरी फार्म उपयोग के लिए प्रोटीन, ऊर्जा, मिनरल और संतुलित नमी सपोर्ट के साथ सूचीबद्ध है।",
+      "shortDescription": "Starter 300 High Protein Compounded Cattle Feed दूध देने की अवस्था वाली गाय और भैंस के लिए पेलेट-आधारित फीड है। यह डेयरी फार्म उपयोग के लिए प्रोटीन, ऊर्जा, मिनरल और संतुलित नमी सपोर्ट के साथ सूचीबद्ध है।",
+      "chips": [
+        "पेलेट",
+        "18% to 22% Protein",
+        "50 kg",
+        "Cow/Buffalo"
+      ],
+      "specs": {
+        "फीड फॉर्म": "पेलेट",
+        "प्रोटीन": "18% to 22%",
+        "अवस्था": "दूध देने की अवस्था",
+        "पशु प्रकार": "गाय, भैंस",
+        "ऊर्जा": "65% to 70% TDN",
+        "पैकिंग साइज": "50 kg",
+        "मिनरल सपोर्ट": "मिनरल के साथ",
+        "उपयोग": "डेयरी फार्म",
+        "नमी": "10% to 12%",
+        "न्यूनतम ऑर्डर मात्रा": "50 Bag"
+      },
+      "use": [
+        "सूचीबद्ध पशु प्रकार और अवस्था के अनुसार संतुलित फीडिंग रूटीन में उपयोग करें।",
+        "साफ पीने का पानी उपलब्ध रखें और स्थानीय पशु पोषण सलाह का पालन करें।",
+        "नमी से दूर सूखी और हवादार जगह पर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए प्रोटीन और पैक विवरण के साथ व्यावहारिक डेयरी फीडिंग कार्यक्रमों में सहायक।",
+        "फार्म और डीलर सप्लाई रूटीन के लिए उपयुक्त।",
+        "पशु प्रकार, अवस्था, रूप और पैकिंग के आधार पर तुलना में उपयोगी।"
+      ]
+    },
+    "inquiryName": "Starter 300 High Protein Compounded Cattle Feed",
+    "sourceUrl": "https://www.fishgoldindustries.com/cattle-feed.html",
+    "images": [
+      "assets/products/vansh_starter_3000.jpg",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/596886432/AM/YD/QP/264964452/vansh-starter-3000-500x500.jpeg",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/596886472/ZE/BU/ZW/264964452/vansh-starter-3000-500x500.png",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/596886494/PH/RG/UQ/264964452/yftf-500x500.jpeg"
+    ]
   },
   {
     "name": "Vansh Supreme",
+    "slug": "vansh-supreme",
+    "displayName": "Supreme High Protein Pellet Feed",
+    "category": "Cattle Feed",
+    "price": "₹1050 / Bag",
     "image": "assets/products/vansh_supreme.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Supreme High Protein Pellet Feed is a pellet-based cattle feed formulated for dairy farm and village-level use. It supports steady intake and practical cattle nutrition with balanced protein, energy, and moisture levels.",
+    "shortDescription": "Supreme High Protein Pellet Feed is a pellet-based cattle feed formulated for dairy farm and village-level use. It supports steady intake and practical cattle nutrition with balanced protein, energy, and moisture levels.",
+    "chips": [
+      "Pellet",
+      "18% to 22% Protein",
+      "50 kg",
+      "Cattle",
+      "5 mm"
+    ],
+    "specs": {
+      "Species": "Cattle",
+      "Feed Form": "Pellet",
+      "Pellet Size": "5 mm",
+      "Protein": "18% to 22%",
+      "Stage": "All Type Animal",
+      "Protein Content": "14–18%",
+      "Energy": "65% to 70% TDN",
+      "Packing Size": "50 kg",
+      "Organic": "Organic Compatible",
+      "Usage": "Dairy Farm, Village Level",
+      "Packaging Size": "50 kg",
+      "Pellet Length": "5–8 mm",
+      "Moisture": "10% to 12%",
+      "Minimum Order Quantity": "50 Bag"
+    },
+    "use": [
+      "Use as part of a balanced feeding routine for the listed species and stage.",
+      "Provide clean drinking water and follow local livestock nutrition guidance.",
+      "Store in a dry, ventilated place away from moisture."
+    ],
+    "benefits": [
+      "Supports practical dairy feeding programs with source-listed protein and pack details.",
+      "Designed for farm and dealer supply routines.",
+      "Useful for product comparison by species, stage, form, and packing."
+    ],
+    "source": "Fish Gold Industries public product page and provided IndiaMART/Fish Gold reference details",
+    "hi": {
+      "displayName": "Supreme High Protein Pellet Feed",
+      "category": "पशु आहार",
+      "description": "Supreme High Protein Pellet Feed डेयरी फार्म और गांव स्तर के उपयोग के लिए तैयार किया गया पेलेट-आधारित पशु आहार है। यह संतुलित प्रोटीन, ऊर्जा और नमी स्तरों के साथ व्यावहारिक पशु पोषण में सहायक है।",
+      "shortDescription": "Supreme High Protein Pellet Feed डेयरी फार्म और गांव स्तर के उपयोग के लिए तैयार किया गया पेलेट-आधारित पशु आहार है। यह संतुलित प्रोटीन, ऊर्जा और नमी स्तरों के साथ व्यावहारिक पशु पोषण में सहायक है।",
+      "chips": [
+        "पेलेट",
+        "18% to 22% Protein",
+        "50 kg",
+        "पशु",
+        "5 mm"
+      ],
+      "specs": {
+        "पशु प्रकार": "पशु",
+        "फीड फॉर्म": "पेलेट",
+        "पेलेट साइज": "5 mm",
+        "प्रोटीन": "18% to 22%",
+        "अवस्था": "सभी प्रकार के पशु",
+        "प्रोटीन कंटेंट": "14–18%",
+        "ऊर्जा": "65% to 70% TDN",
+        "पैकिंग साइज": "50 kg",
+        "ऑर्गेनिक": "ऑर्गेनिक अनुकूल",
+        "उपयोग": "डेयरी फार्म, गांव स्तर",
+        "पेलेट लंबाई": "5–8 mm",
+        "नमी": "10% to 12%",
+        "न्यूनतम ऑर्डर मात्रा": "50 Bag"
+      },
+      "use": [
+        "सूचीबद्ध पशु प्रकार और अवस्था के अनुसार संतुलित फीडिंग रूटीन में उपयोग करें।",
+        "साफ पीने का पानी उपलब्ध रखें और स्थानीय पशु पोषण सलाह का पालन करें।",
+        "नमी से दूर सूखी और हवादार जगह पर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए प्रोटीन और पैक विवरण के साथ व्यावहारिक डेयरी फीडिंग कार्यक्रमों में सहायक।",
+        "फार्म और डीलर सप्लाई रूटीन के लिए उपयुक्त।",
+        "पशु प्रकार, अवस्था, रूप और पैकिंग के आधार पर तुलना में उपयोगी।"
+      ]
+    },
+    "inquiryName": "Supreme High Protein Pellet Feed",
+    "sourceUrl": "https://www.fishgoldindustries.com/cattle-feed.html",
+    "images": [
+      "assets/products/vansh_supreme.jpg",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/596882021/MA/JB/HL/264964452/vansh-supreme-bis-type-ii-compounded-cattle-feed-500x500.jpeg",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/596880909/TJ/XL/XY/264964452/vansh-supreme-bis-type-ii-compounded-cattle-feed-500x500.png",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/596880934/AQ/ZU/AK/264964452/supreme-high-protein-pellet-feed-500x500.jpeg",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/596880930/ZL/EA/OZ/264964452/PDFImage-46DD3FD000774BA08ED2654691572A95-supreme-high-protein-pellet-feed-500x500.png"
+    ]
+  },
+  {
+    "name": "Super Compounded Cattle Feed",
+    "slug": "super-compounded-cattle-feed",
+    "displayName": "Super Compounded Cattle Feed",
+    "category": "Cattle Feed",
+    "price": "₹940 / Bag",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2026/4/596921296/QZ/JM/FK/264964452/vansh-super-cattle-feed-bis-type-ii-compounded-feed-pallet-feed-500x500.jpeg",
+    "description": "Super Compounded Cattle Feed is a pellet-based feed for buffaloes, crossbred cows, and cows. It is designed for all-type animal usage and dairy farm nutrition support with protein, minerals, and balanced energy.",
+    "shortDescription": "Super Compounded Cattle Feed is a pellet-based feed for buffaloes, crossbred cows, and cows. It is designed for all-type animal usage and dairy farm nutrition support with protein, minerals, and balanced energy.",
+    "chips": [
+      "Pellet",
+      "18% to 22% Protein",
+      "50 kg",
+      "Buffalo, Crossbred Cow, Cow"
+    ],
+    "specs": {
+      "Feed Form": "Pellet",
+      "Protein": "18% to 22%",
+      "Stage": "For All Type Animal",
+      "Species": "Buffalo, Crossbred Cow, Cow",
+      "Energy": "65% to 70% TDN",
+      "Packing Size": "50 kg",
+      "Medication": "With Minerals",
+      "Usage": "Dairy Farm",
+      "Moisture": "10% to 12%",
+      "Minimum Order Quantity": "50 Bag"
+    },
+    "use": [
+      "Use as part of a balanced feeding routine for the listed species and stage.",
+      "Provide clean drinking water and follow local livestock nutrition guidance.",
+      "Store in a dry, ventilated place away from moisture."
+    ],
+    "benefits": [
+      "Supports practical dairy feeding programs with source-listed protein and pack details.",
+      "Designed for farm and dealer supply routines.",
+      "Useful for product comparison by species, stage, form, and packing."
+    ],
+    "source": "Fish Gold Industries public product page and provided IndiaMART/Fish Gold reference details",
+    "hi": {
+      "displayName": "Super Compounded Cattle Feed",
+      "category": "पशु आहार",
+      "description": "Super Compounded Cattle Feed भैंस, क्रॉसब्रेड गाय और गाय के लिए पेलेट-आधारित फीड है। यह सभी प्रकार के पशु उपयोग और डेयरी फार्म पोषण सपोर्ट के लिए सूचीबद्ध है।",
+      "shortDescription": "Super Compounded Cattle Feed भैंस, क्रॉसब्रेड गाय और गाय के लिए पेलेट-आधारित फीड है। यह सभी प्रकार के पशु उपयोग और डेयरी फार्म पोषण सपोर्ट के लिए सूचीबद्ध है।",
+      "chips": [
+        "पेलेट",
+        "18% to 22% Protein",
+        "50 kg",
+        "भैंस, क्रॉसब्रेड गाय, गाय"
+      ],
+      "specs": {
+        "फीड फॉर्म": "पेलेट",
+        "प्रोटीन": "18% to 22%",
+        "अवस्था": "सभी प्रकार के पशु",
+        "पशु प्रकार": "भैंस, क्रॉसब्रेड गाय, गाय",
+        "ऊर्जा": "65% to 70% TDN",
+        "पैकिंग साइज": "50 kg",
+        "मिनरल सपोर्ट": "मिनरल के साथ",
+        "उपयोग": "डेयरी फार्म",
+        "नमी": "10% to 12%",
+        "न्यूनतम ऑर्डर मात्रा": "50 Bag"
+      },
+      "use": [
+        "सूचीबद्ध पशु प्रकार और अवस्था के अनुसार संतुलित फीडिंग रूटीन में उपयोग करें।",
+        "साफ पीने का पानी उपलब्ध रखें और स्थानीय पशु पोषण सलाह का पालन करें।",
+        "नमी से दूर सूखी और हवादार जगह पर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए प्रोटीन और पैक विवरण के साथ व्यावहारिक डेयरी फीडिंग कार्यक्रमों में सहायक।",
+        "फार्म और डीलर सप्लाई रूटीन के लिए उपयुक्त।",
+        "पशु प्रकार, अवस्था, रूप और पैकिंग के आधार पर तुलना में उपयोगी।"
+      ]
+    },
+    "inquiryName": "Super Compounded Cattle Feed",
+    "sourceUrl": "https://www.fishgoldindustries.com/cattle-feed.html",
+    "images": [
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/596921296/QZ/JM/FK/264964452/vansh-super-cattle-feed-bis-type-ii-compounded-feed-pallet-feed-500x500.jpeg",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/596921529/AO/EQ/XE/264964452/vansh-super-cattle-feed-bis-type-ii-compounded-feed-pallet-feed-500x500.png"
+    ]
+  },
+  {
+    "name": "Vansh Pashu Aahar",
+    "slug": "vansh-pashu-aahar",
+    "displayName": "Vansh Pashu Aahar",
+    "category": "Pellet Feed",
+    "price": "₹1050 / Bag",
+    "image": "https://5.imimg.com/data5/WA_9696/Default/2026/3/589066631/YY/CT/HG/264964452/image-1772789788-9589-919196702480-jpeg-500x500.jpeg",
+    "description": "Vansh Pashu Aahar is a pellet-based feed for crossbred cow, buffalo, cow. It is listed with 18% to 22% protein.",
+    "shortDescription": "Vansh Pashu Aahar is a pellet-based feed for crossbred cow, buffalo, cow. It is listed with 18% to 22% protein.",
+    "chips": [
+      "Pellet",
+      "18% to 22% Protein",
+      "Crossbred Cow/Buffalo, Cow",
+      "5 mm"
+    ],
+    "specs": {
+      "Feed Form": "Pellet",
+      "Protein": "18% to 22%",
+      "Pellet Size": "5 mm",
+      "Species": "Crossbred Cow, Buffalo, Cow",
+      "Energy": "65% to 70% TDN",
+      "Protein Content": "18–22%"
+    },
+    "use": [
+      "Use as part of a balanced feeding routine for the listed species and stage.",
+      "Provide clean drinking water and follow local livestock nutrition guidance.",
+      "Store in a dry, ventilated place away from moisture."
+    ],
+    "benefits": [
+      "Supports practical dairy feeding programs with source-listed protein and pack details.",
+      "Designed for farm and dealer supply routines.",
+      "Useful for product comparison by species, stage, form, and packing."
+    ],
+    "inquiryName": "Vansh Pashu Aahar",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/pellet-feed.html",
+    "hi": {
+      "displayName": "Vansh Pashu Aahar",
+      "category": "पेलेट फीड",
+      "description": "Vansh Pashu Aahar पेलेट फीड श्रेणी का पेलेट-आधारित उत्पाद है। उपलब्ध विवरण के अनुसार यह 18% to 22% और व्यावहारिक पैकिंग के साथ डेयरी उपयोग के लिए सूचीबद्ध है।",
+      "shortDescription": "Vansh Pashu Aahar पेलेट फीड श्रेणी का पेलेट-आधारित उत्पाद है। उपलब्ध विवरण के अनुसार यह 18% to 22% और व्यावहारिक पैकिंग के साथ डेयरी उपयोग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पेलेट",
+        "18% to 22% Protein",
+        "Crossbred Cow/Buffalo, गाय",
+        "5 mm"
+      ],
+      "specs": {
+        "फीड फॉर्म": "पेलेट",
+        "प्रोटीन": "18% to 22%",
+        "पेलेट साइज": "5 mm",
+        "पशु प्रकार": "क्रॉसब्रेड गाय, भैंस, गाय",
+        "ऊर्जा": "65% to 70% TDN",
+        "प्रोटीन कंटेंट": "18–22%"
+      },
+      "use": [
+        "सूचीबद्ध पशु प्रकार और अवस्था के अनुसार संतुलित फीडिंग रूटीन में उपयोग करें।",
+        "साफ पीने का पानी उपलब्ध रखें और स्थानीय पशु पोषण सलाह का पालन करें।",
+        "नमी से दूर सूखी और हवादार जगह पर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए प्रोटीन और पैक विवरण के साथ व्यावहारिक डेयरी फीडिंग कार्यक्रमों में सहायक।",
+        "फार्म और डीलर सप्लाई रूटीन के लिए उपयुक्त।",
+        "पशु प्रकार, अवस्था, रूप और पैकिंग के आधार पर तुलना में उपयोगी।"
+      ]
+    },
+    "images": [
+      "https://5.imimg.com/data5/WA_9696/Default/2026/3/589066631/YY/CT/HG/264964452/image-1772789788-9589-919196702480-jpeg-500x500.jpeg",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/596897117/QJ/DV/IX/264964452/vansh-pashu-aahar-500x500.jpeg",
+      "https://5.imimg.com/data5/SELLER/Default/2026/4/596897115/YD/OB/VI/264964452/50-kg-dairy-cattle-feed-vansh-gold-cattle-feed-vansh-supreme-cattle-feed-vansh-starter-cattle-feed-500x500.jpeg"
+    ]
+  },
+  {
+    "name": "Vanshika Kahar Agro Fertilizer",
+    "slug": "vanshika-kahar-agro-fertilizer",
+    "displayName": "Vanshika Kahar Agro Fertilizer",
+    "category": "Agro Fertilizer",
+    "price": "₹42 / Kg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2026/4/597431140/MY/VL/OG/264964452/vansh-vanshika-kahar-fertilizer-500x500.jpg",
+    "description": "Vanshika Kahar Agro Fertilizer is a powder-form water soluble product in the agro fertilizer range. It is listed with 5 kg packing.",
+    "shortDescription": "Vanshika Kahar Agro Fertilizer is a powder-form water soluble product in the agro fertilizer range. It is listed with 5 kg packing.",
+    "chips": [
+      "Powder",
+      "5 kg",
+      "Water Soluble"
+    ],
+    "specs": {
+      "Nutrient Type": "Zinc",
+      "Packaging Size": "5 kg",
+      "Pack Size": "5 kg",
+      "Type": "Powder",
+      "Form": "Powder",
+      "Product Type": "Water Soluble"
+    },
+    "use": [
+      "Use as directed on the product label or by a qualified crop advisor.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Vanshika Kahar Agro Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/agro-fertilizer.html",
+    "hi": {
+      "displayName": "Vanshika Kahar Agro Fertilizer",
+      "category": "एग्रो उर्वरक",
+      "description": "Vanshika Kahar Agro Fertilizer एग्रो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह खेत उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Vanshika Kahar Agro Fertilizer एग्रो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह खेत उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पाउडर",
+        "5 kg",
+        "पानी में घुलनशील"
+      ],
+      "specs": {
+        "पोषक प्रकार": "जिंक",
+        "पैकिंग साइज": "5 kg",
+        "पैक साइज": "5 kg",
+        "प्रकार": "पाउडर",
+        "रूप": "पाउडर",
+        "उत्पाद प्रकार": "पानी में घुलनशील"
+      },
+      "use": [
+        "उत्पाद लेबल या योग्य कृषि सलाहकार के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
+  },
+  {
+    "name": "Ferrous Sulphate Agro Fertilizer",
+    "slug": "ferrous-sulphate-agro-fertilizer",
+    "displayName": "Ferrous Sulphate Agro Fertilizer",
+    "category": "Agro Fertilizer",
+    "price": "₹19.20 / Kg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2026/4/596917067/PQ/NO/YS/264964452/13-500x500.jpg",
+    "description": "Ferrous Sulphate Agro Fertilizer is a powder-form water soluble product in the agro fertilizer range. It is listed with 5 kg packing.",
+    "shortDescription": "Ferrous Sulphate Agro Fertilizer is a powder-form water soluble product in the agro fertilizer range. It is listed with 5 kg packing.",
+    "chips": [
+      "Powder",
+      "5 kg",
+      "Water Soluble"
+    ],
+    "specs": {
+      "Grade": "Ferrous Sulphate",
+      "Grade Standard": "Fertilizer Grade",
+      "Purity": "95 %",
+      "Packaging Size": "5 kg",
+      "Product Type": "Water Soluble",
+      "Physical Form": "Powder"
+    },
+    "use": [
+      "Use as directed on the product label or by a qualified crop advisor.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Ferrous Sulphate Agro Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/agro-fertilizer.html",
+    "hi": {
+      "displayName": "Ferrous Sulphate Agro Fertilizer",
+      "category": "एग्रो उर्वरक",
+      "description": "Ferrous Sulphate Agro Fertilizer एग्रो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह खेत उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Ferrous Sulphate Agro Fertilizer एग्रो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह खेत उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पाउडर",
+        "5 kg",
+        "पानी में घुलनशील"
+      ],
+      "specs": {
+        "ग्रेड": "फेरस सल्फेट",
+        "ग्रेड स्टैंडर्ड": "फर्टिलाइजर ग्रेड",
+        "शुद्धता": "95 %",
+        "पैकिंग साइज": "5 kg",
+        "उत्पाद प्रकार": "पानी में घुलनशील",
+        "भौतिक रूप": "पाउडर"
+      },
+      "use": [
+        "उत्पाद लेबल या योग्य कृषि सलाहकार के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
+  },
+  {
+    "name": "Hariyali Gold Ferrous Sulphate Agro Fertilizer",
+    "slug": "hariyali-gold-ferrous-sulphate-agro-fertilizer",
+    "displayName": "Hariyali Gold Ferrous Sulphate Agro Fertilizer",
+    "category": "Agro Fertilizer",
+    "price": "₹36 / Kg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2026/4/596917146/EB/UG/OD/264964452/37-500x500.jpg",
+    "description": "Hariyali Gold Ferrous Sulphate Agro Fertilizer is a powder-form water soluble product in the agro fertilizer range. It is listed for soil application with 5 kg packing.",
+    "shortDescription": "Hariyali Gold Ferrous Sulphate Agro Fertilizer is a powder-form water soluble product in the agro fertilizer range. It is listed for soil application with 5 kg packing.",
+    "chips": [
+      "Powder",
+      "5 kg",
+      "Soil Application",
+      "Water Soluble"
+    ],
+    "specs": {
+      "Grade": "Ferrous Sulphate 19%",
+      "Packaging Size": "5 kg",
+      "Product Type": "Water Soluble",
+      "Physical Form": "Powder",
+      "Recommended Application": "Soil Application",
+      "Solubility": "100% Soluble"
+    },
+    "use": [
+      "Use for soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Hariyali Gold Ferrous Sulphate Agro Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/agro-fertilizer.html",
+    "hi": {
+      "displayName": "Hariyali Gold Ferrous Sulphate Agro Fertilizer",
+      "category": "एग्रो उर्वरक",
+      "description": "Hariyali Gold Ferrous Sulphate Agro Fertilizer एग्रो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Hariyali Gold Ferrous Sulphate Agro Fertilizer एग्रो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पाउडर",
+        "5 kg",
+        "मिट्टी में उपयोग",
+        "पानी में घुलनशील"
+      ],
+      "specs": {
+        "ग्रेड": "Ferrous Sulphate 19%",
+        "पैकिंग साइज": "5 kg",
+        "उत्पाद प्रकार": "पानी में घुलनशील",
+        "भौतिक रूप": "पाउडर",
+        "अनुशंसित उपयोग": "मिट्टी में उपयोग",
+        "घुलनशीलता": "100% घुलनशील"
+      },
+      "use": [
+        "मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
+  },
+  {
+    "name": "Vansh Mono King Fertilizer",
+    "slug": "vansh-mono-king-fertilizer",
+    "displayName": "Vansh Mono King Fertilizer",
+    "category": "Bio Fertilizers",
+    "price": "₹36 / Kg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2026/4/596917592/CH/FJ/LJ/264964452/61-500x500.jpg",
+    "description": "Vansh Mono King Fertilizer is a powder-form kmb product in the bio fertilizers range. It is listed for drip irrigation, soil application, foliar spray for Vegetables, Field Crops, Cotton, Paddy (Rice), Sugarcane, Horticulture, Fruits, All Crops with 1 Kg packing.",
+    "shortDescription": "Vansh Mono King Fertilizer is a powder-form kmb product in the bio fertilizers range. It is listed for drip irrigation, soil application, foliar spray for Vegetables, Field Crops, Cotton, Paddy (Rice), Sugarcane, Horticulture, Fruits, All Crops with 1 Kg packing.",
+    "chips": [
+      "Powder",
+      "1 Kg",
+      "Drip Irrigation, Soil Application, Foliar Spray",
+      "KMB",
+      "Vegetables, Field Crops, Cotton, Paddy (Rice), Sugarcane, Horticulture, Fruits, All Crops"
+    ],
+    "specs": {
+      "Type": "KMB",
+      "Form": "Powder",
+      "Packaging Size": "1 Kg",
+      "Application": "Drip Irrigation, Soil Application, Foliar Spray",
+      "Source": "Mineral Based",
+      "Target Crop": "Vegetables, Field Crops, Cotton, Paddy (Rice), Sugarcane, Horticulture, Fruits, All Crops"
+    },
+    "use": [
+      "Use for drip irrigation, soil application, foliar spray as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Vansh Mono King Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/bio-fertilizers.html",
+    "hi": {
+      "displayName": "Vansh Mono King Fertilizer",
+      "category": "बायो उर्वरक",
+      "description": "Vansh Mono King Fertilizer बायो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह ड्रिप सिंचाई, मिट्टी में उपयोग, पत्तों पर छिड़काव और 1 Kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Vansh Mono King Fertilizer बायो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह ड्रिप सिंचाई, मिट्टी में उपयोग, पत्तों पर छिड़काव और 1 Kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पाउडर",
+        "1 Kg",
+        "ड्रिप सिंचाई, मिट्टी में उपयोग, पत्तों पर छिड़काव",
+        "KMB",
+        "सब्जियां, फील्ड फसलें, कपास, धान, गन्ना, बागवानी, फल, सभी फसलें"
+      ],
+      "specs": {
+        "प्रकार": "KMB",
+        "रूप": "पाउडर",
+        "पैकिंग साइज": "1 Kg",
+        "उपयोग": "ड्रिप सिंचाई, मिट्टी में उपयोग, पत्तों पर छिड़काव",
+        "स्रोत": "खनिज आधारित",
+        "लक्षित फसल": "सब्जियां, फील्ड फसलें, कपास, धान, गन्ना, बागवानी, फल, सभी फसलें"
+      },
+      "use": [
+        "ड्रिप सिंचाई, मिट्टी में उपयोग, पत्तों पर छिड़काव के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
+  },
+  {
+    "name": "Vansh Excel Gold Fertilizer",
+    "slug": "vansh-excel-gold-fertilizer",
+    "displayName": "Vansh Excel Gold Fertilizer",
+    "category": "Bio Fertilizers",
+    "price": "₹36 / Kg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2026/4/596917330/MR/GN/KB/264964452/50-500x500.jpg",
+    "description": "Vansh Excel Gold Fertilizer is a powder-form bio fertilizers product in the bio fertilizers range. It is listed for soil application for Vegetables with 5 Kg packing.",
+    "shortDescription": "Vansh Excel Gold Fertilizer is a powder-form bio fertilizers product in the bio fertilizers range. It is listed for soil application for Vegetables with 5 Kg packing.",
+    "chips": [
+      "Powder",
+      "5 Kg",
+      "Soil Application",
+      "Vegetables"
+    ],
+    "specs": {
+      "Form": "Powder",
+      "Packaging Size": "5 Kg",
+      "Application": "Soil Application",
+      "Source": "Plant Origin",
+      "Target Crop": "Vegetables",
+      "Pack Type": "Packet"
+    },
+    "use": [
+      "Use for soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Vansh Excel Gold Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/bio-fertilizers.html",
+    "hi": {
+      "displayName": "Vansh Excel Gold Fertilizer",
+      "category": "बायो उर्वरक",
+      "description": "Vansh Excel Gold Fertilizer बायो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 Kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Vansh Excel Gold Fertilizer बायो उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 Kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पाउडर",
+        "5 Kg",
+        "मिट्टी में उपयोग",
+        "सब्जियां"
+      ],
+      "specs": {
+        "रूप": "पाउडर",
+        "पैकिंग साइज": "5 Kg",
+        "उपयोग": "मिट्टी में उपयोग",
+        "स्रोत": "पौधा आधारित",
+        "लक्षित फसल": "सब्जियां",
+        "पैक प्रकार": "पैकेट"
+      },
+      "use": [
+        "मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
+  },
+  {
+    "name": "B-20% Boron Fertilizer",
+    "slug": "b-20-boron-fertilizer",
+    "displayName": "B-20% Boron Fertilizer",
+    "category": "Boron Fertilizer",
+    "price": "₹240 / Kg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2026/4/596917233/JP/YW/NW/264964452/42-500x500.jpg",
+    "description": "B-20% Boron Fertilizer is a granules-form boron fertilizer product in the boron fertilizer range. It is listed for soil with 25 kg packing.",
+    "shortDescription": "B-20% Boron Fertilizer is a granules-form boron fertilizer product in the boron fertilizer range. It is listed for soil with 25 kg packing.",
+    "chips": [
+      "Granules",
+      "25 kg",
+      "Soil",
+      "20% B",
+      "Boric Acid"
+    ],
+    "specs": {
+      "B Content": "20% B",
+      "Source": "Boric Acid",
+      "Form": "Granules",
+      "Application Method": "Soil",
+      "Packaging Size": "25 kg",
+      "Solubility": "100% Water Soluble"
+    },
+    "use": [
+      "Use for soil as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "B-20% Boron Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/boron-fertilizer.html",
+    "hi": {
+      "displayName": "B-20% Boron Fertilizer",
+      "category": "बोरोन उर्वरक",
+      "description": "B-20% Boron Fertilizer बोरोन उर्वरक श्रेणी का दाने उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी और 25 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "B-20% Boron Fertilizer बोरोन उर्वरक श्रेणी का दाने उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी और 25 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "दाने",
+        "25 kg",
+        "मिट्टी",
+        "20% B",
+        "बोरिक एसिड"
+      ],
+      "specs": {
+        "बोरोन कंटेंट": "20% B",
+        "स्रोत": "बोरिक एसिड",
+        "रूप": "दाने",
+        "उपयोग विधि": "मिट्टी",
+        "पैकिंग साइज": "25 kg",
+        "घुलनशीलता": "100% पानी में घुलनशील"
+      },
+      "use": [
+        "मिट्टी के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
+  },
+  {
+    "name": "Paddy Special Micronutrients Fertilizer",
+    "slug": "paddy-special-micronutrients-fertilizer",
+    "displayName": "Paddy Special Micronutrients Fertilizer",
+    "category": "Micronutrients Fertilizer",
+    "price": "₹60 / Kg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2026/4/596917556/HT/TE/JE/264964452/59-500x500.jpg",
+    "description": "Paddy Special Micronutrients Fertilizer is a granular-form micronutrients fertilizer product in the micronutrients fertilizer range. It is listed for soil application for All Crops with 5 kg packing.",
+    "shortDescription": "Paddy Special Micronutrients Fertilizer is a granular-form micronutrients fertilizer product in the micronutrients fertilizer range. It is listed for soil application for All Crops with 5 kg packing.",
+    "chips": [
+      "Granular",
+      "5 kg",
+      "Soil Application",
+      "All Crops"
+    ],
+    "specs": {
+      "Form": "Granular",
+      "Formulation": "Sulphated",
+      "Application Method": "Soil Application",
+      "Contained Micronutrients": "Sulphur (S)",
+      "Packaging Size": "5 kg",
+      "Target Crop": "All Crops"
+    },
+    "use": [
+      "Use for soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Paddy Special Micronutrients Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/micronutrients-fertilizer.html",
+    "hi": {
+      "displayName": "Paddy Special Micronutrients Fertilizer",
+      "category": "माइक्रोन्यूट्रिएंट उर्वरक",
+      "description": "Paddy Special Micronutrients Fertilizer माइक्रोन्यूट्रिएंट उर्वरक श्रेणी का दानेदार उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Paddy Special Micronutrients Fertilizer माइक्रोन्यूट्रिएंट उर्वरक श्रेणी का दानेदार उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "दानेदार",
+        "5 kg",
+        "मिट्टी में उपयोग",
+        "सभी फसलें"
+      ],
+      "specs": {
+        "रूप": "दानेदार",
+        "फॉर्मुलेशन": "सल्फेटेड",
+        "उपयोग विधि": "मिट्टी में उपयोग",
+        "मौजूद माइक्रोन्यूट्रिएंट": "Sulphur (S)",
+        "पैकिंग साइज": "5 kg",
+        "लक्षित फसल": "सभी फसलें"
+      },
+      "use": [
+        "मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
+  },
+  {
+    "name": "Magnesium Sulphate Micronutrients Fertilizer",
+    "slug": "magnesium-sulphate-micronutrients-fertilizer",
+    "displayName": "Magnesium Sulphate Micronutrients Fertilizer",
+    "category": "Micronutrients Fertilizer",
+    "price": "₹38.40 / Kg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2026/4/596917241/OV/EG/UD/264964452/43-500x500.jpg",
+    "description": "Magnesium Sulphate Micronutrients Fertilizer is a granular-form micronutrients fertilizer product in the micronutrients fertilizer range. It is listed for soil application for All Crops with 5 kg packing.",
+    "shortDescription": "Magnesium Sulphate Micronutrients Fertilizer is a granular-form micronutrients fertilizer product in the micronutrients fertilizer range. It is listed for soil application for All Crops with 5 kg packing.",
+    "chips": [
+      "Granular",
+      "5 kg",
+      "Soil Application",
+      "All Crops"
+    ],
+    "specs": {
+      "Form": "Granular",
+      "Application Method": "Soil Application",
+      "Contained Micronutrients": "Sulphur (S), Magnesium (Mg)",
+      "Packaging Size": "5 kg",
+      "Target Crop": "All Crops",
+      "Pack Type": "Packet"
+    },
+    "use": [
+      "Use for soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Magnesium Sulphate Micronutrients Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/micronutrients-fertilizer.html",
+    "hi": {
+      "displayName": "Magnesium Sulphate Micronutrients Fertilizer",
+      "category": "माइक्रोन्यूट्रिएंट उर्वरक",
+      "description": "Magnesium Sulphate Micronutrients Fertilizer माइक्रोन्यूट्रिएंट उर्वरक श्रेणी का दानेदार उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Magnesium Sulphate Micronutrients Fertilizer माइक्रोन्यूट्रिएंट उर्वरक श्रेणी का दानेदार उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "दानेदार",
+        "5 kg",
+        "मिट्टी में उपयोग",
+        "सभी फसलें"
+      ],
+      "specs": {
+        "रूप": "दानेदार",
+        "उपयोग विधि": "मिट्टी में उपयोग",
+        "मौजूद माइक्रोन्यूट्रिएंट": "Sulphur (S), Magnesium (Mg)",
+        "पैकिंग साइज": "5 kg",
+        "लक्षित फसल": "सभी फसलें",
+        "पैक प्रकार": "पैकेट"
+      },
+      "use": [
+        "मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
+  },
+  {
+    "name": "Micro Ferrous Micronutrient Fertilizer",
+    "slug": "micro-ferrous-micronutrient-fertilizer",
+    "displayName": "Micro Ferrous Micronutrient Fertilizer",
+    "category": "Micronutrients Fertilizer",
+    "price": "₹24 / Kg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2026/4/596917139/IQ/TQ/KJ/264964452/36-500x500.jpg",
+    "description": "Micro Ferrous Micronutrient Fertilizer is a powder-form micronutrients fertilizer product in the micronutrients fertilizer range. It is listed for seed treatment for All Crops with 1 kg packing.",
+    "shortDescription": "Micro Ferrous Micronutrient Fertilizer is a powder-form micronutrients fertilizer product in the micronutrients fertilizer range. It is listed for seed treatment for All Crops with 1 kg packing.",
+    "chips": [
+      "Powder",
+      "1 kg",
+      "Seed Treatment",
+      "All Crops"
+    ],
+    "specs": {
+      "Form": "Powder",
+      "Application Method": "Seed Treatment",
+      "Contained Micronutrients": "Sulphur (S), Iron (Fe)",
+      "Packaging Size": "1 kg",
+      "Target Crop": "All Crops"
+    },
+    "use": [
+      "Use for seed treatment as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Micro Ferrous Micronutrient Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/micronutrients-fertilizer.html",
+    "hi": {
+      "displayName": "Micro Ferrous Micronutrient Fertilizer",
+      "category": "माइक्रोन्यूट्रिएंट उर्वरक",
+      "description": "Micro Ferrous Micronutrient Fertilizer माइक्रोन्यूट्रिएंट उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह बीज उपचार और 1 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Micro Ferrous Micronutrient Fertilizer माइक्रोन्यूट्रिएंट उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह बीज उपचार और 1 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पाउडर",
+        "1 kg",
+        "बीज उपचार",
+        "सभी फसलें"
+      ],
+      "specs": {
+        "रूप": "पाउडर",
+        "उपयोग विधि": "बीज उपचार",
+        "मौजूद माइक्रोन्यूट्रिएंट": "Sulphur (S), Iron (Fe)",
+        "पैकिंग साइज": "1 kg",
+        "लक्षित फसल": "सभी फसलें"
+      },
+      "use": [
+        "बीज उपचार के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
+  },
+  {
+    "name": "Hariyali Gold Organic Fertilizers and Manure",
+    "slug": "hariyali-gold-organic-fertilizers-and-manure",
+    "displayName": "Hariyali Gold Organic Fertilizers and Manure",
+    "category": "Organic Manure",
+    "price": "₹48 / Kg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2026/4/597419908/MN/NH/JK/264964452/vansh-hariyali-gold-bio-fertilizer-500x500.jpeg",
+    "description": "Hariyali Gold Organic Fertilizers and Manure is a granules-form organic manure product in the organic manure range. It is listed for soil application with 25 kg packing.",
+    "shortDescription": "Hariyali Gold Organic Fertilizers and Manure is a granules-form organic manure product in the organic manure range. It is listed for soil application with 25 kg packing.",
+    "chips": [
+      "Granules",
+      "25 kg",
+      "Soil Application",
+      "Organic Manure",
+      "Plant Origin"
+    ],
+    "specs": {
+      "Product Type": "Organic Manure",
+      "Form": "Granules",
+      "Packaging Size": "25 kg",
+      "Amino Acid Content": "98 %",
+      "Application": "Soil Application",
+      "Source": "Plant Origin"
+    },
+    "use": [
+      "Use for soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Hariyali Gold Organic Fertilizers and Manure",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/organic-manure.html",
+    "hi": {
+      "displayName": "Hariyali Gold Organic Fertilizers and Manure",
+      "category": "जैविक खाद",
+      "description": "Hariyali Gold Organic Fertilizers and Manure जैविक खाद श्रेणी का दाने उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 25 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Hariyali Gold Organic Fertilizers and Manure जैविक खाद श्रेणी का दाने उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 25 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "दाने",
+        "25 kg",
+        "मिट्टी में उपयोग",
+        "जैविक खाद",
+        "पौधा आधारित"
+      ],
+      "specs": {
+        "उत्पाद प्रकार": "जैविक खाद",
+        "रूप": "दाने",
+        "पैकिंग साइज": "25 kg",
+        "अमीनो एसिड कंटेंट": "98 %",
+        "उपयोग": "मिट्टी में उपयोग",
+        "स्रोत": "पौधा आधारित"
+      },
+      "use": [
+        "मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
+  },
+  {
+    "name": "Toofan Zinc Fertilizer",
+    "slug": "toofan-zinc-fertilizer",
+    "displayName": "Toofan Zinc Fertilizer",
+    "category": "Zinc Fertilizers",
+    "price": "₹156 / Kg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2026/4/596917175/RJ/JG/NO/264964452/40-500x500.jpg",
+    "description": "Toofan Zinc Fertilizer is a powder-form zinc edta product in the zinc fertilizers range. It is listed for soil application with 5 kg packing.",
+    "shortDescription": "Toofan Zinc Fertilizer is a powder-form zinc edta product in the zinc fertilizers range. It is listed for soil application with 5 kg packing.",
+    "chips": [
+      "Powder",
+      "5 kg",
+      "Soil Application",
+      "Zinc EDTA"
+    ],
+    "specs": {
+      "Zinc Source": "Zinc EDTA",
+      "Form": "Powder",
+      "Zn Content": "12 %",
+      "Application Method": "Soil Application",
+      "Chelated Form": "EDTA",
+      "Pack Size": "5 kg"
+    },
+    "use": [
+      "Use for soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Toofan Zinc Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/zinc-fertilizers.html",
+    "hi": {
+      "displayName": "Toofan Zinc Fertilizer",
+      "category": "जिंक उर्वरक",
+      "description": "Toofan Zinc Fertilizer जिंक उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Toofan Zinc Fertilizer जिंक उर्वरक श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पाउडर",
+        "5 kg",
+        "मिट्टी में उपयोग",
+        "जिंक EDTA"
+      ],
+      "specs": {
+        "जिंक स्रोत": "जिंक EDTA",
+        "रूप": "पाउडर",
+        "जिंक कंटेंट": "12 %",
+        "उपयोग विधि": "मिट्टी में उपयोग",
+        "चिलेटेड रूप": "EDTA",
+        "पैक साइज": "5 kg"
+      },
+      "use": [
+        "मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
+  },
+  {
+    "name": "Zinc Sulphate Monohydrate",
+    "slug": "zinc-sulphate-monohydrate",
+    "displayName": "Zinc Sulphate Monohydrate",
+    "category": "Zinc Sulphate Monohydrate",
+    "price": "₹144 / Kg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2026/4/596917255/BK/LH/BC/264964452/44-500x500.jpg",
+    "description": "Zinc Sulphate Monohydrate is a powder-form agriculture grade product in the zinc sulphate monohydrate range. It is listed for soil with 5 kg packing.",
+    "shortDescription": "Zinc Sulphate Monohydrate is a powder-form agriculture grade product in the zinc sulphate monohydrate range. It is listed for soil with 5 kg packing.",
+    "chips": [
+      "Powder",
+      "5 kg",
+      "Soil",
+      "33% Zn"
+    ],
+    "specs": {
+      "Zn Content": "33% Zn",
+      "Purity": "99%",
+      "Grade": "Agriculture Grade",
+      "Form": "Powder",
+      "Packaging Size": "5 kg",
+      "Application Method": "Soil"
+    },
+    "use": [
+      "Use for soil as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "Zinc Sulphate Monohydrate",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/zinc-sulphate-monohydrate.html",
+    "hi": {
+      "displayName": "Zinc Sulphate Monohydrate",
+      "category": "जिंक सल्फेट मोनोहाइड्रेट",
+      "description": "Zinc Sulphate Monohydrate जिंक सल्फेट मोनोहाइड्रेट श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "Zinc Sulphate Monohydrate जिंक सल्फेट मोनोहाइड्रेट श्रेणी का पाउडर उत्पाद है। उपलब्ध विवरण के अनुसार यह मिट्टी और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "पाउडर",
+        "5 kg",
+        "मिट्टी",
+        "33% Zn"
+      ],
+      "specs": {
+        "जिंक कंटेंट": "33% Zn",
+        "शुद्धता": "99%",
+        "ग्रेड": "एग्रीकल्चर ग्रेड",
+        "रूप": "पाउडर",
+        "पैकिंग साइज": "5 kg",
+        "उपयोग विधि": "मिट्टी"
+      },
+      "use": [
+        "मिट्टी के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
+  },
+  {
+    "name": "90% DP Sulphur Fertilizer",
+    "slug": "90-dp-sulphur-fertilizer",
+    "displayName": "90% DP Sulphur Fertilizer",
+    "category": "Sulfur Fertilizer",
+    "price": "₹90 / Kg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2026/4/596917155/VJ/SC/ZV/264964452/38-500x500.jpg",
+    "description": "90% DP Sulphur Fertilizer is a dp-form sulfur fertilizer product in the sulfur fertilizer range. It is listed for seed treatment with 5 kg packing.",
+    "shortDescription": "90% DP Sulphur Fertilizer is a dp-form sulfur fertilizer product in the sulfur fertilizer range. It is listed for seed treatment with 5 kg packing.",
+    "chips": [
+      "DP",
+      "5 kg",
+      "Seed Treatment",
+      "90%"
+    ],
+    "specs": {
+      "Sulphur Content (%)": "90%",
+      "Form": "DP",
+      "Packaging Size": "5 kg",
+      "Application Method": "Seed Treatment",
+      "Purity": "99%",
+      "Pack Type": "Packet"
+    },
+    "use": [
+      "Use for seed treatment as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "90% DP Sulphur Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/sulfur-fertilizer.html",
+    "hi": {
+      "displayName": "90% DP Sulphur Fertilizer",
+      "category": "सल्फर उर्वरक",
+      "description": "90% DP Sulphur Fertilizer सल्फर उर्वरक श्रेणी का DP उत्पाद है। उपलब्ध विवरण के अनुसार यह बीज उपचार और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "90% DP Sulphur Fertilizer सल्फर उर्वरक श्रेणी का DP उत्पाद है। उपलब्ध विवरण के अनुसार यह बीज उपचार और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "DP",
+        "5 kg",
+        "बीज उपचार",
+        "90%"
+      ],
+      "specs": {
+        "सल्फर कंटेंट": "90%",
+        "रूप": "DP",
+        "पैकिंग साइज": "5 kg",
+        "उपयोग विधि": "बीज उपचार",
+        "शुद्धता": "99%",
+        "पैक प्रकार": "पैकेट"
+      },
+      "use": [
+        "बीज उपचार के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
+  },
+  {
+    "name": "90% WDG Excel Plus Sulphur Fertilizer",
+    "slug": "90-wdg-excel-plus-sulphur-fertilizer",
+    "displayName": "90% WDG Excel Plus Sulphur Fertilizer",
+    "category": "Sulfur Fertilizer",
+    "price": "₹90 / Kg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2026/4/596917161/YB/AN/BV/264964452/39-500x500.jpg",
+    "description": "90% WDG Excel Plus Sulphur Fertilizer is a wdg / wg-form sulfur fertilizer product in the sulfur fertilizer range. It is listed for seed treatment, soil application with 5 kg packing.",
+    "shortDescription": "90% WDG Excel Plus Sulphur Fertilizer is a wdg / wg-form sulfur fertilizer product in the sulfur fertilizer range. It is listed for seed treatment, soil application with 5 kg packing.",
+    "chips": [
+      "WDG / WG",
+      "5 kg",
+      "Seed Treatment, Soil Application",
+      "90%"
+    ],
+    "specs": {
+      "Sulphur Content (%)": "90%",
+      "Form": "WDG / WG",
+      "Packaging Size": "5 kg",
+      "Application Method": "Seed Treatment, Soil Application",
+      "Purity": "99%",
+      "Pack Type": "Packet"
+    },
+    "use": [
+      "Use for seed treatment, soil application as directed on the product label.",
+      "Apply according to crop stage, soil need, and agronomist recommendation.",
+      "Store sealed packs away from moisture and direct sunlight."
+    ],
+    "benefits": [
+      "Supports clear product selection through source-listed form, packing, and application details.",
+      "Suitable for dealer-led crop input programs where the listed application fits.",
+      "Useful for bulk inquiry discussions with visible category and specifications."
+    ],
+    "inquiryName": "90% WDG Excel Plus Sulphur Fertilizer",
+    "source": "Fish Gold Industries public product page",
+    "sourceUrl": "https://www.fishgoldindustries.com/sulfur-fertilizer.html",
+    "hi": {
+      "displayName": "90% WDG Excel Plus Sulphur Fertilizer",
+      "category": "सल्फर उर्वरक",
+      "description": "90% WDG Excel Plus Sulphur Fertilizer सल्फर उर्वरक श्रेणी का WDG / WG उत्पाद है। उपलब्ध विवरण के अनुसार यह बीज उपचार, मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "shortDescription": "90% WDG Excel Plus Sulphur Fertilizer सल्फर उर्वरक श्रेणी का WDG / WG उत्पाद है। उपलब्ध विवरण के अनुसार यह बीज उपचार, मिट्टी में उपयोग और 5 kg पैकिंग के लिए सूचीबद्ध है।",
+      "chips": [
+        "WDG / WG",
+        "5 kg",
+        "बीज उपचार, मिट्टी में उपयोग",
+        "90%"
+      ],
+      "specs": {
+        "सल्फर कंटेंट": "90%",
+        "रूप": "WDG / WG",
+        "पैकिंग साइज": "5 kg",
+        "उपयोग विधि": "बीज उपचार, मिट्टी में उपयोग",
+        "शुद्धता": "99%",
+        "पैक प्रकार": "पैकेट"
+      },
+      "use": [
+        "बीज उपचार, मिट्टी में उपयोग के लिए उत्पाद लेबल के निर्देशानुसार उपयोग करें।",
+        "फसल अवस्था, मिट्टी की जरूरत और कृषि सलाह के अनुसार उपयोग करें।",
+        "सीलबंद पैक को नमी और सीधी धूप से दूर रखें।"
+      ],
+      "benefits": [
+        "स्रोत में दिए गए रूप, पैकिंग और उपयोग विवरण से उत्पाद चयन आसान होता है।",
+        "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
+        "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
+      ]
+    }
   }
 ]

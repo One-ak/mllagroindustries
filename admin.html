@@ -368,9 +368,18 @@
   }
 
   // ── Fetch data from the server ──
+  function getApiUrl(path) {
+    if (window.location.port && window.location.port !== '3000') {
+      return `http://${window.location.hostname || 'localhost'}:3000${path}`;
+    }
+    return path;
+  }
+
   async function loadData() {
     try {
-      const res  = await fetch('/api/submissions');
+      const res  = await fetch(getApiUrl('/api/submissions'), {
+        headers: { 'Authorization': ADMIN_PASSWORD }
+      });
       const json = await res.json();
       allData = json.data || [];
       updateStats();
@@ -438,7 +447,10 @@
   async function deleteRow(id) {
     if (!confirm('Delete this submission?')) return;
     try {
-      await fetch('/api/submissions/' + id, { method: 'DELETE' });
+      await fetch(getApiUrl('/api/submissions/' + id), { 
+        method: 'DELETE',
+        headers: { 'Authorization': ADMIN_PASSWORD }
+      });
       allData = allData.filter(r => r.id !== id);
       updateStats();
       renderTable();
@@ -463,7 +475,12 @@
 
   // ── Helpers ──
   function esc(str) {
-    return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return String(str || '')
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;');
   }
   function formatDate(dt) {
     if (!dt) return '—';

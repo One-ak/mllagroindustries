@@ -1,78 +1,15 @@
 <!DOCTYPE html>
-<!--
-  ============================================================
-   infrastructure.html — Vansh Feeds | Infrastructure Page
-  ============================================================
-  PURPOSE:
-    Showcases Vansh Group's manufacturing facility in Barabanki.
-    Gives visitors confidence in production capacity and modernity
-    through 3 factory photos in a gallery grid.
-
-  PAGE STRUCTURE:
-    1. <head>        — meta, theme script, fonts, CSS
-    2. .topbar       — contact strip (desktop only)
-    3. .navbar       — sticky navigation
-    4. <header>      — hero banner with page title
-    5. <section>     — section heading + 3-photo factory gallery
-    6. <footer>      — site-wide footer
-    7. <script>      — i18n.js then main.js
-
-  ANIMATION CLASSES USED:
-    .reveal          — section fades up on scroll
-    .reveal-text     — section title letter-spacing expands
-    .reveal-scale    — each gallery photo scales up on scroll with stagger
-    .text-gradient   — "Infrastructure" heading colour cycles green→gold
-    .text-words      — hero subtitle word-by-word animation
-    .typewriter-cursor — blinking | cursor after subtitle
-
-  PHOTO GALLERY:
-    Uses .grid-3 layout — 3 equal columns on desktop.
-    Each image has a transition-delay (0s, 0.1s, 0.2s) so they
-    pop in one after the other rather than all at once.
-    Images are from Unsplash (factory/machinery/warehouse shots).
-
-  DARK MODE:
-    All CSS variable colours adapt automatically.
-    The images themselves are unaffected by dark mode.
-  ============================================================
--->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infrastructure | Vansh Feeds</title>
-
-    <!--
-      theme-init.js MUST be first — runs synchronously before any paint.
-      1. Applies saved dark/light theme to <html> instantly (no flash).
-      2. Injects the page-transition overlay before body content renders.
-      Never add defer or async to this script.
-    -->
+    <title>Infrastructure | Vansh Group</title>
     <script src="js/theme-init.js"></script>
-
-    <!-- Font Awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Main stylesheet — layout, colours, animations -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-
-    <!-- ═══════════════════════════════════════════════════════
-         TOPBAR
-         Thin green strip with contact details.
-         Hidden on screens ≤ 1024px via CSS media query.
-    ═══════════════════════════════════════════════════════ -->
-    <div class="topbar">
-        <div class="container">
-            <div class="topbar-contact">
-                <span><i class="fas fa-phone-alt"></i> +91 9670252525</span>
-                <span><i class="fas fa-envelope"></i> vanshgroup@gmail.com</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════
          NAVBAR
          Sticky navigation bar.
          "Infrastructure" link has class="active" (gold underline).
@@ -110,7 +47,7 @@
                         <i class="fas fa-moon"></i>
                     </button>
                 </div>
-                <a href="contact.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left: 1rem;">
+                <a href="business.html" class="btn btn-primary" data-i18n="nav.cta" style="margin-left: 1rem;">
                     Business Inquiry
                 </a>
             </div>
@@ -129,62 +66,91 @@
     <header class="hero" style="padding: 4rem 0;">
         <div class="hero-bg" style="opacity: 0.2;"></div>
         <div class="container">
-            <h1 style="font-size: 3.5rem;">Our <span class="text-gradient">Infrastructure</span></h1>
-            <p class="text-words typewriter-cursor">State-of-the-art manufacturing facility in Barabanki.</p>
+            <h1 class="infrastructure-hero-title" data-i18n="infra.hero.title">Our <span class="text-gradient">Infrastructure</span></h1>
+            <p class="text-words typewriter-cursor" data-i18n="infra.hero.subtitle">Agro-input, fertilizer, feed and bio-solution manufacturing support from Barabanki.</p>
         </div>
     </header>
 
     <!-- ═══════════════════════════════════════════════════════
-         MAIN CONTENT — Factory Photo Gallery
-         
-         Structure:
-           1. Centred heading + description text
-           2. .grid-3 — 3 factory photos side by side
-         
-         Each image uses .reveal-scale so it starts at scale(0.9)
-         and animates to scale(1) when it enters the viewport.
-         
-         transition-delay values (0s, 0.1s, 0.2s) create a staggered
-         cascade effect — images appear one after another rather than
-         simultaneously.
-         
-         Images are from Unsplash (royalty-free):
-           • Factory interior
-           • Manufacturing machinery
-           • Warehouse / storage
+         MAIN CONTENT — Manufacturing Stage Cards
     ═══════════════════════════════════════════════════════ -->
-    <section class="section reveal">
+    <section class="section infrastructure-section reveal" aria-labelledby="advanced-manufacturing-title">
         <div class="container">
 
-            <!-- Section heading — centred -->
-            <div class="text-center mb-2">
-                <!-- .section-title adds the gold underline via ::after
-                     .reveal-text triggers letter-spacing expand animation -->
-                <h2 class="section-title reveal-text">Advanced Manufacturing Unit</h2>
-                <p style="color: var(--gray); font-size: 1.125rem; max-width: 700px; margin: 0 auto 3rem;">
-                    We have invested heavily in modern technology to ensure the highest quality of feed production.
+            <div class="infrastructure-header">
+                <span class="infrastructure-eyebrow" data-i18n="infra.kicker">Barabanki Facility</span>
+                <h2 id="advanced-manufacturing-title" class="section-title reveal-text" data-i18n="infra.title">Advanced Manufacturing Unit</h2>
+                <p class="infrastructure-subtitle" data-i18n="infra.subtitle">
+                    Our infrastructure supports MLL Agro Industries led organic inputs, fertilizers,
+                    soil health products and the group’s feed and bio-agro categories.
                 </p>
             </div>
 
-            <!-- 3-column photo gallery with staggered reveal -->
-            <div class="grid-3" style="margin-top: 3rem;">
-                <!-- Image 1: Factory interior (no delay — first to appear) -->
-                <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&w=800&q=80"
-                     alt="Factory Interior"
-                     class="reveal-scale"
-                     style="border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+            <div class="manufacturing-stages">
+                <article class="manufacturing-stage-card reveal-scale">
+                    <figure class="stage-media">
+                        <img src="assets/infrastructure/raw-material-handling.jpg"
+                             width="1200"
+                             height="900"
+                             loading="lazy"
+                             decoding="async"
+                             alt="Workers checking and weighing raw ingredients in an agro manufacturing unit">
+                    </figure>
+                    <div class="stage-content">
+                        <span class="stage-label" data-i18n="infra.stage1.label">Stage 1</span>
+                        <h3 data-i18n="infra.stage1.title">Raw Material / Ingredient Handling</h3>
+                        <p data-i18n="infra.stage1.desc">
+                            Incoming ingredients are weighed, inspected, and handled with disciplined
+                            storage practices before they move into production.
+                        </p>
+                    </div>
+                </article>
 
-                <!-- Image 2: Machinery (0.1s delay — appears slightly after image 1) -->
-                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&w=800&q=80"
-                     alt="Machinery"
-                     class="reveal-scale"
-                     style="transition-delay: 0.1s; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+                <article class="manufacturing-stage-card reveal-scale" style="transition-delay: 0.1s;">
+                    <figure class="stage-media">
+                        <img src="assets/infrastructure/processing-manufacturing-unit.jpg"
+                             width="1200"
+                             height="900"
+                             loading="lazy"
+                             decoding="async"
+                             alt="Production and blending equipment inside an Indian agro manufacturing facility">
+                    </figure>
+                    <div class="stage-content">
+                        <span class="stage-label" data-i18n="infra.stage2.label">Stage 2</span>
+                        <h3 data-i18n="infra.stage2.title">Processing / Manufacturing Unit</h3>
+                        <p data-i18n="infra.stage2.desc">
+                            Practical processing systems support controlled blending, batch consistency,
+                            and reliable output across agro-input and feed categories.
+                        </p>
+                    </div>
+                </article>
 
-                <!-- Image 3: Warehouse (0.2s delay — appears last in the stagger) -->
-                <img src="https://images.unsplash.com/photo-1621570169561-3145b23d9b89?ixlib=rb-4.0.3&w=800&q=80"
-                     alt="Warehouse"
-                     class="reveal-scale"
-                     style="transition-delay: 0.2s; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+                <article class="manufacturing-stage-card reveal-scale" style="transition-delay: 0.2s;">
+                    <figure class="stage-media">
+                        <img src="assets/infrastructure/packing-quality-dispatch.jpg"
+                             width="1200"
+                             height="900"
+                             loading="lazy"
+                             decoding="async"
+                             alt="Team packing and dispatching finished fertilizer and pesticide products from warehouse">
+                    </figure>
+                    <div class="stage-content">
+                        <span class="stage-label" data-i18n="infra.stage3.label">Stage 3</span>
+                        <h3 data-i18n="infra.stage3.title">Packing / Quality Dispatch</h3>
+                        <p data-i18n="infra.stage3.desc">
+                            Finished packs are checked, sealed, organized, and readied for dependable
+                            dispatch to distributors, dealers, and farming markets.
+                        </p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="infrastructure-footnote">
+                <i class="fas fa-industry" aria-hidden="true"></i>
+                <p data-i18n="infra.footnote">
+                    A practical manufacturing flow designed for dependable quality, traceable handling,
+                    and timely delivery.
+                </p>
             </div>
 
         </div>
@@ -217,6 +183,6 @@
         2. main.js  — all interactions (scroll reveal, dark mode, transitions)
     -->
     <script src="js/i18n.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=advanced-manufacturing-unit"></script>
 </body>
 </html>
