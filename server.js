@@ -1,13 +1,13 @@
 /**
  * =============================================================
- *  server.js — Vansh Feeds | Backend Server
+ *  server.js — MLL Agro Industries | Backend Server
  * =============================================================
  *
  * Stack : Node.js + Express + better-sqlite3
  * Purpose:
  *   1. Serves all static HTML/CSS/JS files from this directory.
  *   2. Accepts POST /api/contact  — saves form submissions to
- *      the SQLite database (vansh_leads.db).
+ *      the SQLite database.
  *   3. Accepts GET  /api/submissions — returns all submissions
  *      as JSON (used by admin.html dashboard).
  *   4. Accepts DELETE /api/submissions/:id — delete one record.
@@ -19,15 +19,19 @@
 
 const express  = require('express');
 const cors     = require('cors');
+const crypto   = require('crypto');
 const path     = require('path');
 const Database = require('better-sqlite3');
 
 // ── App & DB setup ───────────────────────────────────────────
 const app  = express();
 const PORT = process.env.PORT || 3000;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'change-this-password';
+const DB_PATH = process.env.DB_PATH || path.join(__dirname, 'vansh_leads.db');
+const adminSessions = new Set();
 
 // Open (or create) the SQLite database file
-const db = new Database(path.join(__dirname, 'vansh_leads.db'));
+const db = new Database(DB_PATH);
 
 // Create the submissions table if it doesn't exist yet
 db.exec(`
@@ -47,6 +51,27 @@ app.use(express.json());                  // parse JSON request bodies
 app.use(express.static(__dirname));       // serve all static files (HTML/CSS/JS)
 
 // ── Routes ───────────────────────────────────────────────────
+
+app.get('/api/health', (req, res) => {
+  res.json({ success: true, service: 'mllagroindustries', status: 'ok' });
+});
+
+app.post('/api/admin/login', (req, res) => {
+  const { password } = req.body || {};
+
+  if (password !== ADMIN_PASSWORD) {
+    return res.status(401).json({ success: false, error: 'Invalid password.' });
+  }
+
+  const token = crypto.randomBytes(32).toString('hex');
+  adminSessions.add(token);
+  res.json({ success: true, token });
+});
+
+app.post('/api/admin/logout', requireAdmin, (req, res) => {
+  adminSessions.delete(getBearerToken(req));
+  res.json({ success: true });
+});
 
 /**
  * POST /api/contact
@@ -95,10 +120,7 @@ app.post('/api/contact', (req, res) => {
  * Protected by Authorization header.
  * Used by admin.html.
  */
-app.get('/api/submissions', (req, res) => {
-  if (req.headers.authorization !== 'vansh@admin2026') {
-    return res.status(401).json({ success: false, error: 'Unauthorized' });
-  }
+app.get('/api/submissions', requireAdmin, (req, res) => {
   try {
     const rows = db.prepare(`
       SELECT * FROM submissions ORDER BY id DESC
@@ -115,10 +137,7 @@ app.get('/api/submissions', (req, res) => {
  * Deletes a single submission by ID.
  * Protected by Authorization header.
  */
-app.delete('/api/submissions/:id', (req, res) => {
-  if (req.headers.authorization !== 'vansh@admin2026') {
-    return res.status(401).json({ success: false, error: 'Unauthorized' });
-  }
+app.delete('/api/submissions/:id', requireAdmin, (req, res) => {
   try {
     const result = db.prepare('DELETE FROM submissions WHERE id = ?').run(req.params.id);
     if (result.changes === 0) {
@@ -131,10 +150,24 @@ app.delete('/api/submissions/:id', (req, res) => {
   }
 });
 
+function getBearerToken(req) {
+  const header = req.headers.authorization || '';
+  return header.startsWith('Bearer ') ? header.slice(7) : header;
+}
+
+function requireAdmin(req, res, next) {
+  const token = getBearerToken(req);
+  if (!token || !adminSessions.has(token)) {
+    return res.status(401).json({ success: false, error: 'Unauthorized' });
+  }
+  next();
+}
+
 // ── Start server ─────────────────────────────────────────────
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`\n✅ Vansh Feeds server is LIVE on your network!`);
+  console.log(`\n✅ MLL Agro Industries server is LIVE on your network!`);
   console.log(`   1. On THIS computer :  http://localhost:${PORT}`);
   console.log(`   2. On OTHER devices :  http://YOUR_COMPUTER_IP:${PORT}`);
   console.log(`\n   Admin panel :  http://localhost:${PORT}/admin.html`);
+  console.log(`   Database    :  ${DB_PATH}`);
 });

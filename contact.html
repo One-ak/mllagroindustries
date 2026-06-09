@@ -377,14 +377,7 @@
         msgBox.style.display = 'none';
 
         try {
-          // Detect the correct API URL
-          let apiUrl = '/api/contact';
-          
-          if (window.location.port !== '3000') {
-            // If we are on port 5500 (Live Server) or file:// protocol
-            const host = window.location.hostname || 'localhost';
-            apiUrl = `http://${host}:3000/api/contact`;
-          }
+          const apiUrl = getContactApiUrl('/api/contact');
 
           // Abort controller to prevent infinite "Sending..." hang
           const controller = new AbortController();
@@ -421,6 +414,20 @@
           btn.disabled    = false;
           btn.textContent = t('contact.form.submit');
         }
+      }
+
+      function getContactApiUrl(path) {
+        const host = window.location.hostname || 'localhost';
+        const isLocalStatic =
+          window.location.protocol === 'file:' ||
+          ((host === 'localhost' || host === '127.0.0.1') &&
+           window.location.port &&
+           window.location.port !== '3000');
+
+        if (isLocalStatic) {
+          return `http://${host}:3000${path}`;
+        }
+        return path;
       }
     </script>
 </body>

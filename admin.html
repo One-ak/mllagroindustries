@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin — Vansh Feeds Leads</title>
+  <title>Admin - MLL Agro Industries Leads</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -242,7 +242,7 @@
 <!-- ════════════════════ LOGIN SCREEN ════════════════════ -->
 <div id="login-screen">
   <div class="login-box">
-    <img class="login-logo" src="assets/logo_en.png" alt="Vansh Feeds">
+    <img class="login-logo" src="assets/logo_en.png" alt="MLL Agro Industries">
     <h1>Admin Panel</h1>
     <p>Enter your password to view form submissions</p>
     <input type="password" id="pwd-input" placeholder="Password"
@@ -259,10 +259,10 @@
 
   <header>
     <div class="header-left">
-      <img src="assets/logo_en.png" alt="Vansh Feeds">
+      <img src="assets/logo_en.png" alt="MLL Agro Industries">
       <div>
         <h1>Lead Management</h1>
-        <span>Vansh Feeds — Contact Form Submissions</span>
+        <span>MLL Agro Industries - Contact Form Submissions</span>
       </div>
     </div>
     <button class="btn-logout" onclick="logout()">
@@ -346,22 +346,48 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  // ── Simple password gate (change this to your preferred password) ──
-  const ADMIN_PASSWORD = 'vansh@admin2026';
+  const ADMIN_TOKEN_KEY = 'mll_admin_token';
   let allData = [];
 
-  function login() {
+  async function login() {
     const pwd = document.getElementById('pwd-input').value;
-    if (pwd === ADMIN_PASSWORD) {
+    const errorBox = document.getElementById('login-error');
+    errorBox.style.display = 'none';
+
+    try {
+      const res = await fetch(getApiUrl('/api/admin/login'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: pwd })
+      });
+      const json = await res.json().catch(() => ({}));
+
+      if (!res.ok || !json.success || !json.token) {
+        const message = res.status === 404
+          ? 'Backend is not available on this host.'
+          : (json.error || 'Incorrect password. Try again.');
+        throw new Error(message);
+      }
+
+      sessionStorage.setItem(ADMIN_TOKEN_KEY, json.token);
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('dashboard').style.display = 'block';
       loadData();
-    } else {
-      document.getElementById('login-error').style.display = 'block';
+    } catch (e) {
+      errorBox.textContent = e.message || 'Could not connect to backend.';
+      errorBox.style.display = 'block';
     }
   }
 
   function logout() {
+    const token = sessionStorage.getItem(ADMIN_TOKEN_KEY);
+    if (token) {
+      fetch(getApiUrl('/api/admin/logout'), {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}` }
+      }).catch(() => {});
+    }
+    sessionStorage.removeItem(ADMIN_TOKEN_KEY);
     document.getElementById('login-screen').style.display = 'flex';
     document.getElementById('dashboard').style.display = 'none';
     document.getElementById('pwd-input').value = '';
@@ -369,16 +395,29 @@
 
   // ── Fetch data from the server ──
   function getApiUrl(path) {
-    if (window.location.port && window.location.port !== '3000') {
+    const host = window.location.hostname || 'localhost';
+    const isLocalStatic =
+      window.location.protocol === 'file:' ||
+      ((host === 'localhost' || host === '127.0.0.1') &&
+       window.location.port &&
+       window.location.port !== '3000');
+
+    if (isLocalStatic) {
       return `http://${window.location.hostname || 'localhost'}:3000${path}`;
     }
     return path;
   }
 
   async function loadData() {
+    const token = sessionStorage.getItem(ADMIN_TOKEN_KEY);
+    if (!token) {
+      logout();
+      return;
+    }
+
     try {
       const res  = await fetch(getApiUrl('/api/submissions'), {
-        headers: { 'Authorization': ADMIN_PASSWORD }
+        headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!res.ok) throw new Error(`Backend returned ${res.status}`);
       const json = await res.json();
@@ -457,10 +496,11 @@
   // ── Delete a row ──
   async function deleteRow(id) {
     if (!confirm('Delete this submission?')) return;
+    const token = sessionStorage.getItem(ADMIN_TOKEN_KEY);
     try {
       await fetch(getApiUrl('/api/submissions/' + id), { 
         method: 'DELETE',
-        headers: { 'Authorization': ADMIN_PASSWORD }
+        headers: { 'Authorization': `Bearer ${token}` }
       });
       allData = allData.filter(r => r.id !== id);
       updateStats();
@@ -479,7 +519,7 @@
     const blob = new Blob([csv], { type: 'text/csv' });
     const url  = URL.createObjectURL(blob);
     const a    = document.createElement('a');
-    a.href = url; a.download = 'vansh_leads.csv'; a.click();
+    a.href = url; a.download = 'mll_agro_leads.csv'; a.click();
     URL.revokeObjectURL(url);
     showToast('CSV exported!');
   }
