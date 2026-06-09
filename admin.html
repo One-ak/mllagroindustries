@@ -380,13 +380,24 @@
       const res  = await fetch(getApiUrl('/api/submissions'), {
         headers: { 'Authorization': ADMIN_PASSWORD }
       });
+      if (!res.ok) throw new Error(`Backend returned ${res.status}`);
       const json = await res.json();
       allData = json.data || [];
       updateStats();
       renderTable();
     } catch(e) {
-      showToast('Could not connect to server', 'error');
+      allData = [];
+      updateStats();
+      showBackendUnavailable();
+      showToast('Backend is not available here', 'error');
     }
+  }
+
+  function showBackendUnavailable() {
+    document.getElementById('table-body').innerHTML = `<tr><td colspan="7" class="empty">
+      <i class="fas fa-server"></i>
+      Admin data requires the Node backend. GitHub Pages can only host the static website.
+    </td></tr>`;
   }
 
   // ── Stats ──
