@@ -3615,6 +3615,16 @@ body.is-hindi .section-kicker {
   box-shadow: var(--shadow-md);
 }
 
+.x-social-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: .95rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
 [data-theme="dark"] .seo-hub-section,
 [data-theme="dark"] .landing-section,
 [data-theme="dark"] .seo-link-card,
