@@ -145,7 +145,7 @@ const translations = {
     'md.p1': '"At Vansh Group, our focus is disciplined agro-input manufacturing, practical field products and long-term relationships with farmers, dealers and business partners."',
     'md.p2': 'MLL Agro Industries leads our organic input and soil-health work, while Fish Gold Industries and New Vanshika Bio Agro support feed, aqua and bio-agro categories with the same supply discipline.',
     'md.p3': 'As the group grows from Barabanki into wider Indian and Nepal-facing markets, we remain focused on responsible manufacturing and dependable business conduct.',
-    'md.name': 'Mr. Hem Karan Mathur',
+    'md.name': 'Dr. Hem Karan Mathur',
     'md.role': 'Managing Director',
 
     // Homepage — Products Section
@@ -534,7 +534,7 @@ const translations = {
     'md.p1': '"वंश ग्रुप में हमारा ध्यान disciplined agro-input manufacturing, practical field products और farmers, dealers व business partners के साथ long-term relationships पर है।"',
     'md.p2': 'MLL Agro Industries organic input और soil-health work को lead करता है, जबकि Fish Gold Industries और New Vanshika Bio Agro feed, aqua और bio-agro categories को समान supply discipline के साथ support करते हैं।',
     'md.p3': 'बाराबंकी से भारत और नेपाल-facing markets तक बढ़ते हुए, हमारा focus responsible manufacturing और dependable business conduct पर रहता है।',
-    'md.name': 'श्री हेम करण माथुर',
+    'md.name': 'डॉ. हेम करण माथुर',
     'md.role': 'प्रबंध निदेशक',
 
     // Homepage — Products Section
