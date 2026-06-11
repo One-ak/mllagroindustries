@@ -9,10 +9,15 @@ Use Hostinger's Node.js app hosting, not static-only hosting, because
 `admin.html` and the contact form need the Express API in `server.js`.
 
 - Node version: `20.x` or `22.x`
-- Startup file / app entry: `server.js`
+- Startup file / app entry: `server.js` or `index.js`
 - Install command: `npm install`
+- Build command: `npm run build`
 - Start command: `npm start`
 - Public URL should point to the Node app root
+
+If Hostinger shows "Unsupported framework or invalid project structure", you
+are likely using the static/framework importer. Choose Node.js app hosting for
+this repository, because the admin panel requires the Express backend.
 
 Set these environment variables in Hostinger:
 
