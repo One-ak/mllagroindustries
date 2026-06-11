@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details | Vansh Group</title>
+    <meta id="product-meta-description" name="description" content="Product details for Vansh Group agricultural inputs, fertilizers, feed and animal nutrition categories.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link id="product-canonical" rel="canonical" href="https://mllagroindustries.com/product-detail.html">
+    <meta property="og:type" content="product">
+    <meta property="og:site_name" content="Vansh Group of Companies">
+    <meta id="product-og-title" property="og:title" content="Product Details | Vansh Group">
+    <meta id="product-og-description" property="og:description" content="Product details for Vansh Group agricultural inputs and feed categories.">
+    <meta id="product-og-url" property="og:url" content="https://mllagroindustries.com/product-detail.html">
+    <meta id="product-og-image" property="og:image" content="https://mllagroindustries.com/assets/logo_en.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta id="product-twitter-title" name="twitter:title" content="Product Details | Vansh Group">
+    <meta id="product-twitter-description" name="twitter:description" content="Product details for Vansh Group agricultural inputs and feed categories.">
+    <meta id="product-twitter-image" name="twitter:image" content="https://mllagroindustries.com/assets/logo_en.png">
+    <script id="product-jsonld" type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Product Details"}</script>
     <script src="js/theme-init.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -376,6 +390,64 @@
             meta.innerHTML = items.map(item => `<span>${item}</span>`).join('');
         }
 
+        function absoluteUrl(path) {
+            if (!path) return 'https://mllagroindustries.com/assets/logo_en.png';
+            if (/^https?:\/\//i.test(path)) return path;
+            return `https://mllagroindustries.com/${path.replace(/^\/+/, '')}`;
+        }
+
+        function upsertSeo(selector, attr, value) {
+            const el = document.querySelector(selector);
+            if (el && value) el.setAttribute(attr, value);
+        }
+
+        function renderProductSeo(product, localized, slug, name) {
+            const detailId = product.slug || slug || slugifyProduct(product.displayName || product.name || name);
+            const canonical = `https://mllagroindustries.com/product-detail.html?id=${encodeURIComponent(detailId)}`;
+            const image = absoluteUrl(product.image);
+            const description = (localized.shortDescription || localized.description || `${name} product details from Vansh Group of Companies.`).replace(/\s+/g, ' ').slice(0, 220);
+            const title = `${name} | Vansh Group Product`;
+
+            document.title = title;
+            upsertSeo('#product-meta-description', 'content', description);
+            upsertSeo('#product-canonical', 'href', canonical);
+            upsertSeo('#product-og-title', 'content', title);
+            upsertSeo('#product-og-description', 'content', description);
+            upsertSeo('#product-og-url', 'content', canonical);
+            upsertSeo('#product-og-image', 'content', image);
+            upsertSeo('#product-twitter-title', 'content', title);
+            upsertSeo('#product-twitter-description', 'content', description);
+            upsertSeo('#product-twitter-image', 'content', image);
+
+            const graph = {
+                "@context": "https://schema.org",
+                "@graph": [
+                    {
+                        "@type": "Product",
+                        "@id": `${canonical}#product`,
+                        "name": name,
+                        "image": image,
+                        "description": description,
+                        "category": localized.category || product.category || inferProductType(detailId),
+                        "brand": { "@type": "Brand", "name": "Vansh Group" },
+                        "manufacturer": { "@id": "https://mllagroindustries.com/#organization" },
+                        "url": canonical
+                    },
+                    {
+                        "@type": "BreadcrumbList",
+                        "@id": `${canonical}#breadcrumb`,
+                        "itemListElement": [
+                            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mllagroindustries.com/" },
+                            { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://mllagroindustries.com/products.html" },
+                            { "@type": "ListItem", "position": 3, "name": name, "item": canonical }
+                        ]
+                    }
+                ]
+            };
+
+            document.getElementById('product-jsonld').textContent = JSON.stringify(graph);
+        }
+
         function renderSpecTable(specs) {
             const wrap = document.getElementById('detail-spec-table-wrap');
             const rows = document.getElementById('detail-spec-rows');
@@ -587,12 +659,12 @@
             }
 
             renderMeta(product, localized);
+            renderProductSeo(product, localized, slug, name);
             renderSpecTable(localized.specs);
             updateInquiryLinks(product, name);
             fillList('detail-use-list', localized.use || profile.use);
             fillList('detail-benefits-list', localized.benefits || profile.benefits);
             fillList('detail-supply-list', profile.supply);
-            document.title = `${name} | Vansh Group Products`;
         }
 
         document.addEventListener('DOMContentLoaded', async () => {

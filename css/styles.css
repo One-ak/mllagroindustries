@@ -3420,3 +3420,168 @@ body.is-hindi .section-kicker {
     linear-gradient(135deg, rgba(30, 41, 59, 0.96), rgba(15, 46, 31, 0.96));
   border-color: rgba(245, 158, 11, 0.22);
 }
+
+/* SEO landing pages and internal link hub */
+.seo-hub-section {
+  background: var(--white);
+}
+
+.seo-link-grid,
+.landing-card-grid,
+.landing-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.seo-link-card,
+.landing-card,
+.landing-faq {
+  display: block;
+  padding: 1.25rem;
+  border: 1px solid var(--gray-light);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.seo-link-card:hover,
+.landing-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+
+.seo-link-card span,
+.landing-card span {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(21, 128, 61, 0.10);
+  color: var(--primary);
+  margin-bottom: .8rem;
+}
+
+.seo-link-card strong,
+.landing-card strong {
+  display: block;
+  color: var(--dark);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  line-height: 1.35;
+  margin-bottom: .45rem;
+}
+
+.seo-link-card small,
+.landing-card small {
+  display: block;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+.landing-hero {
+  padding: 7rem 0 5rem;
+  background:
+    linear-gradient(135deg, rgba(6, 45, 23, .88), rgba(15, 23, 42, .82)),
+    url('../assets/factory_bg.png') center/cover;
+  color: #fff;
+}
+
+.landing-hero h1 {
+  max-width: 920px;
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  margin-bottom: 1.25rem;
+}
+
+.landing-hero p {
+  max-width: 760px;
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,.88);
+}
+
+.breadcrumb {
+  display: flex;
+  gap: .45rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: .88rem;
+  color: rgba(255,255,255,.72);
+}
+
+.breadcrumb a {
+  color: #fff;
+  font-weight: 700;
+}
+
+.landing-section {
+  padding: 5rem 0;
+  background: var(--white);
+}
+
+.landing-section.alt {
+  background: var(--light);
+}
+
+.landing-copy {
+  max-width: 900px;
+}
+
+.landing-copy p {
+  color: var(--gray);
+  font-size: 1.04rem;
+  line-height: 1.85;
+  margin-bottom: 1rem;
+}
+
+.landing-keyword-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-top: 1.5rem;
+}
+
+.landing-keyword-list a,
+.landing-keyword-list span {
+  padding: .5rem .78rem;
+  border-radius: 999px;
+  background: rgba(245, 158, 11, .12);
+  color: var(--secondary-dark);
+  font-weight: 800;
+  font-size: .85rem;
+}
+
+.landing-cta {
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--primary-dark), #062d17);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.landing-cta p {
+  color: rgba(255,255,255,.82);
+  margin: .3rem 0 0;
+}
+
+[data-theme="dark"] .seo-hub-section,
+[data-theme="dark"] .landing-section,
+[data-theme="dark"] .seo-link-card,
+[data-theme="dark"] .landing-card,
+[data-theme="dark"] .landing-faq {
+  background: #0f172a;
+}
+
+[data-theme="dark"] .landing-section.alt {
+  background: #0b1628;
+}
