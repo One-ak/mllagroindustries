@@ -733,7 +733,7 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../assets/factory_bg.png');
+  background-image: url('../assets/factory_bg-optimized.jpg');
   background-size: cover;
   background-position: center;
   opacity: 0.4;
@@ -1997,7 +1997,7 @@ img {
   overflow: hidden;
   background:
     linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(22, 101, 52, 0.92)),
-    url('../assets/factory_bg.png') center/cover;
+    url('../assets/factory_bg-optimized.jpg') center/cover;
 }
 
 .network-section::before {
@@ -3446,6 +3446,15 @@ body.is-hindi .section-kicker {
   transition: var(--transition);
 }
 
+.seo-link-card {
+  min-height: 178px;
+  text-decoration: none;
+}
+
+.landing-card {
+  min-height: 160px;
+}
+
 .seo-link-card:hover,
 .landing-card:hover {
   transform: translateY(-4px);
@@ -3487,8 +3496,13 @@ body.is-hindi .section-kicker {
   padding: 7rem 0 5rem;
   background:
     linear-gradient(135deg, rgba(6, 45, 23, .88), rgba(15, 23, 42, .82)),
-    url('../assets/factory_bg.png') center/cover;
+    url('../assets/factory_bg-optimized.jpg') center/cover;
   color: #fff;
+}
+
+.landing-hero .container {
+  position: relative;
+  z-index: 1;
 }
 
 .landing-hero h1 {
@@ -3572,6 +3586,33 @@ body.is-hindi .section-kicker {
 .landing-cta p {
   color: rgba(255,255,255,.82);
   margin: .3rem 0 0;
+}
+
+.md-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-top: .9rem;
+}
+
+.md-social-links a {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(21, 128, 61, .10);
+  color: var(--primary);
+  border: 1px solid rgba(21, 128, 61, .16);
+  transition: var(--transition);
+}
+
+.md-social-links a:hover {
+  transform: translateY(-2px);
+  background: var(--primary);
+  color: #fff;
+  box-shadow: var(--shadow-md);
 }
 
 [data-theme="dark"] .seo-hub-section,

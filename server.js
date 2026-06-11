@@ -29,7 +29,8 @@ const PORT = process.env.PORT || 3000;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'change-this-password';
 const DB_PATH = process.env.DB_PATH || path.join(__dirname, 'vansh_leads.db');
 const adminSessions = new Set();
-const STATIC_CACHE_SECONDS = 60 * 60 * 24 * 7;
+const SHORT_CACHE_SECONDS = 60 * 10;
+const LONG_CACHE_SECONDS = 60 * 60 * 24 * 30;
 
 // Open (or create) the SQLite database file
 const db = new Database(DB_PATH);
@@ -54,8 +55,10 @@ app.use(express.static(__dirname, {
   etag: true,
   lastModified: true,
   setHeaders(res, filePath) {
-    if (/\.(?:css|js|json|png|jpe?g|webp|gif|svg|ico|xml|txt)$/i.test(filePath)) {
-      res.setHeader('Cache-Control', `public, max-age=${STATIC_CACHE_SECONDS}`);
+    if (/\.(?:png|jpe?g|webp|gif|svg|ico)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', `public, max-age=${LONG_CACHE_SECONDS}, immutable`);
+    } else if (/\.(?:css|js|json|xml|txt)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', `public, max-age=${SHORT_CACHE_SECONDS}, must-revalidate`);
     }
   }
 }));                                      // serve all static files (HTML/CSS/JS)
