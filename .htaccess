@@ -1,9 +1,15 @@
 <IfModule mod_mime.c>
   AddType image/x-icon .ico
+  AddType application/xml .xml
   AddType application/manifest+json .webmanifest
 </IfModule>
 
 <IfModule mod_headers.c>
+  <Files "sitemap.xml">
+    Header set Content-Type "application/xml; charset=UTF-8"
+    Header set Cache-Control "public, max-age=600, must-revalidate"
+  </Files>
+
   <FilesMatch "(^favicon.*\.ico$|^favicon.*\.png$|^apple-touch-icon\.png$|^site\.webmanifest$)">
     Header set Cache-Control "public, max-age=3600, must-revalidate"
   </FilesMatch>

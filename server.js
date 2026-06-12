@@ -55,7 +55,10 @@ app.use(express.static(__dirname, {
   etag: true,
   lastModified: true,
   setHeaders(res, filePath) {
-    if (/(?:^|[\\/])(?:favicon|apple-touch-icon|site\.webmanifest)/i.test(filePath)) {
+    if (/(?:^|[\\/])sitemap\.xml$/i.test(filePath)) {
+      res.type('application/xml');
+      res.setHeader('Cache-Control', `public, max-age=${SHORT_CACHE_SECONDS}, must-revalidate`);
+    } else if (/(?:^|[\\/])(?:favicon|apple-touch-icon|site\.webmanifest)/i.test(filePath)) {
       res.setHeader('Cache-Control', `public, max-age=${SHORT_CACHE_SECONDS}, must-revalidate`);
     } else if (/\.(?:png|jpe?g|webp|gif|svg|ico)$/i.test(filePath)) {
       res.setHeader('Cache-Control', `public, max-age=${LONG_CACHE_SECONDS}, immutable`);
