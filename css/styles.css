@@ -1356,12 +1356,16 @@ img {
   to   { opacity: 0; }
 }
 @keyframes logoSettleIn {
-  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 @keyframes logoSettleOut {
   from { opacity: 1; transform: translateY(0) scale(1); }
-  to   { opacity: 0; transform: translateY(-4px) scale(0.98); }
+  to   { opacity: 0; transform: translateY(-6px) scale(0.985); }
+}
+@keyframes logoSoftPulse {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-2px) scale(1.015); }
 }
 
 .page-transition-overlay {
@@ -1393,16 +1397,18 @@ img {
   animation: none;
 }
 .page-transition-overlay.initial-load img {
-  animation: logoSettleIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation:
+    logoSettleIn 0.34s cubic-bezier(0.16, 1, 0.3, 1) both,
+    logoSoftPulse 1.3s 0.34s ease-in-out infinite;
 }
 
 /* ─── STATE: fade OUT (page has loaded, hide the overlay) ─── */
 .page-transition-overlay.fade-out {
-  animation: overlayFadeOut 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: overlayFadeOut 0.34s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   pointer-events: none;
 }
 .page-transition-overlay.fade-out img {
-  animation: logoSettleOut 0.3s ease forwards;
+  animation: logoSettleOut 0.24s ease forwards;
 }
 
 /* ─── STATE: fade IN (user clicked a link, cover the page) ─── */
@@ -1410,10 +1416,10 @@ img {
   opacity: 0;
   visibility: visible;
   pointer-events: all;
-  animation: overlayFadeIn 0.36s ease forwards;
+  animation: overlayFadeIn 0.24s ease forwards;
 }
 .page-transition-overlay.fade-in img {
-  animation: logoSettleIn 0.38s 0.04s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: logoSettleIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Logo sizing */
