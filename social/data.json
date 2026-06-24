@@ -5,7 +5,7 @@
     "isVerified": true,
     "bio": "Pioneering Organic Agro Inputs, Soil Health Solutions & Premium Feed Manufacturing. Based in Barabanki, empowering farmers across India and Nepal.",
     "stats": [
-      { "value": "2", "label": "Official Websites" },
+      { "value": "3", "label": "Official Websites" },
       { "value": "4", "label": "Social Channels" }
     ]
   },
@@ -15,20 +15,20 @@
     "description": "High-quality compounded feed designed to significantly improve the health and milk yield of dairy cattle.",
     "buttonText": "Learn More",
     "buttonUrl": "https://vanshfeeds.com/",
-    "video": "/Second_AI_Product_Shoot_Prom.mp4"
+    "video": "./Second_AI_Product_Shoot_Prom.mp4"
   },
   "posterProducts": [
     {
       "name": "Black Gold",
-      "image": "/black-gold.jpg"
+      "image": "./black-gold.jpg"
     },
     {
       "name": "Vansh Pro",
-      "image": "/vansh-pro-8000.jpg"
+      "image": "./vansh-pro-8000.jpg"
     },
     {
       "name": "Supreme Feed",
-      "image": "/cattle-feed.jpg"
+      "image": "./cattle-feed.jpg"
     }
   ],
   "companies": [
@@ -60,7 +60,7 @@
       "id": "fish-gold",
       "name": "Fish Gold Industries",
       "focus": "Premium Aqua Feed",
-      "url": "https://www.instagram.com/fishgoldindustries_official/reels/?hl=en",
+      "url": "https://www.fishgoldindustries.com/",
       "icon": "FaFish",
       "color": "#3b82f6"
     }
@@ -109,6 +109,12 @@
           "label": "vanshfeeds.com"
         },
         {
+          "url": "https://www.fishgoldindustries.com/",
+          "icon": "FaFish",
+          "color": "#0ea5e9",
+          "label": "fishgoldindustries.com"
+        },
+        {
           "url": "https://www.instagram.com/fishgoldindustries_official/reels/?hl=en",
           "icon": "FaInstagram",
           "color": "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
@@ -126,7 +132,7 @@
       "body": "Reach out to our leadership for business inquiries, distribution opportunities, and partnerships.",
       "links": [
         {
-          "url": "https://x.com/Hemkaran_Mathur",
+          "url": "https://x.com/hemkaran_mathur?s=21",
           "icon": "FaTwitter",
           "color": "#000000",
           "label": "Hemkaran Mathur on X"
