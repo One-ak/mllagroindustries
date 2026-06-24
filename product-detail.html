@@ -401,6 +401,43 @@
             return `https://mllagroindustries.com/${path.replace(/^\/+/, '')}`;
         }
 
+        function parsePriceValue(priceText) {
+            const match = String(priceText || '').replace(/,/g, '').match(/(\d+(?:\.\d+)?)/);
+            return match ? match[1] : null;
+        }
+
+        function parsePriceUnit(priceText) {
+            const match = String(priceText || '').match(/\/\s*([^/]+)$/);
+            return match ? match[1].trim() : '';
+        }
+
+        function buildProductOffer(product, canonical) {
+            const price = parsePriceValue(product.price);
+            if (!price) return null;
+
+            const unitText = parsePriceUnit(product.price);
+            const offer = {
+                "@type": "Offer",
+                "url": canonical,
+                "priceCurrency": "INR",
+                "price": price,
+                "availability": "https://schema.org/InStock",
+                "itemCondition": "https://schema.org/NewCondition",
+                "seller": { "@id": "https://mllagroindustries.com/#organization" }
+            };
+
+            if (unitText) {
+                offer.priceSpecification = {
+                    "@type": "UnitPriceSpecification",
+                    "price": price,
+                    "priceCurrency": "INR",
+                    "unitText": unitText
+                };
+            }
+
+            return offer;
+        }
+
         function upsertSeo(selector, attr, value) {
             const el = document.querySelector(selector);
             if (el && value) el.setAttribute(attr, value);
@@ -424,20 +461,25 @@
             upsertSeo('#product-twitter-description', 'content', description);
             upsertSeo('#product-twitter-image', 'content', image);
 
+            const offer = buildProductOffer(product, canonical);
+            const productEntity = {
+                "@type": "Product",
+                "@id": `${canonical}#product`,
+                "name": name,
+                "image": image,
+                "description": description,
+                "category": localized.category || product.category || inferProductType(detailId),
+                "brand": { "@type": "Brand", "name": "Vansh Group" },
+                "manufacturer": { "@id": "https://mllagroindustries.com/#organization" },
+                "url": canonical
+            };
+
+            if (offer) productEntity.offers = offer;
+
             const graph = {
                 "@context": "https://schema.org",
                 "@graph": [
-                    {
-                        "@type": "Product",
-                        "@id": `${canonical}#product`,
-                        "name": name,
-                        "image": image,
-                        "description": description,
-                        "category": localized.category || product.category || inferProductType(detailId),
-                        "brand": { "@type": "Brand", "name": "Vansh Group" },
-                        "manufacturer": { "@id": "https://mllagroindustries.com/#organization" },
-                        "url": canonical
-                    },
+                    offer ? productEntity : null,
                     {
                         "@type": "BreadcrumbList",
                         "@id": `${canonical}#breadcrumb`,
@@ -447,7 +489,7 @@
                             { "@type": "ListItem", "position": 3, "name": name, "item": canonical }
                         ]
                     }
-                ]
+                ].filter(Boolean)
             };
 
             document.getElementById('product-jsonld').textContent = JSON.stringify(graph);
