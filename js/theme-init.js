@@ -103,23 +103,4 @@
     '</div>'
   );
 
-  function forceHideOverlay() {
-    var overlay = document.getElementById('page-overlay');
-    if (!overlay) return;
-
-    overlay.className = 'page-transition-overlay';
-    overlay.style.visibility = 'hidden';
-    overlay.style.opacity = '0';
-    overlay.style.pointerEvents = 'none';
-  }
-
-  // Fallbacks for browser history restore and unexpected script interruptions.
-  window.addEventListener('pageshow', function (event) {
-    if (event.persisted) forceHideOverlay();
-  });
-
-  window.addEventListener('load', function () {
-    setTimeout(forceHideOverlay, 1800);
-  });
-
 })(); // IIFE — runs immediately, no global variables leaked

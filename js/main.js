@@ -369,11 +369,11 @@ document.addEventListener('DOMContentLoaded', () => {
   //    └────────────────────────┬────────────────────────────┘
   //                             │
   //    ┌────────────────────────▼────────────────────────────┐
-  //    │  DOM is ready                                      │
+  //    │  window "load" fires (all images etc. ready)        │
   //    │  → class switches: initial-load → fade-out          │
-  //    │  → @keyframes overlayFadeOut plays quickly          │
-  //    │  → Logo settles out with logoSettleOut              │
-  //    │  → After animation/fallback → overlay is hidden     │
+  //    │  → @keyframes overlayFadeOut plays (0.45s)          │
+  //    │  → Logo settles out with logoSettleOut (0.3s)       │
+  //    │  → After animation ends → overlay is hidden         │
   //    └────────────────────────┬────────────────────────────┘
   //                             │  User browses the page…
   //    ┌────────────────────────▼────────────────────────────┐
@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //    │  → e.preventDefault() stops normal navigation       │
   //    │  → class set to: fade-in                            │
   //    │  → @keyframes overlayFadeIn + logoSettleIn play     │
-  //    │  → After the short animation, location changes      │
+  //    │  → After 430ms, window.location.href navigates      │
   //    │  → New page loads → back to step 1 (initial-load)   │
   //    └─────────────────────────────────────────────────────┘
   //
@@ -395,7 +395,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Grab the overlay that was already written to the DOM by theme-init.js
   const overlay = document.getElementById('page-overlay');
-  let navInProgress = false; // prevent double-navigation
 
   // Safety guard: if for some reason the overlay doesn't exist, stop here
   // (this can happen on pages that don't include theme-init.js)
@@ -407,39 +406,53 @@ document.addEventListener('DOMContentLoaded', () => {
     if (logo) logo.src = 'assets/logo_hi.png';
   }
 
-  let overlayHidden = false;
+  // ── STEP 1: When the page has fully loaded, fade the overlay OUT ──
+  // "load" fires after ALL resources (images, fonts, etc.) are downloaded,
+  // which is safer than DOMContentLoaded for hiding the overlay.
+  window.addEventListener('load', () => {
+    let overlayHidden = false;
+    let minTimeElapsed = false;
 
-  function clearOverlay() {
-    overlayHidden = true;
-    overlay.className = 'page-transition-overlay';
-    overlay.style.visibility   = 'hidden';
-    overlay.style.opacity      = '0';
-    overlay.style.pointerEvents = 'none';
-  }
+    // Enforce a minimum display time so the logo animation always completes
+    setTimeout(() => {
+      minTimeElapsed = true;
+      if (overlayHidden) return; // already hidden by animationend
+      hideOverlay();
+    }, 650);
 
-  function revealPage() {
-    if (overlayHidden) return;
+    function hideOverlay() {
+      if (overlayHidden) return;
+      if (!minTimeElapsed) return; // wait for minimum time
+      overlayHidden = true;
 
-    overlay.className = 'page-transition-overlay fade-out';
-    overlay.addEventListener('animationend', clearOverlay, { once: true });
+      overlay.className = 'page-transition-overlay';
+      overlay.style.visibility   = 'hidden';
+      overlay.style.opacity      = '0';
+      overlay.style.pointerEvents = 'none';
+    }
 
-    // Hard safety: never let the splash screen trap the page.
-    setTimeout(clearOverlay, 720);
-  }
+    overlay.addEventListener('animationend', hideOverlay, { once: true });
 
-  // ── STEP 1: Fade the overlay OUT as soon as the DOM is ready ──
-  // Waiting for every image/font can make back navigation feel stuck.
-  setTimeout(() => requestAnimationFrame(revealPage), 180);
-  window.addEventListener('load', revealPage, { once: true });
+    // Swap class: initial-load (static) → fade-out (plays the keyframe)
+    requestAnimationFrame(() => {
+      overlay.classList.remove('initial-load');
+      overlay.classList.add('fade-out');
+    });
 
-  // Chrome can restore a page from its back-forward cache with the old
-  // "fade-in" overlay state still visible. Clear it immediately on restore.
-  window.addEventListener('pageshow', (event) => {
-    navInProgress = false;
-    if (event.persisted) clearOverlay();
+    // Hard safety — always clear after 1200ms regardless of state
+    setTimeout(() => {
+      if (!overlayHidden) {
+        overlayHidden = true;
+        overlay.className = 'page-transition-overlay';
+        overlay.style.visibility   = 'hidden';
+        overlay.style.opacity      = '0';
+        overlay.style.pointerEvents = 'none';
+      }
+    }, 1200);
   });
 
   // ── STEP 2: When the user clicks an internal link, fade the overlay IN ──
+  let navInProgress = false; // prevent double-navigation
   document.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', e => {
       const href = link.getAttribute('href');
@@ -462,8 +475,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Set class to fade-in — plays overlayFadeIn + logoSettleIn keyframes
         overlay.className = 'page-transition-overlay fade-in';
 
-        // Navigate after the animation completes.
-        setTimeout(() => { window.location.href = href; }, 280);
+        // Navigate after the animation completes (350ms + 80ms buffer)
+        setTimeout(() => { window.location.href = href; }, 430);
       }
     });
   });
