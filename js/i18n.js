@@ -118,6 +118,7 @@ const translations = {
   // ── ENGLISH ──────────────────────────────────────────────
   en: {
     // Navigation links (used across all pages in the <nav>)
+    'nav.social': 'Social',
     'nav.home': 'Home',
     'nav.about': 'About Us',
     'nav.products': 'Our Products',
@@ -507,6 +508,7 @@ const translations = {
   // ── HINDI ─────────────────────────────────────────────────
   hi: {
     // Navigation links
+    'nav.social': 'सोशल',
     'nav.home': 'होम',
     'nav.about': 'हमारे बारे में',
     'nav.products': 'हमारे उत्पाद',

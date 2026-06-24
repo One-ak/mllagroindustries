@@ -1,0 +1,137 @@
+{
+  "profile": {
+    "name": "Vansh Group",
+    "tagline": "Empowering Agriculture, Enriching Lives",
+    "isVerified": true,
+    "bio": "Pioneering Organic Agro Inputs, Soil Health Solutions & Premium Feed Manufacturing. Based in Barabanki, empowering farmers across India and Nepal.",
+    "stats": [
+      { "value": "2", "label": "Official Websites" },
+      { "value": "4", "label": "Social Channels" }
+    ]
+  },
+  "heroProduct": {
+    "title": "Vansh Supreme Cattle Feed",
+    "subtitle": "Featured Product",
+    "description": "High-quality compounded feed designed to significantly improve the health and milk yield of dairy cattle.",
+    "buttonText": "Learn More",
+    "buttonUrl": "https://vanshfeeds.com/",
+    "video": "/Second_AI_Product_Shoot_Prom.mp4"
+  },
+  "posterProducts": [
+    {
+      "name": "Black Gold",
+      "image": "/black-gold.jpg"
+    },
+    {
+      "name": "Vansh Pro",
+      "image": "/vansh-pro-8000.jpg"
+    },
+    {
+      "name": "Supreme Feed",
+      "image": "/cattle-feed.jpg"
+    }
+  ],
+  "companies": [
+    {
+      "id": "mll-agro",
+      "name": "MLL Agro Industries",
+      "focus": "Organic Inputs",
+      "url": "https://mllagroindustries.com/",
+      "icon": "FaLeaf",
+      "color": "#10b981"
+    },
+    {
+      "id": "nvba",
+      "name": "New Vanshika Bio Agro",
+      "focus": "Soil Health Solutions",
+      "url": "https://www.facebook.com/nvbaipl",
+      "icon": "FaSeedling",
+      "color": "#84cc16"
+    },
+    {
+      "id": "vansh-feeds",
+      "name": "Vansh Feeds",
+      "focus": "Animal Nutrition",
+      "url": "https://vanshfeeds.com/",
+      "icon": "FaPaw",
+      "color": "#f59e0b"
+    },
+    {
+      "id": "fish-gold",
+      "name": "Fish Gold Industries",
+      "focus": "Premium Aqua Feed",
+      "url": "https://www.instagram.com/fishgoldindustries_official/reels/?hl=en",
+      "icon": "FaFish",
+      "color": "#3b82f6"
+    }
+  ],
+  "posts": [
+    {
+      "id": "agriculture",
+      "type": "green",
+      "icon": "FaLeaf",
+      "title": "Agriculture & Organic Inputs",
+      "subtitle": "MLL Agro Industries • New Vanshika Bio Agro",
+      "body": "Leading the way in sustainable farming with high-quality bio-fertilizers, organic inputs, and advanced soil health solutions.",
+      "links": [
+        {
+          "url": "https://mllagroindustries.com/",
+          "icon": "MllLogo",
+          "color": "#10b981",
+          "label": "mllagroindustries.com"
+        },
+        {
+          "url": "https://www.facebook.com/mllagrobbk",
+          "icon": "FaFacebook",
+          "color": "#0866FF",
+          "label": "MLL Agro Industries FB"
+        },
+        {
+          "url": "https://www.facebook.com/nvbaipl",
+          "icon": "FaFacebook",
+          "color": "#0866FF",
+          "label": "New Vanshika Bio Agro FB"
+        }
+      ]
+    },
+    {
+      "id": "nutrition",
+      "type": "blue",
+      "icon": "FaWater",
+      "title": "Animal & Aqua Nutrition",
+      "subtitle": "Vansh Feeds • Fish Gold Industries",
+      "body": "Manufacturing premium aqua feed, cattle nutrition, and poultry feed to empower farmers with the best nutrition solutions.",
+      "links": [
+        {
+          "url": "https://vanshfeeds.com/",
+          "icon": "VanshLogo",
+          "color": "#3b82f6",
+          "label": "vanshfeeds.com"
+        },
+        {
+          "url": "https://www.instagram.com/fishgoldindustries_official/reels/?hl=en",
+          "icon": "FaInstagram",
+          "color": "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
+          "iconColor": "#dc2743",
+          "label": "Fish Gold Industries IG"
+        }
+      ]
+    },
+    {
+      "id": "leadership",
+      "type": "orange",
+      "icon": "FaUserTie",
+      "title": "Connect & Leadership",
+      "subtitle": "Hemkaran Mathur",
+      "body": "Reach out to our leadership for business inquiries, distribution opportunities, and partnerships.",
+      "links": [
+        {
+          "url": "https://x.com/Hemkaran_Mathur",
+          "icon": "FaTwitter",
+          "color": "#000000",
+          "label": "Hemkaran Mathur on X"
+        }
+      ]
+    }
+  ]
+}
