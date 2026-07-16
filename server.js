@@ -526,23 +526,23 @@ function closeDatabase() {
   if (db?.open) db.close();
 }
 
-if (require.main === module) {
-  const server = app.listen(PORT, '0.0.0.0', () => {
-    console.info(`MLL Agro Industries server listening on http://localhost:${PORT}`);
-    console.info(`Admin panel: http://localhost:${PORT}/admin.html`);
-    if (databaseStartupError) {
-      console.warn('[DB] Contact storage is unavailable; public pages remain online.');
-    }
-  });
-
-  for (const signal of ['SIGINT', 'SIGTERM']) {
-    process.on(signal, () => {
-      server.close(() => {
-        closeDatabase();
-        process.exit(0);
-      });
-    });
+// Hostinger loads the entry file through its process manager, where
+// require.main is not this module. Listening unconditionally is required.
+const server = app.listen(PORT, '0.0.0.0', () => {
+  console.info(`MLL Agro Industries server listening on http://localhost:${PORT}`);
+  console.info(`Admin panel: http://localhost:${PORT}/admin.html`);
+  if (databaseStartupError) {
+    console.warn('[DB] Contact storage is unavailable; public pages remain online.');
   }
+});
+
+for (const signal of ['SIGINT', 'SIGTERM']) {
+  process.on(signal, () => {
+    server.close(() => {
+      closeDatabase();
+      process.exit(0);
+    });
+  });
 }
 
-module.exports = { app, closeDatabase };
+module.exports = { app, server, closeDatabase };
