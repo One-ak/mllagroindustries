@@ -2,7 +2,8 @@
  * MLL Agro Industries website and lead API.
  *
  * Production configuration:
- *   ADMIN_PASSWORD  Required, at least 14 characters.
+ *   ADMIN_PASSWORD  Optional at startup. Admin access stays disabled until a
+ *                   unique value of at least 14 characters is configured.
  *   DB_PATH         Optional SQLite path. Defaults to .data/vansh_leads.db.
  *   ALLOWED_ORIGINS Optional comma-separated development origins.
  *   TRUST_PROXY     Set to 1 only when deployed behind one trusted proxy.
@@ -13,12 +14,21 @@ const cors = require('cors');
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
-const Database = require('better-sqlite3');
+
+let Database = null;
+let databaseLoadError = null;
+
+try {
+  Database = require('better-sqlite3');
+} catch (error) {
+  databaseLoadError = error;
+}
 
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const ADMIN_PASSWORD = String(process.env.ADMIN_PASSWORD || '');
+const ADMIN_ENABLED = ADMIN_PASSWORD.length >= 14 && ADMIN_PASSWORD !== 'change-this-password';
 const ADMIN_SESSION_TTL_MS = 8 * 60 * 60 * 1000;
 const SHORT_CACHE_SECONDS = 60 * 10;
 const LONG_CACHE_SECONDS = 60 * 60 * 24 * 30;
@@ -79,28 +89,40 @@ const allowedOrigins = new Set(
   configuredOrigins.length || NODE_ENV === 'production' ? configuredOrigins : developmentOrigins
 );
 
-if (!ADMIN_PASSWORD || ADMIN_PASSWORD.length < 14 || ADMIN_PASSWORD === 'change-this-password') {
-  throw new Error('ADMIN_PASSWORD must be set to a unique value with at least 14 characters.');
+let db = null;
+let databaseStartupError = databaseLoadError;
+
+try {
+  if (!Database) throw databaseLoadError || new Error('SQLite driver is unavailable.');
+
+  if (DB_PATH !== ':memory:') {
+    fs.mkdirSync(path.dirname(DB_PATH), { recursive: true, mode: 0o700 });
+    migrateLegacyDatabase();
+  }
+
+  db = new Database(DB_PATH);
+  db.pragma('journal_mode = WAL');
+  db.pragma('busy_timeout = 5000');
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS submissions (
+      id           INTEGER PRIMARY KEY AUTOINCREMENT,
+      full_name    TEXT    NOT NULL,
+      phone        TEXT    NOT NULL,
+      inquiry_type TEXT    NOT NULL,
+      message      TEXT,
+      submitted_at TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
+    )
+  `);
+  databaseStartupError = null;
+} catch (error) {
+  databaseStartupError = error;
+  db = null;
+  console.error('[DB] Database features disabled:', error.message);
 }
 
-if (DB_PATH !== ':memory:') {
-  fs.mkdirSync(path.dirname(DB_PATH), { recursive: true, mode: 0o700 });
-  migrateLegacyDatabase();
+if (!ADMIN_ENABLED) {
+  console.warn('[ADMIN] Admin access disabled: configure ADMIN_PASSWORD with at least 14 characters.');
 }
-
-const db = new Database(DB_PATH);
-db.pragma('journal_mode = WAL');
-db.pragma('busy_timeout = 5000');
-db.exec(`
-  CREATE TABLE IF NOT EXISTS submissions (
-    id           INTEGER PRIMARY KEY AUTOINCREMENT,
-    full_name    TEXT    NOT NULL,
-    phone        TEXT    NOT NULL,
-    inquiry_type TEXT    NOT NULL,
-    message      TEXT,
-    submitted_at TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
-  )
-`);
 
 app.disable('x-powered-by');
 app.set('trust proxy', process.env.TRUST_PROXY === '1' ? 1 : false);
@@ -112,10 +134,22 @@ const adminLoginLimiter = createRateLimiter({ windowMs: 15 * 60 * 1000, max: 5 }
 const contactLimiter = createRateLimiter({ windowMs: 10 * 60 * 1000, max: 5 });
 
 app.get('/api/health', (req, res) => {
-  res.json({ success: true, service: 'mllagroindustries', status: 'ok' });
+  res.json({
+    success: true,
+    service: 'mllagroindustries',
+    status: 'ok',
+    features: {
+      contact: Boolean(db),
+      admin: ADMIN_ENABLED && Boolean(db)
+    }
+  });
 });
 
 app.post('/api/admin/login', adminLoginLimiter, (req, res) => {
+  if (!ADMIN_ENABLED) {
+    return res.status(503).json({ success: false, error: 'Admin access is not configured.' });
+  }
+
   const password = typeof req.body?.password === 'string' ? req.body.password : '';
 
   if (!safeStringEqual(password, ADMIN_PASSWORD)) {
@@ -134,7 +168,7 @@ app.post('/api/admin/logout', requireAdmin, (req, res) => {
   res.json({ success: true });
 });
 
-app.post('/api/contact', contactLimiter, (req, res) => {
+app.post('/api/contact', contactLimiter, requireDatabase, (req, res) => {
   const body = req.body || {};
   const fullName = normalizeText(body.fullName);
   const phone = normalizeText(body.phone);
@@ -174,7 +208,7 @@ app.post('/api/contact', contactLimiter, (req, res) => {
   }
 });
 
-app.get('/api/submissions', requireAdmin, (req, res) => {
+app.get('/api/submissions', requireAdmin, requireDatabase, (req, res) => {
   try {
     const rows = db.prepare(`
       SELECT id, full_name, phone, inquiry_type, message, submitted_at
@@ -190,7 +224,7 @@ app.get('/api/submissions', requireAdmin, (req, res) => {
   }
 });
 
-app.delete('/api/submissions/:id', requireAdmin, (req, res) => {
+app.delete('/api/submissions/:id', requireAdmin, requireDatabase, (req, res) => {
   const id = Number(req.params.id);
   if (!Number.isSafeInteger(id) || id < 1) {
     return res.status(400).json({ success: false, error: 'Invalid submission ID.' });
@@ -393,6 +427,10 @@ function getBearerToken(req) {
 }
 
 function requireAdmin(req, res, next) {
+  if (!ADMIN_ENABLED) {
+    return res.status(503).json({ success: false, error: 'Admin access is not configured.' });
+  }
+
   const token = getBearerToken(req);
   const expiresAt = token ? adminSessions.get(token) : null;
 
@@ -403,6 +441,16 @@ function requireAdmin(req, res, next) {
 
   adminSessions.set(token, Date.now() + ADMIN_SESSION_TTL_MS);
   res.setHeader('Cache-Control', 'no-store');
+  return next();
+}
+
+function requireDatabase(req, res, next) {
+  if (!db) {
+    return res.status(503).json({
+      success: false,
+      error: 'This service is temporarily unavailable. Please use phone, email, or WhatsApp.'
+    });
+  }
   return next();
 }
 
@@ -475,13 +523,16 @@ function migrateLegacyDatabase() {
 }
 
 function closeDatabase() {
-  if (db.open) db.close();
+  if (db?.open) db.close();
 }
 
 if (require.main === module) {
   const server = app.listen(PORT, '0.0.0.0', () => {
     console.info(`MLL Agro Industries server listening on http://localhost:${PORT}`);
     console.info(`Admin panel: http://localhost:${PORT}/admin.html`);
+    if (databaseStartupError) {
+      console.warn('[DB] Contact storage is unavailable; public pages remain online.');
+    }
   });
 
   for (const signal of ['SIGINT', 'SIGTERM']) {
