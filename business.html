@@ -21,9 +21,12 @@
     <meta property="og:url" content="https://mllagroindustries.com/business.html">
     <meta property="og:image" content="https://mllagroindustries.com/assets/factory_bg-optimized.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <script src="js/theme-init.js?v=20260611-xfavicon"></script>
+    <script src="js/theme-init.js?v=20260715-historyfix"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Outfit:wght@500;700;900&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css?v=20260611-xfavicon">
+    <link rel="stylesheet" href="css/styles.css?v=20260715-historyfix">
 </head>
 <body>
      <nav class="navbar">
@@ -59,8 +62,8 @@
             <h1 data-i18n="business.hero.title">Structured business inquiries for agro-input and feed supply</h1>
             <p data-i18n="business.hero.subtitle">Connect with the Barabanki team for MLL Agro Industries products, bulk supply, dealer distribution, third-party manufacturing and Nepal export discussions.</p>
             <div class="hero-actions">
-                <a href="https://wa.me/9196702481" target="_blank" class="btn btn-secondary" data-i18n="business.action.whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp Business Desk</a>
-                <a href="tel:+919670252525" class="btn btn-primary" data-i18n="business.action.call"><i class="fas fa-phone"></i> Call Business Team</a>
+                <a href="https://wa.me/919670252525" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" data-i18n="business.action.whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp Business Desk</a>
+                <a href="contact.html?inquiry=product#inquiry-form" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Structured Inquiry</a>
             </div>
         </div>
     </header>
@@ -100,6 +103,7 @@
                         <i class="fas fa-ship"></i>
                         <h3 data-i18n="business.card.export.title">Nepal export discussions</h3>
                         <p data-i18n="business.card.export.desc">For cross-border supply, share product category, quantity, destination and documentation expectations.</p>
+                        <a href="contact.html?inquiry=export#inquiry-form" class="text-link">Start export inquiry</a>
                     </article>
                 </div>
             </div>
@@ -130,11 +134,14 @@
                     <p data-i18n="business.step.contact.desc">Include name, phone number, firm details and preferred response mode.</p>
                 </article>
             </div>
+            <div class="text-center" style="margin-top:2rem;">
+                <a href="contact.html?inquiry=product#inquiry-form" class="btn btn-primary">Open Business Inquiry Form</a>
+            </div>
         </div>
     </section>
 
     <footer class="footer"></footer>
-    <script src="js/i18n.js?v=20260611-xfavicon"></script>
-    <script src="js/main.js?v=20260611-xfavicon"></script>
+    <script src="js/i18n.js?v=20260715-historyfix"></script>
+    <script src="js/main.js?v=20260715-historyfix"></script>
 </body>
 </html>

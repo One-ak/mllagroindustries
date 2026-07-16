@@ -1,3 +1,9 @@
+Options -Indexes
+
+<FilesMatch "(^\\.|\\.(db|sqlite|sqlite3|log|md)$|^server\\.js$|^index\\.js$|^package(-lock)?\\.json$)">
+  Require all denied
+</FilesMatch>
+
 <IfModule mod_mime.c>
   AddType image/x-icon .ico
   AddType application/xml .xml
@@ -5,6 +11,17 @@
 </IfModule>
 
 <IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com data:; form-action 'self'; frame-ancestors 'none'; frame-src https://www.google.com https://maps.google.com; img-src 'self' data: https://images.unsplash.com https://5.imimg.com; media-src 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; upgrade-insecure-requests"
+
+  <Files "admin.html">
+    Header always set Cache-Control "no-store"
+    Header always set X-Robots-Tag "noindex, nofollow, noarchive"
+  </Files>
+
   <Files "sitemap.xml">
     Header set Content-Type "application/xml; charset=UTF-8"
     Header set Cache-Control "public, max-age=600, must-revalidate"

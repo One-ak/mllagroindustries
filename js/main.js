@@ -24,10 +24,20 @@
  * ============================================================
  */
 
+const VANSH_SITE_CONFIG = Object.freeze({
+  phoneDisplay: '+91 9670252525',
+  phoneHref: '+919670252525',
+  whatsappDigits: '919670252525',
+  email: 'vanshgroupofficial@gmail.com'
+});
+window.VANSH_SITE_CONFIG = VANSH_SITE_CONFIG;
+
 document.addEventListener('DOMContentLoaded', () => {
 
   dedupeSiteChrome();
   normalizeNavTranslations();
+  ensureNavControls();
+  ensureSkipLink();
   renderSiteFooter();
 
   // ─────────────────────────────────────────────────────────────
@@ -55,22 +65,52 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const navbar = document.querySelector('.navbar');
 
-  if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', () => {
-      // Toggle the active class to show or hide the mobile menu
-      navbar.classList.toggle('mobile-menu-active');
+  if (mobileMenuBtn && navbar) {
+    const mobileNavLinks = navbar.querySelector('.nav-links');
+    const mobileNavId = mobileNavLinks?.id || 'primary-navigation';
+    if (mobileNavLinks) mobileNavLinks.id = mobileNavId;
+
+    mobileMenuBtn.type = 'button';
+    mobileMenuBtn.setAttribute('aria-controls', mobileNavId);
+    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    mobileMenuBtn.setAttribute('aria-label', 'Open navigation menu');
+
+    const setMenuState = isOpen => {
+      navbar.classList.toggle('mobile-menu-active', isOpen);
+      mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+      mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
 
       const icon = mobileMenuBtn.querySelector('i');
-
-      if (navbar.classList.contains('mobile-menu-active')) {
-        // Menu is now OPEN → show the ✕ (close) icon
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
-      } else {
-        // Menu is now CLOSED → show the ☰ (hamburger) icon
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
+      if (icon) {
+        icon.classList.toggle('fa-bars', !isOpen);
+        icon.classList.toggle('fa-times', isOpen);
+        icon.setAttribute('aria-hidden', 'true');
       }
+    };
+
+    mobileMenuBtn.addEventListener('click', () => {
+      setMenuState(!navbar.classList.contains('mobile-menu-active'));
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && navbar.classList.contains('mobile-menu-active')) {
+        setMenuState(false);
+        mobileMenuBtn.focus();
+      }
+    });
+
+    document.addEventListener('click', event => {
+      if (navbar.classList.contains('mobile-menu-active') && !navbar.contains(event.target)) {
+        setMenuState(false);
+      }
+    });
+
+    mobileNavLinks?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => setMenuState(false));
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1024) setMenuState(false);
     });
   }
 
@@ -156,11 +196,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('vansh_theme');
   if (savedTheme) {
     document.documentElement.setAttribute('data-theme', savedTheme);
-    // Update the toggle icon to match the loaded theme
-    if (themeToggle && savedTheme === 'dark') {
-      themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    }
   }
+
+  const updateThemeButton = theme => {
+    if (!themeToggle) return;
+    const darkModeActive = theme === 'dark';
+    themeToggle.innerHTML = `<i class="fas ${darkModeActive ? 'fa-sun' : 'fa-moon'}" aria-hidden="true"></i>`;
+    themeToggle.setAttribute('aria-label', darkModeActive ? 'Switch to light mode' : 'Switch to dark mode');
+    themeToggle.setAttribute('title', darkModeActive ? 'Switch to light mode' : 'Switch to dark mode');
+  };
+
+  updateThemeButton(document.documentElement.getAttribute('data-theme'));
 
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
@@ -175,11 +221,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Update the button icon:
       //   dark mode active → show ☀ (sun) so clicking switches to light
       //   light mode active → show 🌙 (moon) so clicking switches to dark
-      if (targetTheme === 'dark') {
-        themeToggle.innerHTML = '<i class="fas fa-sun theme-icon-spin"></i>';
-      } else {
-        themeToggle.innerHTML = '<i class="fas fa-moon theme-icon-spin"></i>';
-      }
+      updateThemeButton(targetTheme);
+      themeToggle.querySelector('i')?.classList.add('theme-icon-spin');
 
       // Remove the spin class after the CSS animation completes (500ms)
       // so the spin only plays once per click, not on every re-render
@@ -411,19 +454,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // which is safer than DOMContentLoaded for hiding the overlay.
   window.addEventListener('load', () => {
     let overlayHidden = false;
-    let minTimeElapsed = false;
+    let fadeStarted = false;
 
-    // Enforce a minimum display time so the logo animation always completes
-    setTimeout(() => {
-      minTimeElapsed = true;
-      if (overlayHidden) return; // already hidden by animationend
-      hideOverlay();
-    }, 650);
-
-    function hideOverlay() {
+    function hideOverlay(event) {
+      // Child logo animations bubble. Only the overlay fade should finish the
+      // loader; the safety timeout calls this function without an event.
+      if (event && (event.target !== overlay || event.animationName !== 'overlayFadeOut')) return;
       if (overlayHidden) return;
-      if (!minTimeElapsed) return; // wait for minimum time
       overlayHidden = true;
+      overlay.removeEventListener('animationend', hideOverlay);
 
       overlay.className = 'page-transition-overlay';
       overlay.style.visibility   = 'hidden';
@@ -431,28 +470,41 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.style.pointerEvents = 'none';
     }
 
-    overlay.addEventListener('animationend', hideOverlay, { once: true });
+    function startFadeOut() {
+      if (overlayHidden || fadeStarted) return;
+      fadeStarted = true;
+      overlay.addEventListener('animationend', hideOverlay);
+      overlay.className = 'page-transition-overlay fade-out';
+    }
 
-    // Swap class: initial-load (static) → fade-out (plays the keyframe)
-    requestAnimationFrame(() => {
-      overlay.classList.remove('initial-load');
-      overlay.classList.add('fade-out');
-    });
+    // Keep the destination logo stable at the navigation boundary. Starting
+    // the fade immediately would replace its entrance animation mid-frame.
+    setTimeout(startFadeOut, 160);
 
     // Hard safety — always clear after 1200ms regardless of state
-    setTimeout(() => {
-      if (!overlayHidden) {
-        overlayHidden = true;
-        overlay.className = 'page-transition-overlay';
-        overlay.style.visibility   = 'hidden';
-        overlay.style.opacity      = '0';
-        overlay.style.pointerEvents = 'none';
-      }
-    }, 1200);
+    setTimeout(hideOverlay, 1200);
   });
 
   // ── STEP 2: When the user clicks an internal link, fade the overlay IN ──
   let navInProgress = false; // prevent double-navigation
+
+  // Browsers can restore a page from the back-forward cache exactly as it was
+  // when navigation began, including the opaque transition overlay and the
+  // navigation lock. Clear both when returning through browser history.
+  window.addEventListener('pageshow', event => {
+    const navigationEntry = performance.getEntriesByType('navigation')[0];
+    const isHistoryRestore = event.persisted || navigationEntry?.type === 'back_forward';
+
+    if (!isHistoryRestore) return;
+
+    navInProgress = false;
+    overlay.className = 'page-transition-overlay';
+    overlay.style.visibility = 'hidden';
+    overlay.style.opacity = '0';
+    overlay.style.pointerEvents = 'none';
+    document.documentElement.classList.remove('no-theme-transition');
+  });
+
   document.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', e => {
       const href = link.getAttribute('href');
@@ -517,9 +569,56 @@ function normalizeNavTranslations() {
   });
 }
 
+function ensureNavControls() {
+  const navActions = document.querySelector('.navbar .nav-actions');
+  if (!navActions) return;
+
+  if (!navActions.querySelector('.controls-group')) {
+    const supportsPageTranslation = Boolean(document.querySelector('main [data-i18n], header [data-i18n]'));
+    const controls = document.createElement('div');
+    controls.className = 'controls-group';
+    controls.innerHTML = `
+      ${supportsPageTranslation ? `<div class="lang-switcher" aria-label="Language">
+        <button class="lang-btn active" type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button class="lang-btn" type="button" data-lang="hi" aria-pressed="false">HI</button>
+      </div><div class="controls-divider" aria-hidden="true"></div>` : ''}
+      <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
+        <i class="fas fa-moon" aria-hidden="true"></i>
+      </button>`;
+    navActions.prepend(controls);
+  }
+
+  const languageButtons = navActions.querySelectorAll('.lang-btn');
+  languageButtons.forEach(button => {
+    button.type = 'button';
+    button.setAttribute('aria-pressed', String(button.classList.contains('active')));
+    button.addEventListener('click', () => {
+      languageButtons.forEach(item => {
+        item.setAttribute('aria-pressed', String(item === button));
+      });
+    });
+  });
+}
+
+function ensureSkipLink() {
+  if (document.querySelector('.skip-link')) return;
+
+  const target = document.querySelector('main') || document.querySelector('header') || document.querySelector('section');
+  if (!target) return;
+  if (!target.id) target.id = 'main-content';
+  target.setAttribute('tabindex', '-1');
+
+  const link = document.createElement('a');
+  link.className = 'skip-link';
+  link.href = `#${target.id}`;
+  link.textContent = 'Skip to main content';
+  document.body.prepend(link);
+}
+
 function renderSiteFooter() {
   const footer = document.querySelector('footer.footer');
   if (!footer) return;
+  const whatsappUrl = `https://wa.me/${VANSH_SITE_CONFIG.whatsappDigits}`;
 
   footer.innerHTML = `
     <div class="container">
@@ -532,10 +631,10 @@ function renderSiteFooter() {
           <p class="footer-brand-title" data-i18n="footer.brand">MLL Agro Industries Pvt. Ltd. led agro-industrial group</p>
           <p class="footer-about" data-i18n="footer.about">Vansh Group operates from Barabanki through MLL Agro Industries, Fish Gold Industries, and New Vanshika Bio Agro Industries.</p>
           <div class="footer-social">
-            <a href="https://www.facebook.com/FishGoldIndustries/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/fishgoldindustries_official/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/company/vansh-group-lucknow/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://wa.me/9196702481" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.facebook.com/FishGoldIndustries/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/fishgoldindustries_official/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/company/vansh-group-lucknow/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
           </div>
         </div>
         <div>
@@ -557,6 +656,7 @@ function renderSiteFooter() {
             <li><a href="grievance.html" data-i18n="footer.business.grievance">Grievance Redressal</a></li>
             <li><a href="career.html" data-i18n="footer.business.career">Careers</a></li>
             <li><a href="business.html#export" data-i18n="footer.business.export">Export Inquiry</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
           </ul>
         </div>
         <div>
@@ -564,8 +664,8 @@ function renderSiteFooter() {
           <ul class="footer-links" style="color:#94A3B8;">
             <li style="display:flex;gap:1rem;"><i class="fas fa-map-marker-alt" style="color:var(--secondary);margin-top:5px;"></i><span data-i18n="footer.address">Barabanki, Uttar Pradesh, India</span></li>
             <li style="display:flex;gap:1rem;"><i class="fas fa-phone-alt" style="color:var(--secondary);margin-top:5px;"></i><span data-i18n="footer.phone">05248 296699<br>+91 9670252525</span></li>
-            <li style="display:flex;gap:1rem;"><i class="fas fa-envelope" style="color:var(--secondary);margin-top:5px;"></i><a href="mailto:vanshgroupofficial@gmail.com">vanshgroupofficial@gmail.com</a></li>
-            <li style="display:flex;gap:1rem;"><i class="fab fa-whatsapp" style="color:var(--secondary);margin-top:5px;"></i><a href="https://wa.me/9196702481" target="_blank">+91 9196702481</a></li>
+            <li style="display:flex;gap:1rem;"><i class="fas fa-envelope" style="color:var(--secondary);margin-top:5px;" aria-hidden="true"></i><a href="mailto:${VANSH_SITE_CONFIG.email}">${VANSH_SITE_CONFIG.email}</a></li>
+            <li style="display:flex;gap:1rem;"><i class="fab fa-whatsapp" style="color:var(--secondary);margin-top:5px;" aria-hidden="true"></i><a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer">${VANSH_SITE_CONFIG.phoneDisplay}</a></li>
           </ul>
         </div>
       </div>

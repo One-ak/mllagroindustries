@@ -1,41 +1,96 @@
 /**
- * =============================================================
- *  server.js — MLL Agro Industries | Backend Server
- * =============================================================
+ * MLL Agro Industries website and lead API.
  *
- * Stack : Node.js + Express + better-sqlite3
- * Purpose:
- *   1. Serves all static HTML/CSS/JS files from this directory.
- *   2. Accepts POST /api/contact  — saves form submissions to
- *      the SQLite database.
- *   3. Accepts GET  /api/submissions — returns all submissions
- *      as JSON (used by admin.html dashboard).
- *   4. Accepts DELETE /api/submissions/:id — delete one record.
- *
- * Run:  node server.js
- * Port: 3000  (change PORT env var to override)
- * =============================================================
+ * Production configuration:
+ *   ADMIN_PASSWORD  Required, at least 14 characters.
+ *   DB_PATH         Optional SQLite path. Defaults to .data/vansh_leads.db.
+ *   ALLOWED_ORIGINS Optional comma-separated development origins.
+ *   TRUST_PROXY     Set to 1 only when deployed behind one trusted proxy.
  */
 
-const express  = require('express');
-const cors     = require('cors');
-const crypto   = require('crypto');
-const path     = require('path');
+const express = require('express');
+const cors = require('cors');
+const crypto = require('crypto');
+const fs = require('fs');
+const path = require('path');
 const Database = require('better-sqlite3');
 
-// ── App & DB setup ───────────────────────────────────────────
-const app  = express();
-const PORT = process.env.PORT || 3000;
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'change-this-password';
-const DB_PATH = process.env.DB_PATH || path.join(__dirname, 'vansh_leads.db');
-const adminSessions = new Set();
+const app = express();
+const PORT = Number(process.env.PORT) || 3000;
+const NODE_ENV = process.env.NODE_ENV || 'development';
+const ADMIN_PASSWORD = String(process.env.ADMIN_PASSWORD || '');
+const ADMIN_SESSION_TTL_MS = 8 * 60 * 60 * 1000;
 const SHORT_CACHE_SECONDS = 60 * 10;
 const LONG_CACHE_SECONDS = 60 * 60 * 24 * 30;
+const DEFAULT_DB_PATH = path.join(__dirname, '.data', 'vansh_leads.db');
+const DB_PATH = process.env.DB_PATH === ':memory:'
+  ? ':memory:'
+  : (process.env.DB_PATH ? path.resolve(process.env.DB_PATH) : DEFAULT_DB_PATH);
+const adminSessions = new Map();
 
-// Open (or create) the SQLite database file
+const PUBLIC_ROOT_FILES = new Set([
+  'index.html',
+  'about.html',
+  'admin.html',
+  'agricultural-inputs-manufacturer.html',
+  'bio-fertilizer-manufacturer-india.html',
+  'business.html',
+  'career.html',
+  'cattle-feed-manufacturer-uttar-pradesh.html',
+  'contact.html',
+  'fertilizer-manufacturer-uttar-pradesh.html',
+  'fish-feed-manufacturer-uttar-pradesh.html',
+  'grievance.html',
+  'infrastructure.html',
+  'pesticide-manufacturer-uttar-pradesh.html',
+  'privacy.html',
+  'product-detail.html',
+  'products.html',
+  'quality.html',
+  'vendor.html',
+  'apple-touch-icon.png',
+  'favicon-48x48.png',
+  'favicon-96x96.png',
+  'favicon-safari.ico',
+  'favicon.ico',
+  'robots.txt',
+  'site.webmanifest',
+  'sitemap.xml',
+  'google1d414cec827e1c2e.html'
+]);
+const PUBLIC_DIRECTORIES = new Set(['assets', 'css', 'js', 'social']);
+const ALLOWED_INQUIRY_TYPES = new Set([
+  'Distributorship Inquiry',
+  'Product Information',
+  'Grievance Redressal',
+  'Export Inquiry',
+  'Vendor Registration',
+  'Career Application'
+]);
+const developmentOrigins = [
+  'http://localhost:4177',
+  'http://127.0.0.1:4177'
+];
+const configuredOrigins = String(process.env.ALLOWED_ORIGINS || '')
+  .split(',')
+  .map(value => value.trim())
+  .filter(Boolean);
+const allowedOrigins = new Set(
+  configuredOrigins.length || NODE_ENV === 'production' ? configuredOrigins : developmentOrigins
+);
+
+if (!ADMIN_PASSWORD || ADMIN_PASSWORD.length < 14 || ADMIN_PASSWORD === 'change-this-password') {
+  throw new Error('ADMIN_PASSWORD must be set to a unique value with at least 14 characters.');
+}
+
+if (DB_PATH !== ':memory:') {
+  fs.mkdirSync(path.dirname(DB_PATH), { recursive: true, mode: 0o700 });
+  migrateLegacyDatabase();
+}
+
 const db = new Database(DB_PATH);
-
-// Create the submissions table if it doesn't exist yet
+db.pragma('journal_mode = WAL');
+db.pragma('busy_timeout = 5000');
 db.exec(`
   CREATE TABLE IF NOT EXISTS submissions (
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -47,145 +102,396 @@ db.exec(`
   )
 `);
 
-// ── Middleware ───────────────────────────────────────────────
 app.disable('x-powered-by');
-app.use(cors());                          // allow fetch from same origin
-app.use(express.json());                  // parse JSON request bodies
-app.use(express.static(__dirname, {
-  etag: true,
-  lastModified: true,
-  setHeaders(res, filePath) {
-    if (/(?:^|[\\/])sitemap\.xml$/i.test(filePath)) {
-      res.type('application/xml');
-      res.setHeader('Cache-Control', `public, max-age=${SHORT_CACHE_SECONDS}, must-revalidate`);
-    } else if (/(?:^|[\\/])(?:favicon|apple-touch-icon|site\.webmanifest)/i.test(filePath)) {
-      res.setHeader('Cache-Control', `public, max-age=${SHORT_CACHE_SECONDS}, must-revalidate`);
-    } else if (/\.(?:png|jpe?g|webp|gif|svg|ico)$/i.test(filePath)) {
-      res.setHeader('Cache-Control', `public, max-age=${LONG_CACHE_SECONDS}, immutable`);
-    } else if (/\.(?:css|js|json|xml|txt)$/i.test(filePath)) {
-      res.setHeader('Cache-Control', `public, max-age=${SHORT_CACHE_SECONDS}, must-revalidate`);
-    }
-  }
-}));                                      // serve all static files (HTML/CSS/JS)
+app.set('trust proxy', process.env.TRUST_PROXY === '1' ? 1 : false);
+app.use(securityHeaders);
+app.use(createCorsMiddleware());
+app.use(express.json({ limit: '16kb', strict: true }));
 
-// ── Routes ───────────────────────────────────────────────────
+const adminLoginLimiter = createRateLimiter({ windowMs: 15 * 60 * 1000, max: 5 });
+const contactLimiter = createRateLimiter({ windowMs: 10 * 60 * 1000, max: 5 });
 
 app.get('/api/health', (req, res) => {
   res.json({ success: true, service: 'mllagroindustries', status: 'ok' });
 });
 
-app.post('/api/admin/login', (req, res) => {
-  const { password } = req.body || {};
+app.post('/api/admin/login', adminLoginLimiter, (req, res) => {
+  const password = typeof req.body?.password === 'string' ? req.body.password : '';
 
-  if (password !== ADMIN_PASSWORD) {
+  if (!safeStringEqual(password, ADMIN_PASSWORD)) {
     return res.status(401).json({ success: false, error: 'Invalid password.' });
   }
 
   const token = crypto.randomBytes(32).toString('hex');
-  adminSessions.add(token);
-  res.json({ success: true, token });
+  adminSessions.set(token, Date.now() + ADMIN_SESSION_TTL_MS);
+  res.setHeader('Cache-Control', 'no-store');
+  return res.json({ success: true, token, expiresIn: ADMIN_SESSION_TTL_MS / 1000 });
 });
 
 app.post('/api/admin/logout', requireAdmin, (req, res) => {
   adminSessions.delete(getBearerToken(req));
+  res.setHeader('Cache-Control', 'no-store');
   res.json({ success: true });
 });
 
-/**
- * POST /api/contact
- * Body: { fullName, phone, inquiryType, message }
- * Validates fields then inserts into DB.
- * Returns: { success: true, id }
- */
-app.post('/api/contact', (req, res) => {
-  const { fullName, phone, inquiryType, message } = req.body;
+app.post('/api/contact', contactLimiter, (req, res) => {
+  const body = req.body || {};
+  const fullName = normalizeText(body.fullName);
+  const phone = normalizeText(body.phone);
+  const inquiryType = normalizeText(body.inquiryType);
+  const message = normalizeText(body.message);
 
-  // Basic server-side validation
-  if (!fullName || !fullName.trim()) {
-    return res.status(400).json({ success: false, error: 'Full name is required.' });
+  if (normalizeText(body.website)) {
+    return res.json({ success: true });
   }
-  if (!phone || !phone.trim()) {
-    return res.status(400).json({ success: false, error: 'Phone number is required.' });
+  if (fullName.length < 2 || fullName.length > 100) {
+    return res.status(400).json({ success: false, error: 'Enter a valid full name.' });
   }
-  if (!inquiryType || !inquiryType.trim()) {
-    return res.status(400).json({ success: false, error: 'Inquiry type is required.' });
+  if (!isValidPhone(phone)) {
+    return res.status(400).json({ success: false, error: 'Enter a valid phone number.' });
+  }
+  if (!ALLOWED_INQUIRY_TYPES.has(inquiryType)) {
+    return res.status(400).json({ success: false, error: 'Select a valid inquiry type.' });
+  }
+  if (message.length > 2000) {
+    return res.status(400).json({ success: false, error: 'Message must be 2000 characters or fewer.' });
+  }
+  if (body.privacyAccepted !== true) {
+    return res.status(400).json({ success: false, error: 'Privacy acknowledgement is required.' });
   }
 
   try {
-    const stmt = db.prepare(`
+    const result = db.prepare(`
       INSERT INTO submissions (full_name, phone, inquiry_type, message)
       VALUES (?, ?, ?, ?)
-    `);
-    const result = stmt.run(
-      fullName.trim(),
-      phone.trim(),
-      inquiryType.trim(),
-      (message || '').trim()
-    );
+    `).run(fullName, phone, inquiryType, message);
 
-    console.log(`[DB] New submission #${result.lastInsertRowid} from ${fullName}`);
-    res.json({ success: true, id: result.lastInsertRowid });
-
-  } catch (err) {
-    console.error('[DB] Insert error:', err);
-    res.status(500).json({ success: false, error: 'Server error. Please try again.' });
+    console.info(`[DB] New contact submission #${result.lastInsertRowid}`);
+    return res.status(201).json({ success: true, id: result.lastInsertRowid });
+  } catch (error) {
+    console.error('[DB] Insert failed:', error.message);
+    return res.status(500).json({ success: false, error: 'Server error. Please try again.' });
   }
 });
 
-/**
- * GET /api/submissions
- * Returns all form submissions, newest first.
- * Protected by Authorization header.
- * Used by admin.html.
- */
 app.get('/api/submissions', requireAdmin, (req, res) => {
   try {
     const rows = db.prepare(`
-      SELECT * FROM submissions ORDER BY id DESC
+      SELECT id, full_name, phone, inquiry_type, message, submitted_at
+      FROM submissions
+      ORDER BY id DESC
+      LIMIT 1000
     `).all();
-    res.json({ success: true, count: rows.length, data: rows });
-  } catch (err) {
-    console.error('[DB] Query error:', err);
-    res.status(500).json({ success: false, error: 'Server error.' });
+    res.setHeader('Cache-Control', 'no-store');
+    return res.json({ success: true, count: rows.length, data: rows });
+  } catch (error) {
+    console.error('[DB] Query failed:', error.message);
+    return res.status(500).json({ success: false, error: 'Server error.' });
   }
 });
 
-/**
- * DELETE /api/submissions/:id
- * Deletes a single submission by ID.
- * Protected by Authorization header.
- */
 app.delete('/api/submissions/:id', requireAdmin, (req, res) => {
+  const id = Number(req.params.id);
+  if (!Number.isSafeInteger(id) || id < 1) {
+    return res.status(400).json({ success: false, error: 'Invalid submission ID.' });
+  }
+
   try {
-    const result = db.prepare('DELETE FROM submissions WHERE id = ?').run(req.params.id);
+    const result = db.prepare('DELETE FROM submissions WHERE id = ?').run(id);
     if (result.changes === 0) {
       return res.status(404).json({ success: false, error: 'Record not found.' });
     }
-    res.json({ success: true });
-  } catch (err) {
-    console.error('[DB] Delete error:', err);
-    res.status(500).json({ success: false, error: 'Server error.' });
+    res.setHeader('Cache-Control', 'no-store');
+    return res.json({ success: true });
+  } catch (error) {
+    console.error('[DB] Delete failed:', error.message);
+    return res.status(500).json({ success: false, error: 'Server error.' });
   }
 });
 
-function getBearerToken(req) {
-  const header = req.headers.authorization || '';
-  return header.startsWith('Bearer ') ? header.slice(7) : header;
+// Product metadata is rendered into the first response for crawlers and link previews.
+app.get('/product-detail.html', (req, res, next) => {
+  const productId = normalizeText(req.query.id);
+  if (!productId) return next();
+
+  try {
+    const products = JSON.parse(fs.readFileSync(path.join(__dirname, 'assets', 'products.json'), 'utf8'));
+    const product = products.find(item => productSlug(item) === productId);
+    if (!product) return next();
+
+    const template = fs.readFileSync(path.join(__dirname, 'product-detail.html'), 'utf8');
+    const html = renderProductMetadata(template, product, productId);
+    res.setHeader('Cache-Control', `public, max-age=${SHORT_CACHE_SECONDS}, must-revalidate`);
+    return res.type('html').send(html);
+  } catch (error) {
+    console.error('[SEO] Product metadata rendering failed:', error.message);
+    return next();
+  }
+});
+
+const staticFiles = express.static(__dirname, {
+  etag: true,
+  fallthrough: false,
+  index: 'index.html',
+  lastModified: true,
+  setHeaders(res, filePath) {
+    if (/(?:^|[\\/])admin\.html$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'no-store');
+    } else if (/(?:^|[\\/])sitemap\.xml$/i.test(filePath)) {
+      res.type('application/xml');
+      res.setHeader('Cache-Control', `public, max-age=${SHORT_CACHE_SECONDS}, must-revalidate`);
+    } else if (/(?:^|[\\/])(?:favicon|apple-touch-icon|site\.webmanifest)/i.test(filePath)) {
+      res.setHeader('Cache-Control', `public, max-age=${SHORT_CACHE_SECONDS}, must-revalidate`);
+    } else if (/\.(?:png|jpe?g|webp|avif|gif|svg|ico|mp4)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', `public, max-age=${LONG_CACHE_SECONDS}, immutable`);
+    } else if (/\.(?:css|js|json|xml|txt)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', `public, max-age=${SHORT_CACHE_SECONDS}, must-revalidate`);
+    }
+  }
+});
+
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+
+  let relativePath;
+  try {
+    relativePath = decodeURIComponent(req.path).replace(/^\/+/, '');
+  } catch {
+    return res.status(400).send('Bad request');
+  }
+
+  if (relativePath.includes('\0') || relativePath.includes('\\') || relativePath.split('/').includes('..')) {
+    return res.status(404).send('Not found');
+  }
+
+  const firstSegment = relativePath.split('/')[0];
+  const isPublic = relativePath === '' || PUBLIC_ROOT_FILES.has(relativePath) || PUBLIC_DIRECTORIES.has(firstSegment);
+  if (!isPublic) return res.status(404).send('Not found');
+
+  return staticFiles(req, res, next);
+});
+
+app.use('/api', (req, res) => {
+  res.status(404).json({ success: false, error: 'API route not found.' });
+});
+
+app.use((error, req, res, next) => {
+  if (error?.status === 404) {
+    return res.status(404).send('Not found');
+  }
+  if (error?.type === 'entity.too.large') {
+    return res.status(413).json({ success: false, error: 'Request body is too large.' });
+  }
+  if (error instanceof SyntaxError && 'body' in error) {
+    return res.status(400).json({ success: false, error: 'Invalid JSON body.' });
+  }
+  if (res.headersSent) return next(error);
+  console.error('[SERVER] Unhandled request error:', error.message);
+  return res.status(500).json({ success: false, error: 'Server error.' });
+});
+
+function createCorsMiddleware() {
+  return (req, res, next) => cors({
+    credentials: false,
+    methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    maxAge: 600,
+    origin(origin, callback) {
+      if (!origin) return callback(null, true);
+      const requestOrigin = `${req.protocol}://${req.get('host')}`;
+      return callback(null, origin === requestOrigin || allowedOrigins.has(origin));
+    }
+  })(req, res, next);
 }
 
-function requireAdmin(req, res, next) {
-  const token = getBearerToken(req);
-  if (!token || !adminSessions.has(token)) {
-    return res.status(401).json({ success: false, error: 'Unauthorized' });
+function securityHeaders(req, res, next) {
+  const csp = [
+    "default-src 'self'",
+    "base-uri 'self'",
+    "connect-src 'self' http://localhost:3000 http://127.0.0.1:3000",
+    "font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com data:",
+    "form-action 'self'",
+    "frame-ancestors 'none'",
+    "frame-src https://www.google.com https://maps.google.com",
+    "img-src 'self' data: https://images.unsplash.com https://5.imimg.com",
+    "media-src 'self'",
+    "object-src 'none'",
+    "script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com",
+    "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com",
+    "upgrade-insecure-requests"
+  ].join('; ');
+
+  res.setHeader('Content-Security-Policy', csp);
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+  res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+
+  if (req.secure || req.get('x-forwarded-proto') === 'https') {
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  }
+  if (req.path.startsWith('/api/') || req.path === '/admin.html') {
+    res.setHeader('Cache-Control', 'no-store');
   }
   next();
 }
 
-// ── Start server ─────────────────────────────────────────────
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`\n✅ MLL Agro Industries server is LIVE on your network!`);
-  console.log(`   1. On THIS computer :  http://localhost:${PORT}`);
-  console.log(`   2. On OTHER devices :  http://YOUR_COMPUTER_IP:${PORT}`);
-  console.log(`\n   Admin panel :  http://localhost:${PORT}/admin.html`);
-  console.log(`   Database    :  ${DB_PATH}`);
-});
+function createRateLimiter({ windowMs, max }) {
+  const clients = new Map();
+
+  return (req, res, next) => {
+    const now = Date.now();
+    const key = req.ip || req.socket.remoteAddress || 'unknown';
+    const current = clients.get(key);
+    const entry = !current || current.resetAt <= now
+      ? { count: 0, resetAt: now + windowMs }
+      : current;
+
+    entry.count += 1;
+    clients.set(key, entry);
+
+    if (clients.size > 1000) {
+      for (const [clientKey, value] of clients) {
+        if (value.resetAt <= now) clients.delete(clientKey);
+      }
+    }
+
+    res.setHeader('RateLimit-Limit', String(max));
+    res.setHeader('RateLimit-Remaining', String(Math.max(0, max - entry.count)));
+    res.setHeader('RateLimit-Reset', String(Math.ceil(entry.resetAt / 1000)));
+
+    if (entry.count > max) {
+      res.setHeader('Retry-After', String(Math.ceil((entry.resetAt - now) / 1000)));
+      return res.status(429).json({ success: false, error: 'Too many requests. Please try again later.' });
+    }
+    return next();
+  };
+}
+
+function normalizeText(value) {
+  return typeof value === 'string' ? value.trim().replace(/\s+/g, ' ') : '';
+}
+
+function isValidPhone(value) {
+  if (!/^\+?[0-9\s().-]+$/.test(value) || value.length > 24) return false;
+  const digits = value.replace(/\D/g, '');
+  return digits.length >= 10 && digits.length <= 15;
+}
+
+function safeStringEqual(candidate, expected) {
+  const candidateBuffer = Buffer.from(candidate);
+  const expectedBuffer = Buffer.from(expected);
+  return candidateBuffer.length === expectedBuffer.length &&
+    crypto.timingSafeEqual(candidateBuffer, expectedBuffer);
+}
+
+function getBearerToken(req) {
+  const header = req.headers.authorization || '';
+  return header.startsWith('Bearer ') ? header.slice(7) : '';
+}
+
+function requireAdmin(req, res, next) {
+  const token = getBearerToken(req);
+  const expiresAt = token ? adminSessions.get(token) : null;
+
+  if (!expiresAt || expiresAt <= Date.now()) {
+    if (token) adminSessions.delete(token);
+    return res.status(401).json({ success: false, error: 'Unauthorized' });
+  }
+
+  adminSessions.set(token, Date.now() + ADMIN_SESSION_TTL_MS);
+  res.setHeader('Cache-Control', 'no-store');
+  return next();
+}
+
+function slugifyProduct(value) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function productSlug(product) {
+  return product.slug || slugifyProduct(product.displayName || product.name);
+}
+
+function absoluteAssetUrl(value) {
+  if (/^https?:\/\//i.test(value || '')) return value;
+  return `https://mllagroindustries.com/${String(value || 'assets/logo_en.png').replace(/^\/+/, '')}`;
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function renderProductMetadata(template, product, slug) {
+  const name = product.displayName || product.name;
+  const title = `${name} | Vansh Group Product`;
+  const description = normalizeText(product.shortDescription || product.description || `${name} product information from Vansh Group.`).slice(0, 220);
+  const canonical = `https://mllagroindustries.com/product-detail.html?id=${encodeURIComponent(slug)}`;
+  const image = absoluteAssetUrl(product.image);
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name,
+    image,
+    description,
+    category: product.category || undefined,
+    brand: { '@type': 'Brand', name: 'Vansh Group' },
+    manufacturer: { '@id': 'https://mllagroindustries.com/#organization' },
+    url: canonical
+  };
+  const schemaJson = JSON.stringify(productSchema).replace(/</g, '\\u003c');
+
+  return template
+    .replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(title)}</title>`)
+    .replace(/(<meta id="product-meta-description" name="description" content=")[^"]*(">)/, `$1${escapeHtml(description)}$2`)
+    .replace(/(<link id="product-canonical" rel="canonical" href=")[^"]*(">)/, `$1${escapeHtml(canonical)}$2`)
+    .replace(/(<meta id="product-og-title" property="og:title" content=")[^"]*(">)/, `$1${escapeHtml(title)}$2`)
+    .replace(/(<meta id="product-og-description" property="og:description" content=")[^"]*(">)/, `$1${escapeHtml(description)}$2`)
+    .replace(/(<meta id="product-og-url" property="og:url" content=")[^"]*(">)/, `$1${escapeHtml(canonical)}$2`)
+    .replace(/(<meta id="product-og-image" property="og:image" content=")[^"]*(">)/, `$1${escapeHtml(image)}$2`)
+    .replace(/(<meta id="product-twitter-title" name="twitter:title" content=")[^"]*(">)/, `$1${escapeHtml(title)}$2`)
+    .replace(/(<meta id="product-twitter-description" name="twitter:description" content=")[^"]*(">)/, `$1${escapeHtml(description)}$2`)
+    .replace(/(<meta id="product-twitter-image" name="twitter:image" content=")[^"]*(">)/, `$1${escapeHtml(image)}$2`)
+    .replace(/(<script id="product-jsonld" type="application\/ld\+json">)[\s\S]*?(<\/script>)/, `$1${schemaJson}$2`);
+}
+
+function migrateLegacyDatabase() {
+  const legacyPath = path.join(__dirname, 'vansh_leads.db');
+  if (DB_PATH === DEFAULT_DB_PATH && !fs.existsSync(DB_PATH) && fs.existsSync(legacyPath)) {
+    fs.copyFileSync(legacyPath, DB_PATH, fs.constants.COPYFILE_EXCL);
+    fs.chmodSync(DB_PATH, 0o600);
+    console.info('[DB] Existing lead database copied into the protected .data directory.');
+  }
+}
+
+function closeDatabase() {
+  if (db.open) db.close();
+}
+
+if (require.main === module) {
+  const server = app.listen(PORT, '0.0.0.0', () => {
+    console.info(`MLL Agro Industries server listening on http://localhost:${PORT}`);
+    console.info(`Admin panel: http://localhost:${PORT}/admin.html`);
+  });
+
+  for (const signal of ['SIGINT', 'SIGTERM']) {
+    process.on(signal, () => {
+      server.close(() => {
+        closeDatabase();
+        process.exit(0);
+      });
+    });
+  }
+}
+
+module.exports = { app, closeDatabase };

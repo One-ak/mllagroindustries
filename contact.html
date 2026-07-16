@@ -68,13 +68,16 @@
       2. Injects the page-transition overlay to prevent content flash.
       Never add defer or async to this script.
     -->
-    <script src="js/theme-init.js?v=20260611-xfavicon"></script>
+    <script src="js/theme-init.js?v=20260715-historyfix"></script>
 
     <!-- Font Awesome icons (phone, envelope, map-marker, etc.) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Outfit:wght@500;700;900&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Main stylesheet — all layout, colours, and animations -->
-    <link rel="stylesheet" href="css/styles.css?v=20260611-xfavicon">
+    <link rel="stylesheet" href="css/styles.css?v=20260715-historyfix">
 </head>
 <body>
 
@@ -138,11 +141,12 @@
     <!-- Quick Contact Cards -->
     <section class="section reveal" style="padding-bottom: 0;">
         <div class="container">
+            <h2 class="sr-only">Contact options</h2>
             <div class="contact-action-grid">
                 <article class="premium-card contact-mini-card reveal-scale">
                     <span class="icon-pill"><i class="fab fa-whatsapp"></i></span>
                     <h3 data-i18n="contact.quick.whatsapp.title">WhatsApp Coordination</h3>
-                    <p><a href="https://wa.me/9196702481" target="_blank" data-i18n="contact.quick.whatsapp.link">Message the team</a></p>
+                    <p><a href="https://wa.me/919670252525" target="_blank" rel="noopener noreferrer" data-i18n="contact.quick.whatsapp.link">Message the team</a></p>
                 </article>
                 <article class="premium-card contact-mini-card reveal-scale" style="transition-delay: 0.08s;">
                     <span class="icon-pill"><i class="fas fa-phone"></i></span>
@@ -185,6 +189,7 @@
     ═══════════════════════════════════════════════════════ -->
     <section class="section reveal">
         <div class="container">
+            <h2 class="sr-only">Contact details and inquiry form</h2>
             <div class="grid-1-2">
 
                 <!-- LEFT: Contact information panel -->
@@ -238,13 +243,13 @@
                     </div>
 
                     <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2.5rem;">
-                        <a href="https://wa.me/9196702481" target="_blank" class="btn btn-secondary btn-sm" data-i18n="contact.action.whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="https://wa.me/919670252525" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="contact.action.whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                         <a href="mailto:vanshgroupofficial@gmail.com" class="btn btn-outline btn-sm" style="color: white; border-color: rgba(255,255,255,0.55);" data-i18n="contact.action.email"><i class="fas fa-envelope"></i> Email Us</a>
                     </div>
                 </div>
 
                 <!-- RIGHT: Business inquiry form -->
-                <div class="reveal-right"
+                <div id="inquiry-form" class="reveal-right contact-form-panel"
                      style="background: var(--white); padding: 3rem; border-radius: var(--radius-lg);
                             border: 1px solid var(--gray-light); box-shadow: var(--shadow-md);">
                     <h3 style="font-size: 1.75rem; color: var(--dark); margin-bottom: 0.5rem;" data-i18n="contact.form.title">Share your requirement</h3>
@@ -254,11 +259,16 @@
 
                     <!-- Contact form — submits via fetch() to POST /api/contact -->
                     <form id="contact-form" onsubmit="submitForm(event)">
+                        <div class="contact-honeypot" aria-hidden="true">
+                            <label for="cf-website">Leave this field empty</label>
+                            <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off">
+                        </div>
                         <!-- Name + Phone row -->
                         <div class="grid-2" style="margin-bottom: 1.5rem;">
                             <div>
-                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);" data-i18n="contact.form.name">Full Name</label>
-                                <input id="cf-name" type="text" placeholder="Your name" data-i18n-placeholder="contact.form.name.ph" required
+                                <label for="cf-name" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);" data-i18n="contact.form.name">Full Name</label>
+                                <input id="cf-name" name="fullName" type="text" placeholder="Your name" data-i18n-placeholder="contact.form.name.ph"
+                                       autocomplete="name" minlength="2" maxlength="100" required
                                        style="width: 100%; padding: 0.75rem 1rem;
                                               border: 1px solid var(--gray-light);
                                               border-radius: var(--radius-sm);
@@ -266,8 +276,9 @@
                                               background: var(--white); color: var(--dark);">
                             </div>
                             <div>
-                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);" data-i18n="contact.form.phone">Phone Number</label>
-                                <input id="cf-phone" type="tel" placeholder="+91 0000000000" data-i18n-placeholder="contact.form.phone.ph" required
+                                <label for="cf-phone" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);" data-i18n="contact.form.phone">Phone Number</label>
+                                <input id="cf-phone" name="phone" type="tel" placeholder="+91 0000000000" data-i18n-placeholder="contact.form.phone.ph"
+                                       autocomplete="tel" inputmode="tel" maxlength="24" required
                                        style="width: 100%; padding: 0.75rem 1rem;
                                               border: 1px solid var(--gray-light);
                                               border-radius: var(--radius-sm);
@@ -278,36 +289,41 @@
 
                         <!-- Inquiry type dropdown -->
                         <div style="margin-bottom: 1.5rem;">
-                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);" data-i18n="contact.form.type">Inquiry Type</label>
-                            <select id="cf-type" style="width: 100%; padding: 0.75rem 1rem;
+                            <label for="cf-type" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);" data-i18n="contact.form.type">Inquiry Type</label>
+                            <select id="cf-type" name="inquiryType" required style="width: 100%; padding: 0.75rem 1rem;
                                           border: 1px solid var(--gray-light);
                                           border-radius: var(--radius-sm);
                                           font-family: var(--font-main); outline: none;
                                           background: var(--white); color: var(--dark); cursor: pointer;">
-                                <option data-i18n="contact.form.type.distributor">Distributorship Inquiry</option>
-                                <option data-i18n="contact.form.type.product">Product Information</option>
-                                <option data-i18n="contact.form.type.grievance">Grievance Redressal</option>
-                                <option data-i18n="contact.form.type.export">Export Inquiry</option>
-                                <option data-i18n="contact.form.type.vendor">Vendor Registration</option>
+                                <option value="Distributorship Inquiry" data-i18n="contact.form.type.distributor">Distributorship Inquiry</option>
+                                <option value="Product Information" data-i18n="contact.form.type.product">Product Information</option>
+                                <option value="Grievance Redressal" data-i18n="contact.form.type.grievance">Grievance Redressal</option>
+                                <option value="Export Inquiry" data-i18n="contact.form.type.export">Export Inquiry</option>
+                                <option value="Vendor Registration" data-i18n="contact.form.type.vendor">Vendor Registration</option>
+                                <option value="Career Application">Career Application</option>
                             </select>
                         </div>
 
                         <!-- Message textarea -->
                         <div style="margin-bottom: 2rem;">
-                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);" data-i18n="contact.form.message">Your Message</label>
-                            <textarea id="cf-msg" rows="4" placeholder="How can we help you?" data-i18n-placeholder="contact.form.message.ph"
+                            <label for="cf-msg" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);" data-i18n="contact.form.message">Your Message</label>
+                            <textarea id="cf-msg" name="message" rows="4" maxlength="2000" placeholder="How can we help you?" data-i18n-placeholder="contact.form.message.ph"
                                       style="width: 100%; padding: 0.75rem 1rem;
                                              border: 1px solid var(--gray-light);
                                              border-radius: var(--radius-sm);
                                              font-family: var(--font-main); outline: none;
-                                             resize: vertical; background: var(--white); color: var(--dark);">
-                            </textarea>
+                                             resize: vertical; background: var(--white); color: var(--dark);"></textarea>
+                        </div>
+
+                        <div class="contact-consent">
+                            <input id="cf-privacy" name="privacyAccepted" type="checkbox" required>
+                            <label for="cf-privacy">I understand that Vansh Group will use these details to respond to my inquiry. Read the <a href="privacy.html">privacy notice</a>.</label>
                         </div>
 
                         <!-- Submit button — disabled while sending to prevent double-submit -->
                         <button id="cf-btn" type="submit" class="btn btn-primary" style="width: 100%;" data-i18n="contact.form.submit">Send Message</button>
                         <!-- Feedback message shown after submission -->
-                        <div id="cf-msg-box" style="display:none; margin-top:1rem; padding:1rem;
+                        <div id="cf-msg-box" role="status" aria-live="polite" tabindex="-1" style="display:none; margin-top:1rem; padding:1rem;
                              border-radius:var(--radius-sm); font-weight:600; text-align:center;"></div>
                     </form>
                 </div>
@@ -363,8 +379,8 @@
         1. i18n.js  — must load first (defines window.i18n)
         2. main.js  — wires all interactions, calls window.i18n.init()
     -->
-    <script src="js/i18n.js?v=20260611-xfavicon"></script>
-    <script src="js/main.js?v=20260611-xfavicon"></script>
+    <script src="js/i18n.js?v=20260715-historyfix"></script>
+    <script src="js/main.js?v=20260715-historyfix"></script>
     <script>
       /**
        * submitForm — handles the contact form submission.
@@ -384,6 +400,8 @@
           phone       : document.getElementById('cf-phone').value.trim(),
           inquiryType : document.getElementById('cf-type').value,
           message     : document.getElementById('cf-msg').value.trim(),
+          website     : document.getElementById('cf-website').value,
+          privacyAccepted: document.getElementById('cf-privacy').checked,
         };
 
         // Disable button while sending
@@ -391,12 +409,13 @@
         btn.textContent = t('contact.form.sending');
         msgBox.style.display = 'none';
 
+        let timeoutId;
         try {
           const apiUrl = getContactApiUrl('/api/contact');
 
           // Abort controller to prevent infinite "Sending..." hang
           const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+          timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
 
           const res  = await fetch(apiUrl, {
             method  : 'POST',
@@ -404,17 +423,16 @@
             body    : JSON.stringify(payload),
             signal  : controller.signal
           });
-          clearTimeout(timeoutId);
-          
-          const json = await res.json();
+          const json = await res.json().catch(() => ({}));
 
-          if (json.success) {
+          if (res.ok && json.success) {
             // Success: green message + reset form
             msgBox.style.display      = 'block';
             msgBox.style.background   = '#dcfce7';
             msgBox.style.color        = '#166534';
             msgBox.textContent        = t('contact.form.success');
             document.getElementById('contact-form').reset();
+            applyInquiryPreset();
           } else {
             throw new Error(json.error || 'Server error');
           }
@@ -423,13 +441,31 @@
           msgBox.style.display      = 'block';
           msgBox.style.background   = '#fee2e2';
           msgBox.style.color        = '#991b1b';
-          msgBox.textContent        = err.message || 'Something went wrong. Please try again.';
+          msgBox.textContent        = err.name === 'AbortError'
+            ? 'The request timed out. Please check your connection and try again.'
+            : (err.message || 'Something went wrong. Please try again.');
         } finally {
+          clearTimeout(timeoutId);
           // Re-enable button
           btn.disabled    = false;
           btn.textContent = t('contact.form.submit');
         }
       }
+
+      function applyInquiryPreset() {
+        const presets = {
+          distributor: 'Distributorship Inquiry',
+          product: 'Product Information',
+          grievance: 'Grievance Redressal',
+          export: 'Export Inquiry',
+          vendor: 'Vendor Registration',
+          career: 'Career Application'
+        };
+        const preset = presets[new URLSearchParams(window.location.search).get('inquiry')];
+        if (preset) document.getElementById('cf-type').value = preset;
+      }
+
+      applyInquiryPreset();
 
       function getContactApiUrl(path) {
         const host = window.location.hostname || 'localhost';

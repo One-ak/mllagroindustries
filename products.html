@@ -50,9 +50,12 @@
       ]
     }
     </script>
-    <script src="js/theme-init.js?v=20260611-xfavicon"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="css/styles.css?v=20260611-xfavicon">
+    <script src="js/theme-init.js?v=20260715-historyfix"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Outfit:wght@500;700;900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css?v=20260715-historyfix">
   <style>
     /* ── Filter Tabs ── */
     .filter-bar {
@@ -342,6 +345,14 @@
       font-size: 1.1rem;
     }
 
+    .products-more {
+      display: flex;
+      justify-content: center;
+      margin: 2.5rem 0 0;
+    }
+
+    .products-more[hidden] { display: none; }
+
     /* ── Sticky filter bar on scroll ── */
     .filter-wrap {
       position: sticky;
@@ -365,8 +376,11 @@
     }
     @media (max-width: 640px) {
       .filter-wrap {
+        position: static;
+        top: auto;
         width: 100%;
         border-radius: 22px;
+        box-shadow: 0 10px 24px rgba(15,23,42,.08);
       }
       .filter-bar {
         flex-wrap: wrap;
@@ -447,13 +461,13 @@
       <!-- Sticky Filter Tabs -->
       <div class="filter-wrap">
         <div class="filter-bar">
-          <button class="filter-btn active" data-cat="all" aria-pressed="true" data-i18n="products.filter.all">All Products</button>
-          <button class="filter-btn" data-cat="fertilizer" aria-pressed="false"><i class="fas fa-seedling" style="margin-right:.4rem;"></i><span data-i18n="products.filter.fertilizer">Fertilizers &amp; Nutrition</span></button>
-          <button class="filter-btn" data-cat="feed" aria-pressed="false"><i class="fas fa-paw" style="margin-right:.4rem;"></i><span data-i18n="products.filter.feed">Animal &amp; Aqua Feed</span></button>
-          <button class="filter-btn" data-cat="agro" aria-pressed="false"><i class="fas fa-flask" style="margin-right:.4rem;"></i><span data-i18n="products.filter.agro">Agro Chemicals</span></button>
+          <button type="button" class="filter-btn active" data-cat="all" aria-pressed="true" data-i18n="products.filter.all">All Products</button>
+          <button type="button" class="filter-btn" data-cat="fertilizer" aria-pressed="false"><i class="fas fa-seedling" aria-hidden="true" style="margin-right:.4rem;"></i><span data-i18n="products.filter.fertilizer">Fertilizers &amp; Nutrition</span></button>
+          <button type="button" class="filter-btn" data-cat="feed" aria-pressed="false"><i class="fas fa-paw" aria-hidden="true" style="margin-right:.4rem;"></i><span data-i18n="products.filter.feed">Animal &amp; Aqua Feed</span></button>
+          <button type="button" class="filter-btn" data-cat="agro" aria-pressed="false"><i class="fas fa-flask" aria-hidden="true" style="margin-right:.4rem;"></i><span data-i18n="products.filter.agro">Agro Chemicals</span></button>
           <label class="product-search" for="product-search-input">
-            <i class="fas fa-search"></i>
-            <input id="product-search-input" type="search" autocomplete="off" data-i18n-placeholder="products.search.placeholder" placeholder="Search products">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <input id="product-search-input" type="search" autocomplete="off" aria-label="Search products" data-i18n-placeholder="products.search.placeholder" placeholder="Search products">
           </label>
         </div>
       </div>
@@ -496,6 +510,11 @@
         <span data-i18n="products.no_results.desc">Try another product name, category, feed form, packing size or nutrient.</span>
       </div>
 
+      <div class="products-more" id="products-more" hidden>
+        <button type="button" class="btn btn-primary" id="products-more-button">Show More Products</button>
+      </div>
+      <p class="sr-only" id="products-results-status" role="status" aria-live="polite"></p>
+
     </div>
   </section>
 
@@ -535,92 +554,28 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js?v=20260611-xfavicon"></script>
-  <script src="js/main.js?v=20260611-xfavicon"></script>
+  <script src="js/i18n.js?v=20260715-historyfix"></script>
+  <script src="js/main.js?v=20260715-historyfix"></script>
   <script>
     // ── Product Data ──────────────────────────────────────────
     const FALLBACK = 'https://images.unsplash.com/photo-1594498653385-d5172c532c00?w=400&q=80';
 
-    const feed = [
-      ['Vansh Multigrain Fortified Cokar','vansh_multigrain_fortified_cokar'],
-      ['Vansh Heera','vansh_heera'],
-      ['Vansh Gajab','vansh_gajab'],
-      ['Vansh Proteimax Kuroiler','vansh_proteimax_kuroiler'],
-      ['Vansh Proteimax Finisher','vansh_proteimax_finisher'],
-      ['Vansh Proteimax Starter','vansh_proteimax_starter'],
-      ['Vansh Proteimax Pre Starter','vansh_proteimax_pre_starter'],
-      ['Vansh Floating Fish Feed','vansh_floating_fish_feed'],
-      ['Vansh Pro 8000','vansh_pro_8000'],
-      ['Vansh Grow 5000','vansh_grow_5000'],
-      ['Vansh Pashu Aahar','vansh-pashu-aahar'],
-      ['Vansh Starter 3000','vansh_starter_3000'],
-      ['Vansh Supreme','vansh_supreme'],
-      ['Super Compounded Cattle Feed','super-compounded-cattle-feed'],
-    ];
-
-    const fertilizer = [
-      ['Prom','prom'],
-      ['Vansh Potash','vansh_potash'],
-      ['Green Phos','green_phos'],
-      ['Vansh NPK','vansh_npk'],
-      ['King Mentha Special','king_mentha_special'],
-      ['Sadabahar Mentha Special','sadabahar_mentha_special'],
-      ['Kishan Mentha Special','kishan_mentha_special'],
-      ['Vansh Badshah Mentha Special','vansh_badshah_mentha_special'],
-      ['Vansh Mono Zinc','vansh_mono_zinc'],
-      ['Vanshika Kahar Agro Fertilizer','vanshika-kahar-agro-fertilizer'],
-      ['Ferrous Sulphate Agro Fertilizer','ferrous-sulphate-agro-fertilizer'],
-      ['Hariyali Gold Ferrous Sulphate Agro Fertilizer','hariyali-gold-ferrous-sulphate-agro-fertilizer'],
-      ['Vansh Mono King Fertilizer','vansh-mono-king-fertilizer'],
-      ['Vansh Excel Gold Fertilizer','vansh-excel-gold-fertilizer'],
-      ['B-20% Boron Fertilizer','b-20-boron-fertilizer'],
-      ['Paddy Special Micronutrients Fertilizer','paddy-special-micronutrients-fertilizer'],
-      ['Magnesium Sulphate Micronutrients Fertilizer','magnesium-sulphate-micronutrients-fertilizer'],
-      ['Micro Ferrous Micronutrient Fertilizer','micro-ferrous-micronutrient-fertilizer'],
-      ['Hariyali Gold Organic Fertilizers and Manure','hariyali-gold-organic-fertilizers-and-manure'],
-      ['Toofan Zinc Fertilizer','toofan-zinc-fertilizer'],
-      ['Zinc Sulphate Monohydrate','zinc-sulphate-monohydrate'],
-      ['90% DP Sulphur Fertilizer','90-dp-sulphur-fertilizer'],
-      ['90% WDG Excel Plus Sulphur Fertilizer','90-wdg-excel-plus-sulphur-fertilizer'],
-    ];
-
-    const agro = [
-      ['Vansh Sugarcane Special','vansh_sugarcane_special'],
-      ['Vansh Grow Vita','vansh_grow_vita'],
-      ['Vansh Sanjivini Gold','vansh_sanjivini_gold'],
-      ['Vansh Balwan','vansh_balwan'],
-      ['Vansh Sanjeevni Gold','vansh_sanjeevni_gold'],
-      ['Vansh Takat Plus','vansh_takat_plus'],
-      ['Vansh Bahubali','vansh_bahubali'],
-      ['Vansh Boom Flower','vansh_boom_flower'],
-      ['Vansh Poshak Boron','vansh_poshak_boron'],
-      ['Fasal Balwan','fasal_balwan'],
-      ['Vansh Black Gold','vansh_black_gold'],
-      ['Vansh Cargodan','vansh_cargodan'],
-      ['Vansh Pardhan','vansh_pardhan'],
-      ['Vansh Resent','vansh_resent'],
-      ['Vansh Futerra','vansh_futerra'],
-      ['Vansh Furotox','vansh_furotox'],
-      ['Vansh Dabang','vansh_dabang'],
-      ['Vansh Dhan Gehu Makka King','vansh_dhan_gehu_makka_king'],
-      ['Vansh Speed Gold','vansh_speed_gold'],
-      ['Vansh Fasal Aahar','vansh_fasal_aahar'],
-    ];
-
-    const PRODUCT_WHATSAPP = '9196702481';
+    const PRODUCT_WHATSAPP = window.VANSH_SITE_CONFIG?.whatsappDigits || '919670252525';
+    const PRODUCTS_PER_GROUP = 8;
     const categoryLabels = {
       feed: { en: 'Animal & Aqua Feed', hi: 'पशु और एक्वा फीड' },
       fertilizer: { en: 'Organic Inputs & Fertilizers', hi: 'ऑर्गेनिक इनपुट और उर्वरक' },
       agro: { en: 'Agro Chemicals & Specialties', hi: 'एग्रो केमिकल्स और स्पेशल्टी' }
     };
     const productGroups = {
-      fertilizer: { gridId: 'grid-fertilizer', sectionId: 'cat-fertilizer', items: fertilizer },
-      feed: { gridId: 'grid-feed', sectionId: 'cat-feed', items: feed },
-      agro: { gridId: 'grid-agro', sectionId: 'cat-agro', items: agro }
+      fertilizer: { gridId: 'grid-fertilizer', sectionId: 'cat-fertilizer', items: [] },
+      feed: { gridId: 'grid-feed', sectionId: 'cat-feed', items: [] },
+      agro: { gridId: 'grid-agro', sectionId: 'cat-agro', items: [] }
     };
     let activeCategory = 'all';
     let productSearchTerm = '';
     let catalogBySlug = {};
+    let visiblePerGroup = PRODUCTS_PER_GROUP;
 
     // ── Render helper ─────────────────────────────────────────
     function productImagePath(slug) {
@@ -652,11 +607,21 @@
 	    async function loadProductCatalog() {
 	      try {
 	        const response = await fetch('assets/products.json');
+	        if (!response.ok) throw new Error(`Catalog returned ${response.status}`);
 	        const products = await response.json();
 	        catalogBySlug = {};
 	        products.forEach(registerProduct);
+	        Object.values(productGroups).forEach(group => { group.items = []; });
+	        products.forEach(product => {
+	          const group = productGroups[product.catalogGroup];
+	          if (!group) return;
+	          group.items.push([
+	            product.name,
+	            product.slug || slugKey(product.displayName || product.name)
+	          ]);
+	        });
 	      } catch (error) {
-	        console.warn('Product catalog details unavailable; rendering basic cards.', error);
+	        console.error('Product catalog unavailable.', error);
 	      }
 	    }
 
@@ -700,7 +665,7 @@
 	          : '';
 
 	        return `
-	        <div class="product-card" style="animation-delay:${i * 0.04}s">
+	        <div class="product-card" style="animation-delay:${Math.min(i * 0.04, 0.32)}s">
 	          <div class="product-img-wrapper">
 	            <img src="${imageSrc}"
 	                 alt="${displayName}"
@@ -717,7 +682,7 @@
 	              <a href="product-detail.html?id=${detailId}" class="btn-view">
 	                <span>${buttonText('products.view', 'View Details')}</span> <i class="fas fa-arrow-right"></i>
 	              </a>
-	              <a href="${inquiryUrl(productData && productData.inquiryName ? productData.inquiryName : displayName)}" class="btn-inquiry" target="_blank" rel="noopener">
+	              <a href="${inquiryUrl(productData && productData.inquiryName ? productData.inquiryName : displayName)}" class="btn-inquiry" target="_blank" rel="noopener noreferrer">
 	                <i class="fab fa-whatsapp"></i> <span>${buttonText('products.inquiry', 'Send Inquiry')}</span>
 	              </a>
 	            </div>
@@ -768,7 +733,7 @@
 	      return `${count} ${count === 1 ? 'Product' : 'Products'}`;
 	    }
 
-	    function updateFilterState(counts) {
+	    function updateFilterState(counts, hasMore, renderedTotal) {
 	      let visibleTotal = 0;
 
 	      Object.entries(productGroups).forEach(([key, group]) => {
@@ -785,10 +750,17 @@
 
 	      const empty = document.getElementById('products-empty');
 	      if (empty) empty.classList.toggle('active', visibleTotal === 0);
+
+	      const moreWrap = document.getElementById('products-more');
+	      if (moreWrap) moreWrap.hidden = !hasMore || visibleTotal === 0;
+
+	      const status = document.getElementById('products-results-status');
+	      if (status) status.textContent = `${renderedTotal} of ${visibleTotal} matching products shown.`;
 	    }
 
 	    function setActiveCategory(category, shouldScroll = false) {
 	      activeCategory = category;
+	      visiblePerGroup = PRODUCTS_PER_GROUP;
 	      document.querySelectorAll('.filter-btn').forEach(btn => {
 	        const isActive = btn.dataset.cat === activeCategory;
 	        btn.classList.toggle('active', isActive);
@@ -808,12 +780,18 @@
 
 	    function renderAllCards() {
 	      const counts = {};
+	      let hasMore = false;
+	      let renderedTotal = 0;
 	      Object.entries(productGroups).forEach(([key, group]) => {
 	        const filteredProducts = group.items.filter(item => searchMatches(item, key));
 	        counts[key] = filteredProducts.length;
-	        renderCards(group.gridId, filteredProducts, key);
+	        const shouldShowCategory = activeCategory === 'all' || activeCategory === key;
+	        const visibleProducts = shouldShowCategory ? filteredProducts.slice(0, visiblePerGroup) : [];
+	        if (shouldShowCategory && filteredProducts.length > visibleProducts.length) hasMore = true;
+	        renderedTotal += visibleProducts.length;
+	        renderCards(group.gridId, visibleProducts, key);
 	      });
-	      updateFilterState(counts);
+	      updateFilterState(counts, hasMore, renderedTotal);
 	    }
 
     loadProductCatalog().then(renderAllCards);
@@ -830,6 +808,7 @@
     if (productSearchInput) {
       productSearchInput.addEventListener('input', event => {
         productSearchTerm = event.target.value.trim();
+        visiblePerGroup = PRODUCTS_PER_GROUP;
         renderAllCards();
       });
 
@@ -837,10 +816,16 @@
         if (event.key === 'Escape') {
           productSearchInput.value = '';
           productSearchTerm = '';
+          visiblePerGroup = PRODUCTS_PER_GROUP;
           renderAllCards();
         }
       });
     }
+
+    document.getElementById('products-more-button')?.addEventListener('click', () => {
+      visiblePerGroup += PRODUCTS_PER_GROUP;
+      renderAllCards();
+    });
   </script>
 </body>
 </html>

@@ -97,9 +97,27 @@
   //    id="page-overlay"  → used by main.js to find this element
   //    id="transition-logo" → used by main.js to swap Hindi logo
   // ─────────────────────────────────────────────────────────────
+  var savedLanguage = localStorage.getItem('vansh_lang');
+  var loaderLogo = savedLanguage === 'hi' ? 'assets/logo_hi.png' : 'assets/logo_en.png';
+
+  // Critical loader styles are injected with the overlay so it is correctly
+  // positioned even before the main stylesheet has finished loading.
   document.write(
+    '<style id="page-loader-critical">' +
+      '.page-transition-overlay.initial-load{' +
+        'position:fixed;inset:0;z-index:99999;display:flex;' +
+        'align-items:center;justify-content:center;background:#fff;' +
+        'opacity:1;visibility:visible;pointer-events:all;isolation:isolate;' +
+      '}' +
+      'html[data-theme="dark"] .page-transition-overlay.initial-load{background:#0f172a;}' +
+      '.page-transition-overlay.initial-load img{' +
+        'display:block;width:min(180px,36vw);height:auto;opacity:1;' +
+        'transform:translateY(0) scale(1);backface-visibility:hidden;' +
+      '}' +
+    '</style>' +
     '<div class="page-transition-overlay initial-load" id="page-overlay">' +
-      '<img src="assets/logo_en.png" alt="Vansh Feeds" id="transition-logo">' +
+      '<img src="' + loaderLogo + '" alt="Vansh Feeds" id="transition-logo" ' +
+        'width="256" height="256" fetchpriority="high" decoding="sync">' +
     '</div>'
   );
 

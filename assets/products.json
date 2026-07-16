@@ -2,27 +2,32 @@
   {
     "name": "Vansh Multigrain Fortified Cokar",
     "image": "assets/products/vansh_multigrain_fortified_cokar.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Multigrain Fortified Cokar is the full product name shown for this catalogue entry; no category or specifications are listed.",
+    "catalogGroup": "feed"
   },
   {
     "name": "Vansh Heera",
     "image": "assets/products/vansh_heera.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Heera is listed in the catalogue under the Heera product name, without category or specification details in this record.",
+    "catalogGroup": "feed"
   },
   {
     "name": "Vansh Gajab",
     "image": "assets/products/vansh_gajab.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Gajab appears in the catalogue under the Gajab product name; this record contains no category or technical specifications.",
+    "catalogGroup": "feed"
   },
   {
     "name": "Prom",
     "image": "assets/products/prom.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Prom is the complete product name supplied for this catalogue entry; no category or specification fields are present.",
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Vansh Potash",
     "image": "assets/products/vansh_potash.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Potash is listed under the Potash product name; this record does not state a category, formulation or specifications.",
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Green Phos",
@@ -92,7 +97,8 @@
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
     },
-    "alternateName": "Green Phos"
+    "alternateName": "Green Phos",
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Vansh Sugarcane Special",
@@ -157,17 +163,20 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Grow Vita",
     "image": "assets/products/vansh_grow_vita.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Grow Vita is the product name recorded for this catalogue entry, which contains no category or specification details.",
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Sanjivini Gold",
     "image": "assets/products/vansh_sanjivini_gold.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Sanjivini Gold is catalogued under the Sanjivini Gold name; no category or technical specifications are provided in this record.",
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Npk",
@@ -234,7 +243,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Vansh Balwan",
@@ -301,7 +311,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Sanjeevni Gold",
@@ -370,7 +381,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Takat Plus",
@@ -437,7 +449,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Bahubali",
@@ -506,7 +519,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Boom Flower",
@@ -575,7 +589,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Poshak Boron",
@@ -644,7 +659,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "agro"
   },
   {
     "name": "Fasal Balwan",
@@ -709,7 +725,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Black Gold",
@@ -778,22 +795,26 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "agro"
   },
   {
     "name": "King Mentha Special",
     "image": "assets/products/king_mentha_special.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "King Mentha Special is listed with Mentha Special in its product name; no category or specifications are supplied in this record.",
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Sadabahar Mentha Special",
     "image": "assets/products/sadabahar_mentha_special.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Sadabahar Mentha Special is the full name recorded for this product, including the Mentha Special designation; no specifications are listed.",
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Kishan Mentha Special",
     "image": "assets/products/kishan_mentha_special.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Kishan Mentha Special is catalogued by its Mentha Special product name; this record does not provide category or specification details.",
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Vansh Badshah Mentha Special",
@@ -860,52 +881,62 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Vansh Cargodan",
     "image": "assets/products/vansh_cargodan.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Cargodan is listed in the product catalogue under the Cargodan name; no category or technical specifications are stated.",
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Pardhan",
     "image": "assets/products/vansh_pardhan.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Pardhan is the product name shown for this catalogue item, whose record includes no category or specification fields.",
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Resent",
     "image": "assets/products/vansh_resent.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Resent appears under the Resent name in the catalogue; this record supplies no category or technical specifications.",
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Futerra",
     "image": "assets/products/vansh_futerra.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Futerra is catalogued under the Futerra product name, with no category or specification details included in this entry.",
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Furotox",
     "image": "assets/products/vansh_furotox.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Furotox is the full product name present in this catalogue record; no category or technical specifications are listed.",
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Dabang",
     "image": "assets/products/vansh_dabang.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Dabang is listed under the Dabang name in the product catalogue; its record contains no category or specification details.",
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Dhan Gehu Makka King",
     "image": "assets/products/vansh_dhan_gehu_makka_king.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "The Vansh Dhan Gehu Makka King name explicitly includes Dhan, Gehu and Makka; this record provides no category or specifications.",
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Speed Gold",
     "image": "assets/products/vansh_speed_gold.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Speed Gold is recorded under the Speed Gold product name; no category or technical specification fields accompany this entry.",
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Fasal Aahar",
     "image": "assets/products/vansh_fasal_aahar.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Fasal Aahar is the product name used for this catalogue entry, which does not include category or specification details.",
+    "catalogGroup": "agro"
   },
   {
     "name": "Vansh Mono Zinc",
@@ -972,32 +1003,38 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Vansh Proteimax Kuroiler",
     "image": "assets/products/vansh_proteimax_kuroiler.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Proteimax Kuroiler is the complete product name in this catalogue record; no category or technical specifications are supplied.",
+    "catalogGroup": "feed"
   },
   {
     "name": "Vansh Proteimax Finisher",
     "image": "assets/products/vansh_proteimax_finisher.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Proteimax Finisher is listed with Finisher in the product name; this record does not state a category or specifications.",
+    "catalogGroup": "feed"
   },
   {
     "name": "Vansh Proteimax Starter",
     "image": "assets/products/vansh_proteimax_starter.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Proteimax Starter is catalogued with Starter in its name, without category or technical specification details in this record.",
+    "catalogGroup": "feed"
   },
   {
     "name": "Vansh Proteimax Pre Starter",
     "image": "assets/products/vansh_proteimax_pre_starter.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Proteimax Pre Starter is listed with Pre Starter in the product name; no category or specifications are provided here.",
+    "catalogGroup": "feed"
   },
   {
     "name": "Vansh Floating Fish Feed",
     "image": "assets/products/vansh_floating_fish_feed.jpg",
-    "description": "High-quality agricultural product designed to maximize farm yield and health."
+    "description": "Vansh Floating Fish Feed is listed by name as a floating fish feed; this record does not provide further technical specifications.",
+    "catalogGroup": "feed"
   },
   {
     "name": "Vansh Pro 8000",
@@ -1089,7 +1126,8 @@
       "assets/products/vansh_pro_8000.jpg",
       "https://5.imimg.com/data5/SELLER/Default/2026/4/596889294/JB/LV/EF/264964452/vansh-pro-8000-bis-type-ii-compounded-cattle-feed-500x500.jpeg",
       "https://5.imimg.com/data5/SELLER/Default/2026/4/596889334/FU/PV/JO/264964452/vansh-pro-8000-bis-type-ii-compounded-cattle-feed-500x500.png"
-    ]
+    ],
+    "catalogGroup": "feed"
   },
   {
     "name": "Vansh Grow 5000",
@@ -1164,7 +1202,8 @@
       "https://5.imimg.com/data5/SELLER/Default/2026/4/590332561/XZ/YT/GO/264964452/grow-5000-pellet-feed-500x500.jpeg",
       "https://5.imimg.com/data5/SELLER/Default/2026/4/600958627/ML/KO/MA/264964452/grow-5000-pellet-feed-500x500.jpeg",
       "https://5.imimg.com/data5/SELLER/Default/2026/4/596894539/NS/WK/FJ/264964452/PDFImage-46DD3FD000774BA08ED2654691572A95-grow-5000-pellet-feed-500x500.png"
-    ]
+    ],
+    "catalogGroup": "feed"
   },
   {
     "name": "Vansh Starter 3000",
@@ -1246,7 +1285,8 @@
       "https://5.imimg.com/data5/SELLER/Default/2026/4/596886432/AM/YD/QP/264964452/vansh-starter-3000-500x500.jpeg",
       "https://5.imimg.com/data5/SELLER/Default/2026/4/596886472/ZE/BU/ZW/264964452/vansh-starter-3000-500x500.png",
       "https://5.imimg.com/data5/SELLER/Default/2026/4/596886494/PH/RG/UQ/264964452/yftf-500x500.jpeg"
-    ]
+    ],
+    "catalogGroup": "feed"
   },
   {
     "name": "Vansh Supreme",
@@ -1337,7 +1377,8 @@
       "https://5.imimg.com/data5/SELLER/Default/2026/4/596880909/TJ/XL/XY/264964452/vansh-supreme-bis-type-ii-compounded-cattle-feed-500x500.png",
       "https://5.imimg.com/data5/SELLER/Default/2026/4/596880934/AQ/ZU/AK/264964452/supreme-high-protein-pellet-feed-500x500.jpeg",
       "https://5.imimg.com/data5/SELLER/Default/2026/4/596880930/ZL/EA/OZ/264964452/PDFImage-46DD3FD000774BA08ED2654691572A95-supreme-high-protein-pellet-feed-500x500.png"
-    ]
+    ],
+    "catalogGroup": "feed"
   },
   {
     "name": "Super Compounded Cattle Feed",
@@ -1416,7 +1457,8 @@
     "images": [
       "https://5.imimg.com/data5/SELLER/Default/2026/4/596921296/QZ/JM/FK/264964452/vansh-super-cattle-feed-bis-type-ii-compounded-feed-pallet-feed-500x500.jpeg",
       "https://5.imimg.com/data5/SELLER/Default/2026/4/596921529/AO/EQ/XE/264964452/vansh-super-cattle-feed-bis-type-ii-compounded-feed-pallet-feed-500x500.png"
-    ]
+    ],
+    "catalogGroup": "feed"
   },
   {
     "name": "Vansh Pashu Aahar",
@@ -1488,7 +1530,8 @@
       "https://5.imimg.com/data5/WA_9696/Default/2026/3/589066631/YY/CT/HG/264964452/image-1772789788-9589-919196702480-jpeg-500x500.jpeg",
       "https://5.imimg.com/data5/SELLER/Default/2026/4/596897117/QJ/DV/IX/264964452/vansh-pashu-aahar-500x500.jpeg",
       "https://5.imimg.com/data5/SELLER/Default/2026/4/596897115/YD/OB/VI/264964452/50-kg-dairy-cattle-feed-vansh-gold-cattle-feed-vansh-supreme-cattle-feed-vansh-starter-cattle-feed-500x500.jpeg"
-    ]
+    ],
+    "catalogGroup": "feed"
   },
   {
     "name": "Vanshika Kahar Agro Fertilizer",
@@ -1553,7 +1596,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Ferrous Sulphate Agro Fertilizer",
@@ -1618,7 +1662,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Hariyali Gold Ferrous Sulphate Agro Fertilizer",
@@ -1685,7 +1730,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Vansh Mono King Fertilizer",
@@ -1754,7 +1800,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Vansh Excel Gold Fertilizer",
@@ -1821,7 +1868,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "B-20% Boron Fertilizer",
@@ -1890,7 +1938,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Paddy Special Micronutrients Fertilizer",
@@ -1957,7 +2006,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Magnesium Sulphate Micronutrients Fertilizer",
@@ -2024,7 +2074,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Micro Ferrous Micronutrient Fertilizer",
@@ -2089,7 +2140,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Hariyali Gold Organic Fertilizers and Manure",
@@ -2158,7 +2210,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Toofan Zinc Fertilizer",
@@ -2225,7 +2278,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "Zinc Sulphate Monohydrate",
@@ -2292,7 +2346,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "90% DP Sulphur Fertilizer",
@@ -2359,7 +2414,8 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   },
   {
     "name": "90% WDG Excel Plus Sulphur Fertilizer",
@@ -2426,6 +2482,7 @@
         "जहां सूचीबद्ध उपयोग उपयुक्त हो, वहां डीलर-आधारित क्रॉप इनपुट कार्यक्रमों के लिए उपयोगी।",
         "दिखाई गई श्रेणी और स्पेसिफिकेशन के साथ बल्क पूछताछ चर्चा में उपयोगी।"
       ]
-    }
+    },
+    "catalogGroup": "fertilizer"
   }
 ]

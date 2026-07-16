@@ -50,14 +50,6 @@
 
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   1. GOOGLE FONTS IMPORT
-   Loads Inter (body text) and Outfit (headings) from Google Fonts.
-   'display=swap' shows fallback text while the font downloads.
-───────────────────────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;700;900&display=swap');
-
-
-/* ─────────────────────────────────────────────────────────────────────────────
    2. CSS CUSTOM PROPERTIES (Design Tokens)
    All visual values are defined here as variables. Using these everywhere
    means: change one value here → the whole site updates instantly.
@@ -307,6 +299,8 @@ input:focus, select:focus, textarea:focus {
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -318,7 +312,97 @@ body {
     linear-gradient(90deg, color-mix(in srgb, var(--primary) 5%, transparent) 1px, transparent 1px);
   background-size: 48px 48px;
   line-height: 1.75;
-  overflow-x: hidden;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+@supports not (overflow: clip) {
+  html,
+  body { overflow-x: hidden; }
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100000;
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--always-dark);
+  color: var(--always-white);
+  font-weight: 800;
+  transform: translateY(-180%);
+  transition: transform 0.18s ease;
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--secondary);
+  outline-offset: 3px;
+}
+
+.grid-1-2 > *,
+.grid-2 > *,
+.grid-4 > * { min-width: 0; }
+
+.contact-form-panel { scroll-margin-top: 110px; }
+
+.contact-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.contact-consent {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 0.7rem;
+  align-items: start;
+  margin: -0.5rem 0 1.5rem;
+  color: var(--gray);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.contact-consent input {
+  width: 20px;
+  height: 20px;
+  margin-top: 0.1rem;
+  accent-color: var(--primary);
+}
+
+.contact-consent a {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.text-link {
+  display: inline-flex;
+  margin-top: 0.8rem;
+  color: var(--primary);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .contact-form-panel { padding: 1.5rem !important; }
 }
 
 p {
@@ -708,6 +792,10 @@ img {
 
 .mobile-menu-btn {
   display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
   font-size: 1.75rem;
   background: none;
   border: none;
@@ -1251,7 +1339,7 @@ img {
 @media (max-width: 1024px) {
   .topbar { display: none; }
   .nav-links, .nav-actions { display: none; }
-  .mobile-menu-btn { display: block; }
+  .mobile-menu-btn { display: inline-flex; }
   .hero h1 { font-size: 3rem; }
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
@@ -1341,6 +1429,32 @@ img {
   transform: translate(0, 0) scale(1);
 }
 
+@media (max-width: 768px) {
+  .reveal-left,
+  .reveal-right { transform: translateY(24px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ─── Page Transition Overlay ─────────────────────────────────────────────── */
 /*
  * Uses @keyframes (NOT transitions) so the animation can NEVER be
@@ -1385,7 +1499,7 @@ img {
   background: var(--always-dark);
 }
 
-/* ─── STATE: page just arrived (visible, no animation yet) ─── */
+/* ─── STATE: page just arrived (stable until the fade begins) ─── */
 .page-transition-overlay.initial-load {
   opacity: 1;
   visibility: visible;
@@ -1393,12 +1507,15 @@ img {
   animation: none;
 }
 .page-transition-overlay.initial-load img {
-  animation: logoSettleIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  animation: none;
 }
 
 /* ─── STATE: fade OUT (page has loaded, hide the overlay) ─── */
 .page-transition-overlay.fade-out {
   animation: overlayFadeOut 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  visibility: visible;
   pointer-events: none;
 }
 .page-transition-overlay.fade-out img {
