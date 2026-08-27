@@ -231,6 +231,50 @@
       transition: all .2s;
     }
     .btn-cv:hover { background: rgba(59,130,246,.14); border-color: #60a5fa; }
+    .btn-view {
+      background: transparent; border: 1px solid rgba(74,222,128,.38);
+      color: #86efac; border-radius: 8px;
+      padding: .3rem .6rem; cursor: pointer; font-size: .8rem;
+      transition: all .2s;
+    }
+    .btn-view:hover { background: rgba(21,128,61,.16); border-color: #4ade80; }
+    td .email { color: #bfdbfe; font-size: .84rem; max-width: 200px; overflow-wrap: anywhere; }
+
+    /* ── Application details ── */
+    .details-backdrop {
+      position: fixed; inset: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem; background: rgba(2,6,23,.74);
+    }
+    .details-backdrop[hidden] { display: none; }
+    .details-modal {
+      width: min(760px, 100%); max-height: min(760px, calc(100vh - 3rem));
+      overflow: auto; border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--card); box-shadow: 0 28px 70px rgba(0,0,0,.52);
+    }
+    .details-head {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
+      padding: 1.35rem 1.5rem; border-bottom: 1px solid var(--border);
+    }
+    .details-head h2 { font-size: 1.2rem; }
+    .details-head p { margin-top: .25rem; color: var(--muted); font-size: .85rem; }
+    .details-close {
+      width: 34px; height: 34px; border: 1px solid var(--border); border-radius: 8px;
+      background: transparent; color: var(--text); cursor: pointer; flex: 0 0 auto;
+    }
+    .details-close:hover { border-color: var(--red); color: #fca5a5; }
+    .details-body { padding: 1.5rem; }
+    .detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .detail-item { min-width: 0; padding: .85rem 1rem; border: 1px solid var(--border); border-radius: 8px; }
+    .detail-item.full { grid-column: 1 / -1; }
+    .detail-label { display: block; margin-bottom: .3rem; color: var(--muted); font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+    .detail-value { color: var(--text); font-size: .94rem; line-height: 1.45; overflow-wrap: anywhere; white-space: pre-wrap; }
+    @media (max-width: 600px) {
+      .detail-grid { grid-template-columns: 1fr; }
+      .detail-item.full { grid-column: auto; }
+      .details-backdrop { padding: .75rem; }
+      .details-head, .details-body { padding: 1rem; }
+    }
 
     /* ── Empty / Loading ── */
     .empty {
@@ -361,14 +405,15 @@
             <th>#</th>
             <th>Name</th>
             <th>Phone</th>
+            <th>Email</th>
             <th>Inquiry Type</th>
-            <th>Message</th>
+            <th>Summary</th>
             <th>Submitted At</th>
             <th></th>
           </tr>
         </thead>
         <tbody id="table-body">
-          <tr><td colspan="7" class="empty"><div class="spinner"></div></td></tr>
+          <tr><td colspan="8" class="empty"><div class="spinner"></div></td></tr>
         </tbody>
       </table>
     </div>
@@ -377,6 +422,21 @@
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div id="details-backdrop" class="details-backdrop" hidden onclick="handleDetailsBackdrop(event)">
+  <section class="details-modal" role="dialog" aria-modal="true" aria-labelledby="details-title">
+    <div class="details-head">
+      <div>
+        <h2 id="details-title">Application Details</h2>
+        <p id="details-subtitle"></p>
+      </div>
+      <button class="details-close" type="button" onclick="closeDetails()" title="Close details" aria-label="Close application details">
+        <i class="fas fa-xmark" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div id="details-body" class="details-body"></div>
+  </section>
+</div>
 
 <script>
   const ADMIN_TOKEN_KEY = 'mll_admin_token';
@@ -472,7 +532,7 @@
   }
 
   function showBackendUnavailable() {
-    document.getElementById('table-body').innerHTML = `<tr><td colspan="7" class="empty">
+    document.getElementById('table-body').innerHTML = `<tr><td colspan="8" class="empty">
       <i class="fas fa-server"></i>
       Admin data requires the secure Node backend. Check that the API server is running.
     </td></tr>`;
@@ -511,7 +571,7 @@
 
     const tbody = document.getElementById('table-body');
     if (!filtered.length) {
-      tbody.innerHTML = `<tr><td colspan="7" class="empty">
+      tbody.innerHTML = `<tr><td colspan="8" class="empty">
         <i class="fas fa-inbox"></i>No submissions found.</td></tr>`;
       return;
     }
@@ -521,11 +581,15 @@
         <td style="color:var(--muted);font-size:.8rem;">#${r.id}</td>
         <td><div class="name">${esc(r.full_name)}</div></td>
         <td><div class="phone">${esc(r.phone)}</div></td>
+        <td><div class="email">${esc(r.email) || '<em style="opacity:.5">—</em>'}</div></td>
         <td><span class="badge ${badgeClass(r.inquiry_type)}">${esc(r.inquiry_type)}</span></td>
         <td><div class="msg" title="${esc(r.message)}">${esc(r.message) || '<em style="opacity:.5">—</em>'}</div></td>
         <td class="date-cell">${formatDate(r.submitted_at)}</td>
         <td>
           <div class="row-actions">
+            <button class="btn-view" type="button" onclick="openDetails(${r.id}, '${r.source || 'contact'}')" title="View full details" aria-label="View full details for ${esc(r.full_name)}">
+              <i class="fas fa-eye" aria-hidden="true"></i>
+            </button>
             ${r.source === 'career' && r.resume_name ? `
               <button class="btn-cv" type="button" onclick="downloadResume(${r.id})" title="Download CV" aria-label="Download CV for ${esc(r.full_name)}">
                 <i class="fas fa-file-arrow-down" aria-hidden="true"></i>
@@ -595,6 +659,58 @@
       showToast(error.message || 'CV download failed', 'error');
     }
   }
+
+  function openDetails(id, source = 'contact') {
+    const application = allData.find(row => row.id === id && (row.source || 'contact') === source);
+    if (!application) return;
+
+    const isCareer = source === 'career';
+    const details = isCareer
+      ? [
+          ['Full Name', application.full_name],
+          ['Email Address', application.email],
+          ['Phone Number', application.phone],
+          ['Position Applying For', application.position],
+          ['Relevant Experience', application.experience],
+          ['Current Location', application.location],
+          ['Highest Education / Qualification', application.education],
+          ['Current / Last Company', application.current_company],
+          ['Availability / Notice Period', application.notice_period],
+          ['Key Skills', application.skills, true],
+          ['Cover Letter', application.cover_letter, true],
+          ['Submitted At', formatDate(application.submitted_at), true],
+          ['Uploaded CV', application.resume_name, true]
+        ]
+      : [
+          ['Full Name', application.full_name],
+          ['Phone Number', application.phone],
+          ['Inquiry Type', application.inquiry_type],
+          ['Submitted At', formatDate(application.submitted_at)],
+          ['Message', application.message, true]
+        ];
+
+    document.getElementById('details-title').textContent = isCareer ? 'Career Application' : 'Business Enquiry';
+    document.getElementById('details-subtitle').textContent = application.full_name || 'Submission details';
+    document.getElementById('details-body').innerHTML = `<div class="detail-grid">${details
+      .filter(([, value]) => value)
+      .map(([label, value, full]) => `<div class="detail-item${full ? ' full' : ''}"><span class="detail-label">${esc(label)}</span><div class="detail-value">${esc(value)}</div></div>`)
+      .join('')}</div>`;
+
+    document.getElementById('details-backdrop').hidden = false;
+    document.querySelector('.details-close').focus();
+  }
+
+  function closeDetails() {
+    document.getElementById('details-backdrop').hidden = true;
+  }
+
+  function handleDetailsBackdrop(event) {
+    if (event.target === event.currentTarget) closeDetails();
+  }
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeDetails();
+  });
 
   // ── Export CSV ──
   function exportCSV() {

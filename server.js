@@ -365,6 +365,12 @@ app.get('/api/submissions', requireAdmin, requireDatabase, (req, res) => {
       email: row.email,
       position: row.position,
       experience: row.experience,
+      location: row.location,
+      education: row.education,
+      current_company: row.current_company,
+      skills: row.skills,
+      notice_period: row.notice_period,
+      cover_letter: row.cover_letter,
       resume_name: row.resume_original_name
     }));
     const rows = [...contactRows, ...careerRows]
@@ -395,22 +401,15 @@ app.get('/api/career-applications/:id/resume', requireAdmin, requireDatabase, (r
       return res.status(404).json({ success: false, error: 'CV file is no longer available.' });
     }
 
-    const fileStats = fs.statSync(resumePath);
+    // CV uploads are capped at 5 MB, so a buffered response is both bounded
+    // and more reliable through hosting proxies than a file stream.
+    const resumeContents = fs.readFileSync(resumePath);
     const downloadName = sanitizeDownloadName(application.resume_original_name);
     res.setHeader('Cache-Control', 'no-store');
     res.setHeader('X-Content-Type-Options', 'nosniff');
-    res.setHeader('Content-Length', String(fileStats.size));
+    res.setHeader('Content-Length', String(resumeContents.length));
     res.attachment(downloadName);
-
-    const resumeStream = fs.createReadStream(resumePath);
-    resumeStream.on('error', error => {
-      console.error('[CAREERS] Resume stream failed:', error.message);
-      if (!res.headersSent) {
-        return res.status(500).json({ success: false, error: 'Could not download this CV.' });
-      }
-      return res.destroy(error);
-    });
-    return resumeStream.pipe(res);
+    return res.end(resumeContents);
   } catch (error) {
     console.error('[CAREERS] Resume download failed:', error.message);
     return res.status(500).json({ success: false, error: 'Could not download this CV.' });
