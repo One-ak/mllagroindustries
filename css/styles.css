@@ -392,6 +392,55 @@ body {
   text-decoration: underline;
 }
 
+.career-fields {
+  margin: 0 0 1.5rem;
+  padding: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--primary) 28%, var(--gray-light));
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--light) 65%, var(--white));
+}
+
+.career-fields legend {
+  padding: 0 0.45rem;
+  color: var(--dark);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.career-form-help,
+.resume-help {
+  margin: 0 0 1.25rem;
+  color: var(--gray);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.resume-help {
+  margin: 0.45rem 0 0;
+}
+
+.resume-upload {
+  max-width: 100%;
+}
+
+.resume-upload::file-selector-button {
+  margin-right: 0.7rem;
+  padding: 0.45rem 0.65rem;
+  border: 0;
+  border-radius: 4px;
+  background: var(--primary);
+  color: var(--always-white);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.resume-upload:disabled::file-selector-button {
+  cursor: default;
+  opacity: 0.55;
+}
+
 .text-link {
   display: inline-flex;
   margin-top: 0.8rem;
@@ -403,6 +452,7 @@ body {
 
 @media (max-width: 640px) {
   .contact-form-panel { padding: 1.5rem !important; }
+  .career-fields { padding: 1rem; }
 }
 
 p {

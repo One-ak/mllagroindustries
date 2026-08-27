@@ -23,6 +23,12 @@ Set these environment variables in Hostinger:
 
 - `ADMIN_PASSWORD`: password for `admin.html`
 - `DB_PATH`: optional persistent SQLite file path
+- `CAREER_UPLOADS_PATH`: recommended persistent private directory for uploaded CVs
 
 If `DB_PATH` is not set, the app creates `vansh_leads.db` in the project
 folder. The database file is intentionally ignored by Git.
+
+For the career application form, set `CAREER_UPLOADS_PATH` beside the
+persistent database storage (not inside a public web directory). When it is
+not set, CVs are stored in `.data/career-resumes` next to the default database.
+Back up both the SQLite database and this directory before a redeployment.

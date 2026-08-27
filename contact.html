@@ -252,13 +252,13 @@
                 <div id="inquiry-form" class="reveal-right contact-form-panel"
                      style="background: var(--white); padding: 3rem; border-radius: var(--radius-lg);
                             border: 1px solid var(--gray-light); box-shadow: var(--shadow-md);">
-                    <h3 style="font-size: 1.75rem; color: var(--dark); margin-bottom: 0.5rem;" data-i18n="contact.form.title">Share your requirement</h3>
-                    <p style="color: var(--gray); margin-bottom: 2rem;" data-i18n="contact.form.subtitle">
+                    <h3 id="cf-form-title" style="font-size: 1.75rem; color: var(--dark); margin-bottom: 0.5rem;">Share your requirement</h3>
+                    <p id="cf-form-subtitle" style="color: var(--gray); margin-bottom: 2rem;">
                         Send a clear note about your agro-input, feed, dealership, bulk supply or support requirement. The relevant team will review it and respond.
                     </p>
 
-                    <!-- Contact form — submits via fetch() to POST /api/contact -->
-                    <form id="contact-form" onsubmit="submitForm(event)">
+                    <!-- Contact form also accepts career applications with a protected CV upload. -->
+                    <form id="contact-form" enctype="multipart/form-data" onsubmit="submitForm(event)">
                         <div class="contact-honeypot" aria-hidden="true">
                             <label for="cf-website">Leave this field empty</label>
                             <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off">
@@ -304,10 +304,88 @@
                             </select>
                         </div>
 
+                        <fieldset id="career-fields" class="career-fields" hidden aria-describedby="career-form-help">
+                            <legend>Career application details</legend>
+                            <p id="career-form-help" class="career-form-help">Please complete these details and attach your latest CV. Suitable candidates will be contacted when an opening matches their profile.</p>
+
+                            <div class="grid-2" style="margin-bottom: 1.25rem;">
+                                <div>
+                                    <label for="cf-email" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);">Email Address</label>
+                                    <input id="cf-email" name="email" type="email" placeholder="name@example.com" autocomplete="email" maxlength="254" disabled
+                                           style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--gray-light); border-radius: var(--radius-sm); font-family: var(--font-main); outline: none; background: var(--white); color: var(--dark);">
+                                </div>
+                                <div>
+                                    <label for="cf-position" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);">Position Applying For</label>
+                                    <input id="cf-position" name="position" type="text" placeholder="For example, Sales Officer" maxlength="100" disabled
+                                           style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--gray-light); border-radius: var(--radius-sm); font-family: var(--font-main); outline: none; background: var(--white); color: var(--dark);">
+                                </div>
+                            </div>
+
+                            <div class="grid-2" style="margin-bottom: 1.25rem;">
+                                <div>
+                                    <label for="cf-experience" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);">Relevant Experience</label>
+                                    <select id="cf-experience" name="experience" disabled style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--gray-light); border-radius: var(--radius-sm); font-family: var(--font-main); outline: none; background: var(--white); color: var(--dark); cursor: pointer;">
+                                        <option value="">Select experience</option>
+                                        <option>Fresher</option>
+                                        <option>0-1 years</option>
+                                        <option>1-3 years</option>
+                                        <option>3-5 years</option>
+                                        <option>5-8 years</option>
+                                        <option>8+ years</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="cf-location" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);">Current City / Location</label>
+                                    <input id="cf-location" name="location" type="text" placeholder="Your current city" autocomplete="address-level2" maxlength="100" disabled
+                                           style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--gray-light); border-radius: var(--radius-sm); font-family: var(--font-main); outline: none; background: var(--white); color: var(--dark);">
+                                </div>
+                            </div>
+
+                            <div class="grid-2" style="margin-bottom: 1.25rem;">
+                                <div>
+                                    <label for="cf-education" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);">Highest Education / Qualification</label>
+                                    <input id="cf-education" name="education" type="text" placeholder="For example, B.Sc. Agriculture" maxlength="150" disabled
+                                           style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--gray-light); border-radius: var(--radius-sm); font-family: var(--font-main); outline: none; background: var(--white); color: var(--dark);">
+                                </div>
+                                <div>
+                                    <label for="cf-company" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);">Current / Last Company <span aria-hidden="true">(optional)</span></label>
+                                    <input id="cf-company" name="currentCompany" type="text" placeholder="Company name" maxlength="120" disabled
+                                           style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--gray-light); border-radius: var(--radius-sm); font-family: var(--font-main); outline: none; background: var(--white); color: var(--dark);">
+                                </div>
+                            </div>
+
+                            <div class="grid-2" style="margin-bottom: 1.25rem;">
+                                <div>
+                                    <label for="cf-notice" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);">Availability / Notice Period <span aria-hidden="true">(optional)</span></label>
+                                    <select id="cf-notice" name="noticePeriod" disabled style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--gray-light); border-radius: var(--radius-sm); font-family: var(--font-main); outline: none; background: var(--white); color: var(--dark); cursor: pointer;">
+                                        <option value="">Select availability</option>
+                                        <option>Available immediately</option>
+                                        <option>15 days</option>
+                                        <option>30 days</option>
+                                        <option>60 days</option>
+                                        <option>90 days</option>
+                                        <option>More than 90 days</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="cf-resume" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);">Upload CV / Resume</label>
+                                    <input id="cf-resume" class="resume-upload" name="resume" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" aria-describedby="resume-help" disabled
+                                           style="width: 100%; padding: 0.62rem 0.75rem; border: 1px solid var(--gray-light); border-radius: var(--radius-sm); font-family: var(--font-main); background: var(--white); color: var(--dark);">
+                                    <p id="resume-help" class="resume-help">PDF, DOC or DOCX only. Maximum file size: 5 MB.</p>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <label for="cf-skills" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);">Key Skills <span aria-hidden="true">(optional)</span></label>
+                                <input id="cf-skills" name="skills" type="text" placeholder="For example, field sales, MS Excel, crop advisory" maxlength="500" disabled
+                                       style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--gray-light); border-radius: var(--radius-sm); font-family: var(--font-main); outline: none; background: var(--white); color: var(--dark);">
+                            </div>
+                        </fieldset>
+
                         <!-- Message textarea -->
                         <div style="margin-bottom: 2rem;">
-                            <label for="cf-msg" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);" data-i18n="contact.form.message">Your Message</label>
-                            <textarea id="cf-msg" name="message" rows="4" maxlength="2000" placeholder="How can we help you?" data-i18n-placeholder="contact.form.message.ph"
+                            <label id="cf-message-label" for="cf-msg" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark);">Your Message</label>
+                            <textarea id="cf-msg" name="message" rows="4" maxlength="2000" placeholder="How can we help you?"
                                       style="width: 100%; padding: 0.75rem 1rem;
                                              border: 1px solid var(--gray-light);
                                              border-radius: var(--radius-sm);
@@ -317,11 +395,11 @@
 
                         <div class="contact-consent">
                             <input id="cf-privacy" name="privacyAccepted" type="checkbox" required>
-                            <label for="cf-privacy">I understand that Vansh Group will use these details to respond to my inquiry. Read the <a href="privacy.html">privacy notice</a>.</label>
+                            <label id="cf-privacy-label" for="cf-privacy">I understand that Vansh Group will use these details to respond to my inquiry. Read the <a href="privacy.html">privacy notice</a>.</label>
                         </div>
 
                         <!-- Submit button — disabled while sending to prevent double-submit -->
-                        <button id="cf-btn" type="submit" class="btn btn-primary" style="width: 100%;" data-i18n="contact.form.submit">Send Message</button>
+                        <button id="cf-btn" type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
                         <!-- Feedback message shown after submission -->
                         <div id="cf-msg-box" role="status" aria-live="polite" tabindex="-1" style="display:none; margin-top:1rem; padding:1rem;
                              border-radius:var(--radius-sm); font-weight:600; text-align:center;"></div>
@@ -388,56 +466,60 @@
        * Shows a green success or red error message inside the form.
        */
       async function submitForm(event) {
-        event.preventDefault(); // stop default browser page reload
+        event.preventDefault();
         const t = key => window.i18n ? window.i18n.t(key) : key;
-
+        const form = document.getElementById('contact-form');
         const btn    = document.getElementById('cf-btn');
         const msgBox = document.getElementById('cf-msg-box');
+        const isCareer = isCareerApplication();
 
-        // Read field values
-        const payload = {
-          fullName    : document.getElementById('cf-name').value.trim(),
-          phone       : document.getElementById('cf-phone').value.trim(),
-          inquiryType : document.getElementById('cf-type').value,
-          message     : document.getElementById('cf-msg').value.trim(),
-          website     : document.getElementById('cf-website').value,
-          privacyAccepted: document.getElementById('cf-privacy').checked,
-        };
+        if (!form.reportValidity()) return;
 
-        // Disable button while sending
         btn.disabled    = true;
-        btn.textContent = t('contact.form.sending');
+        btn.textContent = isCareer ? 'Submitting application...' : t('contact.form.sending');
         msgBox.style.display = 'none';
 
         let timeoutId;
         try {
-          const apiUrl = getContactApiUrl('/api/contact');
-
-          // Abort controller to prevent infinite "Sending..." hang
+          const apiUrl = getContactApiUrl(isCareer ? '/api/career-applications' : '/api/contact');
           const controller = new AbortController();
-          timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+          timeoutId = setTimeout(() => controller.abort(), isCareer ? 30000 : 10000);
 
-          const res  = await fetch(apiUrl, {
-            method  : 'POST',
-            headers : { 'Content-Type': 'application/json' },
-            body    : JSON.stringify(payload),
-            signal  : controller.signal
-          });
+          const request = isCareer
+            ? {
+                method: 'POST',
+                body: createCareerFormData(form),
+                signal: controller.signal
+              }
+            : {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  fullName: document.getElementById('cf-name').value.trim(),
+                  phone: document.getElementById('cf-phone').value.trim(),
+                  inquiryType: document.getElementById('cf-type').value,
+                  message: document.getElementById('cf-msg').value.trim(),
+                  website: document.getElementById('cf-website').value,
+                  privacyAccepted: document.getElementById('cf-privacy').checked
+                }),
+                signal: controller.signal
+              };
+          const res = await fetch(apiUrl, request);
           const json = await res.json().catch(() => ({}));
 
           if (res.ok && json.success) {
-            // Success: green message + reset form
             msgBox.style.display      = 'block';
             msgBox.style.background   = '#dcfce7';
             msgBox.style.color        = '#166534';
-            msgBox.textContent        = t('contact.form.success');
-            document.getElementById('contact-form').reset();
+            msgBox.textContent = isCareer
+              ? 'Your application and CV have been submitted successfully. Suitable candidates will be contacted.'
+              : t('contact.form.success');
+            form.reset();
             applyInquiryPreset();
           } else {
             throw new Error(json.error || 'Server error');
           }
         } catch (err) {
-          // Error: red message
           msgBox.style.display      = 'block';
           msgBox.style.background   = '#fee2e2';
           msgBox.style.color        = '#991b1b';
@@ -446,10 +528,44 @@
             : (err.message || 'Something went wrong. Please try again.');
         } finally {
           clearTimeout(timeoutId);
-          // Re-enable button
           btn.disabled    = false;
-          btn.textContent = t('contact.form.submit');
+          btn.textContent = isCareerApplication() ? 'Submit Application' : t('contact.form.submit');
         }
+      }
+
+      function createCareerFormData(form) {
+        const data = new FormData(form);
+        data.set('privacyAccepted', String(document.getElementById('cf-privacy').checked));
+        return data;
+      }
+
+      function isCareerApplication() {
+        return document.getElementById('cf-type').value === 'Career Application';
+      }
+
+      function setFormMode() {
+        const isCareer = isCareerApplication();
+        const careerFields = document.getElementById('career-fields');
+        const careerControls = careerFields.querySelectorAll('input, select');
+        const messageLabel = document.getElementById('cf-message-label');
+        const message = document.getElementById('cf-msg');
+
+        careerFields.hidden = !isCareer;
+        careerControls.forEach(control => {
+          control.disabled = !isCareer;
+          control.required = isCareer && ['cf-email', 'cf-position', 'cf-experience', 'cf-location', 'cf-education', 'cf-resume'].includes(control.id);
+        });
+
+        document.getElementById('cf-form-title').textContent = isCareer ? 'Apply for a role' : 'Share your requirement';
+        document.getElementById('cf-form-subtitle').textContent = isCareer
+          ? 'Tell us about your experience and attach your latest CV. Suitable candidates will be contacted when a role matches their profile.'
+          : 'Send a clear note about your agro-input, feed, dealership, bulk supply or support requirement. The relevant team will review it and respond.';
+        messageLabel.textContent = isCareer ? 'Brief introduction / cover letter (optional)' : 'Your Message';
+        message.placeholder = isCareer ? 'Tell us why you are interested in this role.' : 'How can we help you?';
+        document.getElementById('cf-privacy-label').innerHTML = isCareer
+          ? 'I understand that Vansh Group will use these details to assess my application. Read the <a href="privacy.html">privacy notice</a>.'
+          : 'I understand that Vansh Group will use these details to respond to my inquiry. Read the <a href="privacy.html">privacy notice</a>.';
+        document.getElementById('cf-btn').textContent = isCareer ? 'Submit Application' : 'Send Message';
       }
 
       function applyInquiryPreset() {
@@ -463,8 +579,10 @@
         };
         const preset = presets[new URLSearchParams(window.location.search).get('inquiry')];
         if (preset) document.getElementById('cf-type').value = preset;
+        setFormMode();
       }
 
+      document.getElementById('cf-type').addEventListener('change', setFormMode);
       applyInquiryPreset();
 
       function getContactApiUrl(path) {

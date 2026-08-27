@@ -5,6 +5,8 @@
  *   ADMIN_PASSWORD  Optional at startup. Admin access stays disabled until a
  *                   unique value of at least 14 characters is configured.
  *   DB_PATH         Optional SQLite path. Defaults to .data/vansh_leads.db.
+ *   CAREER_UPLOADS_PATH Optional private directory for uploaded CVs. Defaults
+ *                   to .data/career-resumes beside the database.
  *   ALLOWED_ORIGINS Optional comma-separated development origins.
  *   TRUST_PROXY     Set to 1 only when deployed behind one trusted proxy.
  */
@@ -17,11 +19,19 @@ const path = require('path');
 
 let Database = null;
 let databaseLoadError = null;
+let multer = null;
+let multerLoadError = null;
 
 try {
   Database = require('better-sqlite3');
 } catch (error) {
   databaseLoadError = error;
+}
+
+try {
+  multer = require('multer');
+} catch (error) {
+  multerLoadError = error;
 }
 
 const app = express();
@@ -36,6 +46,13 @@ const DEFAULT_DB_PATH = path.join(__dirname, '.data', 'vansh_leads.db');
 const DB_PATH = process.env.DB_PATH === ':memory:'
   ? ':memory:'
   : (process.env.DB_PATH ? path.resolve(process.env.DB_PATH) : DEFAULT_DB_PATH);
+const UPLOADS_PATH = process.env.CAREER_UPLOADS_PATH
+  ? path.resolve(process.env.CAREER_UPLOADS_PATH)
+  : path.join(DB_PATH === ':memory:' ? path.join(__dirname, '.data') : path.dirname(DB_PATH), 'career-resumes');
+const RESUME_MAX_BYTES = 5 * 1024 * 1024;
+const RESUME_EXTENSIONS = new Set(['.pdf', '.doc', '.docx']);
+const CAREER_EXPERIENCE_OPTIONS = new Set(['Fresher', '0-1 years', '1-3 years', '3-5 years', '5-8 years', '8+ years']);
+const CAREER_NOTICE_PERIODS = new Set(['Available immediately', '15 days', '30 days', '60 days', '90 days', 'More than 90 days']);
 const adminSessions = new Map();
 
 const PUBLIC_ROOT_FILES = new Set([
@@ -74,8 +91,7 @@ const ALLOWED_INQUIRY_TYPES = new Set([
   'Product Information',
   'Grievance Redressal',
   'Export Inquiry',
-  'Vendor Registration',
-  'Career Application'
+  'Vendor Registration'
 ]);
 const developmentOrigins = [
   'http://localhost:4177',
@@ -91,6 +107,8 @@ const allowedOrigins = new Set(
 
 let db = null;
 let databaseStartupError = databaseLoadError;
+let resumeUpload = null;
+let uploadStartupError = multerLoadError;
 
 try {
   if (!Database) throw databaseLoadError || new Error('SQLite driver is unavailable.');
@@ -113,11 +131,44 @@ try {
       submitted_at TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
     )
   `);
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS career_applications (
+      id                   INTEGER PRIMARY KEY AUTOINCREMENT,
+      full_name            TEXT    NOT NULL,
+      email                TEXT    NOT NULL,
+      phone                TEXT    NOT NULL,
+      position             TEXT    NOT NULL,
+      experience           TEXT    NOT NULL,
+      location             TEXT    NOT NULL,
+      education            TEXT    NOT NULL,
+      current_company      TEXT,
+      skills               TEXT,
+      notice_period        TEXT,
+      cover_letter         TEXT,
+      resume_stored_name   TEXT    NOT NULL,
+      resume_original_name TEXT    NOT NULL,
+      resume_size          INTEGER NOT NULL,
+      submitted_at         TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
+    )
+  `);
   databaseStartupError = null;
 } catch (error) {
   databaseStartupError = error;
   db = null;
   console.error('[DB] Database features disabled:', error.message);
+}
+
+try {
+  if (!multer) throw multerLoadError || new Error('File upload support is unavailable.');
+  if (db) {
+    fs.mkdirSync(UPLOADS_PATH, { recursive: true, mode: 0o700 });
+    resumeUpload = createResumeUpload();
+    uploadStartupError = null;
+  }
+} catch (error) {
+  uploadStartupError = error;
+  resumeUpload = null;
+  console.error('[UPLOAD] Career resume uploads disabled:', error.message);
 }
 
 if (!ADMIN_ENABLED) {
@@ -132,6 +183,7 @@ app.use(express.json({ limit: '16kb', strict: true }));
 
 const adminLoginLimiter = createRateLimiter({ windowMs: 15 * 60 * 1000, max: 5 });
 const contactLimiter = createRateLimiter({ windowMs: 10 * 60 * 1000, max: 5 });
+const careerLimiter = createRateLimiter({ windowMs: 60 * 60 * 1000, max: 3 });
 
 app.get('/api/health', (req, res) => {
   res.json({
@@ -140,6 +192,7 @@ app.get('/api/health', (req, res) => {
     status: 'ok',
     features: {
       contact: Boolean(db),
+      careers: Boolean(db && resumeUpload),
       admin: ADMIN_ENABLED && Boolean(db)
     }
   });
@@ -208,14 +261,115 @@ app.post('/api/contact', contactLimiter, requireDatabase, (req, res) => {
   }
 });
 
+app.post('/api/career-applications', careerLimiter, requireDatabase, handleResumeUpload, (req, res) => {
+  const body = req.body || {};
+  const resume = req.file;
+  const fullName = normalizeText(body.fullName);
+  const email = normalizeText(body.email).toLowerCase();
+  const phone = normalizeText(body.phone);
+  const position = normalizeText(body.position);
+  const experience = normalizeText(body.experience);
+  const location = normalizeText(body.location);
+  const education = normalizeText(body.education);
+  const currentCompany = normalizeText(body.currentCompany);
+  const skills = normalizeText(body.skills);
+  const noticePeriod = normalizeText(body.noticePeriod);
+  const coverLetter = normalizeText(body.coverLetter);
+
+  if (normalizeText(body.website)) {
+    removeUploadedFile(resume);
+    return res.json({ success: true });
+  }
+  if (fullName.length < 2 || fullName.length > 100) {
+    return rejectCareerApplication(res, resume, 'Enter a valid full name.');
+  }
+  if (!isValidEmail(email)) {
+    return rejectCareerApplication(res, resume, 'Enter a valid email address.');
+  }
+  if (!isValidPhone(phone)) {
+    return rejectCareerApplication(res, resume, 'Enter a valid phone number.');
+  }
+  if (position.length < 2 || position.length > 100) {
+    return rejectCareerApplication(res, resume, 'Enter the position you are applying for.');
+  }
+  if (!CAREER_EXPERIENCE_OPTIONS.has(experience)) {
+    return rejectCareerApplication(res, resume, 'Select a valid experience range.');
+  }
+  if (location.length < 2 || location.length > 100) {
+    return rejectCareerApplication(res, resume, 'Enter your current location.');
+  }
+  if (education.length < 2 || education.length > 150) {
+    return rejectCareerApplication(res, resume, 'Enter your highest education or qualification.');
+  }
+  if (currentCompany.length > 120 || skills.length > 500 || coverLetter.length > 1500) {
+    return rejectCareerApplication(res, resume, 'One or more career details are too long.');
+  }
+  if (noticePeriod && !CAREER_NOTICE_PERIODS.has(noticePeriod)) {
+    return rejectCareerApplication(res, resume, 'Select a valid notice period.');
+  }
+  if (!isPrivacyAccepted(body.privacyAccepted)) {
+    return rejectCareerApplication(res, resume, 'Privacy acknowledgement is required.');
+  }
+  if (!resume) {
+    return res.status(400).json({ success: false, error: 'Upload your CV in PDF, DOC, or DOCX format.' });
+  }
+  if (!isValidResumeFile(resume)) {
+    return rejectCareerApplication(res, resume, 'The uploaded CV file could not be verified. Upload a valid PDF, DOC, or DOCX file.');
+  }
+
+  try {
+    const result = db.prepare(`
+      INSERT INTO career_applications (
+        full_name, email, phone, position, experience, location, education,
+        current_company, skills, notice_period, cover_letter,
+        resume_stored_name, resume_original_name, resume_size
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      fullName, email, phone, position, experience, location, education,
+      currentCompany, skills, noticePeriod, coverLetter,
+      resume.filename, sanitizeDownloadName(resume.originalname), resume.size
+    );
+
+    console.info(`[CAREERS] New application #${result.lastInsertRowid}`);
+    return res.status(201).json({ success: true, id: result.lastInsertRowid });
+  } catch (error) {
+    removeUploadedFile(resume);
+    console.error('[CAREERS] Insert failed:', error.message);
+    return res.status(500).json({ success: false, error: 'We could not save your application. Please try again.' });
+  }
+});
+
 app.get('/api/submissions', requireAdmin, requireDatabase, (req, res) => {
   try {
-    const rows = db.prepare(`
+    const contactRows = db.prepare(`
       SELECT id, full_name, phone, inquiry_type, message, submitted_at
       FROM submissions
       ORDER BY id DESC
       LIMIT 1000
-    `).all();
+    `).all().map(row => ({ ...row, source: 'contact' }));
+    const careerRows = db.prepare(`
+      SELECT id, full_name, email, phone, position, experience, location, education,
+             current_company, skills, notice_period, cover_letter,
+             resume_original_name, submitted_at
+      FROM career_applications
+      ORDER BY id DESC
+      LIMIT 1000
+    `).all().map(row => ({
+      id: row.id,
+      full_name: row.full_name,
+      phone: row.phone,
+      inquiry_type: 'Career Application',
+      message: createCareerSummary(row),
+      submitted_at: row.submitted_at,
+      source: 'career',
+      email: row.email,
+      position: row.position,
+      experience: row.experience,
+      resume_name: row.resume_original_name
+    }));
+    const rows = [...contactRows, ...careerRows]
+      .sort((first, second) => `${second.submitted_at}|${second.id}`.localeCompare(`${first.submitted_at}|${first.id}`))
+      .slice(0, 1000);
     res.setHeader('Cache-Control', 'no-store');
     return res.json({ success: true, count: rows.length, data: rows });
   } catch (error) {
@@ -224,9 +378,48 @@ app.get('/api/submissions', requireAdmin, requireDatabase, (req, res) => {
   }
 });
 
+app.get('/api/career-applications/:id/resume', requireAdmin, requireDatabase, (req, res) => {
+  const id = getSafeId(req.params.id);
+  if (!id) return res.status(400).json({ success: false, error: 'Invalid application ID.' });
+
+  try {
+    const application = db.prepare(`
+      SELECT resume_stored_name, resume_original_name
+      FROM career_applications
+      WHERE id = ?
+    `).get(id);
+    if (!application) return res.status(404).json({ success: false, error: 'Application not found.' });
+
+    const resumePath = getStoredResumePath(application.resume_stored_name);
+    if (!resumePath || !fs.existsSync(resumePath)) {
+      return res.status(404).json({ success: false, error: 'CV file is no longer available.' });
+    }
+
+    const fileStats = fs.statSync(resumePath);
+    const downloadName = sanitizeDownloadName(application.resume_original_name);
+    res.setHeader('Cache-Control', 'no-store');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('Content-Length', String(fileStats.size));
+    res.attachment(downloadName);
+
+    const resumeStream = fs.createReadStream(resumePath);
+    resumeStream.on('error', error => {
+      console.error('[CAREERS] Resume stream failed:', error.message);
+      if (!res.headersSent) {
+        return res.status(500).json({ success: false, error: 'Could not download this CV.' });
+      }
+      return res.destroy(error);
+    });
+    return resumeStream.pipe(res);
+  } catch (error) {
+    console.error('[CAREERS] Resume download failed:', error.message);
+    return res.status(500).json({ success: false, error: 'Could not download this CV.' });
+  }
+});
+
 app.delete('/api/submissions/:id', requireAdmin, requireDatabase, (req, res) => {
-  const id = Number(req.params.id);
-  if (!Number.isSafeInteger(id) || id < 1) {
+  const id = getSafeId(req.params.id);
+  if (!id) {
     return res.status(400).json({ success: false, error: 'Invalid submission ID.' });
   }
 
@@ -240,6 +433,24 @@ app.delete('/api/submissions/:id', requireAdmin, requireDatabase, (req, res) => 
   } catch (error) {
     console.error('[DB] Delete failed:', error.message);
     return res.status(500).json({ success: false, error: 'Server error.' });
+  }
+});
+
+app.delete('/api/career-applications/:id', requireAdmin, requireDatabase, (req, res) => {
+  const id = getSafeId(req.params.id);
+  if (!id) return res.status(400).json({ success: false, error: 'Invalid application ID.' });
+
+  try {
+    const application = db.prepare('SELECT resume_stored_name FROM career_applications WHERE id = ?').get(id);
+    if (!application) return res.status(404).json({ success: false, error: 'Application not found.' });
+
+    db.prepare('DELETE FROM career_applications WHERE id = ?').run(id);
+    removeStoredResume(application.resume_stored_name);
+    res.setHeader('Cache-Control', 'no-store');
+    return res.json({ success: true });
+  } catch (error) {
+    console.error('[CAREERS] Delete failed:', error.message);
+    return res.status(500).json({ success: false, error: 'Could not delete this application.' });
   }
 });
 
@@ -312,6 +523,14 @@ app.use('/api', (req, res) => {
 app.use((error, req, res, next) => {
   if (error?.status === 404) {
     return res.status(404).send('Not found');
+  }
+  if (error?.name === 'MulterError' && error.code === 'LIMIT_FILE_SIZE') {
+    removeUploadedFile(req.file);
+    return res.status(413).json({ success: false, error: 'CV file must be 5 MB or smaller.' });
+  }
+  if (error?.code === 'UNSUPPORTED_RESUME_TYPE') {
+    removeUploadedFile(req.file);
+    return res.status(400).json({ success: false, error: 'Upload your CV in PDF, DOC, or DOCX format.' });
   }
   if (error?.type === 'entity.too.large') {
     return res.status(413).json({ success: false, error: 'Request body is too large.' });
@@ -454,6 +673,125 @@ function requireDatabase(req, res, next) {
   return next();
 }
 
+function handleResumeUpload(req, res, next) {
+  if (!resumeUpload) {
+    return res.status(503).json({
+      success: false,
+      error: 'CV upload is temporarily unavailable. Please use the office email.'
+    });
+  }
+  return resumeUpload.single('resume')(req, res, next);
+}
+
+function createResumeUpload() {
+  const storage = multer.diskStorage({
+    destination: (req, file, callback) => callback(null, UPLOADS_PATH),
+    filename: (req, file, callback) => {
+      const extension = path.extname(file.originalname || '').toLowerCase();
+      callback(null, `${crypto.randomUUID()}${extension}`);
+    }
+  });
+
+  return multer({
+    storage,
+    limits: { fileSize: RESUME_MAX_BYTES, files: 1, fields: 20, fieldSize: 16 * 1024 },
+    fileFilter: (req, file, callback) => {
+      const extension = path.extname(file.originalname || '').toLowerCase();
+      if (!RESUME_EXTENSIONS.has(extension)) {
+        const error = new Error('Unsupported resume type.');
+        error.code = 'UNSUPPORTED_RESUME_TYPE';
+        return callback(error);
+      }
+      return callback(null, true);
+    }
+  });
+}
+
+function rejectCareerApplication(res, resume, error) {
+  removeUploadedFile(resume);
+  return res.status(400).json({ success: false, error });
+}
+
+function removeUploadedFile(file) {
+  if (!file?.path) return;
+  try {
+    fs.unlinkSync(file.path);
+  } catch (error) {
+    if (error.code !== 'ENOENT') console.error('[UPLOAD] Could not remove rejected CV:', error.message);
+  }
+}
+
+function isValidResumeFile(file) {
+  if (!file?.path || !RESUME_EXTENSIONS.has(path.extname(file.originalname || '').toLowerCase())) return false;
+
+  try {
+    const bytes = fs.readFileSync(file.path);
+    const extension = path.extname(file.originalname).toLowerCase();
+    if (extension === '.pdf') return bytes.subarray(0, 5).toString('ascii') === '%PDF-';
+    if (extension === '.doc') {
+      return bytes.subarray(0, 8).equals(Buffer.from([0xd0, 0xcf, 0x11, 0xe0, 0xa1, 0xb1, 0x1a, 0xe1]));
+    }
+    return bytes.subarray(0, 4).equals(Buffer.from([0x50, 0x4b, 0x03, 0x04])) &&
+      bytes.includes(Buffer.from('[Content_Types].xml'));
+  } catch (error) {
+    console.error('[UPLOAD] CV verification failed:', error.message);
+    return false;
+  }
+}
+
+function isValidEmail(value) {
+  return value.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function isPrivacyAccepted(value) {
+  return value === true || value === 'true';
+}
+
+function getSafeId(value) {
+  const id = Number(value);
+  return Number.isSafeInteger(id) && id > 0 ? id : null;
+}
+
+function sanitizeDownloadName(value) {
+  const fallback = 'resume.pdf';
+  const safe = path.basename(String(value || fallback))
+    .replace(/[^A-Za-z0-9._ -]/g, '_')
+    .replace(/\s+/g, ' ')
+    .slice(0, 120);
+  return safe || fallback;
+}
+
+function getStoredResumePath(storedName) {
+  if (!/^[a-f0-9-]{36}\.(pdf|doc|docx)$/i.test(String(storedName || ''))) return null;
+  const resumePath = path.resolve(UPLOADS_PATH, storedName);
+  return path.dirname(resumePath) === path.resolve(UPLOADS_PATH) ? resumePath : null;
+}
+
+function removeStoredResume(storedName) {
+  const resumePath = getStoredResumePath(storedName);
+  if (!resumePath) return;
+  try {
+    fs.unlinkSync(resumePath);
+  } catch (error) {
+    if (error.code !== 'ENOENT') console.error('[UPLOAD] Could not remove CV:', error.message);
+  }
+}
+
+function createCareerSummary(application) {
+  const details = [
+    `Role: ${application.position}`,
+    `Experience: ${application.experience}`,
+    `Email: ${application.email}`,
+    `Location: ${application.location}`,
+    `Education: ${application.education}`
+  ];
+  if (application.current_company) details.push(`Current/Last Company: ${application.current_company}`);
+  if (application.notice_period) details.push(`Availability: ${application.notice_period}`);
+  if (application.skills) details.push(`Skills: ${application.skills}`);
+  if (application.cover_letter) details.push(`Note: ${application.cover_letter}`);
+  return details.join(' | ');
+}
+
 function slugifyProduct(value) {
   return String(value || '')
     .toLowerCase()
@@ -533,6 +871,9 @@ const server = app.listen(PORT, '0.0.0.0', () => {
   console.info(`Admin panel: http://localhost:${PORT}/admin.html`);
   if (databaseStartupError) {
     console.warn('[DB] Contact storage is unavailable; public pages remain online.');
+  }
+  if (uploadStartupError) {
+    console.warn('[UPLOAD] Career CV uploads are unavailable; public pages remain online.');
   }
 });
 

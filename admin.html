@@ -223,6 +223,14 @@
       transition: all .2s;
     }
     .btn-del:hover { background: rgba(239,68,68,.1); border-color: var(--red); }
+    .row-actions { display: flex; gap: .45rem; align-items: center; }
+    .btn-cv {
+      background: transparent; border: 1px solid rgba(96,165,250,.4);
+      color: #93c5fd; border-radius: 8px;
+      padding: .3rem .6rem; cursor: pointer; font-size: .8rem;
+      transition: all .2s;
+    }
+    .btn-cv:hover { background: rgba(59,130,246,.14); border-color: #60a5fa; }
 
     /* ── Empty / Loading ── */
     .empty {
@@ -323,7 +331,7 @@
         <i class="fas fa-search" aria-hidden="true"></i>
         <label class="sr-only" for="search">Search submissions</label>
         <input class="search-input" id="search"
-               placeholder="Search by name, phone, message…"
+               placeholder="Search by name, email, phone, role…"
                autocomplete="off" oninput="renderTable()">
       </div>
       <label class="sr-only" for="filter-type">Filter by inquiry type</label>
@@ -347,7 +355,7 @@
     <!-- Table -->
     <div class="table-wrap">
       <table>
-        <caption class="sr-only">Contact form submissions</caption>
+        <caption class="sr-only">Business enquiries and career applications</caption>
         <thead>
           <tr>
             <th>#</th>
@@ -495,7 +503,7 @@
     const type = document.getElementById('filter-type').value;
 
     const filtered = allData.filter(r => {
-      const matchQ = !q || [r.full_name, r.phone, r.message, r.inquiry_type]
+      const matchQ = !q || [r.full_name, r.email, r.phone, r.position, r.message, r.inquiry_type]
         .some(v => (v||'').toLowerCase().includes(q));
       const matchT = !type || r.inquiry_type === type;
       return matchQ && matchT;
@@ -517,19 +525,26 @@
         <td><div class="msg" title="${esc(r.message)}">${esc(r.message) || '<em style="opacity:.5">—</em>'}</div></td>
         <td class="date-cell">${formatDate(r.submitted_at)}</td>
         <td>
-          <button class="btn-del" type="button" onclick="deleteRow(${r.id})" title="Delete" aria-label="Delete submission ${r.id}">
-            <i class="fas fa-trash" aria-hidden="true"></i>
-          </button>
+          <div class="row-actions">
+            ${r.source === 'career' && r.resume_name ? `
+              <button class="btn-cv" type="button" onclick="downloadResume(${r.id})" title="Download CV" aria-label="Download CV for ${esc(r.full_name)}">
+                <i class="fas fa-file-arrow-down" aria-hidden="true"></i>
+              </button>` : ''}
+            <button class="btn-del" type="button" onclick="deleteRow(${r.id}, '${r.source || 'contact'}')" title="Delete" aria-label="Delete submission ${r.id}">
+              <i class="fas fa-trash" aria-hidden="true"></i>
+            </button>
+          </div>
         </td>
       </tr>`).join('');
   }
 
   // ── Delete a row ──
-  async function deleteRow(id) {
+  async function deleteRow(id, source = 'contact') {
     if (!confirm('Delete this submission?')) return;
     const token = sessionStorage.getItem(ADMIN_TOKEN_KEY);
     try {
-      const res = await fetch(getApiUrl('/api/submissions/' + id), {
+      const endpoint = source === 'career' ? '/api/career-applications/' : '/api/submissions/';
+      const res = await fetch(getApiUrl(endpoint + id), {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -541,19 +556,53 @@
       if (!res.ok || !json.success) {
         throw new Error(json.error || 'Delete failed');
       }
-      allData = allData.filter(r => r.id !== id);
+      allData = allData.filter(r => !(r.id === id && (r.source || 'contact') === source));
       updateStats();
       renderTable();
-      showToast('Submission deleted');
+      showToast(source === 'career' ? 'Application deleted' : 'Submission deleted');
     } catch(e) {
       showToast(e.message || 'Delete failed', 'error');
     }
   }
 
+  async function downloadResume(id) {
+    const token = sessionStorage.getItem(ADMIN_TOKEN_KEY);
+    const application = allData.find(row => row.id === id && row.source === 'career');
+    if (!token || !application) return;
+
+    try {
+      const res = await fetch(getApiUrl('/api/career-applications/' + id + '/resume'), {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.status === 401) {
+        logout();
+        throw new Error('Your admin session expired.');
+      }
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}));
+        throw new Error(json.error || 'CV download failed');
+      }
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = application.resume_name || `candidate-${id}-resume`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch (error) {
+      showToast(error.message || 'CV download failed', 'error');
+    }
+  }
+
   // ── Export CSV ──
   function exportCSV() {
-    const rows = [['ID','Name','Phone','Inquiry Type','Message','Submitted At']];
-    allData.forEach(r => rows.push([r.id, r.full_name, r.phone, r.inquiry_type, r.message, r.submitted_at]));
+    const rows = [['ID','Source','Name','Email','Phone','Position','Experience','Inquiry Type','Message','Submitted At']];
+    allData.forEach(r => rows.push([
+      r.id, r.source || 'contact', r.full_name, r.email, r.phone, r.position,
+      r.experience, r.inquiry_type, r.message, r.submitted_at
+    ]));
     const csv = rows.map(row => row.map(value => {
       let cell = (value || '').toString();
       if (/^[=+\-@]/.test(cell)) cell = `'${cell}`;
