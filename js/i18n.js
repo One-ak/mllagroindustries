@@ -128,8 +128,8 @@ const translations = {
     'nav.cta': 'Business Inquiry',
 
     // Homepage — Hero Section
-    'hero.title': 'Organic Agro Inputs, <span style="color:var(--secondary)">Soil Health</span> & Feed Manufacturing',
-    'hero.subtitle': 'Led by MLL Agro Industries Pvt. Ltd. in Barabanki, the group manufactures fertilizers, organic inputs, bio-agro solutions, aqua feed and animal nutrition for India and Nepal-facing markets.',
+    'hero.title': 'MLL Agro Industries',
+    'hero.subtitle': 'Organic fertilizers, bio-agro inputs and crop nutrition from Barabanki, Uttar Pradesh. Part of Vansh Group, connecting farmers, dealers and distributors with our agricultural input range.',
     'hero.btn.explore': 'Explore Products',
     'hero.btn.distributor': 'Become a Distributor',
 
@@ -158,7 +158,7 @@ const translations = {
     'footer.about': 'Vansh Group operates from Barabanki through MLL Agro Industries, Fish Gold Industries, and New Vanshika Bio Agro Industries.',
     'footer.links': 'Quick Links',
     'footer.contact': 'Contact Info',
-    'footer.address': 'Barabanki, Uttar Pradesh, India',
+    'footer.address': '140/158, Village Palia Masudpur, Tehsil Nawabganj, Barabanki, Uttar Pradesh 225305, India',
     'footer.phone': '05248 296699<br>+91 9670252525',
 	    'footer.email': 'vanshgroupofficial@gmail.com',
     'footer.rights': '© 2026 Vansh Group. All rights reserved.',
@@ -318,7 +318,7 @@ const translations = {
     'about.number.export': 'Nepal Export',
 
     // Contact Page
-    'contact.hero.title': 'Contact <span class="text-gradient">Vansh Group</span>',
+    'contact.hero.title': 'Contact <span class="text-gradient">MLL Agro Industries</span>',
     'contact.hero.subtitle': 'Reach the Barabanki team for MLL Agro Industries products, dealer coordination, bulk supply, export discussions and customer support.',
     'contact.quick.whatsapp.title': 'WhatsApp Coordination',
     'contact.quick.whatsapp.link': 'Message the team',
@@ -328,7 +328,7 @@ const translations = {
     'contact.quick.export.desc': 'For structured bulk and cross-border supply discussions.',
     'contact.info.title': 'Business Contact',
     'contact.info.office': 'Head Office / Manufacturing Base',
-    'contact.info.address': 'Vansh Group of Companies,<br>Barabanki, Uttar Pradesh, India',
+    'contact.info.address': 'MLL Agro Industries Pvt. Ltd.,<br>140/158, Village Palia Masudpur, Tehsil Nawabganj,<br>Barabanki, Uttar Pradesh 225305, India',
     'contact.info.phone': 'Phone Number',
     'contact.info.email': 'Email Address',
     'contact.action.whatsapp': '<i class="fab fa-whatsapp"></i> WhatsApp',
@@ -518,8 +518,8 @@ const translations = {
     'nav.cta': 'व्यावसायिक पूछताछ',
 
     // Homepage — Hero Section
-    'hero.title': 'ऑर्गेनिक एग्रो इनपुट, <span style="color:var(--secondary)">मृदा स्वास्थ्य</span> और फीड निर्माण',
-    'hero.subtitle': 'बाराबंकी में MLL Agro Industries Pvt. Ltd. के नेतृत्व में ग्रुप भारत और नेपाल-facing markets के लिए fertilizers, organic inputs, bio-agro solutions, aqua feed और animal nutrition बनाता है।',
+    'hero.title': 'MLL Agro Industries',
+    'hero.subtitle': 'बाराबंकी, उत्तर प्रदेश से जैविक खाद, बायो-एग्रो इनपुट और फसल पोषण उत्पाद। वंश ग्रुप का हिस्सा, किसानों, डीलरों और वितरकों के लिए कृषि उत्पादों की रेंज।',
     'hero.btn.explore': 'उत्पाद देखें',
     'hero.btn.distributor': 'वितरक बनें',
 
@@ -548,7 +548,7 @@ const translations = {
     'footer.about': 'वंश ग्रुप बाराबंकी से MLL Agro Industries, Fish Gold Industries और New Vanshika Bio Agro Industries के माध्यम से operates करता है।',
     'footer.links': 'त्वरित लिंक',
     'footer.contact': 'संपर्क जानकारी',
-    'footer.address': 'बाराबंकी, उत्तर प्रदेश, भारत',
+    'footer.address': '140/158, ग्राम पलिया मसूदपुर, तहसील नवाबगंज, बाराबंकी, उत्तर प्रदेश 225305, भारत',
     'footer.phone': '05248 296699<br>+91 9670252525',
 	    'footer.email': 'vanshgroupofficial@gmail.com',
     'footer.rights': '© 2026 वंश ग्रुप। सर्वाधिकार सुरक्षित।',
@@ -708,7 +708,7 @@ const translations = {
     'about.number.export': 'Nepal Export',
 
     // Contact Page
-    'contact.hero.title': '<span class="text-gradient">Vansh Group</span> से संपर्क',
+    'contact.hero.title': '<span class="text-gradient">MLL Agro Industries</span> से संपर्क',
     'contact.hero.subtitle': 'MLL Agro Industries products, dealer coordination, bulk supply, export discussions और customer support के लिए Barabanki team से संपर्क करें।',
     'contact.quick.whatsapp.title': 'WhatsApp Coordination',
     'contact.quick.whatsapp.link': 'Team को message करें',
@@ -718,7 +718,7 @@ const translations = {
     'contact.quick.export.desc': 'Structured bulk और cross-border supply discussions के लिए।',
     'contact.info.title': 'Business Contact',
     'contact.info.office': 'Head Office / Manufacturing Base',
-    'contact.info.address': 'Vansh Group of Companies,<br>बाराबंकी, उत्तर प्रदेश, भारत',
+    'contact.info.address': 'MLL Agro Industries Pvt. Ltd.,<br>140/158, ग्राम पलिया मसूदपुर, तहसील नवाबगंज,<br>बाराबंकी, उत्तर प्रदेश 225305, भारत',
     'contact.info.phone': 'फोन नंबर',
     'contact.info.email': 'ईमेल पता',
     'contact.action.whatsapp': '<i class="fab fa-whatsapp"></i> WhatsApp',

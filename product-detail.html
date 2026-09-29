@@ -26,11 +26,13 @@
     <meta id="product-twitter-image" name="twitter:image" content="https://mllagroindustries.com/assets/logo_en.png">
     <script id="product-jsonld" type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Product Details"}</script>
     <script src="js/theme-init.js?v=20260715-historyfix"></script>
+    <script defer src="js/product-seo.js?v=20260929"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Outfit:wght@500;700;900&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css?v=20260715-historyfix">
+    <noscript><style>.reveal,.reveal-left,.reveal-right,.reveal-scale{opacity:1;transform:none}</style></noscript>
 </head>
 <body>
 
@@ -256,7 +258,7 @@
                 <div class="reveal" style="transition-delay: 0.3s;">
                     <h4 class="footer-heading" data-i18n="footer.contact">Contact Info</h4>
                     <ul class="footer-links" style="color: #94A3B8;">
-                        <li style="display: flex; gap: 1rem;"><i class="fas fa-map-marker-alt" style="color: var(--secondary); margin-top: 5px;"></i> <span data-i18n="footer.address">Barabanki, Uttar Pradesh, India</span></li>
+                        <li style="display: flex; gap: 1rem;"><i class="fas fa-map-marker-alt" style="color: var(--secondary); margin-top: 5px;"></i> <span data-i18n="footer.address">140/158, Village Palia Masudpur, Tehsil Nawabganj, Barabanki, Uttar Pradesh 225305, India</span></li>
                         <li style="display: flex; gap: 1rem;"><i class="fas fa-phone-alt" style="color: var(--secondary); margin-top: 5px;"></i> <span data-i18n="footer.phone">05248 296699<br>+91 9670252525</span></li>
                         <li style="display: flex; gap: 1rem;"><i class="fas fa-envelope" style="color: var(--secondary); margin-top: 5px;"></i> <span data-i18n="footer.email">vanshgroupofficial@gmail.com</span></li>
                     </ul>
@@ -269,7 +271,7 @@
         </div>
     </footer>
 
-    <script src="js/i18n.js?v=20260715-historyfix"></script>
+    <script src="js/i18n.js?v=20260929-seo"></script>
     <script src="js/main.js?v=20260715-historyfix"></script>
     <script>
         // =========================================================
@@ -398,104 +400,24 @@
             meta.innerHTML = items.map(item => `<span>${item}</span>`).join('');
         }
 
-        function absoluteUrl(path) {
-            if (!path) return 'https://mllagroindustries.com/assets/logo_en.png';
-            if (/^https?:\/\//i.test(path)) return path;
-            return `https://mllagroindustries.com/${path.replace(/^\/+/, '')}`;
-        }
-
-        function parsePriceValue(priceText) {
-            const match = String(priceText || '').replace(/,/g, '').match(/(\d+(?:\.\d+)?)/);
-            return match ? match[1] : null;
-        }
-
-        function parsePriceUnit(priceText) {
-            const match = String(priceText || '').match(/\/\s*([^/]+)$/);
-            return match ? match[1].trim() : '';
-        }
-
-        function buildProductOffer(product, canonical) {
-            const price = parsePriceValue(product.price);
-            if (!price) return null;
-
-            const unitText = parsePriceUnit(product.price);
-            const offer = {
-                "@type": "Offer",
-                "url": canonical,
-                "priceCurrency": "INR",
-                "price": price,
-                "availability": "https://schema.org/InStock",
-                "itemCondition": "https://schema.org/NewCondition",
-                "seller": { "@id": "https://mllagroindustries.com/#organization" }
+        function renderProductSeo(product, localized) {
+            const meta = window.MLLProductSeo.metadata(product, localized);
+            document.title = meta.title;
+            const attributes = {
+                'product-meta-description': ['content', meta.description],
+                'product-canonical': ['href', meta.canonical],
+                'product-og-title': ['content', meta.title],
+                'product-og-description': ['content', meta.description],
+                'product-og-url': ['content', meta.canonical],
+                'product-og-image': ['content', meta.image],
+                'product-twitter-title': ['content', meta.title],
+                'product-twitter-description': ['content', meta.description],
+                'product-twitter-image': ['content', meta.image]
             };
-
-            if (unitText) {
-                offer.priceSpecification = {
-                    "@type": "UnitPriceSpecification",
-                    "price": price,
-                    "priceCurrency": "INR",
-                    "unitText": unitText
-                };
-            }
-
-            return offer;
-        }
-
-        function upsertSeo(selector, attr, value) {
-            const el = document.querySelector(selector);
-            if (el && value) el.setAttribute(attr, value);
-        }
-
-        function renderProductSeo(product, localized, slug, name) {
-            const detailId = product.slug || slug || slugifyProduct(product.displayName || product.name || name);
-            const canonical = `https://mllagroindustries.com/product-detail.html?id=${encodeURIComponent(detailId)}`;
-            const image = absoluteUrl(product.image);
-            const description = (localized.shortDescription || localized.description || `${name} product details from Vansh Group of Companies.`).replace(/\s+/g, ' ').slice(0, 220);
-            const title = `${name} | Vansh Group Product`;
-
-            document.title = title;
-            upsertSeo('#product-meta-description', 'content', description);
-            upsertSeo('#product-canonical', 'href', canonical);
-            upsertSeo('#product-og-title', 'content', title);
-            upsertSeo('#product-og-description', 'content', description);
-            upsertSeo('#product-og-url', 'content', canonical);
-            upsertSeo('#product-og-image', 'content', image);
-            upsertSeo('#product-twitter-title', 'content', title);
-            upsertSeo('#product-twitter-description', 'content', description);
-            upsertSeo('#product-twitter-image', 'content', image);
-
-            const offer = buildProductOffer(product, canonical);
-            const productEntity = {
-                "@type": "Product",
-                "@id": `${canonical}#product`,
-                "name": name,
-                "image": image,
-                "description": description,
-                "category": localized.category || product.category || inferProductType(detailId),
-                "brand": { "@type": "Brand", "name": "Vansh Group" },
-                "manufacturer": { "@id": "https://mllagroindustries.com/#organization" },
-                "url": canonical
-            };
-
-            if (offer) productEntity.offers = offer;
-
-            const graph = {
-                "@context": "https://schema.org",
-                "@graph": [
-                    offer ? productEntity : null,
-                    {
-                        "@type": "BreadcrumbList",
-                        "@id": `${canonical}#breadcrumb`,
-                        "itemListElement": [
-                            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mllagroindustries.com/" },
-                            { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://mllagroindustries.com/products.html" },
-                            { "@type": "ListItem", "position": 3, "name": name, "item": canonical }
-                        ]
-                    }
-                ].filter(Boolean)
-            };
-
-            document.getElementById('product-jsonld').textContent = JSON.stringify(graph);
+            Object.entries(attributes).forEach(([id, [attr, value]]) => {
+                document.getElementById(id).setAttribute(attr, value);
+            });
+            document.getElementById('product-jsonld').textContent = JSON.stringify(meta.schema);
         }
 
         function renderSpecTable(specs) {
@@ -730,8 +652,11 @@
             }
 
             try {
-                const response = await fetch('assets/products.json');
-                const products = await response.json();
+                const embedded = document.getElementById('product-data');
+                const products = embedded ? [JSON.parse(embedded.textContent)] : await fetch('assets/products.json').then(response => {
+                    if (!response.ok) throw new Error('Catalog unavailable');
+                    return response.json();
+                });
                 const product  = products.find(p => productMatches(p, productId));
 
                 if (product) {

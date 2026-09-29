@@ -12,10 +12,13 @@
  */
 
 const express = require('express');
+const compression = require('compression');
 const cors = require('cors');
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
+const productSeo = require('./js/product-seo');
+const { renderProductPage } = require('./lib/product-page');
 
 let Database = null;
 let databaseLoadError = null;
@@ -73,6 +76,8 @@ const PUBLIC_ROOT_FILES = new Set([
   'privacy.html',
   'product-detail.html',
   'products.html',
+  'organic-fertilizers.html',
+  'micronutrient-fertilizers.html',
   'quality.html',
   'vendor.html',
   'apple-touch-icon.png',
@@ -453,23 +458,35 @@ app.delete('/api/career-applications/:id', requireAdmin, requireDatabase, (req, 
   }
 });
 
-// Product metadata is rendered into the first response for crawlers and link previews.
-app.get('/product-detail.html', (req, res, next) => {
+// Compress public pages and assets, not authenticated API responses above.
+app.use(compression({ filter: (req, res) => req.path !== '/admin.html' && compression.filter(req, res) }));
+
+// Keep existing URLs while consolidating alternate homepage and product aliases.
+app.get(['/index.html', '/social/index.html'], (req, res) => {
+  const query = req.originalUrl.includes('?') ? req.originalUrl.slice(req.originalUrl.indexOf('?')) : '';
+  return res.redirect(301, (req.path === '/index.html' ? '/' : '/social/') + query);
+});
+
+// The first response contains product content as well as metadata.
+app.get('/product-detail.html', (req, res) => {
   const productId = normalizeText(req.query.id);
-  if (!productId) return next();
+  if (!productId) return res.redirect(301, '/products.html');
 
   try {
     const products = JSON.parse(fs.readFileSync(path.join(__dirname, 'assets', 'products.json'), 'utf8'));
-    const product = products.find(item => productSlug(item) === productId);
-    if (!product) return next();
+    const product = products.find(item => productSeo.matches(item, productId));
+    if (!product) return res.status(404).type('html').send('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>Product not found | MLL Agro Industries</title></head><body><h1>Product not found</h1><p><a href="/products.html">Browse the product catalog</a></p></body></html>');
+    if (productId !== productSeo.slug(product)) {
+      return res.redirect(301, '/product-detail.html?id=' + encodeURIComponent(productSeo.slug(product)));
+    }
 
     const template = fs.readFileSync(path.join(__dirname, 'product-detail.html'), 'utf8');
-    const html = renderProductMetadata(template, product, productId);
+    const html = renderProductPage(template, product);
     res.setHeader('Cache-Control', `public, max-age=${SHORT_CACHE_SECONDS}, must-revalidate`);
     return res.type('html').send(html);
   } catch (error) {
     console.error('[SEO] Product metadata rendering failed:', error.message);
-    return next();
+    return res.status(503).set('Retry-After', '300').send('Product details are temporarily unavailable. Please try again shortly.');
   }
 });
 
@@ -791,64 +808,6 @@ function createCareerSummary(application) {
   return details.join(' | ');
 }
 
-function slugifyProduct(value) {
-  return String(value || '')
-    .toLowerCase()
-    .replace(/&/g, ' and ')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-}
-
-function productSlug(product) {
-  return product.slug || slugifyProduct(product.displayName || product.name);
-}
-
-function absoluteAssetUrl(value) {
-  if (/^https?:\/\//i.test(value || '')) return value;
-  return `https://mllagroindustries.com/${String(value || 'assets/logo_en.png').replace(/^\/+/, '')}`;
-}
-
-function escapeHtml(value) {
-  return String(value)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-function renderProductMetadata(template, product, slug) {
-  const name = product.displayName || product.name;
-  const title = `${name} | Vansh Group Product`;
-  const description = normalizeText(product.shortDescription || product.description || `${name} product information from Vansh Group.`).slice(0, 220);
-  const canonical = `https://mllagroindustries.com/product-detail.html?id=${encodeURIComponent(slug)}`;
-  const image = absoluteAssetUrl(product.image);
-  const productSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name,
-    image,
-    description,
-    category: product.category || undefined,
-    brand: { '@type': 'Brand', name: 'Vansh Group' },
-    manufacturer: { '@id': 'https://mllagroindustries.com/#organization' },
-    url: canonical
-  };
-  const schemaJson = JSON.stringify(productSchema).replace(/</g, '\\u003c');
-
-  return template
-    .replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(title)}</title>`)
-    .replace(/(<meta id="product-meta-description" name="description" content=")[^"]*(">)/, `$1${escapeHtml(description)}$2`)
-    .replace(/(<link id="product-canonical" rel="canonical" href=")[^"]*(">)/, `$1${escapeHtml(canonical)}$2`)
-    .replace(/(<meta id="product-og-title" property="og:title" content=")[^"]*(">)/, `$1${escapeHtml(title)}$2`)
-    .replace(/(<meta id="product-og-description" property="og:description" content=")[^"]*(">)/, `$1${escapeHtml(description)}$2`)
-    .replace(/(<meta id="product-og-url" property="og:url" content=")[^"]*(">)/, `$1${escapeHtml(canonical)}$2`)
-    .replace(/(<meta id="product-og-image" property="og:image" content=")[^"]*(">)/, `$1${escapeHtml(image)}$2`)
-    .replace(/(<meta id="product-twitter-title" name="twitter:title" content=")[^"]*(">)/, `$1${escapeHtml(title)}$2`)
-    .replace(/(<meta id="product-twitter-description" name="twitter:description" content=")[^"]*(">)/, `$1${escapeHtml(description)}$2`)
-    .replace(/(<meta id="product-twitter-image" name="twitter:image" content=")[^"]*(">)/, `$1${escapeHtml(image)}$2`)
-    .replace(/(<script id="product-jsonld" type="application\/ld\+json">)[\s\S]*?(<\/script>)/, `$1${schemaJson}$2`);
-}
 
 function migrateLegacyDatabase() {
   const legacyPath = path.join(__dirname, 'vansh_leads.db');
