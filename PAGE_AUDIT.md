@@ -1,65 +1,32 @@
-# Page Audit - Vansh Group of Companies
+# Page Audit
+29 September 2026. Scope: MLL website and its existing 57-product catalog.
 
-Date: 2026-06-11
-
-## Summary
-
-The site now has a crawlable page set for branded, manufacturer and local SEO searches. Core pages support brand trust and conversion. New landing pages target manufacturer keywords directly.
-
-## Core Pages
-
-| Page | Primary Intent | SEO Status | Notes |
-| --- | --- | --- | --- |
-| `index.html` | Branded homepage and group overview | Improved | Added canonical, robots, OG, Twitter, image preload, Organization/LocalBusiness schema and manufacturer hub links. |
-| `about.html` | Company/entity trust | Improved | Added title rewrite, meta description, canonical and social metadata. |
-| `products.html` | Product category discovery | Improved | Added canonical, social metadata, Product ItemList schema and breadcrumb schema. |
-| `product-detail.html` | Product-specific search and inquiry | Improved | Dynamic product title, meta description, canonical URL, social image and Product JSON-LD now update per product. |
-| `infrastructure.html` | Manufacturing credibility | Improved | Added manufacturer-focused title, description, canonical and social metadata. |
-| `quality.html` | Quality assurance trust | Improved | Added quality/manufacturing title, description, canonical and social metadata. |
-| `contact.html` | Local/contact conversion | Improved | Added Barabanki-focused title, description, canonical and social metadata. |
-| `business.html` | B2B lead conversion | Improved | Added canonical and social metadata. |
-| `vendor.html` | Dealer/distributor conversion | Improved | Added canonical and social metadata. |
-| `grievance.html` | Support and trust | Improved | Added canonical and social metadata. |
-| `career.html` | Employer/supporting entity page | Improved | Added canonical and social metadata. |
-
-## Landing Pages
-
-| Page | Target Keyword | Location Target | Schema |
-| --- | --- | --- | --- |
-| `fertilizer-manufacturer-uttar-pradesh.html` | Fertilizer Manufacturer in Uttar Pradesh | Barabanki, Lucknow, Uttar Pradesh, India | Product, FAQ, Breadcrumb |
-| `pesticide-manufacturer-uttar-pradesh.html` | Pesticide Manufacturer in Uttar Pradesh | Barabanki, Lucknow, Uttar Pradesh, India | Product, FAQ, Breadcrumb |
-| `fish-feed-manufacturer-uttar-pradesh.html` | Fish Feed Manufacturer in Uttar Pradesh | Barabanki, Lucknow, Uttar Pradesh, India | Product, FAQ, Breadcrumb |
-| `cattle-feed-manufacturer-uttar-pradesh.html` | Cattle Feed Manufacturer in Uttar Pradesh | Barabanki, Lucknow, Uttar Pradesh, India | Product, FAQ, Breadcrumb |
-| `bio-fertilizer-manufacturer-india.html` | Bio Fertilizer Manufacturer in India | India, Uttar Pradesh, Barabanki | Product, FAQ, Breadcrumb |
-| `agricultural-inputs-manufacturer.html` | Agricultural Inputs Manufacturer | Barabanki, Lucknow, Uttar Pradesh, India | Manufacturer, FAQ, Breadcrumb |
-
-## Crawl and Indexing
-
-| Asset | Status | Notes |
+| Page/group | Finding | Implemented |
 | --- | --- | --- |
-| `robots.txt` | Added | Allows public site crawl, disallows admin page and API routes, references sitemap. |
-| `sitemap.xml` | Added | Includes core pages, six landing pages and representative product detail URLs. |
-| Canonicals | Added | Canonical coverage exists on all core and landing HTML pages. |
-| Structured data | Added | Static JSON-LD parsed successfully during local validation. |
+| Homepage | Vansh Group title/schema diluted MLL identity; incomplete Product category objects | MLL-first title/H1/description, WebSite name, Organization/LocalBusiness, parent group, category links |
+| About | Missing dedicated MLL entity/page relationship | MLL title/description, AboutPage and consistent business identity |
+| Contact | Generic address and map for a different group location | Full public factory/head-office address, correct public pin/embed, ContactPage |
+| Catalog | Product cards created primarily by JavaScript | 24 initial cards in HTML, persistent 57-product linked directory, CollectionPage/ItemList, category links |
+| Organic fertilizers | No focused collection page | Two real catalog products, packing/quotation guidance, category links |
+| Micronutrients | No focused collection page | Ten relevant zinc/boron/micronutrient products, buying criteria and detail links |
+| Fertilizer manufacturer | Generic category copy and FAQ not visible | Specific product/category links, quotation information, matching visible FAQs |
+| Bio fertilizer manufacturer | SEO-oriented rather than buyer-oriented wording | Actual range and product-label guidance, visible FAQs |
+| Agricultural inputs | Overbroad Product/Offer catalog markup | CollectionPage, category links, visible FAQ |
+| Fish feed, cattle feed, pesticide manufacturer | FAQ markup without matching visible Q&A | Remove unsupported FAQ objects; preserve relevant Service/Breadcrumb markup |
+| Product detail, 57 URLs | Only metadata in initial response; rest needed JS | Initial name, image, description, specs, price; one-product embedded data; shared client/server SEO logic |
+| 33 priced products | Product schema could diverge between server and browser | Consistent Product + explicit catalog INR unit Offer, no fabricated stock or reviews |
+| 24 inquiry-only products | Rich Product would fail required offer/review checks | WebPage + Breadcrumb only; genuine visible product information retained |
+| Missing/unknown product ID | Soft error/fallback behavior | Missing ID redirects to catalog; unknown ID is HTTP 404 + noindex |
+| Aliases | Duplicate homepage/social/product URL spellings | 301 aliases to current canonical URLs; existing product slugs preserved |
+| Sitemap | Manual lists/dates could drift | Build from current public pages/catalog; 77 canonical URLs, no fabricated lastmod |
+| Other public HTML | Stale translation bundle and short footer address | Versioned i18n references; consistent translated address where applicable |
 
-## Content Gaps Remaining
-
-- Add more unique product-detail content for products that still use generic descriptions.
-- Add real certifications, licenses or quality documents if available.
-- Add business photos with descriptive filenames and alt text after final image selection.
-- Add Google Business Profile links once verified.
-- Add cross-domain links from `vanshfeeds.com` and `fishgoldindustries.com` back to the relevant group/company pages.
-
-## Performance Risk Areas
-
-- Large PNG/JPG assets may affect LCP on mobile.
-- External Font Awesome and Google Fonts add network dependency.
-- Final score depends on Hostinger compression, cache and CDN settings.
-
-## Validation Performed
-
-- `node --check server.js`
-- `node --check index.js`
-- Static JSON-LD parse check across HTML files.
-- `xmllint --noout sitemap.xml`
-- Canonical coverage check across HTML files.
+## Validation
+- All 77 sitemap destinations return HTTP 200 locally and match their canonical tags exactly.
+- Sitemap has XML declaration and protocol namespace; xmllint parsing passes and server sends application/xml.
+- All internal HTML links collected from those pages resolve successfully locally.
+- JSON-LD parses on static and server-rendered pages; inline JavaScript syntax checks pass.
+- Desktop homepage/category and mobile category/product inspected in Chrome; checked 390px viewport for horizontal overflow and category image failures.
+- Search and Show More remain functional; browser Back restores category with transition overlay hidden.
+- Product inquiries and admin authentication were not submitted during preview; no test records were sent to production.
+- The local Node 26 runtime cannot load the existing native SQLite binary. Public-page tests use disposable/in-memory configuration; database/admin/career flows were not claimed as re-tested. Hostinger is configured for supported Node 20.

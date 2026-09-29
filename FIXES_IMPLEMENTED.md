@@ -1,49 +1,42 @@
-# Fixes Implemented
+# SEO Fixes Implemented
+29 September 2026
 
-Date: 2026-06-11
+## Code
+- Added shared product SEO module and server-side product content rendering.
+- Reused existing query-string product URLs; added permanent alias redirects and real unknown-product 404s.
+- Replaced incomplete broad Product markup with appropriate Organization, WebSite, WebPage, CollectionPage, Service and ItemList types.
+- Product/Offer schema is emitted for 33 products with explicit catalog prices; no fake review, availability, certification or price inserted.
+- Added organic manure and micronutrient collection pages from the existing catalog, plus useful internal links.
+- Added build-generated initial catalog cards, complete product directory and canonical sitemap.
+- Preserved static catalog content if the browser's catalog fetch fails.
+- Updated MLL-first metadata, homepage heading, translated hero text and verified public location details.
+- Added matching visible FAQ content to three priority pages; removed unsupported invisible FAQ markup elsewhere.
+- Added compression only after authenticated API routes; admin HTML is excluded. Existing authentication/storage/upload handlers remain unchanged.
+- Existing animation logic, social hub, DNS, credentials and customer records were not changed.
 
-## Technical SEO
+## Verification
+Commands:
+```sh
+npm run build
+npm test
+xmllint --noout sitemap.xml
+git diff --check
+```
 
-- Added `robots.txt`.
-- Added `sitemap.xml`.
-- Added canonical tags across core and landing pages.
-- Added `index, follow, max-image-preview:large` robots metadata across indexable pages.
-- Added Open Graph tags across core and landing pages.
-- Added Twitter Card tags across core and landing pages.
-- Added homepage Organization, LocalBusiness and Manufacturer schema.
-- Added Product schema to product listing, product detail and landing pages.
-- Added FAQ schema to manufacturer landing pages.
-- Added Breadcrumb schema to homepage, products and landing pages.
-- Added dynamic product SEO updates in `product-detail.html`.
+The regression suite covers all 57 product renderings, safe HTML/JSON escaping, offer eligibility, inline JS syntax, metadata, crawlable catalog links, 77 HTTP sitemap destinations, exact canonical matching, internal links, redirects, 404s, private-file blocking and gzip.
+Local catalog HTML transfer measured approximately 71 KB uncompressed versus 12 KB gzip (about 83% smaller). This is an HTTP payload measurement, not a measured Core Web Vitals or Lighthouse-score improvement.
+No page-specific download of the entire catalog is needed for an Express-rendered product detail page.
+Desktop/mobile UI checks: homepage, category, product, search, Show More and Back navigation.
 
-## Content and Landing Pages
+## Deployment
+User approved deployment to the existing GitHub-linked Hostinger website.
+Existing configuration: Express, Node 20, entry index.js, build script build, main branch auto-deployment.
+Deployment completion and Google reprocessing must be verified separately; a commit alone does not establish that the public site or Search Console has refreshed.
 
-- Added Fertilizer Manufacturer in Uttar Pradesh page.
-- Added Pesticide Manufacturer in Uttar Pradesh page.
-- Added Fish Feed Manufacturer in Uttar Pradesh page.
-- Added Cattle Feed Manufacturer in Uttar Pradesh page.
-- Added Bio Fertilizer Manufacturer in India page.
-- Added Agricultural Inputs Manufacturer page.
-- Added homepage manufacturer hub links to connect all new landing pages.
-- Added cross-links between related manufacturer categories.
-- Added location signals for Barabanki, Lucknow, Uttar Pradesh and India.
-
-## Local SEO
-
-- Added structured address data on homepage.
-- Added location references across contact, landing and report content.
-- Added local terms to title/meta descriptions where appropriate.
-
-## Performance
-
-- Added homepage hero preload.
-- Added preconnect hints for key external domains on homepage.
-- Added static asset cache headers in `server.js`.
-- Preserved lazy loading/async decoding patterns already present on product and infrastructure images.
-
-## Developer/Deployment Notes
-
-- `server.js` continues to serve static HTML and API routes from one Node app.
-- `robots.txt` excludes `/admin.html` and `/api/` from crawling.
-- `.vscode/` remains local and is not committed.
-- Final Lighthouse/Core Web Vitals validation should be run after the site is deployed on Hostinger with SSL and production compression enabled.
+## Deliberately Not Claimed
+- No guaranteed rank, instant indexing, rich-result display or 90+ performance score.
+- No unsupported ratings, business hours, registration numbers, product efficacy or invented manufacturer certification.
+- Google Business Profile was not claimed/edited; authorized-owner verification may still be needed.
+- No production form submissions, database migration, admin password change or DNS modification.
+- PageSpeed API quota prevented a new lab-score measurement; GSC currently has insufficient CWV field data.
+- Existing backend dependency advisories are documented in SEO_REPORT.md for a separate tested maintenance update.
