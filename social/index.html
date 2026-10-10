@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Company websites and social profiles for MLL Agro Industries, New Vanshika Bio Agro, Vansh Feeds, Fish Gold Industries and Gaon Dehat, with Hemkaran Mathur's MD profiles listed separately." />
     <link rel="canonical" href="https://mllagroindustries.com/social/" />
-    <link rel="icon" type="image/png" href="./logo.png" />
+    <link rel="icon" type="image/png" href="./vansh-group-logo.png" />
     <title>Vansh Group Social Hub | MLL Agro Industries</title>
-    <script src="./social-hub-enhancements.js"></script>
+    <script src="./social-hub-enhancements.js?v=vansh-logo-20261010"></script>
     <script type="module" crossorigin src="./assets/index-B-bGaZVP.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-aF_oN26G.css">
     <style>
@@ -80,6 +80,18 @@
       #root .qr-container > div svg {
         width: 1em !important;
         height: 1em !important;
+      }
+
+      #root .avatar-img.social-brand-logo {
+        transform: none;
+      }
+
+      #root :where(.company-icon, .post-avatar, .link-icon-wrapper) .social-brand-logo {
+        width: 1.5em !important;
+        height: 1.5em !important;
+        object-fit: contain;
+        transform: none !important;
+        border-radius: 4px;
       }
 
       @media (max-width: 640px) {

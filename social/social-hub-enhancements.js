@@ -2,6 +2,8 @@
   "use strict";
 
   var VIDEO_SELECTOR = ".hero-product-video";
+  var BRAND_LOGO_SELECTOR = '.avatar-img, img[alt="Vansh Logo"]';
+  var BRAND_LOGO_URL = "./vansh-group-logo.png";
   var reducedMotion = window.matchMedia
     ? window.matchMedia("(prefers-reduced-motion: reduce)")
     : null;
@@ -10,6 +12,20 @@
   var videoStates = new WeakMap();
   var activeDialog = null;
   var dialogReturnFocus = null;
+
+  function enhanceBrandLogo(logo) {
+    if (logo.classList.contains("social-brand-logo")) {
+      return;
+    }
+
+    var company = logo.closest(".company-card, .post-card");
+    var heading = company && company.querySelector("h3, h4");
+    var isFishGold = heading && heading.textContent.trim() === "Fish Gold Industries";
+
+    logo.src = BRAND_LOGO_URL;
+    logo.alt = isFishGold ? "Fish Gold Industries logo" : "Vansh Group logo";
+    logo.classList.add("social-brand-logo");
+  }
 
   function prefersReducedMotion() {
     return Boolean(reducedMotion && reducedMotion.matches);
@@ -289,6 +305,10 @@
   function enhanceTree(root) {
     var scope = root && root.nodeType === 1 ? root : document;
 
+    if (scope.matches && scope.matches(BRAND_LOGO_SELECTOR)) {
+      enhanceBrandLogo(scope);
+    }
+
     if (scope.matches && scope.matches(VIDEO_SELECTOR)) {
       prepareVideo(scope);
     }
@@ -302,6 +322,7 @@
     }
 
     if (scope.querySelectorAll) {
+      scope.querySelectorAll(BRAND_LOGO_SELECTOR).forEach(enhanceBrandLogo);
       scope.querySelectorAll(VIDEO_SELECTOR).forEach(prepareVideo);
       scope.querySelectorAll(".qr-container").forEach(enhanceQrTrigger);
       scope.querySelectorAll(".qr-modal-content").forEach(enhanceDialog);

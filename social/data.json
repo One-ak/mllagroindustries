@@ -61,7 +61,7 @@
       "name": "Fish Gold Industries",
       "focus": "Premium Aqua Feed",
       "url": "https://www.fishgoldindustries.com/",
-      "icon": "FaFish",
+      "icon": "VanshLogo",
       "color": "#3b82f6"
     },
     {
@@ -138,14 +138,14 @@
     {
       "id": "fish-gold",
       "type": "blue",
-      "icon": "FaFish",
+      "icon": "VanshLogo",
       "title": "Fish Gold Industries",
       "subtitle": "Aqua Feed & Nutrition",
       "body": "Aqua feed products, company updates and reels from Fish Gold Industries.",
       "links": [
         {
           "url": "https://www.fishgoldindustries.com/",
-          "icon": "FaFish",
+          "icon": "VanshLogo",
           "color": "#0ea5e9",
           "label": "fishgoldindustries.com"
         },
