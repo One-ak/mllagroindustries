@@ -5,8 +5,8 @@
     "isVerified": true,
     "bio": "Pioneering Organic Agro Inputs, Soil Health Solutions & Premium Feed Manufacturing. Based in Barabanki, empowering farmers across India and Nepal.",
     "stats": [
-      { "value": "3", "label": "Official Websites" },
-      { "value": "4", "label": "Social Channels" }
+      { "value": "4", "label": "Official Websites" },
+      { "value": "6", "label": "Social Profiles" }
     ]
   },
   "heroProduct": {
@@ -63,16 +63,24 @@
       "url": "https://www.fishgoldindustries.com/",
       "icon": "FaFish",
       "color": "#3b82f6"
+    },
+    {
+      "id": "gaon-dehat",
+      "name": "Gaon Dehat",
+      "focus": "Crop Nutrition & Soil Health",
+      "url": "https://gaondehaat.com/",
+      "icon": "FaSeedling",
+      "color": "#15803d"
     }
   ],
   "posts": [
     {
-      "id": "agriculture",
+      "id": "mll-agro",
       "type": "green",
       "icon": "FaLeaf",
-      "title": "Agriculture & Organic Inputs",
-      "subtitle": "MLL Agro Industries • New Vanshika Bio Agro",
-      "body": "Leading the way in sustainable farming with high-quality bio-fertilizers, organic inputs, and advanced soil health solutions.",
+      "title": "MLL Agro Industries",
+      "subtitle": "Organic Inputs & Crop Nutrition",
+      "body": "Organic fertilizers, bio-agro inputs and crop nutrition from Barabanki, Uttar Pradesh.",
       "links": [
         {
           "url": "https://mllagroindustries.com/",
@@ -84,30 +92,57 @@
           "url": "https://www.facebook.com/mllagrobbk",
           "icon": "FaFacebook",
           "color": "#0866FF",
-          "label": "MLL Agro Industries FB"
-        },
-        {
-          "url": "https://www.facebook.com/nvbaipl",
-          "icon": "FaFacebook",
-          "color": "#0866FF",
-          "label": "New Vanshika Bio Agro FB"
+          "label": "Facebook | @mllagrobbk"
         }
       ]
     },
     {
-      "id": "nutrition",
+      "id": "nvba",
+      "type": "green",
+      "icon": "FaSeedling",
+      "title": "New Vanshika Bio Agro",
+      "subtitle": "Bio-agro Inputs & Soil Health",
+      "body": "Company updates, crop nutrition and soil-health solutions from New Vanshika Bio Agro.",
+      "links": [
+        {
+          "url": "https://www.facebook.com/nvbaipl",
+          "icon": "FaFacebook",
+          "color": "#0866FF",
+          "label": "Facebook | @nvbaipl"
+        },
+        {
+          "url": "https://www.instagram.com/newbioagro/",
+          "icon": "FaInstagram",
+          "color": "#b91c62",
+          "iconColor": "#b91c62",
+          "label": "Instagram | @newbioagro"
+        }
+      ]
+    },
+    {
+      "id": "vansh-feeds",
       "type": "blue",
-      "icon": "FaWater",
-      "title": "Animal & Aqua Nutrition",
-      "subtitle": "Vansh Feeds • Fish Gold Industries",
-      "body": "Manufacturing premium aqua feed, cattle nutrition, and poultry feed to empower farmers with the best nutrition solutions.",
+      "icon": "FaPaw",
+      "title": "Vansh Feeds",
+      "subtitle": "Animal Nutrition",
+      "body": "Feed products and animal nutrition from the Vansh Group.",
       "links": [
         {
           "url": "https://vanshfeeds.com/",
           "icon": "VanshLogo",
           "color": "#3b82f6",
           "label": "vanshfeeds.com"
-        },
+        }
+      ]
+    },
+    {
+      "id": "fish-gold",
+      "type": "blue",
+      "icon": "FaFish",
+      "title": "Fish Gold Industries",
+      "subtitle": "Aqua Feed & Nutrition",
+      "body": "Aqua feed products, company updates and reels from Fish Gold Industries.",
+      "links": [
         {
           "url": "https://www.fishgoldindustries.com/",
           "icon": "FaFish",
@@ -117,9 +152,25 @@
         {
           "url": "https://www.instagram.com/fishgoldindustries_official/reels/?hl=en",
           "icon": "FaInstagram",
-          "color": "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
-          "iconColor": "#dc2743",
-          "label": "Fish Gold Industries IG"
+          "color": "#b91c62",
+          "iconColor": "#b91c62",
+          "label": "Instagram Reels | @fishgoldindustries_official"
+        }
+      ]
+    },
+    {
+      "id": "gaon-dehat",
+      "type": "green",
+      "icon": "FaSeedling",
+      "title": "Gaon Dehat",
+      "subtitle": "Gao Dehat Industries Pvt. Ltd.",
+      "body": "A Vansh Group company offering soil-health, plant-growth and micronutrient products.",
+      "links": [
+        {
+          "url": "https://gaondehaat.com/",
+          "icon": "FaGlobe",
+          "color": "#15803d",
+          "label": "gaondehaat.com"
         }
       ]
     },
@@ -127,15 +178,22 @@
       "id": "leadership",
       "type": "orange",
       "icon": "FaUserTie",
-      "title": "Connect & Leadership",
-      "subtitle": "Hemkaran Mathur",
-      "body": "Reach out to our leadership for business inquiries, distribution opportunities, and partnerships.",
+      "title": "MD Profile",
+      "subtitle": "Hemkaran Mathur | Managing Director",
+      "body": "Personal profiles of our Managing Director, Hemkaran Mathur.",
       "links": [
         {
-          "url": "https://x.com/hemkaran_mathur?s=21",
+          "url": "https://x.com/Hemkaran_Mathur",
           "icon": "FaTwitter",
           "color": "#000000",
-          "label": "Hemkaran Mathur on X"
+          "label": "X / Twitter | @Hemkaran_Mathur"
+        },
+        {
+          "url": "https://www.instagram.com/upadhykshabjp/",
+          "icon": "FaInstagram",
+          "color": "#b91c62",
+          "iconColor": "#b91c62",
+          "label": "Instagram | @upadhykshabjp"
         }
       ]
     }
