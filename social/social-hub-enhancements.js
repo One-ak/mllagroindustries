@@ -4,6 +4,7 @@
   var VIDEO_SELECTOR = ".hero-product-video";
   var BRAND_LOGO_SELECTOR = '.avatar-img, img[alt="Vansh Logo"]';
   var BRAND_LOGO_URL = "./vansh-group-logo.png";
+  var COMPANY_LOGO_HOLDER_SELECTOR = ".company-icon, .post-avatar, .link-icon-wrapper";
   var reducedMotion = window.matchMedia
     ? window.matchMedia("(prefers-reduced-motion: reduce)")
     : null;
@@ -12,6 +13,15 @@
   var videoStates = new WeakMap();
   var activeDialog = null;
   var dialogReturnFocus = null;
+
+  function styleCircularLogo(logo) {
+    logo.classList.add("social-brand-logo");
+
+    var holder = logo.closest(".company-icon, .post-avatar");
+    if (holder) {
+      holder.classList.add("social-brand-logo-holder");
+    }
+  }
 
   function enhanceBrandLogo(logo) {
     if (logo.classList.contains("social-brand-logo")) {
@@ -24,11 +34,29 @@
 
     logo.src = BRAND_LOGO_URL;
     logo.alt = isFishGold ? "Fish Gold Industries logo" : "Vansh Group logo";
-    logo.classList.add("social-brand-logo");
+    styleCircularLogo(logo);
+  }
 
-    var holder = logo.closest(".company-icon, .post-avatar");
-    if (holder) {
-      holder.classList.add("social-brand-logo-holder");
+  function enhanceCompanyLogo(holder) {
+    if (holder.querySelector(".social-brand-logo")) {
+      return;
+    }
+
+    var company = holder.closest(".company-card, .post-card");
+    var heading = company && company.querySelector("h3, h4");
+    var name = heading && heading.textContent.trim();
+
+    if (name === "Gaon Dehat") {
+      var logo = document.createElement("img");
+      logo.src = "./gaon-dehat-logo.jpg";
+      logo.alt = "Gaon Dehat logo";
+      holder.replaceChildren(logo);
+      styleCircularLogo(logo);
+    } else if (name === "MLL Agro Industries" && holder.matches(".company-icon, .post-avatar")) {
+      var mllLogo = holder.querySelector('img[alt="MLL Agro Logo"]');
+      if (mllLogo) {
+        styleCircularLogo(mllLogo);
+      }
     }
   }
 
@@ -314,6 +342,10 @@
       enhanceBrandLogo(scope);
     }
 
+    if (scope.matches && scope.matches(COMPANY_LOGO_HOLDER_SELECTOR)) {
+      enhanceCompanyLogo(scope);
+    }
+
     if (scope.matches && scope.matches(VIDEO_SELECTOR)) {
       prepareVideo(scope);
     }
@@ -328,6 +360,7 @@
 
     if (scope.querySelectorAll) {
       scope.querySelectorAll(BRAND_LOGO_SELECTOR).forEach(enhanceBrandLogo);
+      scope.querySelectorAll(COMPANY_LOGO_HOLDER_SELECTOR).forEach(enhanceCompanyLogo);
       scope.querySelectorAll(VIDEO_SELECTOR).forEach(prepareVideo);
       scope.querySelectorAll(".qr-container").forEach(enhanceQrTrigger);
       scope.querySelectorAll(".qr-modal-content").forEach(enhanceDialog);

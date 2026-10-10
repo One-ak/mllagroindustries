@@ -71,3 +71,50 @@ test('Shared logos update on initial and dynamic rendering, leaving MLL unchange
   onMutation([{ addedNodes: [logo] }]);
   assert.equal(logo.className, 'social-brand-logo');
 });
+
+test('Gaon Dehat logos and MLL heading logos leave existing MLL website icons untouched', () => {
+  const data = JSON.parse(fs.readFileSync(path.join(socialDir, 'data.json'), 'utf8'));
+  assert.equal(data.companies.find(item => item.id === 'mll-agro').icon, 'MllLogo');
+  assert.equal(data.posts.find(item => item.id === 'mll-agro').icon, 'MllLogo');
+  const gaonLogo = fs.readFileSync(path.join(socialDir, 'gaon-dehat-logo.jpg'));
+  assert.equal(gaonLogo.subarray(0, 2).toString('hex'), 'ffd8');
+
+  const { document, window } = parseHTML(`<!doctype html><html><body>
+    <a class="company-card mll"><div class="company-icon"><img src="./mll-logo.png" alt="MLL Agro Logo"></div><h4>MLL Agro Industries</h4></a>
+    <article class="post-card mll"><h3>MLL Agro Industries</h3>
+      <div class="post-avatar"><img src="./mll-logo.png" alt="MLL Agro Logo"></div>
+      <div class="link-icon-wrapper"><img src="./mll-logo.png" alt="MLL Agro Logo"></div>
+    </article>
+    <a class="company-card gaon"><div class="company-icon"><svg></svg></div><h4>Gaon Dehat</h4></a>
+    <article class="post-card gaon"><h3>Gaon Dehat</h3>
+      <div class="post-avatar"><svg></svg></div><div class="link-icon-wrapper"><svg></svg></div>
+    </article>
+    <a class="company-card nvba"><div class="company-icon"><svg></svg></div><h4>New Vanshika Bio Agro</h4></a>
+  </body></html>`);
+  let onMutation;
+  vm.runInNewContext(fs.readFileSync(path.join(socialDir, 'social-hub-enhancements.js'), 'utf8'), {
+    document,
+    navigator: {},
+    window: { addEventListener() {} },
+    MutationObserver: class {
+      constructor(callback) { onMutation = callback; }
+      observe() {}
+    }
+  });
+  document.dispatchEvent(new window.Event('DOMContentLoaded'));
+
+  const mllWebsiteLogo = document.querySelector('.mll .link-icon-wrapper img');
+  assert.equal(mllWebsiteLogo.getAttribute('src'), './mll-logo.png');
+  assert.equal(mllWebsiteLogo.className, '');
+  assert.equal(document.querySelectorAll('.mll .social-brand-logo').length, 2);
+  assert.equal(document.querySelectorAll('.gaon .social-brand-logo').length, 3);
+  for (const logo of document.querySelectorAll('.gaon img')) {
+    assert.equal(logo.getAttribute('src'), './gaon-dehat-logo.jpg');
+    assert.equal(logo.alt, 'Gaon Dehat logo');
+    const holder = logo.parentElement;
+    onMutation([{ addedNodes: [holder] }]);
+    assert.equal(holder.querySelector('img'), logo);
+  }
+  assert.equal(document.querySelectorAll('.gaon svg').length, 0);
+  assert.ok(document.querySelector('.nvba svg'));
+});
