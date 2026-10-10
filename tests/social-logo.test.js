@@ -118,3 +118,40 @@ test('Gaon Dehat and MLL heading logos work with cached icons and leave MLL webs
   assert.equal(document.querySelectorAll('.gaon svg').length, 0);
   assert.ok(document.querySelector('.nvba svg'));
 });
+
+test('MD portrait replaces only the profile avatar and survives repeated enhancement', () => {
+  const portraitFile = fs.readFileSync(path.join(socialDir, 'hemkaran-mathur-source.webp'));
+  assert.equal(portraitFile.subarray(0, 4).toString(), 'RIFF');
+  assert.equal(portraitFile.subarray(8, 12).toString(), 'WEBP');
+  assert.ok(portraitFile.length < 200000);
+
+  const { document, window } = parseHTML(`<!doctype html><html><body>
+    <article class="post-card"><h3>MD Profile</h3>
+      <div class="post-avatar orange"><svg></svg></div>
+      <a href="https://x.com/Hemkaran_Mathur"><div class="link-icon-wrapper"><svg></svg></div></a>
+      <a href="https://www.instagram.com/upadhykshabjp/"><div class="link-icon-wrapper"><svg></svg></div></a>
+    </article>
+  </body></html>`);
+  let onMutation;
+  vm.runInNewContext(fs.readFileSync(path.join(socialDir, 'social-hub-enhancements.js'), 'utf8'), {
+    document,
+    navigator: {},
+    window: { addEventListener() {} },
+    MutationObserver: class {
+      constructor(callback) { onMutation = callback; }
+      observe() {}
+    }
+  });
+  document.dispatchEvent(new window.Event('DOMContentLoaded'));
+
+  const holder = document.querySelector('.post-avatar');
+  const portrait = holder.querySelector('img');
+  assert.ok(holder.classList.contains('social-md-avatar'));
+  assert.equal(portrait.getAttribute('src'), './hemkaran-mathur-source.webp');
+  assert.equal(portrait.alt, 'Hemkaran Mathur, Managing Director');
+  assert.equal(portrait.loading, 'lazy');
+  assert.equal(document.querySelectorAll('.link-icon-wrapper svg').length, 2);
+  onMutation([{ addedNodes: [holder] }]);
+  assert.equal(holder.querySelector('img'), portrait);
+  assert.equal(holder.querySelectorAll('img').length, 1);
+});

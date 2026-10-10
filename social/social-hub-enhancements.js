@@ -38,7 +38,7 @@
   }
 
   function enhanceCompanyLogo(holder) {
-    if (holder.querySelector(".social-brand-logo")) {
+    if (holder.querySelector(".social-brand-logo, .social-md-portrait")) {
       return;
     }
 
@@ -62,6 +62,15 @@
         holder.replaceChildren(mllLogo);
       }
       styleCircularLogo(mllLogo);
+    } else if (name === "MD Profile" && holder.matches(".post-avatar")) {
+      var portrait = document.createElement("img");
+      portrait.src = "./hemkaran-mathur-source.webp";
+      portrait.alt = "Hemkaran Mathur, Managing Director";
+      portrait.className = "social-md-portrait";
+      portrait.loading = "lazy";
+      portrait.decoding = "async";
+      holder.replaceChildren(portrait);
+      holder.classList.add("social-md-avatar");
     }
   }
 
