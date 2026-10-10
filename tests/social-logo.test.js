@@ -31,7 +31,7 @@ test('Shared logos update on initial and dynamic rendering, leaving MLL unchange
     <img class="avatar-img" src="./logo.png" alt="Vansh Group Logo">
     <a class="company-card"><div class="company-icon"><img src="./logo.png" alt="Vansh Logo"></div><h4>Fish Gold Industries</h4></a>
     <article class="post-card"><h3>Fish Gold Industries</h3><div class="post-avatar"><img src="./logo.png" alt="Vansh Logo"></div></article>
-    <img src="./mll-logo.png" alt="MLL Agro Logo">
+    <div class="post-avatar"><img src="./mll-logo.png" alt="MLL Agro Logo"></div>
   </body></html>`);
   let onMutation;
   const context = {
@@ -53,17 +53,21 @@ test('Shared logos update on initial and dynamic rendering, leaving MLL unchange
   for (const logo of document.querySelectorAll('.company-card img, .post-card img')) {
     assert.equal(logo.getAttribute('src'), './vansh-group-logo.png');
     assert.equal(logo.alt, 'Fish Gold Industries logo');
+    assert.ok(logo.parentElement.classList.contains('social-brand-logo-holder'));
   }
-  assert.equal(document.querySelector('img[alt="MLL Agro Logo"]').getAttribute('src'), './mll-logo.png');
+  const mllLogo = document.querySelector('img[alt="MLL Agro Logo"]');
+  assert.equal(mllLogo.getAttribute('src'), './mll-logo.png');
+  assert.ok(!mllLogo.parentElement.classList.contains('social-brand-logo-holder'));
 
   const card = document.createElement('article');
   card.className = 'post-card';
-  card.innerHTML = '<h3>Fish Gold Industries</h3><img src="./logo.png" alt="Vansh Logo">';
+  card.innerHTML = '<h3>Fish Gold Industries</h3><div class="post-avatar"><img src="./logo.png" alt="Vansh Logo"></div>';
   document.body.append(card);
   onMutation([{ addedNodes: [card] }]);
   const logo = card.querySelector('img');
   assert.equal(logo.getAttribute('src'), './vansh-group-logo.png');
   assert.equal(logo.alt, 'Fish Gold Industries logo');
+  assert.ok(logo.parentElement.classList.contains('social-brand-logo-holder'));
   onMutation([{ addedNodes: [logo] }]);
   assert.equal(logo.className, 'social-brand-logo');
 });

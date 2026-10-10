@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://mllagroindustries.com/social/" />
     <link rel="icon" type="image/png" href="./vansh-group-logo.png" />
     <title>Vansh Group Social Hub | MLL Agro Industries</title>
-    <script src="./social-hub-enhancements.js?v=vansh-logo-20261010"></script>
+    <script src="./social-hub-enhancements.js?v=vansh-logo-circle-20261010"></script>
     <script type="module" crossorigin src="./assets/index-B-bGaZVP.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-aF_oN26G.css">
     <style>
@@ -82,16 +82,22 @@
         height: 1em !important;
       }
 
-      #root .avatar-img.social-brand-logo {
-        transform: none;
+      #root .social-brand-logo {
+        box-sizing: border-box;
+        border-radius: 50%;
+        background: #ffffff;
+        object-fit: contain;
+        padding: 3px;
+        transform: none !important;
+      }
+
+      #root :where(.company-icon, .post-avatar).social-brand-logo-holder {
+        border-radius: 50%;
       }
 
       #root :where(.company-icon, .post-avatar, .link-icon-wrapper) .social-brand-logo {
         width: 1.5em !important;
         height: 1.5em !important;
-        object-fit: contain;
-        transform: none !important;
-        border-radius: 4px;
       }
 
       @media (max-width: 640px) {

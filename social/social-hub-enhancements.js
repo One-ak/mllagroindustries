@@ -25,6 +25,11 @@
     logo.src = BRAND_LOGO_URL;
     logo.alt = isFishGold ? "Fish Gold Industries logo" : "Vansh Group logo";
     logo.classList.add("social-brand-logo");
+
+    var holder = logo.closest(".company-icon, .post-avatar");
+    if (holder) {
+      holder.classList.add("social-brand-logo-holder");
+    }
   }
 
   function prefersReducedMotion() {
