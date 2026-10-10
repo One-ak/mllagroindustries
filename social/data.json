@@ -20,15 +20,15 @@
   "posterProducts": [
     {
       "name": "Black Gold",
-      "image": "./black-gold.jpg"
+      "image": "./black-gold.webp"
     },
     {
       "name": "Vansh Pro",
-      "image": "./vansh-pro-8000.jpg"
+      "image": "./vansh-pro-8000.webp"
     },
     {
       "name": "Supreme Feed",
-      "image": "./cattle-feed.jpg"
+      "image": "./cattle-feed.webp"
     }
   ],
   "companies": [
@@ -68,6 +68,7 @@
       "id": "gaon-dehat",
       "name": "Gaon Dehat",
       "focus": "Crop Nutrition & Soil Health",
+      "image": "./gaon-dehat-logo.webp",
       "url": "https://gaondehaat.com/",
       "icon": "FaSeedling",
       "color": "#15803d"
@@ -76,6 +77,7 @@
   "posts": [
     {
       "id": "mll-agro",
+      "category": "agriculture",
       "type": "green",
       "icon": "FaLeaf",
       "title": "MLL Agro Industries",
@@ -85,7 +87,7 @@
         {
           "url": "https://mllagroindustries.com/",
           "icon": "MllLogo",
-          "color": "#10b981",
+          "color": "#047857",
           "label": "mllagroindustries.com"
         },
         {
@@ -98,6 +100,7 @@
     },
     {
       "id": "nvba",
+      "category": "agriculture",
       "type": "green",
       "icon": "FaSeedling",
       "title": "New Vanshika Bio Agro",
@@ -121,6 +124,7 @@
     },
     {
       "id": "vansh-feeds",
+      "category": "nutrition",
       "type": "blue",
       "icon": "FaPaw",
       "title": "Vansh Feeds",
@@ -130,13 +134,14 @@
         {
           "url": "https://vanshfeeds.com/",
           "icon": "VanshLogo",
-          "color": "#3b82f6",
+          "color": "#1d4ed8",
           "label": "vanshfeeds.com"
         }
       ]
     },
     {
       "id": "fish-gold",
+      "category": "nutrition",
       "type": "blue",
       "icon": "FaFish",
       "title": "Fish Gold Industries",
@@ -146,7 +151,7 @@
         {
           "url": "https://www.fishgoldindustries.com/",
           "icon": "FaFish",
-          "color": "#0ea5e9",
+          "color": "#0369a1",
           "label": "fishgoldindustries.com"
         },
         {
@@ -160,6 +165,8 @@
     },
     {
       "id": "gaon-dehat",
+      "category": "agriculture",
+      "image": "./gaon-dehat-logo.webp",
       "type": "green",
       "icon": "FaSeedling",
       "title": "Gaon Dehat",
@@ -168,7 +175,8 @@
       "links": [
         {
           "url": "https://gaondehaat.com/",
-          "icon": "FaGlobe",
+          "icon": "GaonLogo",
+          "name": "Gaon Dehat",
           "color": "#15803d",
           "label": "gaondehaat.com"
         }
@@ -176,6 +184,7 @@
     },
     {
       "id": "leadership",
+      "category": "leadership",
       "type": "orange",
       "icon": "FaUserTie",
       "title": "MD Profile",
