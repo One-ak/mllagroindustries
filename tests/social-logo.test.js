@@ -72,7 +72,7 @@ test('Shared logos update on initial and dynamic rendering, leaving MLL unchange
   assert.equal(logo.className, 'social-brand-logo');
 });
 
-test('Gaon Dehat logos and MLL heading logos leave existing MLL website icons untouched', () => {
+test('Gaon Dehat and MLL heading logos work with cached icons and leave MLL website icons untouched', () => {
   const data = JSON.parse(fs.readFileSync(path.join(socialDir, 'data.json'), 'utf8'));
   assert.equal(data.companies.find(item => item.id === 'mll-agro').icon, 'MllLogo');
   assert.equal(data.posts.find(item => item.id === 'mll-agro').icon, 'MllLogo');
@@ -80,7 +80,7 @@ test('Gaon Dehat logos and MLL heading logos leave existing MLL website icons un
   assert.equal(gaonLogo.subarray(0, 2).toString('hex'), 'ffd8');
 
   const { document, window } = parseHTML(`<!doctype html><html><body>
-    <a class="company-card mll"><div class="company-icon"><img src="./mll-logo.png" alt="MLL Agro Logo"></div><h4>MLL Agro Industries</h4></a>
+    <a class="company-card mll"><div class="company-icon"><svg></svg></div><h4>MLL Agro Industries</h4></a>
     <article class="post-card mll"><h3>MLL Agro Industries</h3>
       <div class="post-avatar"><img src="./mll-logo.png" alt="MLL Agro Logo"></div>
       <div class="link-icon-wrapper"><img src="./mll-logo.png" alt="MLL Agro Logo"></div>

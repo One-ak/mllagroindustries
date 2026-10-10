@@ -54,9 +54,14 @@
       styleCircularLogo(logo);
     } else if (name === "MLL Agro Industries" && holder.matches(".company-icon, .post-avatar")) {
       var mllLogo = holder.querySelector('img[alt="MLL Agro Logo"]');
-      if (mllLogo) {
-        styleCircularLogo(mllLogo);
+      // Older cached company data still renders a leaf in these heading slots.
+      if (!mllLogo) {
+        mllLogo = document.createElement("img");
+        mllLogo.src = "./mll-logo.png";
+        mllLogo.alt = "MLL Agro Logo";
+        holder.replaceChildren(mllLogo);
       }
+      styleCircularLogo(mllLogo);
     }
   }
 
