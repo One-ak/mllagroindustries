@@ -6,7 +6,7 @@
     "bio": "Pioneering Organic Agro Inputs, Soil Health Solutions & Premium Feed Manufacturing. Based in Barabanki, empowering farmers across India and Nepal.",
     "stats": [
       { "value": "4", "label": "Official Websites" },
-      { "value": "6", "label": "Social Profiles" }
+      { "value": "9", "label": "Social Profiles" }
     ]
   },
   "heroProduct": {
@@ -108,7 +108,7 @@
           "url": "https://www.facebook.com/nvbaipl",
           "icon": "FaFacebook",
           "color": "#0866FF",
-          "label": "Facebook | @nvbaipl"
+          "label": "Facebook Page | @nvbaipl"
         },
         {
           "url": "https://www.instagram.com/newbioagro/",
@@ -116,6 +116,12 @@
           "color": "#b91c62",
           "iconColor": "#b91c62",
           "label": "Instagram | @newbioagro"
+        },
+        {
+          "url": "https://www.facebook.com/newvanshika.bioagro.5/",
+          "icon": "FaFacebook",
+          "color": "#0866FF",
+          "label": "Facebook Account | @newvanshika.bioagro.5"
         }
       ]
     },
@@ -155,6 +161,18 @@
           "color": "#b91c62",
           "iconColor": "#b91c62",
           "label": "Instagram Reels | @fishgoldindustries_official"
+        },
+        {
+          "url": "https://www.facebook.com/FishGoldIndustries/",
+          "icon": "FaFacebook",
+          "color": "#0866FF",
+          "label": "Facebook Page | @FishGoldIndustries"
+        },
+        {
+          "url": "https://www.facebook.com/profile.php?id=61580322426164",
+          "icon": "FaFacebook",
+          "color": "#0866FF",
+          "label": "Facebook Account | Fish Gold Industries"
         }
       ]
     },

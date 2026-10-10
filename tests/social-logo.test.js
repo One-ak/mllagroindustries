@@ -20,7 +20,7 @@ test('Fish Gold uses the shared Vansh logo without changing social destinations'
   assert.equal(post.links[1].url, 'https://www.instagram.com/fishgoldindustries_official/reels/?hl=en');
   assert.equal(data.companies.length, 5);
   assert.equal(data.posts.length, 6);
-  assert.equal(data.posts.reduce((count, item) => count + item.links.length, 0), 10);
+  assert.equal(data.posts.reduce((count, item) => count + item.links.length, 0), 13);
 
   const logo = fs.readFileSync(path.join(socialDir, 'vansh-group-logo.png'));
   assert.equal(logo.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
