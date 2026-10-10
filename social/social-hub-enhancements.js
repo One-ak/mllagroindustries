@@ -33,11 +33,6 @@
       return;
     }
 
-    if (state.manualPlayback) {
-      if (document.hidden) pauseForPolicy(video, state);
-      return;
-    }
-
     var mayAutoplay =
       state.isNearViewport &&
       !state.userPaused &&
@@ -104,8 +99,7 @@
       isNearViewport: false,
       policyPause: false,
       policyPlay: false,
-      userPaused: false,
-      manualPlayback: video.dataset.playback === "manual"
+      userPaused: false
     };
 
     videoStates.set(video, state);
@@ -113,13 +107,11 @@
 
     video.autoplay = false;
     video.removeAttribute("autoplay");
-    video.preload = state.manualPlayback ? "none" : "metadata";
-    video.setAttribute("preload", video.preload);
+    video.preload = "metadata";
+    video.setAttribute("preload", "metadata");
     video.controls = true;
     video.setAttribute("playsinline", "");
     video.setAttribute("aria-label", "Featured product video");
-
-    if (state.manualPlayback) return;
 
     video.addEventListener("play", function () {
       if (state.policyPlay) {
