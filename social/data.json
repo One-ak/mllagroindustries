@@ -6,7 +6,7 @@
     "bio": "Pioneering Organic Agro Inputs, Soil Health Solutions & Premium Feed Manufacturing. Based in Barabanki, empowering farmers across India and Nepal.",
     "stats": [
       { "value": "4", "label": "Official Websites" },
-      { "value": "9", "label": "Social Profiles" }
+      { "value": "10", "label": "Social Profiles" }
     ]
   },
   "heroProduct": {
@@ -212,6 +212,12 @@
           "color": "#b91c62",
           "iconColor": "#b91c62",
           "label": "Instagram | @upadhykshabjp"
+        },
+        {
+          "url": "https://www.facebook.com/profile.php?id=61591578999500",
+          "icon": "FaFacebook",
+          "color": "#0866FF",
+          "label": "Facebook Profile | Hemkaran Mathur"
         }
       ]
     }

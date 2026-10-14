@@ -29,10 +29,26 @@ test('Profile totals reflect all websites and social destinations with no duplic
   const socialHosts = new Set(['www.facebook.com', 'www.instagram.com', 'x.com']);
   const socialCount = links.filter(link => socialHosts.has(new URL(link.url).hostname)).length;
   assert.equal(new Set(links.map(link => link.url)).size, links.length);
-  assert.equal(links.length, 13);
-  assert.equal(socialCount, 9);
+  assert.equal(links.length, 14);
+  assert.equal(socialCount, 10);
   assert.equal(data.profile.stats.find(stat => stat.label === 'Social Profiles').value, String(socialCount));
   assert.equal(data.profile.stats.find(stat => stat.label === 'Official Websites').value, String(links.length - socialCount));
+});
+
+test('MD Facebook profile is listed only with the existing personal MD profiles', () => {
+  const leadership = data.posts.find(post => post.id === 'leadership');
+  const facebookUrl = 'https://www.facebook.com/profile.php?id=61591578999500';
+  assert.deepEqual(leadership.links.map(link => link.url), [
+    'https://x.com/Hemkaran_Mathur',
+    'https://www.instagram.com/upadhykshabjp/',
+    facebookUrl
+  ]);
+  const facebook = leadership.links.find(link => link.url === facebookUrl);
+  assert.equal(facebook.label, 'Facebook Profile | Hemkaran Mathur');
+  assert.equal(facebook.icon, 'FaFacebook');
+  assert.equal(facebook.color, '#0866FF');
+  assert.ok(!data.posts.filter(post => post.id !== 'leadership').some(post =>
+    post.links.some(link => link.url === facebookUrl)));
 });
 
 test('The existing app only changes its data URL so cached lists cannot hide new Facebook links', () => {
@@ -41,6 +57,6 @@ test('The existing app only changes its data URL so cached lists cannot hide new
   const scriptPath = document.querySelector('script[type="module"]').getAttribute('src');
   const activeBuild = fs.readFileSync(path.join(socialDir, scriptPath), 'utf8');
   const originalBuild = fs.readFileSync(path.join(socialDir, 'assets', 'index-B-bGaZVP.js'), 'utf8');
-  assert.ok(activeBuild.includes('fetch(`./data.json?v=facebook-20261010`)'));
-  assert.equal(activeBuild.replace('fetch(`./data.json?v=facebook-20261010`)', 'fetch(`./data.json`)'), originalBuild);
+  assert.ok(activeBuild.includes('fetch(`./data.json?v=md-facebook-20261014`)'));
+  assert.equal(activeBuild.replace('fetch(`./data.json?v=md-facebook-20261014`)', 'fetch(`./data.json`)'), originalBuild);
 });
